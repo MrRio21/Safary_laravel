@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ordered_place extends Model
+class RequestRide extends Model
 {
     use HasFactory;
 }

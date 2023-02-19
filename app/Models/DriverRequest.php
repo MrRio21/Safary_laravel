@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class room_img extends Model
+class DriverRequest extends Model
 {
     use HasFactory;
 }

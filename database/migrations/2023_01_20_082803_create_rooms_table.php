@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->float('price');
             $table->string('available_rooms');
             $table->enum('type',['single','double','triple']);
             $table->unsignedBigInteger('hotel_id');
