@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\hotel_img;
+use App\Models\HotelImg;
 use Illuminate\Http\Request;
 
 class HotelImgController extends Controller
@@ -44,7 +44,7 @@ class HotelImgController extends Controller
      * @param  \App\Models\hotel_img  $hotel_img
      * @return \Illuminate\Http\Response
      */
-    public function show(hotel_img $hotel_img)
+    public function show(HotelImg $HotelImg)
     {
         //
     }
@@ -55,7 +55,7 @@ class HotelImgController extends Controller
      * @param  \App\Models\hotel_img  $hotel_img
      * @return \Illuminate\Http\Response
      */
-    public function edit(hotel_img $hotel_img)
+    public function edit(HotelImg $HotelImg)
     {
         //
     }
@@ -67,7 +67,7 @@ class HotelImgController extends Controller
      * @param  \App\Models\hotel_img  $hotel_img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel_img $hotel_img)
+    public function update(Request $request, HotelImg $HotelImg)
     {
         //
     }
@@ -78,7 +78,7 @@ class HotelImgController extends Controller
      * @param  \App\Models\hotel_img  $hotel_img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotel_img $hotel_img)
+    public function destroy(HotelImg $HotelImg)
     {
         //
     }

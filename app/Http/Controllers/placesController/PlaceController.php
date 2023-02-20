@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\place;
+use App\Models\Place;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -44,7 +44,7 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function show(place $place)
+    public function show(Place $place)
     {
         //
     }
@@ -55,7 +55,7 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function edit(place $place)
+    public function edit(Place $place)
     {
         //
     }
@@ -67,7 +67,7 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, place $place)
+    public function update(Request $request, Place $place)
     {
         //
     }
@@ -78,7 +78,7 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(place $place)
+    public function destroy(Place $place)
     {
         //
     }

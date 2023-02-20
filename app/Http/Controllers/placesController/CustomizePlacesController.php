@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customizePlaces;
+use App\Models\CustomizePlaces;
 use Illuminate\Http\Request;
 
 class CustomizePlacesController extends Controller
@@ -44,7 +44,7 @@ class CustomizePlacesController extends Controller
      * @param  \App\Models\customizePlaces  $customizePlaces
      * @return \Illuminate\Http\Response
      */
-    public function show(customizePlaces $customizePlaces)
+    public function show(CustomizePlaces $customizePlaces)
     {
         //
     }
@@ -55,7 +55,7 @@ class CustomizePlacesController extends Controller
      * @param  \App\Models\customizePlaces  $customizePlaces
      * @return \Illuminate\Http\Response
      */
-    public function edit(customizePlaces $customizePlaces)
+    public function edit(CustomizePlaces $customizePlaces)
     {
         //
     }
@@ -67,7 +67,7 @@ class CustomizePlacesController extends Controller
      * @param  \App\Models\customizePlaces  $customizePlaces
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customizePlaces $customizePlaces)
+    public function update(Request $request, CustomizePlaces $customizePlaces)
     {
         //
     }
@@ -78,7 +78,7 @@ class CustomizePlacesController extends Controller
      * @param  \App\Models\customizePlaces  $customizePlaces
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customizePlaces $customizePlaces)
+    public function destroy(CustomizePlaces $customizePlaces)
     {
         //
     }

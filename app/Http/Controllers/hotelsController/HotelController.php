@@ -44,7 +44,7 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(hotel $hotel)
+    public function show(Hotel $hotel)
     {
         //
     }
@@ -55,7 +55,7 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function edit(hotel $hotel)
+    public function edit(Hotel $hotel)
     {
         //
     }

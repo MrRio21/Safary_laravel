@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\placesOfRecommTrips;
+use App\Models\PlacesOfRecommTrips;
 use Illuminate\Http\Request;
 
 class PlacesOfRecommTripsController extends Controller

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\booked_room;
+use App\Models\BookedRoom;
 use Illuminate\Http\Request;
 
 class BookedRoomController extends Controller
@@ -44,7 +45,7 @@ class BookedRoomController extends Controller
      * @param  \App\Models\booked_room  $booked_room
      * @return \Illuminate\Http\Response
      */
-    public function show(booked_room $booked_room)
+    public function show(BookedRoom $booked_room)
     {
         //
     }
@@ -55,7 +56,7 @@ class BookedRoomController extends Controller
      * @param  \App\Models\booked_room  $booked_room
      * @return \Illuminate\Http\Response
      */
-    public function edit(booked_room $booked_room)
+    public function edit(BookedRoom $booked_room)
     {
         //
     }
@@ -67,7 +68,7 @@ class BookedRoomController extends Controller
      * @param  \App\Models\booked_room  $booked_room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, booked_room $booked_room)
+    public function update(Request $request, BookedRoom $booked_room)
     {
         //
     }
@@ -78,7 +79,7 @@ class BookedRoomController extends Controller
      * @param  \App\Models\booked_room  $booked_room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(booked_room $booked_room)
+    public function destroy(BookedRoom $booked_room)
     {
         //
     }

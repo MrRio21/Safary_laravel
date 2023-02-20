@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tourgide_language;
+use App\Models\TourguideLanguage;
 use Illuminate\Http\Request;
 
-class TourgideLanguageController extends Controller
+class TourguideLanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class TourgideLanguageController extends Controller
      * @param  \App\Models\tourgide_language  $tourgide_language
      * @return \Illuminate\Http\Response
      */
-    public function show(tourgide_language $tourgide_language)
+    public function show(TourguideLanguage $tourgide_language)
     {
         //
     }
@@ -55,7 +55,7 @@ class TourgideLanguageController extends Controller
      * @param  \App\Models\tourgide_language  $tourgide_language
      * @return \Illuminate\Http\Response
      */
-    public function edit(tourgide_language $tourgide_language)
+    public function edit(TourguideLanguage $tourgide_language)
     {
         //
     }
@@ -67,7 +67,7 @@ class TourgideLanguageController extends Controller
      * @param  \App\Models\tourgide_language  $tourgide_language
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tourgide_language $tourgide_language)
+    public function update(Request $request, TourguideLanguage $tourgide_language)
     {
         //
     }
@@ -78,7 +78,7 @@ class TourgideLanguageController extends Controller
      * @param  \App\Models\tourgide_language  $tourgide_language
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tourgide_language $tourgide_language)
+    public function destroy(TourguideLanguage $tourgide_language)
     {
         //
     }

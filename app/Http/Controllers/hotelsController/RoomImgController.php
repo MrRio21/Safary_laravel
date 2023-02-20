@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\room_img;
+use App\Models\RoomImg;
 use Illuminate\Http\Request;
 
 class RoomImgController extends Controller
@@ -44,7 +44,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function show(room_img $room_img)
+    public function show(RoomImg $room_img)
     {
         //
     }
@@ -55,7 +55,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function edit(room_img $room_img)
+    public function edit(RoomImg $room_img)
     {
         //
     }
@@ -67,7 +67,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, room_img $room_img)
+    public function update(Request $request, RoomImg $room_img)
     {
         //
     }
@@ -78,7 +78,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(room_img $room_img)
+    public function destroy(RoomImg $room_img)
     {
         //
     }

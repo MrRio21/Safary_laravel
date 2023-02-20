@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\request_ride;
+use App\Models\RequestRide;
 use Illuminate\Http\Request;
 
 class RequestRideController extends Controller
@@ -44,7 +44,7 @@ class RequestRideController extends Controller
      * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function show(request_ride $request_ride)
+    public function show(RequestRide $request_ride)
     {
         //
     }
@@ -55,7 +55,7 @@ class RequestRideController extends Controller
      * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function edit(request_ride $request_ride)
+    public function edit(RequestRide $request_ride)
     {
         //
     }
@@ -67,7 +67,7 @@ class RequestRideController extends Controller
      * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, request_ride $request_ride)
+    public function update(Request $request, RequestRide $request_ride)
     {
         //
     }
@@ -78,7 +78,7 @@ class RequestRideController extends Controller
      * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function destroy(request_ride $request_ride)
+    public function destroy(RequestRide $request_ride)
     {
         //
     }

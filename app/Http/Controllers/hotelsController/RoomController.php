@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\room;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -44,7 +44,7 @@ class RoomController extends Controller
      * @param  \App\Models\room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(room $room)
+    public function show(Room $room)
     {
         //
     }
@@ -67,7 +67,7 @@ class RoomController extends Controller
      * @param  \App\Models\room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, room $room)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -78,7 +78,7 @@ class RoomController extends Controller
      * @param  \App\Models\room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(room $room)
+    public function destroy(Room $room)
     {
         //
     }
