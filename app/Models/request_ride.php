@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class request_ride extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'position',
+        'destination',
+        'date',
+        'status',
+        'user_id',
+    ];
+    public function User (){
+        return $this->belongsto(User::class);
+    }
 }
