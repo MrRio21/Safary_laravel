@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 
 // ----------hotels Apis-------------------//
 
@@ -36,3 +35,8 @@ Route::get('/showHotel{id}',[HotelController::class,'show']);
 
 
 Route::get('/updateHotel{id}',[HotelController::class,'Update']);
+    // for all hotels review
+
+// data of the hotel that come from the form in the dashboard of hotel owner
+
+});
