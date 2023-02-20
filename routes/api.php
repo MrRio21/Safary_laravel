@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HotelController;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// ----------hotels Apis-------------------//
+
+// for all hotels review 
+Route::get('/allotels',[HotelController::class,'index']);
+
+// data of the hotel that come from the form in the dashboard of hotel owner
+Route::post('/hotelRegisteration',[Hotel::class,'store']);

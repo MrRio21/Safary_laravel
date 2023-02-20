@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\booked_room;
 use App\Models\BookedRoom;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class BookedRoomController extends Controller
@@ -15,7 +15,7 @@ class BookedRoomController extends Controller
      */
     public function index()
     {
-        //
+      //
     }
 
     /**

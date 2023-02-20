@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\hotel;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -14,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $allHotels =Hotel::all();
+        return $allHotels ;
     }
 
     /**
@@ -24,7 +25,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        // only showing the html (the form in the dashboard)
     }
 
     /**
@@ -35,7 +36,22 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $data =  $request->validate([
+            'name'=>'required',
+            'address '=>['required','min:10'],
+            'type'=>'required',
+
+        ]);
+        $hotelName = $data['name'];
+        $address =$data['address'];
+        $type = $data['type'];
+        $hotel = hotel::creat([
+            'name' => $hotelName,
+            'address' =>$address,
+            'type' =>$type
+        ]);
+        return $hotel; 
     }
 
     /**
@@ -46,7 +62,7 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        //
+        $targetedHotel = Hotel::find()
     }
 
     /**
