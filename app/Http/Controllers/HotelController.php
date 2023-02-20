@@ -32,7 +32,7 @@ class HotelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +57,7 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\hotel  $hotel
+     * @param  \App\Models\hotel  
      * @return \Illuminate\Http\Response
      */
     public function show(Hotel $hotelId)
@@ -69,7 +69,7 @@ class HotelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\hotel  $hotel
+     * @param  \App\Models\hotel  
      * @return \Illuminate\Http\Response
      */
     public function edit(Hotel $hotel)
@@ -80,8 +80,8 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\hotel  $hotel
+     * @param  \Illuminate\Http\Request  
+     * @param  \App\Models\hotel  
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, hotel $hotelId)
@@ -92,8 +92,17 @@ class HotelController extends Controller
                 'name'=> $request['name'], 
             ]);
         }
+        if($request['description']){
+
+            Hotel::find($hotelId)->update([
+                'name'=> $request['description'], 
+            ]);
+        }
         if($request['name']&&$request['address']){
-            
+            Hotel::find($hotelId)->update([
+                'name'=> $request['name'], 
+                'address' => $request['address']
+            ]);
         }
         return     ;
     }
