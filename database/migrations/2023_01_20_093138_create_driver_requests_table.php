@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
-            $table->unsignedBigInteger('request_rides_id');
+            $table->unsignedBigInteger('request_ride_id');
             $table->foreign('request_ride_id')->references('id')->on('request_rides')->onDelete('cascade');
             $table->float('price');
         });

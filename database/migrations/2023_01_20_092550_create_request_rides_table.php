@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('request_rides', function (Blueprint $table) {
             $table->id();
+            $table->string('position');
+            $table->string('destination');
+            $table->dateTime('date', $precision = 0);
+            $table->string('status');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
