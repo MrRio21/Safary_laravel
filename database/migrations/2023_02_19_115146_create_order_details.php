@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customize_places', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('place_id');
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            
-            
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->enum('status',['done','pending','processing']);
+            $table->float('total_price');
+       
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customize_places');
+        Schema::dropIfExists('order_details');
     }
 };

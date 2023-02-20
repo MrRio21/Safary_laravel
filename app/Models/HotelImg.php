@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tourgide_language extends Model
+class HotelImg extends Model
 {
     use HasFactory;
 }
