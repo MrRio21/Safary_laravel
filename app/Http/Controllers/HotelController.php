@@ -15,7 +15,8 @@ class HotelController extends Controller
     public function index()
     {
         $allHotels =Hotel::all();
-        return $allHotels ;
+        
+        return isset($allHotels)?$allHotels:"";
     }
 
     /**
@@ -37,16 +38,15 @@ class HotelController extends Controller
     public function store(Request $request)
     {
        
-        $data =  $request->validate([
+        $request->validate([
             'name'=>'required',
             'address '=>['required','min:10'],
             'type'=>'required',
-
         ]);
-        $hotelName = $data['name'];
-        $address =$data['address'];
-        $type = $data['type'];
-        $hotel = hotel::creat([
+        $hotelName = $request['name'];
+        $address =$request['address'];
+        $type = $request['type'];
+        $hotel = hotel::create([
             'name' => $hotelName,
             'address' =>$address,
             'type' =>$type
@@ -60,9 +60,10 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(Hotel $hotel)
+    public function show(Hotel $hotelId)
     {
-        $targetedHotel = Hotel::find()
+        $targetedHotel = Hotel::find($hotelId);
+        return $targetedHotel;
     }
 
     /**
@@ -83,9 +84,18 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel $hotel)
+    public function update(Request $request, hotel $hotelId)
     {
-        //
+        if($request['name']){
+
+            Hotel::find($hotelId)->update([
+                'name'=> $request['name'], 
+            ]);
+        }
+        if($request['name']&&$request['address']){
+            
+        }
+        return     ;
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\HotelController;
+
 use App\Http\Controllers\HotelController;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
@@ -23,7 +25,14 @@ use Illuminate\Support\Facades\Route;
 // ----------hotels Apis-------------------//
 
 // for all hotels review 
-Route::get('/allotels',[HotelController::class,'index']);
+Route::get('/hotels',[HotelController::class,'index']);
 
 // data of the hotel that come from the form in the dashboard of hotel owner
-Route::post('/hotelRegisteration',[Hotel::class,'store']);
+Route::post('/storeHotel',[HotelController::class,'store']);
+
+
+Route::get('/showHotel{id}',[HotelController::class,'show']);
+
+
+
+Route::get('/updateHotel{id}',[HotelController::class,'Update']);
