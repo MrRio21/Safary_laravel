@@ -23,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/allotels',[HotelController::class,'index']);
 
 // data of the hotel that come from the form in the dashboard of hotel owner
-Route::post('/hotelRegisteration',[Hotel::class,'store']);
+Route::post('/hotelRegisteration',[HotelController::class,'store']);
 });
