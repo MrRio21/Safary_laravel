@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\HotelController;
-use App\Models\Hotel;
+use App\Models\hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
