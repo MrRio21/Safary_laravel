@@ -18,4 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+    // for all hotels review
+Route::get('/allotels',[HotelController::class,'index']);
+
+// data of the hotel that come from the form in the dashboard of hotel owner
+Route::post('/hotelRegisteration',[Hotel::class,'store']);
 });
