@@ -35,36 +35,11 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('api')
                 ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-                ////////////   HOTEL ROUTER  //////////
-
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/hotel.php'));
-
-                //////////////    ORDER ROUTER    ///////////
-
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/order.php'));
-
-                ///////////     PLACES ROUTER    /////
-
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/place.php'));
-
-                ///////////     VEHICLE ROUTER    /////
-
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/vehicle.php'));
-
-                ///////////     TRIP ROUTER    /////
-
-            Route::middleware('api')
-                ->prefix('api')
+                ->group(base_path('routes/api.php'))
+                ->group(base_path('routes/hotel.php'))
+                ->group(base_path('routes/order.php'))
+                ->group(base_path('routes/place.php'))
+                ->group(base_path('routes/vehicle.php'))
                 ->group(base_path('routes/trip.php'));
 
 
