@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tourgide;
+use App\Models\TourGuide;
 use Illuminate\Http\Request;
 
 class TourgideController extends Controller
@@ -44,7 +44,7 @@ class TourgideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function show(tourgide $tourgide)
+    public function show(TourGuide $tourgide)
     {
         //
     }
@@ -55,7 +55,7 @@ class TourgideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function edit(tourgide $tourgide)
+    public function edit(TourGuide $tourgide)
     {
         //
     }
@@ -67,7 +67,7 @@ class TourgideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tourgide $tourgide)
+    public function update(Request $request, TourGuide $tourgide)
     {
         //
     }
@@ -78,7 +78,7 @@ class TourgideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tourgide $tourgide)
+    public function destroy(TourGuide $tourgide)
     {
         //
     }

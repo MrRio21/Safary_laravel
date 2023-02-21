@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
+            
         });
     }
 

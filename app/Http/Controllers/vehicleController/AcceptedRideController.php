@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\accepted_ride;
+use App\Models\AcceptedRide;
 use Illuminate\Http\Request;
 
 class AcceptedRideController extends Controller
@@ -44,7 +44,7 @@ class AcceptedRideController extends Controller
      * @param  \App\Models\accepted_ride  $accepted_ride
      * @return \Illuminate\Http\Response
      */
-    public function show(accepted_ride $accepted_ride)
+    public function show(AcceptedRide $accepted_ride)
     {
         //
     }
@@ -55,7 +55,7 @@ class AcceptedRideController extends Controller
      * @param  \App\Models\accepted_ride  $accepted_ride
      * @return \Illuminate\Http\Response
      */
-    public function edit(accepted_ride $accepted_ride)
+    public function edit(AcceptedRide $accepted_ride)
     {
         //
     }
@@ -67,7 +67,7 @@ class AcceptedRideController extends Controller
      * @param  \App\Models\accepted_ride  $accepted_ride
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, accepted_ride $accepted_ride)
+    public function update(Request $request, AcceptedRide $accepted_ride)
     {
         //
     }
@@ -78,7 +78,7 @@ class AcceptedRideController extends Controller
      * @param  \App\Models\accepted_ride  $accepted_ride
      * @return \Illuminate\Http\Response
      */
-    public function destroy(accepted_ride $accepted_ride)
+    public function destroy(AcceptedRide $accepted_ride)
     {
         //
     }
