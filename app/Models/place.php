@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     use HasFactory;
+
+    public function customizePlaces(): BelongsTo
+    {
+        return $this->belongsTo(customizePlaces::class);
+    }
 }

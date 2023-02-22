@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TourGuide;
+use App\Models\RequestRide;
 use Illuminate\Http\Request;
 
-class TourgideController extends Controller
+class RequestRideController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TourgideController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,16 +35,27 @@ class TourgideController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+        // dd($request);
+        $trip=Trip::create([
+            'user_id'=>auth()->user()['id'],
+            'position'=>$request['position'],
+            'destination'=>$request['destination'],
+            'date'=>$request['date'],
+            'now'=>$request['now'],
+            'status'=>'Pendding'
+    ]);
+    return redirect(route("card",['trip'=>$trip]));
+}
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\tourgide  $tourgide
+     * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function show(TourGuide $tourgide)
+    public function show(RequestRide $request_ride)
     {
         //
     }
@@ -52,10 +63,10 @@ class TourgideController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\tourgide  $tourgide
+     * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function edit(TourGuide $tourgide)
+    public function edit(RequestRide $request_ride)
     {
         //
     }
@@ -64,10 +75,10 @@ class TourgideController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\tourgide  $tourgide
+     * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TourGuide $tourgide)
+    public function update(Request $request, RequestRide $request_ride)
     {
         //
     }
@@ -75,10 +86,10 @@ class TourgideController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\tourgide  $tourgide
+     * @param  \App\Models\request_ride  $request_ride
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TourGuide $tourgide)
+    public function destroy(RequestRide $request_ride)
     {
         //
     }

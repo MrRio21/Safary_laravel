@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RequestRide;
+use App\Models\hotel;
 use Illuminate\Http\Request;
 
-class RequestRideController extends Controller
+class HotelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RequestRideController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestRide $request_ride)
+    public function show(hotel $hotel)
     {
         //
     }
@@ -52,10 +52,10 @@ class RequestRideController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestRide $request_ride)
+    public function edit(hotel $hotel)
     {
         //
     }
@@ -64,10 +64,10 @@ class RequestRideController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestRide $request_ride)
+    public function update(Request $request, hotel $hotel)
     {
         //
     }
@@ -75,10 +75,10 @@ class RequestRideController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestRide $request_ride)
+    public function destroy(hotel $hotel)
     {
         //
     }
