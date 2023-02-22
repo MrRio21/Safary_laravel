@@ -17,17 +17,16 @@ class Room extends Model
     ];
 
 
-
-
-
     public function hotel()
     {
         return $this->belongsTo(Hotel::class,$foreignkey ='hotel_id');
         
     }
-
-    public function hotel(): BelongsTo
+    public function roomImg()
     {
-        return $this->belongsTo(hotel::class);
+        return $this->hasMany(RoomImg::class);
+        
     }
+
+
 }
