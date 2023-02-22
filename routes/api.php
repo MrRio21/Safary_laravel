@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
 
 // ----------hotels Apis-------------------//
 
-// for all hotels review 
+// for all hotels review
 Route::get('/hotels',[HotelController::class,'index']);
 
 // data of the hotel that come from the form in the dashboard of hotel owner
@@ -32,11 +32,16 @@ Route::post('/storeHotel',[HotelController::class,'store']);
 
 Route::get('/showHotel{id}',[HotelController::class,'show']);
 
-
+Route::get('/test',function(){
+    $body =[
+        "name"=> "el 7amdlallah"
+    ];
+    return $body;
+});
 
 Route::get('/updateHotel{id}',[HotelController::class,'Update']);
     // for all hotels review
 
 // data of the hotel that come from the form in the dashboard of hotel owner
 
-});
+// });

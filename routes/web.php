@@ -19,5 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test1',function(){
+    return 'test';
+});
+
+Route::get('/test',function(){
+    $body =[
+        "name"=> "el 7amdlallah"
+    ];
+    return $body;
+});
 
 Route::get('/hotels',[HotelController::class,'index']);
