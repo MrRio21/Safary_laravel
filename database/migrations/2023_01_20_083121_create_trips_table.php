@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
+            $table->string("description");
+            $table->integer("n_of_people");
+            $table->integer("n_of_places");
             $table->timestamps();
         });
     }

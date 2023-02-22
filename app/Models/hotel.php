@@ -22,16 +22,17 @@ class Hotel extends Model
     {
         return $this->hasMany(room::class);
     }
-
+    public function bookedRoom()
+    {
+        return $this->hasMany(bookedRoom::class);
+    }
     public function hotelOwner()
     {
         return $this->belongsTo(hotelOwner::class);
     }
-
     public function hotelImg()
     {
-        return $this->belongsTo(Hotel::class);
-        
+        return $this->belongsTo(Hotel::class); 
     }
 
 }

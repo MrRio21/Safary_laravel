@@ -55,18 +55,9 @@ class BookedRoomController extends Controller
      */
     public function show(BookedRoom $bookedRoom)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\booked_room  $booked_room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BookedRoom $bookedRoom)
-    {
-        //
+        $room = Hotel::find($bookedRoom);
+        return $room;
+        
     }
 
     /**
@@ -78,7 +69,25 @@ class BookedRoomController extends Controller
      */
     public function update(Request $request, BookedRoom $bookedRoom)
     {
-        //
+        if($request['name']){
+
+            $results=Hotel::where ('id',$bookedRoom)->update([
+                  'name'=> $request['name'], 
+              ]);
+          }
+          if($request['description']){
+  
+              $results=Hotel::where ('id',$bookedRoom)->update([
+                  'name'=> $request['description'], 
+              ]);
+          }
+          if($request['name']&&$request['address']){
+              $results=Hotel::where ('id',$bookedRoom)->update([
+                  'name'=> $request['name'], 
+                  'address' => $request['address']
+              ]);
+          }
+          return $results;
     }
 
     /**
