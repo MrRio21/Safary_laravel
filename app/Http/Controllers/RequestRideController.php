@@ -14,7 +14,7 @@ class RequestRideController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,8 +35,19 @@ class RequestRideController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+        // dd($request);
+        $trip=Trip::create([
+            'user_id'=>auth()->user()['id'],
+            'position'=>$request['position'],
+            'destination'=>$request['destination'],
+            'date'=>$request['date'],
+            'now'=>$request['now'],
+            'status'=>'Pendding'
+    ]);
+    return redirect(route("card",['trip'=>$trip]));
+}
+
 
     /**
      * Display the specified resource.

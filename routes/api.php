@@ -6,6 +6,7 @@ use App\Http\Controllers\HotelController;
 use App\Models\hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RequestRideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +29,21 @@ Route::get('/hotels',[HotelController::class,'index']);
 
 // data of the hotel that come from the form in the dashboard of hotel owner
 Route::post('/storeHotel',[HotelController::class,'store']);
-
-
 Route::get('/showHotel{id}',[HotelController::class,'show']);
-
 Route::get('/test',function(){
     $body =[
         "name"=> "el 7amdlallah"
     ];
     return $body;
 });
-
 Route::get('/updateHotel{id}',[HotelController::class,'Update']);
     // for all hotels review
 
 // data of the hotel that come from the form in the dashboard of hotel owner
 
 // });
+
+
+
+// ----------vehicle Apis-------------------//
+
