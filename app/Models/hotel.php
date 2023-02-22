@@ -22,4 +22,15 @@ class Hotel extends Model
     protected $table = 'hotels';
     
 
+
+
+    public function room(): HasMany
+    {
+        return $this->hasMany(room::class);
+    }
+
+    public function hotelOwner(): BelongsTo
+    {
+        return $this->belongsTo(hotelOwner::class);
+    }
 }
