@@ -44,7 +44,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomImg $room_img)
+    public function show(RoomImg $roomImg)
     {
         //
     }
@@ -55,7 +55,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomImg $room_img)
+    public function edit(RoomImg $roomImg)
     {
         //
     }
@@ -67,7 +67,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomImg $room_img)
+    public function update(Request $request, RoomImg $roomImg)
     {
         //
     }
@@ -78,7 +78,7 @@ class RoomImgController extends Controller
      * @param  \App\Models\room_img  $room_img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomImg $room_img)
+    public function destroy(RoomImg $roomImg)
     {
         //
     }
