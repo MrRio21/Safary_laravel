@@ -18,17 +18,17 @@ class Driver extends Model
      */
     protected $fillable = [
         'license',
-       'user_id'
+        'user_id'
     ];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
 
-    public function vehicle(): HasMany
+    public function vehicle()
     {
         return $this->hasMany(vehicle::class);
     }
- 
+
 }

@@ -10,7 +10,7 @@ class Hotel extends Model
 {
     use HasFactory;
     protected $table = 'hotels';
-    
+
     protected $fillable = [
         'name',
         'address',
@@ -20,7 +20,7 @@ class Hotel extends Model
 
     public function room()
     {
-        return $this->hasMany(room::class);
+        return $this->hasMany(Room::class);
     }
     public function bookedRoom()
     {
@@ -28,11 +28,12 @@ class Hotel extends Model
     }
     public function hotelOwner()
     {
-        return $this->belongsTo(hotelOwner::class);
+        return $this->belongsTo(HotelOwner::class);
     }
     public function hotelImg()
     {
         return $this->belongsTo(Hotel::class); 
+
     }
 
 }

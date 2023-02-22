@@ -9,7 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class HotelOwner extends Model
 {
-   
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -20,16 +20,16 @@ class HotelOwner extends Model
     protected $fillable = [
         'commercial_reg_No',
         'user_id'
-       
+
     ];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
 
-    public function hotel(): HasMany
+    public function hotel()
     {
-        return $this->hasMany(hotel::class);
+        return $this->hasMany(Hotel::class);
     }
 }

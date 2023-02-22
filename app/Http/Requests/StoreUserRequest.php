@@ -37,13 +37,13 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'image' => ['required','mimes:jpeg,png,jpg,gif'],
             // 'email' => 'email:rfc,dns'   for paypal
-            'gender'  => [new Enum(ServerStatus::class)],
+            'gender'  => "required",
         ]);
 
     }
 
 
- 
+
 
     public function messages(): array
 {
@@ -51,7 +51,7 @@ class StoreUserRequest extends FormRequest
         'name.required' => 'A name is required',
         'email.required' => 'A email is required',
         'gender.required' => 'A gender is required',
-    
+
 
     ];
 }

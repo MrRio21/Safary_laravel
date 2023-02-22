@@ -10,7 +10,7 @@ class PlacesOfRecommTrips extends Model
     use HasFactory;
 
 
-    public function order(): HasMany
+    public function order()
     {
         return $this->hasMany(order::class);
     }

@@ -18,12 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'license',
-        'user_id',
-       
+        'name',
+        'email',
+        'password',
+        'gender',
+        'image'
     ];
 
-    public function tourgide(): HasOne
+    public function tourgide()
     {
         return [
         $this->hasOne(tourgide::class),
@@ -32,9 +34,9 @@ class User extends Authenticatable
     ];
     }
 
-    public function order(): HasMany
+    public function order()
     {
         return $this->hasMany(order::class);
     }
-  
+
 }
