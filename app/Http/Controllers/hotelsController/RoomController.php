@@ -14,18 +14,11 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms =Room::all();
+        
+        return isset($rooms)?$rooms:"";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +28,21 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'price'=>'required',
+            'available_rooms '=>'required',
+            'type'=>'required',
+        ]);
+        $roomPrice = $request['price'];
+        $available_rooms =$request['available_rooms'];
+        $type = $request['type'];
+        $hotel = room::create([
+            'price' => $roomPrice,
+            'available_rooms' =>$available_rooms,
+            'type' =>$type
+        ]);
+        return $hotel; 
     }
 
     /**
@@ -46,30 +53,38 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        $room = Room::find($room);
+        return $room;  
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(room $room)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\room  $room
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, Room $room)
     {
-        //
+        if($request['price']){
+
+            $results=Room::where ('id',$room)->update([
+                  'price'=> $request['price'], 
+              ]);
+          }
+          if($request['available_rooms']){
+  
+              $results=Room::where ('id',$room)->update([
+                  'available_rooms'=> $request['available_rooms'], 
+              ]);
+          }
+          if($request['type']){
+
+            $results=Room::where ('id',$room)->update([
+                  'type'=> $request['type'], 
+              ]);
+          }
+          if($request['price']&&$request['available_rooms']&& $request['type']){
+              $results=Room::where ('id',$room)->update([
+                  'price'=> $request['price'], 
+                  'available_rooms' => $request['available_rooms']
+              ]);
+          }
+          return $results;
     }
 
     /**
@@ -80,6 +95,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        Room::find($room)->delete();
+
     }
 }

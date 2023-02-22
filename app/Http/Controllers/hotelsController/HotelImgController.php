@@ -14,7 +14,9 @@ class HotelImgController extends Controller
      */
     public function index()
     {
-        //
+              
+        $allImgs=HotelImg::find();
+        return $allImgs;
     }
 
     /**
@@ -35,7 +37,7 @@ class HotelImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,8 +48,8 @@ class HotelImgController extends Controller
      */
     public function show(HotelImg $HotelImg)
     {
-        //
-    }
+        $imgs = HotelImg::find($HotelImg);
+        return $imgs;    }
 
     /**
      * Show the form for editing the specified resource.
@@ -80,6 +82,6 @@ class HotelImgController extends Controller
      */
     public function destroy(HotelImg $HotelImg)
     {
-        //
+        HotelImg::find($HotelImg)->delete();
     }
 }

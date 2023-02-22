@@ -18,10 +18,12 @@ return new class extends Migration
             $table->timestamps();
             $table->integer("n_of_booked_rooms");
             $table->integer("n_of_adults");
-            $table->integer("n_of_childeren");
+            $table->integer("n_of_childeren")->default(0);
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
 
+/////////////////
+//there is another booking table for regular bookig 
 
         });
     }

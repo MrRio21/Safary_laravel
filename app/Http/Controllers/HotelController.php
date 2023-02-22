@@ -19,15 +19,6 @@ class HotelController extends Controller
         return isset($allHotels)?$allHotels:"";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // only showing the html (the form in the dashboard)
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -88,23 +79,25 @@ class HotelController extends Controller
     {
         if($request['name']){
 
-            Hotel::find($hotelId)->update([
+          $results=Hotel::where ('id',$hotelId)->update([
                 'name'=> $request['name'], 
             ]);
         }
         if($request['description']){
 
-            Hotel::find($hotelId)->update([
+            $results=Hotel::where ('id',$hotelId)->update([
                 'name'=> $request['description'], 
             ]);
         }
         if($request['name']&&$request['address']){
-            Hotel::find($hotelId)->update([
+            $results=Hotel::where ('id',$hotelId)->update([
                 'name'=> $request['name'], 
                 'address' => $request['address']
             ]);
         }
-        return     ;
+        return $results;
+        
+
     }
 
     /**
@@ -113,8 +106,8 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotel $hotel)
+    public function destroy(hotel $hotelId)
     {
-        //
+        Hotel::find($hotelId)->delete();
     }
 }
