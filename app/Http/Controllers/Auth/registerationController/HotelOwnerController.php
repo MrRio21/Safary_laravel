@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Auth\registerationController;
+use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Controllers\Controller;
 use App\Models\hotelOwner;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreHotelOwnerRequest;
 
 class HotelOwnerController extends Controller
 {
@@ -14,7 +18,11 @@ class HotelOwnerController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::all(); //fk
+        $hotelOwner=hotelOwner::all();
+
+        return view("hotelOwnerRegistrations.index",["users"=> $users],["hotelOwner"=> $hotelOwner]);
+        //show table from DB
     }
 
     /**
@@ -24,7 +32,7 @@ class HotelOwnerController extends Controller
      */
     public function create()
     {
-        //
+        return view("hotelOwnerRegistrations.create");
     }
 
     /**
@@ -33,9 +41,27 @@ class HotelOwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHotelOwnerRequest $request,StoreUserRequest $requestUser)
     {
-        //
+    
+       
+   
+       $user=  User::create([
+        'name' => $requestUser['name'] ,
+        'email' => $requestUser['email'],
+        'password' => $requestUser['password'], 
+        'gender' => $requestUser['gender'] ,
+        ]);
+
+
+
+        hotelOwner::create([
+        'commercial_reg_No' => $request['commercial_reg_No'],
+        'user_id' => $user['id']
+        
+       ]);
+       return redirect(route('hotelOwnerRegistrations.index'));
+       
     }
 
     /**

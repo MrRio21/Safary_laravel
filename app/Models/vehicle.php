@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class vehicle extends Model
 {
     use HasFactory;
+
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(driver::class);
+    }
 }

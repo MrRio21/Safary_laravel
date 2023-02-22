@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Auth\registerationController;
+use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Controllers\Controller;
 use App\Models\tourgide;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTourgideRequest;
 
 class TourgideController extends Controller
 {
@@ -14,7 +18,12 @@ class TourgideController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::all(); //fk
+        $tourGides=tourgide::all();
+
+        return view("tourgideRegistrations.index",[ "tourGides" => $tourGides],["users"=> $users]);
+        //show table from DB
+        
     }
 
     /**
@@ -24,7 +33,7 @@ class TourgideController extends Controller
      */
     public function create()
     {
-        //
+        return view("tourgideRegistrations.create");
     }
 
     /**
@@ -33,9 +42,25 @@ class TourgideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTourgideRequest $request,StoreUserRequest $requestUser)
     {
-        //
+        
+     
+       $user=  User::create([
+        'name' => $requestUser['name'] ,
+        'email' => $requestUser['email'],
+        'password' => $requestUser['password'], 
+        'gender' => $requestUser['gender'] ,
+        ]);
+      
+        tourgide::create([
+        'price' => $request['price'] ,
+        'syndicate_No' => $request['syndicate_No'] ,
+        'desc' => $request['desc']  ,
+        'user_id' => $user['id']
+       ]);
+       return redirect(route('TourgideRegistrations.index'));
+       
     }
 
     /**

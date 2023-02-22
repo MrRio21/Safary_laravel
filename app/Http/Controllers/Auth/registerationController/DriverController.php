@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
 
+
+
+namespace App\Http\Controllers\Auth\registerationController;
+use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\Controller;
 use App\Models\driver;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDriverRequest;
+use App\Http\Requests\StoreUserRequest;
 
 class DriverController extends Controller
 {
@@ -14,8 +21,12 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $users=User::all(); //fk
+        $driver=driver::all();
+
+        return view("driverRegistrations.index",[ "driver" => $driver],["users"=> $users]);
+        //show table from DB
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +35,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        //
+        return view("driverRegistrations.create");
     }
 
     /**
@@ -33,9 +44,23 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRegisterRequest $request, StoreUserRequest $requestUser)
     {
-        //
+      
+      $user=  User::create([
+            'name' => $requestUser['name'] ,
+            'email' => $requestUser['email'],
+            'password' => $requestUser['password'], 
+            'gender' => $requestUser['gender'] ,
+            ]);
+
+      
+       driver::create([
+        'license' => $request['license'],
+        'user_id' => $user['id']
+       ]);
+       return redirect(route('driverRegistrations.index'));
+       
     }
 
     /**

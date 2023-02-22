@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class customizePlaces extends Model
 {
     use HasFactory;
+
+
+    public function place(): HasMany
+    {
+        return $this->hasMany(place::class);
+    }
 }

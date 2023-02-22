@@ -18,27 +18,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'license',
+        'user_id',
+       
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    public function tourgide(): HasOne
+    {
+        return [
+        $this->hasOne(tourgide::class),
+        $this->hasOne(hotelOwner::class),
+        $this->hasOne(driver::class)
     ];
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function order(): HasMany
+    {
+        return $this->hasMany(order::class);
+    }
+  
 }
