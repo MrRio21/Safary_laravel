@@ -71,11 +71,11 @@ Route::PUT('/updateHotelImg/{id}',[HotelController::class,'Update']);
 
 Route::delete('/deleteHotelImg/{id}',[HotelController::class,'destroy']);
 
-// --------------------------------------------------------
+// --------------dashboard of hotel owner ------------------------------------------
 
 Route::get('/rooms',[HotelImgController::class,'index']);
 
-// i didn't activate uploading......
+// i didn't activate uploading img ......
 Route::post('/storeRooms',[HotelImgController::class,'store']);
 
 Route::get('/showRoom/{id}',[HotelImgController::class,'show']);
