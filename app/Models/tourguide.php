@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class tourgide extends Model
+class TourGuide extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 

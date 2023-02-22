@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class customizePlaces extends Model
+class CustomizePlaces extends Model
 {
     use HasFactory;
 

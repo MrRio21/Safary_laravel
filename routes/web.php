@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Controllers\HotelController;
+use App\Http\Controllers\HotelController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
@@ -51,3 +54,15 @@ Auth::routes();
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/test1',function(){
+    return 'test';
+});
+
+Route::get('/test',function(){
+    $body =[
+        "name"=> "el 7amdlallah"
+    ];
+    return $body;
+});
+
+Route::get('/hotels',[HotelController::class,'index']);

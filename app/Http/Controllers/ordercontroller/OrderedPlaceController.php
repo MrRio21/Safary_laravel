@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ordered_place;
+use App\Models\OrderedPlace;
 use Illuminate\Http\Request;
 
 class OrderedPlaceController extends Controller
@@ -44,7 +44,7 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function show(ordered_place $ordered_place)
+    public function show(OrderedPlace $ordered_place)
     {
         //
     }
@@ -55,7 +55,7 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function edit(ordered_place $ordered_place)
+    public function edit(OrderedPlace $ordered_place)
     {
         //
     }
@@ -67,7 +67,7 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ordered_place $ordered_place)
+    public function update(Request $request, OrderedPlace $ordered_place)
     {
         //
     }
@@ -78,7 +78,7 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ordered_place $ordered_place)
+    public function destroy(OrderedPlace $ordered_place)
     {
         //
     }

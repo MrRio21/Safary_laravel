@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('recommended_trips', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('nOfStayedDays');
+            $table->integer('num_of_days');
         });
     }
 

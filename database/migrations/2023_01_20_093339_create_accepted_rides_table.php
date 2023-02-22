@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('accepted_rides', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
+            $table->unsignedBigInteger('request_ride_id');
+            $table->foreign('request_ride_id')->references('id')->on('request_rides')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

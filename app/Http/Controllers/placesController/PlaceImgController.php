@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\place_img;
+use App\Models\PlaceImg;
 use Illuminate\Http\Request;
 
 class PlaceImgController extends Controller
@@ -44,7 +44,7 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function show(place_img $place_img)
+    public function show(PlaceImg $place_img)
     {
         //
     }
@@ -55,7 +55,7 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function edit(place_img $place_img)
+    public function edit(PlaceImg $place_img)
     {
         //
     }
@@ -67,7 +67,7 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, place_img $place_img)
+    public function update(Request $request, PlaceImg $place_img)
     {
         //
     }
@@ -78,7 +78,7 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(place_img $place_img)
+    public function destroy(PlaceImg $place_img)
     {
         //
     }

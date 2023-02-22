@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('place_id');
-            $table->unsignedBigInteger('recommendedTrip_id');
+            $table->unsignedBigInteger('recommended_trip_id');
             $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('recommendedTrip_id')->references('id')->on('recommended_trips')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('recommended_trip_id')->references('id')->on('recommended_trips')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

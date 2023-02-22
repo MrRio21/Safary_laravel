@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class driver extends Model
+class Driver extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 

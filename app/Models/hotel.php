@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class hotel extends Model
+class Hotel extends Model
 {
     use HasFactory;
 
@@ -19,4 +19,7 @@ class hotel extends Model
     {
         return $this->belongsTo(hotelOwner::class);
     }
+    protected $table = 'hotels';
+    
+
 }

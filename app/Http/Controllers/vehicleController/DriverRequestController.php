@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\driver_request;
+use App\Models\DriverRequest;
 use Illuminate\Http\Request;
 
 class DriverRequestController extends Controller
@@ -44,7 +44,7 @@ class DriverRequestController extends Controller
      * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function show(driver_request $driver_request)
+    public function show(DriverRequest $driver_request)
     {
         //
     }
@@ -55,7 +55,7 @@ class DriverRequestController extends Controller
      * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function edit(driver_request $driver_request)
+    public function edit(DriverRequest $driver_request)
     {
         //
     }
@@ -67,7 +67,7 @@ class DriverRequestController extends Controller
      * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, driver_request $driver_request)
+    public function update(Request $request, DriverRequest $driver_request)
     {
         //
     }
@@ -78,7 +78,7 @@ class DriverRequestController extends Controller
      * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(driver_request $driver_request)
+    public function destroy(DriverRequest $driver_request)
     {
         //
     }
