@@ -9,7 +9,7 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    public function driver(): BelongsTo
+    public function driver()
     {
         return $this->belongsTo(driver::class);
     }

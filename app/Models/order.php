@@ -9,12 +9,12 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function User(): BelongsTo
+    public function User()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function placesOfRecommTrips(): BelongsTo
+    public function placesOfRecommTrips()
     {
         return $this->belongsTo(placesOfRecommTrips::class);
     }
