@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RequestRide;
+use App\Models\DriverRequest;
 use Illuminate\Http\Request;
 
-class RequestRideController extends Controller
+class DriverRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RequestRideController extends Controller
      */
     public function index()
     {
-
+        
     }
 
     /**
@@ -35,27 +35,16 @@ class RequestRideController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request);
-        $trip=Trip::create([
-            'user_id'=>auth()->user()['id'],
-            'position'=>$request['position'],
-            'destination'=>$request['destination'],
-            'date'=>$request['date'],
-            'now'=>$request['now'],
-            'status'=>'Pendding'
-    ]);
-    return redirect(route("card",['trip'=>$trip]));
-}
-
+        //
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestRide $request_ride)
+    public function show(DriverRequest $driver_request)
     {
         //
     }
@@ -63,10 +52,10 @@ class RequestRideController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestRide $request_ride)
+    public function edit(DriverRequest $driver_request)
     {
         //
     }
@@ -75,10 +64,10 @@ class RequestRideController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestRide $request_ride)
+    public function update(Request $request, DriverRequest $driver_request)
     {
         //
     }
@@ -86,10 +75,10 @@ class RequestRideController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\request_ride  $request_ride
+     * @param  \App\Models\driver_request  $driver_request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestRide $request_ride)
+    public function destroy(DriverRequest $driver_request)
     {
         //
     }
