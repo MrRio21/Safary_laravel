@@ -9,6 +9,8 @@ class Place extends Model
 {
     use HasFactory;
 
+    
+
     public function customizePlaces()
     {
         return $this->belongsTo(customizePlaces::class);

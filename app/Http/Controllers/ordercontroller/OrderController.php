@@ -31,15 +31,16 @@ class OrderController extends Controller
             'budget'=>['required','min:500'],
             
         ]);
-        $budget = $request['budget'];
-        $check_in =$request['check_in'];
-        $check_out = $request['check_out'];
+    
         $order = Order::create([
-            'budget' => $budget,
-            'check_in' =>$check_in,
-            'check_out' =>$check_out
+            'budget' =>  $request['budget'],
+            'check_in' =>$request['check_in'],
+            'check_out' =>$request['check_out'],
+            'n_of_adults'=> $request['check_out'],
+            'n_of_childeren'=>$request['n_of_childeren'],
+            'n_of_rooms'=>$request['n_of_rooms']
         ]);
-        return $order; 
+        return $order->id; 
     }
 
     /**

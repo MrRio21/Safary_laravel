@@ -65,7 +65,6 @@ Route::delete('/deleteHotel/{id}',[HotelController::class,'destroy']);
 //-------------for imgs ----------------
 Route::get('/hotelImgs',[HotelImgController::class,'index']);
 
-// i didn't activate uploading......
 Route::post('/storeHotelImg',[HotelImgController::class,'store']);
 
 Route::get('/showHotelImg/{id}',[HotelImgController::class,'show']);
@@ -129,11 +128,20 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 
 Route::get('/order',[OrderController::class,'index']);
 
+// step 1 in customization 
 Route::post('/storeOrder',[OrderController::class,'store']);
 
 Route::get('/showOrder/{id}',[OrderController::class,'show']);
 
 Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
+
+// ---------------customization------------------------
+// get the orderId and the placeId
+// 
+Route::get('/showAllPlaces',[PlaceController::class,'index']);
+Route::post('/storePlace',[PlaceController::class,'store']);
+
+
 
 // ----------vehicle Apis-------------------//
 

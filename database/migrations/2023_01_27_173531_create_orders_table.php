@@ -19,6 +19,9 @@ return new class extends Migration
             $table->float("budget");
             $table->date("check_in");
             $table->date("check_out");
+            $table->integer("n_of_adults");
+            $table->integer("n_of_childeren")->default(0);
+            $table->integer("n_of_rooms");
         });
     }
 

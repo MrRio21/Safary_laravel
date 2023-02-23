@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderedPlace;
+use App\Models\OrderedPlaces;
 use Illuminate\Http\Request;
 
 class OrderedPlaceController extends Controller
@@ -14,18 +15,11 @@ class OrderedPlaceController extends Controller
      */
     public function index()
     {
-        //
+        $allOrderedPlaces =OrderedPlaces::all();
+        
+        return isset($allOrderedPlaces)?$allOrderedPlaces:"";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +29,13 @@ class OrderedPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // take the order in the auth find 
+        $hotel = OrderedPlaces ::create([
+            'order_id' => $request['order_id'],
+            'place_id' =>$request[''],
+            
+        ]);
+        return $hotel; 
     }
 
     /**
