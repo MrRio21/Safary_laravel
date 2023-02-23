@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\HotelController;
 
-use App\Http\Controllers\HotelController;
+use App\Http\Controllers\hotelsController\HotelController;
 use App\Http\Controllers\hotelsController\HotelImgController;
+use App\Http\Controllers\hotelsController\BookedRoomController;
+use App\Http\Controllers\hotelsController\RegularBookedRoomController;
+use App\Http\Controllers\hotelsController\RoomController;
+use App\Http\Controllers\hotelsController\RoomImgController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RequestRideController;
 use Illuminate\Support\Facades\Route;
@@ -68,41 +72,58 @@ Route::PUT('/updateHotelImg/{id}',[HotelController::class,'Update']);
 Route::delete('/deleteHotelImg/{id}',[HotelController::class,'destroy']);
 
 // --------------dashboard of hotel owner ------------------------------------------
+// for the both users and hotel owner -------------
+Route::get('/rooms',[RoomController::class,'index']);
 
-Route::get('/rooms',[HotelImgController::class,'index']);
+Route::post('/storeRooms',[RoomController::class,'store']);
 
-// i didn't activate uploading img ......
-Route::post('/storeRooms',[HotelImgController::class,'store']);
+Route::get('/showRoom/{id}',[RoomController::class,'show']);
 
-Route::get('/showRoom/{id}',[HotelImgController::class,'show']);
+Route::PUT('/updateRoom/{id}',[RoomController::class,'Update']);
 
-Route::PUT('/updateRoom/{id}',[HotelController::class,'Update']);
+Route::delete('/deleteRoom/{id}',[RoomController::class,'destroy']);
+//---------------------room imgs ---------------------------------------
+Route::get('/roomsImg',[RoomImgController::class,'index']);
 
-Route::delete('/deleteRoom/{id}',[HotelController::class,'destroy']);
+Route::post('/storeRoomsImgs',[RoomImgController::class,'store']);
 
+Route::get('/showRoomImgs/{id}',[RoomImgController::class,'show']);
+
+Route::PUT('/updateRoomImgs/{id}',[RoomImgController::class,'Update']);
+
+Route::delete('/deleteRoomImgs/{id}',[RoomImgController::class,'destroy']);
+
+
+// --------------------BOOKING (REGULAR AND Custom )---------------------------------
 //----------------------------------------------------
 
-Route::get('/bookedRooms',[HotelImgController::class,'index']);
-
-// i didn't activate uploading......
-Route::post('/storeBookedRoom',[HotelImgController::class,'store']);
-
-Route::get('/showBookedRoom/{id}',[HotelImgController::class,'show']);
-
-Route::PUT('/updateBookedRoom/{id}',[HotelController::class,'Update']);
-
-Route::delete('/deleteBookedRoom/{id}',[HotelController::class,'destroy']);
+Route::get('/bookedRooms',[BookedRoomController::class,'index']);
 
 
-// });
-Route::get('/showHotel{id}',[HotelController::class,'show']);
+Route::post('/storeBookedRoom',[BookedRoomController::class,'store']);
 
-Route::get('/updateHotel{id}',[HotelController::class,'Update']);
-    // for all hotels review
+Route::get('/showBookedRoom/{id}',[BookedRoomController::class,'show']);
 
-// data of the hotel that come from the form in the dashboard of hotel owner
+Route::PUT('/updateBookedRoom/{id}',[BookedRoomController::class,'Update']);
+
+Route::delete('/deleteBookedRoom/{id}',[BookedRoomController::class,'destroy']);
+
 
 // });
+// --------------------for regular booking ---------------------------
+Route::get('/regularbookedRooms',[RegularBookedRoomController::class,'index']);
+
+
+Route::post('/storeRegBookedRoom',[RegularBookedRoomController::class,'store']);
+
+Route::get('/showRegBookedRoom/{id}',[RegularBookedRoomController::class,'show']);
+
+Route::PUT('/updateRegBookedRoom/{id}',[RegularBookedRoomController::class,'Update']);
+
+Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'destroy']);
+
+
+// -----------------------
 
 
 

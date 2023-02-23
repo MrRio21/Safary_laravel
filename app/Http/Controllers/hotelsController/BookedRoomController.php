@@ -69,22 +69,22 @@ class BookedRoomController extends Controller
      */
     public function update(Request $request, BookedRoom $bookedRoom)
     {
-        if($request['name']){
+        if($request['n_of_booked_rooms']){
 
-            $results=Hotel::where ('id',$bookedRoom)->update([
-                  'name'=> $request['name'], 
+            $results=BookedRoom::where ('id',$bookedRoom)->update([
+                  'n_of_booked_rooms'=> $request['n_of_booked_rooms'], 
               ]);
           }
-          if($request['description']){
+          if($request['n_of_adults']){
   
               $results=Hotel::where ('id',$bookedRoom)->update([
-                  'name'=> $request['description'], 
+                  'n_of_adults'=> $request['n_of_adults'], 
               ]);
           }
-          if($request['name']&&$request['address']){
+          if($request['n_of_booked_rooms']&&$request['n_of_adults']){
               $results=Hotel::where ('id',$bookedRoom)->update([
-                  'name'=> $request['name'], 
-                  'address' => $request['address']
+                  'n_of_booked_rooms'=> $request['n_of_booked_rooms'], 
+                  'n_of_adults' => $request['n_of_adults']
               ]);
           }
           return $results;
@@ -98,6 +98,6 @@ class BookedRoomController extends Controller
      */
     public function destroy(BookedRoom $bookedRoom)
     {
-        //
+        BookedRoom::find($bookedRoom)->delete();
     }
 }

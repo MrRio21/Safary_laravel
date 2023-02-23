@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\hotel;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -14,62 +14,80 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $allHotels =Hotel::all();
+        
+        return isset($allHotels)?$allHotels:"";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+       
+        $request->validate([
+            'name'=>'required',
+            'address '=>['required','min:10'],
+            'type'=>'required',
+        ]);
+        $hotelName = $request['name'];
+        $address =$request['address'];
+        $type = $request['type'];
+        $hotel = hotel::create([
+            'name' => $hotelName,
+            'address' =>$address,
+            'type' =>$type
+        ]);
+        return $hotel; 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\hotel  $hotel
+     * @param  \App\Models\hotel  
      * @return \Illuminate\Http\Response
      */
-    public function show(hotel $hotel)
+    public function show(Hotel $hotelId)
     {
-        //
+        $targetedHotel = Hotel::find($hotelId);
+        return $targetedHotel;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\hotel  $hotel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(hotel $hotel)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\hotel  $hotel
+     * @param  \Illuminate\Http\Request  
+     * @param  \App\Models\hotel  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel $hotel)
+    public function update(Request $request, hotel $hotelId)
     {
-        //
+        if($request['name']){
+
+          $results=Hotel::where ('id',$hotelId)->update([
+                'name'=> $request['name'], 
+            ]);
+        }
+        if($request['description']){
+
+            $results=Hotel::where ('id',$hotelId)->update([
+                'name'=> $request['description'], 
+            ]);
+        }
+        if($request['name']&&$request['address']){
+            $results=Hotel::where ('id',$hotelId)->update([
+                'name'=> $request['name'], 
+                'address' => $request['address']
+            ]);
+        }
+        return $results;
+        
+
     }
 
     /**
@@ -78,8 +96,8 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotel $hotel)
+    public function destroy(hotel $hotelId)
     {
-        //
+        Hotel::find($hotelId)->delete();
     }
 }

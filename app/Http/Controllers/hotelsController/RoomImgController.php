@@ -14,18 +14,10 @@ class RoomImgController extends Controller
      */
     public function index()
     {
-        //
+        $roomImgs = RoomImg::all();
+        return $roomImgs;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,16 @@ class RoomImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+             // the hashing to ignore the conflicts in names 
+             $img = md5(microtime()).$request['image']->getClientOriginalName();
+             // $request["img"]->storeAs("public/imgs",$img);
+             $roomId = $request['room_id'];
+             $hotelImg = RoomImg::create([
+                 'image' => $img,
+                 'room_id' =>$roomId,
+                
+             ]);
+             return $hotelImg; 
     }
 
     /**
@@ -46,19 +47,10 @@ class RoomImgController extends Controller
      */
     public function show(RoomImg $roomImg)
     {
-        //
+        $imgs = RoomImg::find($roomImg);
+        return $imgs;    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\room_img  $room_img
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RoomImg $roomImg)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +61,13 @@ class RoomImgController extends Controller
      */
     public function update(Request $request, RoomImg $roomImg)
     {
-        //
+        if($request['image']){
+            $img = md5(microtime()).$request['image']->getClientOriginalName();
+
+            $results=RoomImg::where ('id',$roomImg)->update([
+                  'image'=> $img, 
+              ]);
+          }
     }
 
     /**
@@ -80,6 +78,7 @@ class RoomImgController extends Controller
      */
     public function destroy(RoomImg $roomImg)
     {
-        //
+        RoomImg::find($roomImg)->delete();
+
     }
 }

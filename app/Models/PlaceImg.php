@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PlaceImg extends Model
 {
     use HasFactory;
+
+    public function place()
+    {
+        return $this->belongsTo(place::class);
+    }
+    
 }

@@ -19,16 +19,7 @@ class HotelImgController extends Controller
         return $allImgs;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +28,16 @@ class HotelImgController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // the hashing to ignore the conflicts in names 
+        $img = md5(microtime()).$request['img']->getClientOriginalName();
+        // $request["img"]->storeAs("public/imgs",$img);
+        $hotelId = $request['hotel_id'];
+        $hotelImg = HotelImg::create([
+            'img' => $img,
+            'hotel_id' =>$hotelId,
+           
+        ]);
+        return $hotelImg; 
     }
 
     /**
@@ -49,17 +49,7 @@ class HotelImgController extends Controller
     public function show(HotelImg $HotelImg)
     {
         $imgs = HotelImg::find($HotelImg);
-        return $imgs;    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\hotel_img  $hotel_img
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(HotelImg $HotelImg)
-    {
-        //
+        return $imgs;    
     }
 
     /**
@@ -71,7 +61,13 @@ class HotelImgController extends Controller
      */
     public function update(Request $request, HotelImg $HotelImg)
     {
-        //
+        if($request['img']){
+            $img = md5(microtime()).$request['img']->getClientOriginalName();
+
+            $results=HotelImg::where ('id',$HotelImg)->update([
+                  'image'=> $img, 
+              ]);
+          }
     }
 
     /**
