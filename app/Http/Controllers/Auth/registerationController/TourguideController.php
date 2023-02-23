@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth\registerationController;
-use App\Http\Controllers\Auth\registerationControlle\userController;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Controllers\Controller;
-use App\Models\tourgide;
+use App\Models\Tourguide;
 use App\Models\User;
 namespace App\Http\Controllers;
 
@@ -26,7 +25,7 @@ class TourgideController extends Controller
 
         return view("tourgideRegistrations.index",[ "tourGides" => $tourGides],["users"=> $users]);
         //show table from DB
-        
+
     }
 
     /**
@@ -47,15 +46,15 @@ class TourgideController extends Controller
      */
     public function store(StoreTourgideRequest $request,StoreUserRequest $requestUser)
     {
-        
-     
+
+
        $user=  User::create([
         'name' => $requestUser['name'] ,
         'email' => $requestUser['email'],
-        'password' => $requestUser['password'], 
+        'password' => $requestUser['password'],
         'gender' => $requestUser['gender'] ,
         ]);
-      
+
         tourgide::create([
         'price' => $request['price'] ,
         'syndicate_No' => $request['syndicate_No'] ,
@@ -63,7 +62,7 @@ class TourgideController extends Controller
         'user_id' => $user['id']
        ]);
        return redirect(route('TourgideRegistrations.index'));
-       
+
     }
 
     /**

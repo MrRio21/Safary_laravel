@@ -30,6 +30,6 @@ class HotelOwner extends Model
 
     public function hotel()
     {
-        return $this->hasMany(hotel::class);
+        return $this->hasMany(Hotel::class);
     }
 }

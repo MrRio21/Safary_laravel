@@ -6,7 +6,7 @@
 namespace App\Http\Controllers\Auth\registerationController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
 use App\Http\Controllers\Controller;
-use App\Models\driver;
+use App\Models\Driver;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDriverRequest;
@@ -46,21 +46,21 @@ class DriverController extends Controller
      */
     public function store(StoreRegisterRequest $request, StoreUserRequest $requestUser)
     {
-      
+
       $user=  User::create([
             'name' => $requestUser['name'] ,
             'email' => $requestUser['email'],
-            'password' => $requestUser['password'], 
+            'password' => $requestUser['password'],
             'gender' => $requestUser['gender'] ,
             ]);
 
-      
+
        driver::create([
         'license' => $request['license'],
         'user_id' => $user['id']
        ]);
        return redirect(route('driverRegistrations.index'));
-       
+
     }
 
     /**

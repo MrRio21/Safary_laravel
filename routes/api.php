@@ -1,18 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\HotelController;
-namespace App\Http\Controllers\hotelsController\HotelImgController;
 
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\hotelsController\HotelImgController;
-use App\Models\hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RequestRideController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\registerationController\userController;
-use App\Http\Controllers\Api\Auth\registerationController\Drivercontroller;
+use App\Http\Controllers\Api\Auth\registerationController\DriverController;
 use App\Http\Controllers\Api\Auth\registerationController\HotelOwnerController;
-use App\Http\Controllers\Api\Auth\registerationController\TourgideController;
+use App\Http\Controllers\Api\Auth\registerationController\TourguideController;
 
 
 
@@ -20,19 +18,18 @@ use App\Http\Controllers\Api\Auth\registerationController\TourgideController;
 //     return $request->user();
 // });
 
-// Auth::routes();
 // //Driverregistrations---
-Route::get('/driverRegistrations',[App\Http\Controllers\Auth\reisteratinController\Drivercontroller :: class ,"index"]);
-Route::post('/driverRegistrations',[App\Http\Controllers\Auth\reisteratinController\Drivercontroller :: class ,"store"]);
+Route::get('/driverRegistrations',[DriverController :: class ,"index"]);
+Route::post('/driverRegistrations',[DriverController :: class ,"store"]);
 // //Userregistrations---
-Route::get('/userRegistrations',[App\Http\Controllers\Api\Auth\registerationController\userController :: class ,"index"]);
-Route::post('/userRegistrations',[App\Http\Controllers\Auth\reisteratinController\userController :: class ,"store"]);
+Route::get('/userRegistrations',[userController :: class ,"index"]);
+Route::post('/userRegistrations',[userController :: class ,"store"]);
 // //hotelOwnerRegistrations---
-Route::get('/hotelOwnerRegistrations',[App\Http\Controllers\Auth\reisteratinController\HotelOwnerController :: class ,"index"]);
-Route::post('/hotelOwnerRegistrations',[App\Http\Controllers\Auth\reisteratinController\HotelOwnerController :: class ,"store"]);
+Route::get('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"index"]);
+Route::post('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"store"]);
 // //TourgideRegistrations---
-Route::get('/tourgideRegistrations',[App\Http\Controllers\Auth\reisteratinController\TourgideController :: class ,"index"]);
-Route::post('/tourgideRegistrations',[App\Http\Controllers\Auth\reisteratinController\TourgideController :: class ,"store"]);
+Route::get('/tourgideRegistrations',[TourguideController :: class ,"index"]);
+Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 
 // Route::group(['middleware' => ['web']], function () {
 //     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
@@ -48,7 +45,6 @@ Route::post('/tourgideRegistrations',[App\Http\Controllers\Auth\reisteratinContr
 // ----------hotels Apis-------------------//
 
 // for all hotels review
-Route::get('/hotels',[HotelController::class,'index']);
 
 // data of the hotel that come from the form in the dashboard of hotel owner
 Route::post('/storeHotel',[HotelController::class,'store']);
@@ -100,12 +96,7 @@ Route::delete('/deleteBookedRoom/{id}',[HotelController::class,'destroy']);
 
 // });
 Route::get('/showHotel{id}',[HotelController::class,'show']);
-Route::get('/test',function(){
-    $body =[
-        "name"=> "el 7amdlallah"
-    ];
-    return $body;
-});
+
 Route::get('/updateHotel{id}',[HotelController::class,'Update']);
     // for all hotels review
 
