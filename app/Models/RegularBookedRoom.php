@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegularBookedRoom extends Model
 {
+    protected $table = 'regular_booked_room';
     use HasFactory;
+
+
     protected $fillable =[
         'check_in',
         'check_out',

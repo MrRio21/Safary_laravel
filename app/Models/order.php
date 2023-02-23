@@ -9,6 +9,13 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'budget',
+        'check_in',
+        'check_out',
+    ];
+
+
     public function User()
     {
         return $this->belongsTo(User::class);
