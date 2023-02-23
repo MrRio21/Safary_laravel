@@ -5,7 +5,6 @@ use App\Http\Controllers\HotelController;
 
 
 
-Route::get('/hotels',[HotelController::class,'index']);
 
 
 
