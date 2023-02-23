@@ -81,8 +81,9 @@ class RoomController extends Controller
           if($request['price']&&$request['available_rooms']&& $request['type']){
               $results=Room::where ('id',$room)->update([
                   'price'=> $request['price'], 
-                  'available_rooms' => $request['available_rooms']
-              ]);
+                  'available_rooms' => $request['available_rooms'],
+                  'type'=> $request['type'], 
+                ]);
           }
           return $results;
     }

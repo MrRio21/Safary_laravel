@@ -10,7 +10,12 @@ class CustomizePlaces extends Model
     use HasFactory;
 
 
-    public function place(): HasMany
+    public function user()
+    {
+        return $this->hasMany(users::class);
+    }
+
+    public function place()
     {
         return $this->hasMany(place::class);
     }
