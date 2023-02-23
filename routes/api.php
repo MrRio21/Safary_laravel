@@ -8,6 +8,7 @@ use App\Http\Controllers\hotelsController\BookedRoomController;
 use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
+use App\Http\Controllers\ordercontroller\OrderController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RequestRideController;
 use Illuminate\Support\Facades\Route;
@@ -113,7 +114,6 @@ Route::delete('/deleteBookedRoom/{id}',[BookedRoomController::class,'destroy']);
 // --------------------for regular booking ---------------------------
 Route::get('/regularbookedRooms',[RegularBookedRoomController::class,'index']);
 
-
 Route::post('/storeRegBookedRoom',[RegularBookedRoomController::class,'store']);
 
 Route::get('/showRegBookedRoom/{id}',[RegularBookedRoomController::class,'show']);
@@ -125,7 +125,13 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 
 // -----------------------
 
+Route::get('/order',[OrderController::class,'index']);
 
+Route::post('/storeOrder',[OrderController::class,'store']);
+
+Route::get('/showOrder/{id}',[OrderController::class,'show']);
+
+Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
 
 // ----------vehicle Apis-------------------//
 
