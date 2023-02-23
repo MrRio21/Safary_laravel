@@ -52,6 +52,8 @@ Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 // for all hotels review
 
 // data of the hotel that come from the form in the dashboard of hotel owner
+Route::get('/hotels',[HotelController::class,'index']);
+
 Route::post('/storeHotel',[HotelController::class,'store']);
 
 Route::get('/showHotel/{id}',[HotelController::class,'show']);
