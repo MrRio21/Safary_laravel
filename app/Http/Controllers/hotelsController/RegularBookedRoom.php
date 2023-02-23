@@ -6,7 +6,7 @@ use App\Models\RegularBookedRoom;
 
 use Illuminate\Http\Request;
 
-class RegularBookedRoom extends Controller
+class RegularBookedRoomController extends Controller
 
 {
     
