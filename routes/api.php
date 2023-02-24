@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\HotelController;
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\hotelsController\HotelController;
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\hotelsController\HotelImgController;
 use App\Http\Controllers\hotelsController\BookedRoomController;
 use App\Http\Controllers\hotelsController\RegularBookedRoomController;
@@ -10,12 +11,11 @@ use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
 use App\Http\Controllers\ordercontroller\OrderController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\RequestRideController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\registerationController\userController;
 use App\Http\Controllers\Api\Auth\registerationController\DriverController;
 use App\Http\Controllers\Api\Auth\registerationController\HotelOwnerController;
 use App\Http\Controllers\Api\Auth\registerationController\TourguideController;
+
 
 
 
@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\Auth\registerationController\TourguideController;
 // });
 
 // //Driverregistrations---
+
 Route::get('/driverRegistrations',[DriverController :: class ,"index"]);
 Route::post('/driverRegistrations',[DriverController :: class ,"store"]);
 // //Userregistrations---
@@ -65,7 +66,7 @@ Route::delete('/deleteHotel/{id}',[HotelController::class,'destroy']);
 //-------------for imgs ----------------
 Route::get('/hotelImgs',[HotelImgController::class,'index']);
 
-// i didn't activate uploading......
+
 Route::post('/storeHotelImg',[HotelImgController::class,'store']);
 
 Route::get('/showHotelImg/{id}',[HotelImgController::class,'show']);
@@ -127,7 +128,7 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 
 // -----------------------
 
-Route::get('/order',[OrderController::class,'index']);
+Route::get('/orders',[OrderController::class,'index']);
 
 Route::post('/storeOrder',[OrderController::class,'store']);
 
@@ -135,15 +136,12 @@ Route::get('/showOrder/{id}',[OrderController::class,'show']);
 
 Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
 
-// ----------vehicle Apis-------------------//
 
 
 
 
-// Auth::routes();
 
 
 
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

@@ -15,7 +15,7 @@ class HotelController extends Controller
     public function index()
     {
         $allHotels =Hotel::all();
-        
+
         return isset($allHotels)?$allHotels:"";
     }
 
@@ -23,12 +23,12 @@ class HotelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'name'=>'required',
             'address '=>['required','min:10'],
@@ -42,13 +42,13 @@ class HotelController extends Controller
             'address' =>$address,
             'type' =>$type
         ]);
-        return $hotel; 
+        return $hotel;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\hotel  
+     * @param  \App\Models\hotel
      * @return \Illuminate\Http\Response
      */
     public function show(Hotel $hotelId)
@@ -61,8 +61,8 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  
-     * @param  \App\Models\hotel  
+     * @param  \Illuminate\Http\Request
+     * @param  \App\Models\hotel
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, hotel $hotelId)
@@ -70,23 +70,23 @@ class HotelController extends Controller
         if($request['name']){
 
           $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['name'], 
+                'name'=> $request['name'],
             ]);
         }
         if($request['description']){
 
             $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['description'], 
+                'name'=> $request['description'],
             ]);
         }
         if($request['name']&&$request['address']){
             $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['name'], 
+                'name'=> $request['name'],
                 'address' => $request['address']
             ]);
         }
         return $results;
-        
+
 
     }
 
