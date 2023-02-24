@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderedPlace;
+use App\Http\Resources\user as ResourcesUser;
+use App\Models\Order;
 use App\Models\OrderedPlaces;
 use Illuminate\Http\Request;
 
@@ -30,12 +31,12 @@ class OrderedPlaceController extends Controller
     public function store(Request $request)
     {
         // take the order in the auth find 
-        $hotel = OrderedPlaces ::create([
+        $orderedPlace = OrderedPlaces ::create([
             'order_id' => $request['order_id'],
             'place_id' =>$request[''],
             
         ]);
-        return $hotel; 
+        return $orderedPlace; 
     }
 
     /**
@@ -44,21 +45,14 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderedPlace $ordered_place)
-    {
-        //
+    public function show(Order $orderId)
+    { 
+        // to show the places that the user choose
+        $orderedplaces = OrderedPlaces::where('order_id',$orderId);
+        return $orderedplaces;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ordered_place  $ordered_place
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(OrderedPlace $ordered_place)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -67,10 +61,18 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderedPlace $ordered_place)
+    public function update(Request $request, Order $orderId)
     {
-        //
-    }
+        if($request['place_id']){
+
+            $results=OrderedPlaces::where ('order_id',$orderId)->update([
+                  'place_id'=> $request['place_id'],
+              ]);
+          }  
+          return $results;
+          }
+  
+    
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +80,9 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderedPlace $ordered_place)
+    public function destroy(Order $orderId)
     {
-        //
+        OrderedPlaces::where ('order_id',$orderId)->delete();
+
     }
 }

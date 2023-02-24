@@ -28,18 +28,16 @@ class PlaceController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'desc'=>['required','min:10'],
-            'price'=>
+            'description'=>['required','min:10'],
+            'price'=>'number'
         ]);
-        $hotelName = $request['name'];
-        $address =$request['address'];
-        $type = $request['type'];
-        $hotel = hotel::create([
-            'name' => $hotelName,
-            'address' =>$address,
-            'type' =>$type
+
+        $place = Place::create([
+            'name' => $request['name'],
+            'description' =>$request['description'],
+            'price' =>$request['price'],
         ]);
-        return $hotel; 
+        return $place; 
     }
 
     /**
@@ -50,19 +48,10 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        //
+        $place = Place::find($place);
+        return $place;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\place  $place
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Place $place)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -73,7 +62,34 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        //
+        if($request['name']){
+
+            $results=Place::where ('id',$place)->update([
+                  'name'=> $request['name'],
+              ]);
+          }
+          if($request['description']){
+  
+              $results=Place::where ('id',$place)->update([
+                  'description'=> $request['description'],
+              ]);
+          }
+          if($request['price']){
+  
+              $results=Place::where ('id',$place)->update([
+                  'price'=> $request['price'],
+              ]);
+          }
+          if($request['name']&&$request['description']&&$request['price']){
+              $results=Place::where ('id',$place)->update([
+                  'name'=> $request['name'],
+                  'description' => $request['description'],
+                  'price'=> $request['price'],
+
+                ]);
+          }
+          return $results;
+  
     }
 
     /**
@@ -84,6 +100,7 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-        //
+        Place::find($place)->delete();
+
     }
 }

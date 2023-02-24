@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlaceImg;
+use App\Models\Place;
 use Illuminate\Http\Request;
 
 class PlaceImgController extends Controller
@@ -14,7 +15,8 @@ class PlaceImgController extends Controller
      */
     public function index()
     {
-        //
+        $allPlaceImgs=PlaceImg::all();
+        return $allPlaceImgs;
     }
 
     /**
@@ -35,7 +37,18 @@ class PlaceImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // the hashing to ignore the conflicts in names 
+        foreach ($request['img'] as  $img) {
+            // dd($value->getClientOriginalName());
+            $img ->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName());
+            PlaceImg::create([
+                'image' => $img,
+                'place_id' =>$request['place_id'],
+               
+            ]);
+        }
+        return "all Imgs are saved "; 
+    
     }
 
     /**
@@ -44,9 +57,10 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function show(PlaceImg $place_img)
+    public function show(PlaceImg $placeImg)
     {
-        //
+        $imgs = PlaceImg::find($placeImg);
+        return $imgs;   
     }
 
     /**
@@ -67,9 +81,15 @@ class PlaceImgController extends Controller
      * @param  \App\Models\place_img  $place_img
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlaceImg $place_img)
+    public function update(Request $request, Place $placeId)
     {
-        //
+        if($request['img']){
+            $img = md5(microtime()).$request['img']->getClientOriginalName();
+
+            $results=PlaceImg::where ('place_id',$placeId)->update([
+                  'image'=> $img, 
+              ]);
+          }
     }
 
     /**
@@ -80,6 +100,6 @@ class PlaceImgController extends Controller
      */
     public function destroy(PlaceImg $place_img)
     {
-        //
+        PlaceImg::find($place_img)->delete();
     }
 }

@@ -15,7 +15,7 @@ class HotelImgController extends Controller
     public function index()
     {
               
-        $allImgs=HotelImg::find();
+        $allImgs=HotelImg::all();
         return $allImgs;
     }
 

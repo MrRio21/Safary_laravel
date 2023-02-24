@@ -14,7 +14,8 @@ class CustomizePlacesController extends Controller
      */
     public function index()
     {
-        //
+        $custPlaces = CustomizePlaces::all();
+        return $custPlaces;
     }
 
     /**

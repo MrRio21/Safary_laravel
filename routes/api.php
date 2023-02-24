@@ -70,9 +70,9 @@ Route::post('/storeHotelImg',[HotelImgController::class,'store']);
 
 Route::get('/showHotelImg/{id}',[HotelImgController::class,'show']);
 
-Route::PUT('/updateHotelImg/{id}',[HotelController::class,'Update']);
+Route::PUT('/updateHotelImg/{id}',[HotelImgController::class,'Update']);
 
-Route::delete('/deleteHotelImg/{id}',[HotelController::class,'destroy']);
+Route::delete('/deleteHotelImg/{id}',[HotelImgController::class,'destroy']);
 
 // --------------dashboard of hotel owner ------------------------------------------
 // for the both users and hotel owner -------------
@@ -141,8 +141,32 @@ Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
 //
 Route::get('/showAllPlaces',[PlaceController::class,'index']);
 Route::post('/storePlace',[PlaceController::class,'store']);
+Route::get('/showPlace/{id}',[OrderController::class,'show']);
+
+Route::delete('/deletePlace/{id}',[OrderController::class,'destroy']);
 
 
+// ------------------orderedplaces---------
+
+Route::get('/orderedPlaces',[ OrderedPlacesController::class,'index']);
+
+Route::post('/storeOrderedPlaces',[ OrderedPlacesController::class,'store']);
+
+Route::get('/showOrderedPlaces/{id}',[ OrderedPlacesController::class,'show']);
+
+Route::delete('/deleteOrderedPlaces/{id}',[ OrderedPlacesController::class,'destroy']);
+
+// ------------------------------
+
+Route::get('/placeImgs',[PlaceImgController::class,'index']);
+
+Route::post('/placeImg',[PlaceImgController::class,'store']);
+
+Route::get('placeImg/{id}',[PlaceImgController::class,'show']);
+
+Route::PUT('/placeImg/{id}',[PlaceImgController::class,'Update']);
+
+Route::delete('/placeImg/{id}',[PlaceImgController::class,'destroy']);
 
 
 
