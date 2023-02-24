@@ -64,5 +64,11 @@ Route::get('/hotels',[HotelController::class,'index']);
 
 function takeTheBudget($budget){
     $newBudget= $budget* 60% 
-    $rooms = Room::all()
+    $rooms = Room::all();
+    foreach($rooms as $room){
+        if ($room->price < $newBudget){
+            
+        }
+    }
+
 }
