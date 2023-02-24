@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth\registerationController;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StoreTourgideRequest;
 use App\Models\TourGuide;
+use App\Models\TourguideLanguage;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
@@ -35,6 +36,10 @@ class TourguideController extends Controller
             'syndicate_No' => $request['syndicate_No'] ,
             'desc' => $request['desc']  ,
             'user_id' => $user['id']
+           ]);
+         $tourguideLan=   TourguideLanguage::create([
+            'language' => $request['language'] ,
+            'tourguide_id' => $tourguide['id']
            ]);
            return $tourguide;
     }

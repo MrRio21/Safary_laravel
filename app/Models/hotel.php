@@ -32,7 +32,7 @@ class Hotel extends Model
     }
     public function hotelImg()
     {
-        return $this->belongsTo(Hotel::class); 
+        return $this->belongsTo(Hotel::class);
 
     }
 

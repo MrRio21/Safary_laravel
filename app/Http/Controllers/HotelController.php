@@ -40,7 +40,7 @@ class HotelController extends Controller
         $hotel = hotel::create([
             'name' => $hotelName,
             'address' =>$address,
-            'type' =>$type
+            'type' =>$type,
         ]);
         return $hotel;
     }

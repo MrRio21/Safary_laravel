@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class TourguideLanguage extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'language',
+        'tourguide_id'
+    ];
+    
+    public function Tourguide(){
+        return $this->belongsTo(Tourguide::class);
+    }
 }
+
