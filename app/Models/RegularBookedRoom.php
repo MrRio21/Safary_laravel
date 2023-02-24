@@ -17,6 +17,8 @@ class RegularBookedRoom extends Model
         'n_of_adults',
         'n_of_childeren',
         'status',
+        'user_id',
+        'room_id'
     ];
     public function user()
     {
