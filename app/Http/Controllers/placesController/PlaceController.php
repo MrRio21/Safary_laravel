@@ -14,18 +14,9 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        //
+        return Place::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +26,20 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'desc'=>['required','min:10'],
+            'price'=>
+        ]);
+        $hotelName = $request['name'];
+        $address =$request['address'];
+        $type = $request['type'];
+        $hotel = hotel::create([
+            'name' => $hotelName,
+            'address' =>$address,
+            'type' =>$type
+        ]);
+        return $hotel; 
     }
 
     /**

@@ -13,6 +13,9 @@ class Order extends Model
         'budget',
         'check_in',
         'check_out',
+        'n_of_adults',
+        'n_of_childeren',
+        'n_of_rooms',
     ];
 
 
@@ -25,4 +28,9 @@ class Order extends Model
     {
         return $this->belongsTo(placesOfRecommTrips::class);
     }
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
+
 }

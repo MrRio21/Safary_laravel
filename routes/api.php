@@ -130,11 +130,20 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 
 Route::get('/orders',[OrderController::class,'index']);
 
+// step 1 in customization 
 Route::post('/storeOrder',[OrderController::class,'store']);
 
 Route::get('/showOrder/{id}',[OrderController::class,'show']);
 
 Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
+
+// ---------------customization------------------------
+// get the orderId and the placeId
+// 
+Route::get('/showAllPlaces',[PlaceController::class,'index']);
+Route::post('/storePlace',[PlaceController::class,'store']);
+
+
 
 
 
