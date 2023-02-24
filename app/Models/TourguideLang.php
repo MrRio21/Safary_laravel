@@ -12,9 +12,9 @@ class TourguideLanguage extends Model
         'language',
         'tourguide_id'
     ];
-    
+
     public function Tourguide(){
-        return $this->belongsTo(Tourguide::class);
+        return $this->belongsTo(Tourguide::class,'tourguide_id');
     }
 }
 

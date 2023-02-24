@@ -5,6 +5,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StoreTourgideRequest;
 use App\Models\TourGuide;
 use App\Models\TourguideLanguage;
+use App\Models\TourguideLang;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
@@ -37,10 +38,11 @@ class TourguideController extends Controller
             'desc' => $request['desc']  ,
             'user_id' => $user['id']
            ]);
-         $tourguideLan=   TourguideLanguage::create([
+         $tourgideLanguage=   TourguideLanguage::create([
             'language' => $request['language'] ,
             'tourguide_id' => $tourguide['id']
            ]);
-           return $tourguide;
+
+           return $tourgideLanguage;
     }
 }

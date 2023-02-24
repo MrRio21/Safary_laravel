@@ -10,7 +10,6 @@ class RoomImg extends Model
     use HasFactory;
 
     public function room(){
-
         return $this->belongsTo(Room::class);
     }
 }

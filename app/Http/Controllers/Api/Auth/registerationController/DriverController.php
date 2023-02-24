@@ -30,12 +30,11 @@ class DriverController extends Controller
             'image' => $request['image']
             ]);
 
-         $driver=  Driver::create([
+            $driver=  Driver::create([
             'license' => $request['license'],
             'user_id' => $user['id']
-           ]);
+            ]);
 
-
-           return $driver;
+            return $driver;
     }
 }
