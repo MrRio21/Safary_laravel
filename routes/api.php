@@ -10,6 +10,9 @@ use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
 use App\Http\Controllers\ordercontroller\OrderController;
+use App\Http\Controllers\ordercontroller\OrderedPlaceController;
+use App\Http\Controllers\placesController\PlaceController;
+use App\Http\Controllers\placesController\PlaceImgController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Auth\registerationController\userController;
 use App\Http\Controllers\Api\Auth\registerationController\DriverController;
@@ -70,7 +73,7 @@ Route::post('/storeHotelImg',[HotelImgController::class,'store']);
 
 Route::get('/showHotelImg/{id}',[HotelImgController::class,'show']);
 
-Route::PUT('/updateHotelImg/{id}',[HotelImgController::class,'Update']);
+Route::PUT('/updateHotelImg/{id}',[HotelImgController::class,'update']);
 
 Route::delete('/deleteHotelImg/{id}',[HotelImgController::class,'destroy']);
 
@@ -82,7 +85,7 @@ Route::post('/storeRooms',[RoomController::class,'store']);
 
 Route::get('/showRoom/{id}',[RoomController::class,'show']);
 
-Route::PUT('/updateRoom/{id}',[RoomController::class,'Update']);
+Route::PUT('/updateRoom/{id}',[RoomController::class,'update']);
 
 Route::delete('/deleteRoom/{id}',[RoomController::class,'destroy']);
 //---------------------room imgs ---------------------------------------
@@ -92,7 +95,7 @@ Route::post('/storeRoomsImgs',[RoomImgController::class,'store']);
 
 Route::get('/showRoomImgs/{id}',[RoomImgController::class,'show']);
 
-Route::PUT('/updateRoomImgs/{id}',[RoomImgController::class,'Update']);
+Route::PUT('/updateRoomImgs/{id}',[RoomImgController::class,'update']);
 
 Route::delete('/deleteRoomImgs/{id}',[RoomImgController::class,'destroy']);
 
@@ -107,7 +110,7 @@ Route::post('/storeBookedRoom',[BookedRoomController::class,'store']);
 
 Route::get('/showBookedRoom/{id}',[BookedRoomController::class,'show']);
 
-Route::PUT('/updateBookedRoom/{id}',[BookedRoomController::class,'Update']);
+Route::PUT('/updateBookedRoom/{id}',[BookedRoomController::class,'update']);
 
 Route::delete('/deleteBookedRoom/{id}',[BookedRoomController::class,'destroy']);
 
@@ -120,13 +123,14 @@ Route::post('/storeRegBookedRoom',[RegularBookedRoomController::class,'store']);
 
 Route::get('/showRegBookedRoom/{id}',[RegularBookedRoomController::class,'show']);
 
-Route::PUT('/updateRegBookedRoom/{id}',[RegularBookedRoomController::class,'Update']);
+Route::PUT('/updateRegBookedRoom/{id}',[RegularBookedRoomController::class,'update']);
 
 Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'destroy']);
 
 
 // -----------------------
 
+// the update option isn't available in the buisness 
 Route::get('/orders',[OrderController::class,'index']);
 
 // step 1 in customization
@@ -141,20 +145,22 @@ Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
 //
 Route::get('/showAllPlaces',[PlaceController::class,'index']);
 Route::post('/storePlace',[PlaceController::class,'store']);
-Route::get('/showPlace/{id}',[OrderController::class,'show']);
+Route::get('/showPlace/{id}',[PlaceController::class,'show']);
+Route::PUT('/updatePlace/{id}',[PlaceController::class,'update']);
 
-Route::delete('/deletePlace/{id}',[OrderController::class,'destroy']);
+Route::delete('/deletePlace/{id}',[PlaceController::class,'destroy']);
 
 
 // ------------------orderedplaces---------
 
-Route::get('/orderedPlaces',[ OrderedPlacesController::class,'index']);
+Route::get('/orderedPlaces',[ OrderedPlaceController::class,'index']);
 
-Route::post('/storeOrderedPlaces',[ OrderedPlacesController::class,'store']);
+Route::post('/storeOrderedPlaces',[ OrderedPlaceController::class,'store']);
 
-Route::get('/showOrderedPlaces/{id}',[ OrderedPlacesController::class,'show']);
+Route::get('/showOrderedPlaces/{id}',[ OrderedPlaceController::class,'show']);
+Route::get('/updateOrderedPlaces/{id}',[ OrderedPlaceController::class,'update']);
 
-Route::delete('/deleteOrderedPlaces/{id}',[ OrderedPlacesController::class,'destroy']);
+Route::delete('/deleteOrderedPlaces/{id}',[ OrderedPlaceController::class,'destroy']);
 
 // ------------------------------
 
@@ -164,7 +170,7 @@ Route::post('/placeImg',[PlaceImgController::class,'store']);
 
 Route::get('placeImg/{id}',[PlaceImgController::class,'show']);
 
-Route::PUT('/placeImg/{id}',[PlaceImgController::class,'Update']);
+Route::PUT('/placeImg/{id}',[PlaceImgController::class,'update']);
 
 Route::delete('/placeImg/{id}',[PlaceImgController::class,'destroy']);
 
