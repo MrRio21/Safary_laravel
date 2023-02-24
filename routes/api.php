@@ -10,7 +10,7 @@ use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
 use App\Http\Controllers\ordercontroller\OrderController;
-use App\Http\Controllers\ordercontroller\OrderedPlaceController;
+use App\Http\Controllers\OrderedPlaceController;
 use App\Http\Controllers\placesController\PlaceController;
 use App\Http\Controllers\placesController\PlaceImgController;
 use Illuminate\Http\Request;

@@ -14,6 +14,7 @@ class Room extends Model
         'price',
         'available_rooms',
         'type',
+        'hotel_id'
     ];
 
 

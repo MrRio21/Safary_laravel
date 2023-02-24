@@ -15,6 +15,7 @@ class Hotel extends Model
         'name',
         'address',
         'type',
+        'hotel_owner_id',
     ];
 
 

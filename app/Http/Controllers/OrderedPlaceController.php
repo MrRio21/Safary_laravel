@@ -33,7 +33,7 @@ class OrderedPlaceController extends Controller
         // take the order in the auth find 
         $orderedPlace = OrderedPlaces ::create([
             'order_id' => $request['order_id'],
-            'place_id' =>$request[''],
+            'place_id' =>$request['place_id'],
             
         ]);
         return $orderedPlace; 

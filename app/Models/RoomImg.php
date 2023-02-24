@@ -9,6 +9,12 @@ class RoomImg extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'image',
+        'room_id',
+       
+    ];
+
     public function room(){
         return $this->belongsTo(Room::class);
     }

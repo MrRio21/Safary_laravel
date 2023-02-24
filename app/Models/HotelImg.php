@@ -11,9 +11,9 @@ class HotelImg extends Model
 
    
     protected $fillable = [
-        'name',
-        'address',
-        'type',
+        'hotel_id',
+        'image',
+       
     ];
 
 
