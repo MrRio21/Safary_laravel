@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelController;
-
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
@@ -63,6 +63,25 @@ Route::get('/hotels',[HotelController::class,'index']);
 
 
 function takeTheBudget($budget){
-    $newBudget= $budget* 60% 
-    $rooms = Room::all()
+    $returnedRooms=[];
+    $newBudget= $budget* 60%
+    $rooms = Room::all();
+    foreach ($rooms as $room) {
+        if ($room->price <= $newBudget) {
+            array_push($returnedRooms,$room);
+            return $returnedRooms;
+        }
+    }
 }
+
+function resetBudget($budget ,$checkIn){
+    $userCustomization =[];
+    // $newBudget= $budget* 60%
+
+
+
+}
+
+// function showPlaces($nOFDays){
+
+// }

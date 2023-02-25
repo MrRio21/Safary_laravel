@@ -1,9 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Room;
 use App\Models\Order;
 use Illuminate\Http\Request;
+
+    function takeTheBudget($budget){
+        $newBudget = ($budget * 0.6);
+        return $newBudget;
+    }
+    function returnDay($checkIn,$checkOut){
+        if ($checkOut > $checkIn) {
+            $day = ($checkOut - $checkIn);
+        }
+        return $day;
+    }
 
 class OrderController extends Controller
 {
@@ -25,25 +36,34 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function store(Request $request)
     {
         $request->validate([
-            'budget'=>['required','min:500'],
-            
+            'budget'=>['required','digits_between:3,6'],
         ]);
-    
+
         $order = Order::create([
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
-            'n_of_adults'=> $request['check_out'],
+            'n_of_adults'=> $request['n_of_adults'],
             'n_of_childeren'=>$request['n_of_childeren'],
             'n_of_rooms'=>$request['n_of_rooms']
         ]);
-        return $order->id; 
+        // $budget = $order['budget'];
+        $takeTheBudget = takeTheBudget($order['budget']);
+        $returnDay = returnDay($order['check_out'] ,$order ['check_in']);
+        return $order ;
     }
 
+    public function customization($takeTheBudget,$returnDay)
+    {
 
+    }
+    
 
     /**
      * Display the specified resource.
