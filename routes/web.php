@@ -72,6 +72,14 @@ function takeTheBudget($budget){
             return $returnedRooms;
         }
     }
+    $newBudget= $budget* 60%
+    $rooms = Room::all();
+    foreach($rooms as $room){
+        if ($room->price < $newBudget){
+
+        }
+    }
+
 }
 
 function resetBudget($budget ,$checkIn){
