@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelController;
-use App\Models\Room ; 
+// use App\Models\Room ; 
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,10 +62,21 @@ Route::get('/test',function(){
 });
 
 Route::get('/hotels',[HotelController::class,'index']);
+Route::get('/order',[OrderController::class,'index']);
+// Route::post('/order',[OrderController::class,'store']);
 
 
 function takeTheBudget($budget){
-    $newBudget= $budget* 60% 
+    $returnedRooms=[];
+    $newBudget= $budget* 60%
+    $rooms = Room::all();
+    foreach ($rooms as $room) {
+        if ($room->price <= $newBudget) {
+            array_push($returnedRooms,$room);
+            return $returnedRooms;
+        }
+    }
+    $newBudget= $budget* 60%
     $rooms = Room::all();
     foreach($rooms as $room){
         if ($room->price < $newBudget){
@@ -72,3 +85,15 @@ function takeTheBudget($budget){
     }
 
 }
+
+function resetBudget($budget ,$checkIn){
+    $userCustomization =[];
+    // $newBudget= $budget* 60%
+
+
+
+}
+
+// function showPlaces($nOFDays){
+
+// }
