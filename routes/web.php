@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::get('/test',function(){
 });
 
 Route::get('/hotels',[HotelController::class,'index']);
+Route::get('/order',[OrderController::class,'index']);
+// Route::post('/order',[OrderController::class,'store']);
 
 
 function takeTheBudget($budget){
