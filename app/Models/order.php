@@ -14,18 +14,17 @@ class Order extends Model
 
     protected $fillable = [
         'budget',
-        'check_in_d',
-        'check_in_m',
-        'check_in_y',
-        'check_out_d',
-        'check_out_m',
-        'check_out_y',
+        'check_in',
+        'check_out',
         'n_of_adults',
         'n_of_childeren',
         'n_of_rooms',
     ];
 
-
+    // 'check_in_m',
+    // 'check_in_y',
+    // 'check_out_d',
+    // 'check_out_m',
     public function User()
     {
         return $this->belongsTo(User::class);

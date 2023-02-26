@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\placesController;
+use App\Http\Controllers\Controller;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
@@ -29,7 +29,7 @@ class PlaceController extends Controller
         $request->validate([
             'name'=>'required',
             'description'=>['required','min:10'],
-            'price'=>'number'
+            // 'price'=>'numric'
         ]);
 
         $place = Place::create([

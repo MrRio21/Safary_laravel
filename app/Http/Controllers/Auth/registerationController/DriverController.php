@@ -44,7 +44,7 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRegisterRequest $request, StoreUserRequest $requestUser)
+    public function store(StoreUserRequest $request, StoreUserRequest $requestUser)
     {
 
       $user=  User::create([

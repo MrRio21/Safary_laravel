@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HotelController;
+use App\Http\Controllers\hotelsController\HotelController;
 use App\Http\Controllers\hotelsController\HotelImgController;
 use App\Http\Controllers\hotelsController\BookedRoomController;
 use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
-use App\Http\Controllers\ordercontroller\OrderController;
-use App\Http\Controllers\OrderedPlaceController;
-use App\Http\Controllers\placesController\PlaceController;
+use App\Http\Controllers\orderController\OrderedPlaceController;
 use App\Http\Controllers\placesController\PlaceImgController;
+use App\Http\Controllers\placesController\PlaceController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Auth\registerationController\userController;
 use App\Http\Controllers\Api\Auth\registerationController\DriverController;

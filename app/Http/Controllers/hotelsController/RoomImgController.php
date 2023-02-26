@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\hotelsController;
+use App\Http\Controllers\Controller;
 use App\Models\RoomImg;
 use Illuminate\Http\Request;
 

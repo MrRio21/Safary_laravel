@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\orderController;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\user as ResourcesUser;
 use App\Models\Order;
 use App\Models\OrderedPlaces;

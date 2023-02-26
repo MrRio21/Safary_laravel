@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\vehicleController;
+use App\Http\Controllers\Controller;
 use App\Models\DriverRequest;
 use Illuminate\Http\Request;
 

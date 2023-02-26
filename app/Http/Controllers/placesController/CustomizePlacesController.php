@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\placesController;
+use App\Http\Controllers\Controller;
 use App\Models\CustomizePlaces;
 use Illuminate\Http\Request;
 

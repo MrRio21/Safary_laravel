@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\orderController;
+use App\Http\Controllers\Controller;
 use App\Models\Room;
 use Carbon\Carbon;
+use DateTime;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -16,10 +18,10 @@ use Illuminate\Http\Request;
     function returnDays($orderID){
         $order = order::find($orderID);
 
-        $checkOut = $order['check_out_d'];
-        $checkIn =$order['check_in_d'];
-            $days = ($checkOut - $checkIn);
-            dd($days);
+        // $checkOut = $order['check_out_d'];
+        // $checkIn =$order['check_in_d'];
+        //     $days = ($checkOut - $checkIn);
+            // dd($days);
 
  ///////  Carbon   //////////////
             // dd(intval($checkOut));
@@ -27,6 +29,14 @@ use Illuminate\Http\Request;
             //  $start_time = Carbon::parse($checkOut);
             //  $fin_time = Carbon::parse($checkIn);
             //  $result = $start_time->diffInDays($fin_time, false);
+            $from_date =$order['check_in'];
+$to_date = $order['check_out'];
+$first_datetime = new DateTime($from_date);
+// dd($first_datetime);
+$last_datetime = new DateTime($to_date);
+$interval = $first_datetime->diff($last_datetime);
+$final_days = $interval->format('%a');//and then print do whatever you like with $final_days
+dd($final_days);
     }
 
 class OrderController extends Controller
@@ -34,6 +44,9 @@ class OrderController extends Controller
 
     public function index()
     {
+     returnMaxBudget(1);
+     returnDays(2);
+
 
     }
 
@@ -48,12 +61,8 @@ class OrderController extends Controller
 
         $order = Order::create([
             'budget' =>  $request['budget'],
-            'check_in_d' =>$request['check_in_d'],
-            'check_in_m' =>$request['check_in_m'],
-            'check_in_y' =>$request['check_in_y'],
-            'check_out_d' =>$request['check_out_d'],
-            'check_out_m' =>$request['check_out_m'],
-            'check_out_y' =>$request['check_out_y'],
+            'check_in' =>$request['check_in'], 
+            'check_out' =>$request['check_out'],
             'n_of_adults'=> $request['n_of_adults'],
             'n_of_childeren'=>$request['n_of_childeren'],
             'n_of_rooms'=>$request['n_of_rooms']

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\tripcontroller;
+use App\Http\Controllers\Controller;
 
 use App\Models\recommendedTrips;
 use Illuminate\Http\Request;

@@ -17,18 +17,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->float("budget");
-            $table->integer("check_in_d");
-            $table->integer("check_in_m");
-            $table->integer("check_in_y");
-            $table->integer("check_out_d");
-            $table->integer("check_out_m");
-            $table->integer("check_out_y");
+            $table->date("check_in");
+            $table->date("check_out");
             $table->unsignedBigInteger("n_of_adults");
             $table->unsignedBigInteger("n_of_childeren")->default(0);
             $table->unsignedBigInteger("n_of_rooms");
         });
     }
-
+    // $table->integer("check_in_m");
+    // $table->integer("check_in_y");
+    // $table->integer("check_out_d");
+    // $table->integer("check_out_m");
     /**
      * Reverse the migrations.
      *
