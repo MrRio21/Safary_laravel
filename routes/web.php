@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelController;
-
+use App\Models\Room ; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
@@ -67,7 +67,7 @@ function takeTheBudget($budget){
     $rooms = Room::all();
     foreach($rooms as $room){
         if ($room->price < $newBudget){
-            
+
         }
     }
 
