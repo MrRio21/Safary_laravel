@@ -10,9 +10,17 @@ class PlacesOfRecommTrips extends Model
     use HasFactory;
 
 
-    public function order()
-    {
-        return $this->hasMany(order::class);
+    protected $fillable =[
+        'trip_id',
+        'place_id'
+
+    ];
+
+    public function Trip(){
+        return $this->hasMany(Recommended_trip::class);
+    }
+    public function Place(){
+        return $this->hasMany(Place::class);
     }
 
 

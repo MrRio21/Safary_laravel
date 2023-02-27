@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // the customiz trips by us that the user pick 
+        // out of customization 
         Schema::create('chosen_trips', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');

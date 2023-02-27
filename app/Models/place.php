@@ -16,8 +16,5 @@ class Place extends Model
        
     ];
 
-    public function customizePlaces()
-    {
-        return $this->belongsTo(customizePlaces::class);
-    }
+
 }
