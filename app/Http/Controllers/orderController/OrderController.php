@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\orderController;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\BookTourGuide;
+use App\Models\OrderDetail;
 use Carbon\Carbon;
 use DateTime;
 use App\Models\Order;
@@ -29,14 +31,22 @@ use Illuminate\Http\Request;
             //  $start_time = Carbon::parse($checkOut);
             //  $fin_time = Carbon::parse($checkIn);
             //  $result = $start_time->diffInDays($fin_time, false);
-            $from_date =$order['check_in'];
-$to_date = $order['check_out'];
-$first_datetime = new DateTime($from_date);
+            $check_in =$order['check_in'];
+$check_out = $order['check_out'];
+$check_in_datetime = new DateTime($check_in);
 // dd($first_datetime);
-$last_datetime = new DateTime($to_date);
-$interval = $first_datetime->diff($last_datetime);
+$check_out_datetime = new DateTime($check_out);
+$interval = $check_in_datetime->diff($check_out_datetime);
 $final_days = $interval->format('%a');//and then print do whatever you like with $final_days
 dd($final_days);
+    }
+    function requestTourGuide( OrderDetail $userID, ){
+      $orderDetails =OrderDetail::all();
+        foreach($orderDetails as $orderDetail){
+            if($orderDetail->user_id ==  $userID && $orderDetail->tourGuide_status == 'pending' ){
+                
+            }
+        }
     }
 
 class OrderController extends Controller
