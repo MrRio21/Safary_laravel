@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('booked_rooms', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("n_of_booked_rooms");
-            $table->integer("n_of_adults");
-            $table->integer("n_of_childeren")->default(0);
+            // number of rooms that is picked from room id 
+            $table->integer("n_of_rooms");
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
 
 /////////////////
 //there is another booking table for regular bookig 

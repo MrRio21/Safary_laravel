@@ -16,6 +16,7 @@ class Hotel extends Model
         'address',
         'type',
         'hotel_owner_id',
+        // 'headerImg'
     ];
 
 

@@ -51,7 +51,8 @@ class HotelOwnerController extends Controller
         'email' => $requestUser['email'],
         'password' => $requestUser['password'], 
         'gender' => $requestUser['gender'] ,
-        ]);
+         'image'=>   $requestUser['image']
+    ]);
 
 
 
