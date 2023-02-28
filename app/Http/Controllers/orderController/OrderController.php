@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use Carbon\Carbon;
 use DateTime;
 use App\Models\Order;
+use App\Models\Tourguide;
 use Illuminate\Http\Request;
 
     function returnMaxBudget($orderID){
@@ -17,6 +18,12 @@ use Illuminate\Http\Request;
         return $newBudget;
     }
 
+    function returnMinBudget($orderID){
+        $order = order::find($orderID);
+        $newBudget = ($order['budget'] * 0.4);
+        // dd($newBudget);
+        return $newBudget;
+    }
     function returnDays($orderID){
         $order = order::find($orderID);
 
@@ -40,13 +47,42 @@ $interval = $check_in_datetime->diff($check_out_datetime);
 $final_days = $interval->format('%a');//and then print do whatever you like with $final_days
 dd($final_days);
     }
-    function requestTourGuide( OrderDetail $userID, ){
+    // send notifiction to  tourGuide 
+    function requestTourGuide($userID){
       $orderDetails =OrderDetail::all();
         foreach($orderDetails as $orderDetail){
+        
             if($orderDetail->user_id ==  $userID && $orderDetail->tourGuide_status == 'pending' ){
-                
+               $bookTourGuide =BookTourGuide::all();
+               foreach($bookTourGuide as $book){
+                if($book->order_id == $orderDetail->order_id){
+
+                    return "notify the tourGuide that there is a user want him ";
+                }
+               }
             }
         }
+    }
+    
+    // searching function for a tourGuide 
+    // will put before it an if condition 
+    // if the user put right in the check box of wanting  
+    // a tourGuide
+    function searchForTourGuide($orderID){
+        //  the rest budget(40%) will split into two parts
+        $order = order::find($orderID);
+        $minBudget = ($order['budget'] * 0.4);
+        $days =  returnDays($orderID);
+        $minBudgetPerDay=$minBudget/$days;
+    $tourGuides=Tourguide::all();
+    $tourGuidesArray=[];
+    foreach($tourGuides as $tourGuide){
+        if((int)$tourGuide->price < $minBudgetPerDay){
+            array_push($tourGuidesArray,$tourGuide->id);
+            return 
+        }
+    }
+
     }
 
 class OrderController extends Controller
