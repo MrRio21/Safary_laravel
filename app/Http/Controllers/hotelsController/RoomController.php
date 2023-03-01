@@ -31,18 +31,20 @@ class RoomController extends Controller
         
         $request->validate([
             'price'=>'required',
-            'available_rooms '=>'required',
+            // 'available_rooms '=>'required',
             'type'=>'required',
         ]);
         $roomPrice = $request['price'];
         $available_rooms =$request['available_rooms'];
         $type = $request['type'];
-        $hotel = room::create([
+        $hotelID=  $request['hotel_id'];
+        $room = room::create([
             'price' => $roomPrice,
             'available_rooms' =>$available_rooms,
-            'type' =>$type
+            'type' =>$type,
+            'hotel_id' => $hotelID
         ]);
-        return $hotel; 
+        return $room; 
     }
 
     /**

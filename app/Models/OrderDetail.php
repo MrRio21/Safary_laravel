@@ -13,7 +13,7 @@ class OrderDetail extends Model
         'order_id',
         'room_status',
         'tourGuide_status',
-        'total_price',
+        'price_paid',
     ];
     public function User()
     {

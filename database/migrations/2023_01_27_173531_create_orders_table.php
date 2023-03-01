@@ -24,10 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger("n_of_rooms");
         });
     }
-    // $table->integer("check_in_m");
-    // $table->integer("check_in_y");
-    // $table->integer("check_out_d");
-    // $table->integer("check_out_m");
+    
     /**
      * Reverse the migrations.
      *

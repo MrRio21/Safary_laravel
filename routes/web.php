@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\orderController\OrderController;
 
 /*
 |--------------------------------------------------------------------------

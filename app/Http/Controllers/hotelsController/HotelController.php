@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\hotelsController;
 use App\Http\Controllers\Controller;
+// namespace App\Http\Controllers;
 use App\Models\HotelImg;
 use App\Models\Hotel;
 use App\Models\HotelOwner;
@@ -36,7 +37,7 @@ class HotelController extends Controller
         // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
         $request->validate([
             'name'=>'required',
-            'address '=>['required','min:10'],
+            // 'address '=>['required','min:10'],
             'type'=>'required',
         ]);
         $hotelName = $request['name'];

@@ -28,6 +28,11 @@ class Room extends Model
         return $this->hasMany(RoomImg::class);
         
     }
+    public function Order()
+    {
+        return $this->hasMany(Order::class);
+        
+    }
 
 
 }

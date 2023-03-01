@@ -24,7 +24,8 @@ return new class extends Migration
             // but also for the tourguide confirmation 
             $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
             $table->enum('tourGuide_status',['Accept','pending','Reject'])->default('pending');
-            $table->float('total_price');
+            // the price that the user will pay 
+            $table->float('price_paid');
        
         });
     }

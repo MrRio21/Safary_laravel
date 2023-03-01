@@ -11,11 +11,35 @@ use App\Models\Order;
 use App\Models\Tourguide;
 use Illuminate\Http\Request;
 
+function returnDays($orderID){
+    $order = order::find($orderID);
+
+    // $checkOut = $order['check_out_d'];
+    // $checkIn =$order['check_in_d'];
+    //     $days = ($checkOut - $checkIn);
+        // dd($days);
+
+///////  Carbon   //////////////
+        // dd(intval($checkOut));
+        // $current = Carbon::now();
+        //  $start_time = Carbon::parse($checkOut);
+        //  $fin_time = Carbon::parse($checkIn);
+        //  $result = $start_time->diffInDays($fin_time, false);
+        $check_in =$order['check_in'];
+$check_out = $order['check_out'];
+$check_in_datetime = new DateTime($check_in);
+// dd($first_datetime);
+$check_out_datetime = new DateTime($check_out);
+$interval = $check_in_datetime->diff($check_out_datetime);
+$final_days = $interval->format('%a');//and then print do whatever you like with $final_days
+dd($final_days);
+}
     function returnMaxBudget($orderID){
         $order = order::find($orderID);
         $newBudget = ($order['budget'] * 0.6);
+        $maxBudgetPerDay = $newBudget/returnDays($orderID);
         // dd($newBudget);
-        return $newBudget;
+        return ['newBudget' =>$newBudget,'maxBudgetPerDay'=> $maxBudgetPerDay];
     }
 
     function returnMinBudget($orderID){
@@ -24,29 +48,7 @@ use Illuminate\Http\Request;
         // dd($newBudget);
         return $newBudget;
     }
-    function returnDays($orderID){
-        $order = order::find($orderID);
 
-        // $checkOut = $order['check_out_d'];
-        // $checkIn =$order['check_in_d'];
-        //     $days = ($checkOut - $checkIn);
-            // dd($days);
-
- ///////  Carbon   //////////////
-            // dd(intval($checkOut));
-            // $current = Carbon::now();
-            //  $start_time = Carbon::parse($checkOut);
-            //  $fin_time = Carbon::parse($checkIn);
-            //  $result = $start_time->diffInDays($fin_time, false);
-            $check_in =$order['check_in'];
-$check_out = $order['check_out'];
-$check_in_datetime = new DateTime($check_in);
-// dd($first_datetime);
-$check_out_datetime = new DateTime($check_out);
-$interval = $check_in_datetime->diff($check_out_datetime);
-$final_days = $interval->format('%a');//and then print do whatever you like with $final_days
-dd($final_days);
-    }
     // send notifiction to  tourGuide 
     function requestTourGuide($userID){
       $orderDetails =OrderDetail::all();
@@ -78,29 +80,54 @@ dd($final_days);
     $tourGuidesArray=[];
     foreach($tourGuides as $tourGuide){
         if((int)$tourGuide->price < $minBudgetPerDay){
-            array_push($tourGuidesArray,$tourGuide->id);
-            return 
+        
+        //     array_push($tourGuidesArray,$tourGuide->id);
+        //     foreach
+        //    $tourG=Tourguide::find()
+
+
+            return $tourGuide;
+        }else{
+            return "you should raise your budget";
         }
     }
 
     }
+    
+    function searchForRoom($orderID){
+        $returnMaxBudgetArray = returnMaxBudget($orderID);
 
-class OrderController extends Controller
+    }
+ 
+ 
+ 
+    class OrderController extends Controller
 {
 
     public function index()
     {
-     returnMaxBudget(1);
-     returnDays(2);
+        
+     $order=Order::find(1);
+     $checkin=$order->check_in;
+    //  dd($checkin);
+     $checkout=$order->check_out;
+     $availableRooms = Room::where('price', '<=', $order->budget * 0.6)
+     ->whereDoesntHave('booked_rooms', function ($query) use ($checkin, $checkout) {
+           $query->where(function ($query) use ($checkin, $checkout) {
+                   $query->where('check_in', '<', $checkout)
+                         ->where('check_out', '>', $checkin);
+           });
+     })
+     ->get();
+
+     dd($availableRooms);
 
 
     }
 
     public function store(Request $request)
     {
-        function order(){
-    Order::factory()->count(20)->make();
-    }
+ 
         $request->validate([
             'budget'=>['required','digits_between:3,6'],
         ]);
@@ -114,7 +141,22 @@ class OrderController extends Controller
             'n_of_rooms'=>$request['n_of_rooms']
         ]);
         // $budget = $order['budget'];
-        return $order ;
+        // return $order ;
+        $checkin=$order->checkin;
+        // dd($checkin);
+        $checkout=$order->checkout;
+
+        
+     $availableRooms = Room::where('price', '<=', $order->budget * 0.6)
+     ->whereDoesntHave('order', function ($query) use ($checkin, $checkout) {
+           $query->where(function ($query) use ($checkin, $checkout) {
+                   $query->where('checkin', '<', $checkout)
+                         ->where('checkout', '>', $checkin);
+           });
+     })
+     ->get();
+
+     dd($availableRooms);
     }
 
 

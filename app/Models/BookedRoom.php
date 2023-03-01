@@ -10,19 +10,19 @@ class BookedRoom extends Model
     use HasFactory;
 
     protected $fillable = [
-        'n_of_booked_rooms',
-        'n_of_adults',
-        'n_of_childeren',
+        'order_id',
+        'room_id',
+        'n_of_rooms',
     ];
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
     }
     
-    public function hotel()
+    public function room()
     {
-        return $this->belongsTo(Hotel::class);
+        return $this->hasMany(Room::class);
     }
 
 
