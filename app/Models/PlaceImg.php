@@ -15,7 +15,7 @@ class PlaceImg extends Model
        
     ];
 
-    public function place()
+    public function Place()
     {
         return $this->belongsTo(place::class);
     }

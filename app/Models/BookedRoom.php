@@ -13,14 +13,15 @@ class BookedRoom extends Model
         'order_id',
         'room_id',
         'n_of_rooms',
+        // 'price'
     ];
 
-    public function order()
+    public function Order()
     {
         return $this->hasMany(Order::class);
     }
     
-    public function room()
+    public function Room()
     {
         return $this->hasMany(Room::class);
     }

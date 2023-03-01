@@ -14,11 +14,6 @@ use Illuminate\Http\Request;
 function returnDays($orderID){
     $order = order::find($orderID);
 
-    // $checkOut = $order['check_out_d'];
-    // $checkIn =$order['check_in_d'];
-    //     $days = ($checkOut - $checkIn);
-        // dd($days);
-
 ///////  Carbon   //////////////
         // dd(intval($checkOut));
         // $current = Carbon::now();

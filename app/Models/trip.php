@@ -16,6 +16,12 @@ class Trip extends Model
         'num_of_days',
         
     ];
-
-    
+       
+    public function Place()
+    {
+        return $this->hasMany(Place::class , 'PlacesOfRecommTrips', 'trip_id', 'trip_id');
+    }
+    public function User(){
+        return $this->hasMany(User::class  , 'ChosenTrip', 'order_id', 'room_id');
+    }
 }

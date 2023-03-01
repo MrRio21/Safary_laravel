@@ -16,10 +16,9 @@ class ChosenTrip extends Model
     ];
 
     public function Trip(){
-        return $this->hasMany(Trip::class);
+        return $this->hasMany(Trip::class );
     }
     public function User(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class );
     }
-
 }

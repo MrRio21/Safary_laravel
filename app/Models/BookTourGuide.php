@@ -17,7 +17,7 @@ class BookTourGuide extends Model
     public function Order(){
         return $this->hasMany(Order::class);
     }
-    public function TourGuide(){
+    public function Tourguide(){
         return $this->belongsTo(Tourguide::class);
     }
 

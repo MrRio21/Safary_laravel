@@ -9,7 +9,16 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    public function driver()
+    
+    protected $fillable = [
+        'type',
+        'license',
+        'image',
+        'driver_id'
+       
+    ];
+
+    public function Driver()
     {
         return $this->belongsTo(driver::class);
     }

@@ -25,7 +25,7 @@ class User extends Authenticatable
         'image'
     ];
 
-    public function tourgide()
+    public function Tourguide()
     {
         return [
         $this->hasOne(tourgide::class),
@@ -34,9 +34,13 @@ class User extends Authenticatable
     ];
     }
 
-    public function order()
+    public function Order()
     {
         return $this->hasMany(order::class);
     }
+    public function Trip(){
+        return $this->hasMany(Trip::class , 'ChosenTrip', 'order_id', 'room_id');
+    }
+   
 
 }

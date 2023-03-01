@@ -16,23 +16,24 @@ class Hotel extends Model
         'address',
         'type',
         'hotel_owner_id',
+        'cover_img'
         // 'headerImg'
     ];
 
 
-    public function room()
+    public function Room()
     {
         return $this->hasMany(Room::class);
     }
-    public function bookedRoom()
+    public function BookedRoom()
     {
         return $this->hasMany(bookedRoom::class);
     }
-    public function hotelOwner()
+    public function HotelOwner()
     {
         return $this->belongsTo(HotelOwner::class);
     }
-    public function hotelImg()
+    public function HotelImg()
     {
         return $this->belongsTo(Hotel::class);
 

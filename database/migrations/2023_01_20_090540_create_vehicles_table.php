@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->enum('type',['cars','boat','cabriolet']);
+            $table->string("license");
+            $table->string("image");
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade')->onUpdate('cascade');
             

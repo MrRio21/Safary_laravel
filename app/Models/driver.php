@@ -21,12 +21,12 @@ class Driver extends Model
         'user_id'
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
 
-    public function vehicle()
+    public function Vehicle()
     {
         return $this->hasMany(vehicle::class);
     }

@@ -20,12 +20,12 @@ class RegularBookedRoom extends Model
         'user_id',
         'room_id'
     ];
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class);
     }
     
-    public function hotel()
+    public function Hotel()
     {
         return $this->belongsTo(Hotel::class);
     }

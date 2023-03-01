@@ -37,14 +37,19 @@ class RoomController extends Controller
         $roomPrice = $request['price'];
         $available_rooms =$request['available_rooms'];
         $type = $request['type'];
+        $cover_img = $request['cover_img'];
         $hotelID=  $request['hotel_id'];
         $room = room::create([
             'price' => $roomPrice,
             'available_rooms' =>$available_rooms,
             'type' =>$type,
-            'hotel_id' => $hotelID
+            'hotel_id' => $hotelID,
+            'cover_img' => $cover_img
         ]);
-        return $room; 
+        return response()->json([
+            'room info '=> $room,
+            'room info is saved successfully '=>'message' 
+        ]);  
     }
 
     /**
@@ -56,7 +61,10 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         $room = Room::find($room);
-        return $room;  
+        return response()->json([
+            'room info '=> $room,
+            'room info is saved successfully '=>'message' 
+        ]);  
     }
 
  
@@ -80,14 +88,18 @@ class RoomController extends Controller
                   'type'=> $request['type'], 
               ]);
           }
-          if($request['price']&&$request['available_rooms']&& $request['type']){
+          if($request['price']&&$request['available_rooms']&& $request['type'] &&$request['cover_img']){
               $results=Room::where ('id',$room)->update([
                   'price'=> $request['price'], 
                   'available_rooms' => $request['available_rooms'],
                   'type'=> $request['type'], 
+                  'cover_img'=> $request['cover_img'], 
                 ]);
           }
-          return $results;
+          return response()->json([
+            'room info '=> $results,
+            'room info is saved successfully '=>'message' 
+        ]);  
     }
 
     /**

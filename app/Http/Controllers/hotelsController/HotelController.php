@@ -35,7 +35,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        // $userID= Auth::user();
+        // $userID= Auth->user()
         // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
         $request->validate([
             'name'=>'required',
@@ -45,27 +45,37 @@ class HotelController extends Controller
         $hotelName = $request['name'];
         $address =$request['address'];
         $type = $request['type'];
+        $cover_img = $request['cover_img'];
         $hotel = hotel::create([
             'name' => $hotelName,
             'address' =>$address,
             'type' =>$type,
+            'cover_img' =>$cover_img,
+
             // 'hotel_owner_id'=> $hotelOwnID
             'hotel_owner_id'=> $request['hotel_owner_id']
 
         ]);
-        return response()->json([
-            'hotel saved'=>$hotel 
-        ]);  
-        //         // the hashing to ignore the conflicts in names 
-        //         $img = md5(microtime()).$request['img']->getClientOriginalName();
-        //         // $request["img"]->storeAs("public/imgs",$img);
-        //         $hotelId = $hotel->id;
-        //         $hotelImg = HotelImg::create([
-        //             'image' => $img,
-        //             'hotel_id' =>$hotelId,
-                   
-        //         ]);
+      
+        // // the hashing to ignore the conflicts in names 
+        // foreach as we have multiple images 
+        foreach($request['img'] as $image){
+
+            $img = md5(microtime()).$image->getClientOriginalName();
+            // $request["img"]->storeAs("public/imgs",$img);
+            $hotelId = $hotel->id;
+            $hotelImg = HotelImg::create([
+                'image' => $img,
+                'hotel_id' =>$hotelId,
+               
+            ]);
+        }
         // return 'the hotel info stored successfully';
+
+        return response()->json([
+            'hotel info '=> $hotel,
+            'hotel info is saved successfully '=>'message' 
+        ]);  
     }
 
     /**
