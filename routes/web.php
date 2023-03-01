@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelController;
-// use App\Models\Room ; 
+// use App\Models\Room ;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
