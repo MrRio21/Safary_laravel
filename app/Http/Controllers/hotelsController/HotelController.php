@@ -20,6 +20,7 @@ class HotelController extends Controller
     {
         $allHotels =Hotel::all();
         $hotelImgs= HotelImg::all();
+        // dd($allHotels);6
 
         return response()->json([
             'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
@@ -37,43 +38,52 @@ class HotelController extends Controller
     {
         // $userID= Auth->user()
         // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
-        $request->validate([
-            'name'=>'required',
-            // 'address '=>['required','min:10'],
-            'type'=>'required',
-        ]);
-        $hotelName = $request['name'];
-        $address =$request['address'];
-        $type = $request['type'];
-        $cover_img = $request['cover_img'];
-        $hotel = hotel::create([
-            'name' => $hotelName,
-            'address' =>$address,
-            'type' =>$type,
-            'cover_img' =>$cover_img,
+        // $request->validate([
+        //     'name'=>'required',
+        //     // 'address '=>['required','min:10'],
+        //     'type'=>'required',
+        // ]);
+        // $hotelName = $request['name'];
+        // $address =$request['address'];
+        // $type = $request['type'];
+        // $cover_img = $request['cover_img'];
+        // $hotel = hotel::create([
+        //     'name' => $hotelName,
+        //     'address' =>$address,
+        //     'type' =>$type,
+        //     'cover_img' =>$cover_img,
 
-            // 'hotel_owner_id'=> $hotelOwnID
-            'hotel_owner_id'=> $request['hotel_owner_id']
+        //     // 'hotel_owner_id'=> $hotelOwnID
+        //     'hotel_owner_id'=> $request['hotel_owner_id']
 
-        ]);
+        // ]);
       
         // // the hashing to ignore the conflicts in names 
         // foreach as we have multiple images 
-        foreach($request['img'] as $image){
-
-            $img = md5(microtime()).$image->getClientOriginalName();
-            // $request["img"]->storeAs("public/imgs",$img);
-            $hotelId = $hotel->id;
-            $hotelImg = HotelImg::create([
-                'image' => $img,
-                'hotel_id' =>$hotelId,
+        // dd($request['image']);
+        // 
+// dd($request);
+// $images = explode(',', $request['image']);
+// // dd($images);
+//         foreach($images as $image){
+// //  dd($image);
+//             // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
+//             // $request["img"]->storeAs("public/imgs",$img);
+//             // $hotelId = $hotel->id;
+//             // dd($image);
+//             $hotelImg = HotelImg::create([
+//                 'image' => md5(microtime()).$image->getClientOriginalName(),
+//                 'hotel_id' =>1,
                
-            ]);
-        }
+//             ]);
+        // }
+    
         // return 'the hotel info stored successfully';
 
         return response()->json([
-            'hotel info '=> $hotel,
+            // 'hotel info '=> $hotel,
+         
+
             'hotel info is saved successfully '=>'message' 
         ]);  
     }

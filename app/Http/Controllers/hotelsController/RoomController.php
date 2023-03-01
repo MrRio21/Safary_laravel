@@ -39,12 +39,16 @@ class RoomController extends Controller
         $type = $request['type'];
         $cover_img = $request['cover_img'];
         $hotelID=  $request['hotel_id'];
+        $checkIn=  $request['check_in'];
+        $checkOut=  $request['check_out'];
         $room = room::create([
             'price' => $roomPrice,
             'available_rooms' =>$available_rooms,
             'type' =>$type,
             'hotel_id' => $hotelID,
-            'cover_img' => $cover_img
+            'cover_img' => $cover_img,
+            'check_in' => $checkIn,
+            'check_out' => $checkOut
         ]);
         return response()->json([
             'room info '=> $room,

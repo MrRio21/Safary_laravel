@@ -15,7 +15,9 @@ class Room extends Model
         'available_rooms',
         'type',
         'hotel_id',
-        'cover_img'
+        'cover_img',
+        'check_in',
+
     ];
 
 
@@ -31,7 +33,7 @@ class Room extends Model
     }
     public function Order()
     {
-        return $this->hasMany(Order::class , 'booked_rooms', 'order_id', 'room_id')->withPivot('n_of_rooms');
+        return $this->hasMany(Order::class , 'booked_rooms', 'order_id', 'room_id');
         
     }
 

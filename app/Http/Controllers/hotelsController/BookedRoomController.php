@@ -78,6 +78,8 @@ class BookedRoomController extends Controller
                 'order_id' => $request['order_id'],
                 'room_id' =>$request['room_id'],
                 'n_of_rooms' => $request['n_of_rooms'],
+                // 'check_in' => $request['check_in'],
+                // 'check_out' => $request['check_out'],
               ]);
           
           return response()->json([

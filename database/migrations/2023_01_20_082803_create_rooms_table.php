@@ -19,6 +19,8 @@ return new class extends Migration
             $table->float('price');
             $table->string('available_rooms');
             $table->string('cover_img');
+            $table->date('check_in');
+            $table->date('check_out');
             $table->enum('type',['single','double','triple']);
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
