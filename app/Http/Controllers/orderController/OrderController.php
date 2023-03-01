@@ -107,18 +107,16 @@ dd($final_days);
         $checkout = '2023-03-05'; // Example checkout date
         $maxPrice = $budget * 0.6; // Maximum price based on 60% of the budget
         
-        $availableRooms = DB::table('rooms')
-            ->select('rooms.id', 'rooms.type', 'rooms.price')
-            ->leftJoin('orders')->
-            ->where(function ($query) use ($checkin, $checkout) {
-                $query->where('booked_rooms.check_in', '>', $checkout)
-                    ->orWhere('booked_rooms.check_out', '<', $checkin)
-                    ->orWhereNull('booked_rooms.check_in')
-                    ->orWhereNull('booked_rooms.check_out');
-            })
-            ->where('rooms.price', '<=', $maxPrice)
-            ->orderBy('rooms.price')
+        $availableRooms = DB::table("rooms inner")
+        ->join("orders", function($join){
+            $join;
+        })
+        ->where("orders.check_in", ">",  $checkin )
+        ->where("orders.check_out", "<",  $checkout)
+        ->where("rooms.price", "<=", "orders.budget")
             ->get();
+
+        
 
      dd($availableRooms);
 

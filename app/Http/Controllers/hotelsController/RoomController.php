@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\hotelsController;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\RoomImg;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -15,6 +16,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms =Room::all();
+        $roomsImgs=RoomImg::where()
         
         return isset($rooms)?$rooms:"";
     }

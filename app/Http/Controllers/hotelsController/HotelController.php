@@ -97,9 +97,10 @@ class HotelController extends Controller
     public function show(Hotel $hotelId)
     {
         $hotelInfo = Hotel::find($hotelId);
-        HotelImg::where('hotel_id',$hotelId);
+       $hotelImgs= HotelImg::where('hotel_id',$hotelId);
         return  response()->json([
-            'hotel info'=>$hotelInfo 
+            'hotel info'=>$hotelInfo ,
+            'hotel Imgs' => $hotelImgs
         ]);   
     }
 
@@ -125,11 +126,27 @@ class HotelController extends Controller
                 'name'=> $request['description'],
             ]);
         }
-        if($request['name']&&$request['address']){
+        if($request['cover_img']){
+
+            $results=Hotel::where ('id',$hotelId)->update([
+                'cover_img'=> $request['cover_img'],
+            ]);
+        }
+        if($request['name']&&$request['address'] && $request['cover_img']){
             $results=Hotel::where ('id',$hotelId)->update([
                 'name'=> $request['name'],
-                'address' => $request['address']
+                'address' => $request['address'],
+                'cover_img'=> $request['cover_img'],
             ]);
+        }
+        // for imgs of the hotel 
+        if($request['images']){
+            foreach( $request['images'] as $image )
+            $img = md5(microtime()).$image->getClientOriginalName();
+
+            $results=HotelImg::where ('hotel_id',$hotelId)->update([
+                  'image'=> $img, 
+              ]);
         }
         return response()->json([
             'hotel updated'=>$results 
@@ -146,7 +163,10 @@ class HotelController extends Controller
      */
     public function destroy(hotel $hotelId)
     {
-        Hotel::find($hotelId)->delete();
+       $deleteHotel= Hotel::find($hotelId)->delete();
+        if($deleteHotel){
+            HotelImg::where ('hotel_id',$hotelId)->delete();
+        }
 
         return response()->json([
             'hotel deleted'
