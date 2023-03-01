@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\hotelsController\HotelController;
+use App\Http\Controllers\hotelsController\RoomController;
 
 
 

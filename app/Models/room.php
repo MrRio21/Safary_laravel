@@ -17,6 +17,7 @@ class Room extends Model
         'hotel_id',
         'cover_img',
         'check_in',
+        'check_out',
 
     ];
 

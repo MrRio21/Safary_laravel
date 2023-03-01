@@ -107,7 +107,7 @@ dd($final_days);
         $checkout = '2023-03-05'; // Example checkout date
         $maxPrice = $budget * 0.6; // Maximum price based on 60% of the budget
         
-        $availableRooms = DB::table("rooms inner")
+        $availableRooms = DB::table("rooms")
         ->join("orders", function($join){
             $join;
         })

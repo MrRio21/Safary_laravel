@@ -18,11 +18,11 @@ class RoomController extends Controller
     {
         $rooms =Room::all();
         $roomsImgs=DB::table("room_imgs")
-        ->join("hotels", function($join){
-            $join;
-        })
-        ->where("room_imgs.hotel_id", "=", "hotels.id")
-        ->get();
+->Join("rooms", function($join){
+	$join;
+})
+->where('rooms.id','room_imgs.room_id')
+->get();
         
         return response()->json([
             'rooms'=>$rooms ,
@@ -61,6 +61,20 @@ class RoomController extends Controller
             'check_in' => $checkIn,
             'check_out' => $checkOut
         ]);
+                foreach($request['image'] as $image){
+//  dd($image);
+            // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
+            // $request["img"]->storeAs("public/imgs",$img);
+            // $hotelId = $hotel->id;
+            // dd($image);
+            $hotelImg = room_imgs::create([
+                'image' => md5(microtime()).$image->getClientOriginalName(),
+                'room_id' =>$room->id,
+               
+            ]);
+        }
+    
+        // return 'the
         return response()->json([
             'room info '=> $room,
             'room info is saved successfully '=>'message' 
@@ -111,11 +125,27 @@ class RoomController extends Controller
                   'cover_img'=> $request['cover_img'], 
                 ]);
           }
+          //  dd($image);
+            // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
+            // $request["img"]->storeAs("public/imgs",$img);
+            // $hotelId = $hotel->id;
+            // dd($image);
+            $hotelImg = HotelImg::create([
+                'image' => md5(microtime()).$image->getClientOriginalName(),
+            //    from hotel
+                'hotel_id' =>$request["hotel_id"],
+
+                
+                //             ]);
+                //         }
+                
+            ]);  
+
+return 'room info is saved successfully '=>'message' ;
           return response()->json([
-            'room info '=> $results,
-            'room info is saved successfully '=>'message' 
-        ]);  
-    }
+            'room info '=> //         foreach($request['image'] as $image){
+
+}
 
     /**
      * Remove the specified resource from storage.
