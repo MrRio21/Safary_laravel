@@ -4,6 +4,7 @@ namespace App\Http\Controllers\hotelsController;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomImg;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -16,9 +17,17 @@ class RoomController extends Controller
     public function index()
     {
         $rooms =Room::all();
-        $roomsImgs=RoomImg::where()
+        $roomsImgs=DB::table("room_imgs")
+        ->join("hotels", function($join){
+            $join;
+        })
+        ->where("room_imgs.hotel_id", "=", "hotels.id")
+        ->get();
         
-        return isset($rooms)?$rooms:"";
+        return response()->json([
+            'rooms'=>$rooms ,
+            'roomsImgs'=>$roomsImgs
+        ]); 
     }
 
 
