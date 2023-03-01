@@ -36,7 +36,7 @@ class Order extends Model
     }
     public function room()
     {
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Room::class , 'booked_rooms', 'order_id', 'room_id')->withPivot('n_of_rooms');
     }
 
 }

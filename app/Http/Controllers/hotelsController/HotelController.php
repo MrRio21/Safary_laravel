@@ -21,7 +21,9 @@ class HotelController extends Controller
         $allHotels =Hotel::all();
         $hotelImgs= HotelImg::all();
 
-        return ['allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs];
+        return response()->json([
+            'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
+        ]); 
     }
 
 
@@ -51,7 +53,9 @@ class HotelController extends Controller
             'hotel_owner_id'=> $request['hotel_owner_id']
 
         ]);
-        return $hotel;
+        return response()->json([
+            'hotel saved'=>$hotel 
+        ]);  
         //         // the hashing to ignore the conflicts in names 
         //         $img = md5(microtime()).$request['img']->getClientOriginalName();
         //         // $request["img"]->storeAs("public/imgs",$img);
@@ -74,7 +78,9 @@ class HotelController extends Controller
     {
         $hotelInfo = Hotel::find($hotelId);
         HotelImg::where('hotel_id',$hotelId);
-        return $hotelInfo;
+        return  response()->json([
+            'hotel info'=>$hotelInfo 
+        ]);   
     }
 
 
@@ -105,7 +111,9 @@ class HotelController extends Controller
                 'address' => $request['address']
             ]);
         }
-        return $results;
+        return response()->json([
+            'hotel updated'=>$results 
+        ]);   
 
 
     }
@@ -119,5 +127,10 @@ class HotelController extends Controller
     public function destroy(hotel $hotelId)
     {
         Hotel::find($hotelId)->delete();
+
+        return response()->json([
+            'hotel deleted'
+        ]); 
+        
     }
 }

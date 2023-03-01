@@ -18,7 +18,9 @@ class BookedRoomController extends Controller
       // in hotl owner dashboard 
       $bookedRoom =BookedRoom::all();
         
-        return isset($bookedRoom)?$bookedRoom:"";
+        return response()->json([
+            'bookedRooms'=>$bookedRoom 
+        ]);
 
     }
 
@@ -41,7 +43,9 @@ class BookedRoomController extends Controller
             'room_id' =>$request['room_id'],
             'n_of_rooms' => $request['n_of_rooms'],
         ]);
-        return $booking; 
+        return response()->json([
+            'bookedRoom saved successfully'=>$booking 
+        ]); 
     }
 
     /**
@@ -52,8 +56,11 @@ class BookedRoomController extends Controller
      */
     public function show(BookedRoom $bookedRoom)
     {
-        $room = Hotel::find($bookedRoom);
-        return $room;
+        $room = BookedRoom::find($bookedRoom);
+
+        return response()->json([
+            'bookedRoom info'=>$room 
+        ]); 
         
     }
 
@@ -73,7 +80,9 @@ class BookedRoomController extends Controller
                 'n_of_rooms' => $request['n_of_rooms'],
               ]);
           
-          return $results;
+          return response()->json([
+            'bookedRoom info'=>$results 
+        ]); 
     }
 
     /**
@@ -85,5 +94,9 @@ class BookedRoomController extends Controller
     public function destroy(BookedRoom $bookedRoom)
     {
         BookedRoom::find($bookedRoom)->delete();
+
+        return response()->json([
+            'bookedRoom deleted sucessfully'
+        ]);
     }
 }
