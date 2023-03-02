@@ -45,11 +45,11 @@ dd($final_days);
         return $newBudget;
     }
 
-    // send notifiction to  tourGuide 
+    // send notifiction to  tourGuide
     function requestTourGuide($userID){
       $orderDetails =OrderDetail::all();
         foreach($orderDetails as $orderDetail){
-        
+
             if($orderDetail->user_id ==  $userID && $orderDetail->tourGuide_status == 'pending' ){
                $bookTourGuide =BookTourGuide::all();
                foreach($bookTourGuide as $book){
@@ -61,10 +61,10 @@ dd($final_days);
             }
         }
     }
-    
-    // searching function for a tourGuide 
-    // will put before it an if condition 
-    // if the user put right in the check box of wanting  
+
+    // searching function for a tourGuide
+    // will put before it an if condition
+    // if the user put right in the check box of wanting
     // a tourGuide
     function searchForTourGuide($orderID){
         //  the rest budget(40%) will split into two parts
@@ -76,7 +76,7 @@ dd($final_days);
     $tourGuidesArray=[];
     foreach($tourGuides as $tourGuide){
         if((int)$tourGuide->price < $minBudgetPerDay){
-        
+
         //     array_push($tourGuidesArray,$tourGuide->id);
         //     foreach
         //    $tourG=Tourguide::find()
@@ -89,14 +89,12 @@ dd($final_days);
     }
 
     }
-    
+
     function searchForRoom($orderID){
         $returnMaxBudgetArray = returnMaxBudget($orderID);
 
     }
- 
- 
- 
+
     class OrderController extends Controller
 {
 
@@ -106,7 +104,7 @@ dd($final_days);
         $checkin = '2023-03-01'; // Example checkin date
         $checkout = '2023-03-05'; // Example checkout date
         $maxPrice = $budget * 0.6; // Maximum price based on 60% of the budget
-        
+
         $availableRooms = DB::table("rooms")
         ->join("orders", function($join){
             $join;
@@ -115,24 +113,20 @@ dd($final_days);
         ->where("orders.check_out", "<",  $checkout)
         ->where("rooms.price", "<=", "orders.budget")
             ->get();
-
-        
-
-     dd($availableRooms);
-
+    dd($availableRooms);
 
     }
 
     public function store(Request $request)
     {
- 
+
         $request->validate([
             'budget'=>['required','digits_between:3,6'],
         ]);
 
         $order = Order::create([
             'budget' =>  $request['budget'],
-            'check_in' =>$request['check_in'], 
+            'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
             'n_of_adults'=> $request['n_of_adults'],
             'n_of_childeren'=>$request['n_of_childeren'],
@@ -144,11 +138,11 @@ dd($final_days);
         // dd($checkin);
         $checkout=$order->checkout;
 
-        
+
      $availableRooms = Room::where('price', '<=', $order->budget * 0.6)
      ->whereDoesntHave('order', function ($query) use ($checkin, $checkout) {
-           $query->where(function ($query) use ($checkin, $checkout) {
-                   $query->where('checkin', '<', $checkout)
+            $query->where(function ($query) use ($checkin, $checkout) {
+                    $query->where('checkin', '<', $checkout)
                          ->where('checkout', '>', $checkin);
            });
      })
