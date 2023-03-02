@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\hotelsController;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\RoomImg;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -15,6 +16,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms =Room::all();
+        $roomsImgs=RoomImg::where()
         
         return isset($rooms)?$rooms:"";
     }
@@ -39,12 +41,16 @@ class RoomController extends Controller
         $type = $request['type'];
         $cover_img = $request['cover_img'];
         $hotelID=  $request['hotel_id'];
+        $checkIn=  $request['check_in'];
+        $checkOut=  $request['check_out'];
         $room = room::create([
             'price' => $roomPrice,
             'available_rooms' =>$available_rooms,
             'type' =>$type,
             'hotel_id' => $hotelID,
-            'cover_img' => $cover_img
+            'cover_img' => $cover_img,
+            'check_in' => $checkIn,
+            'check_out' => $checkOut
         ]);
         return response()->json([
             'room info '=> $room,

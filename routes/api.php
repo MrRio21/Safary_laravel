@@ -3,8 +3,6 @@
 // namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\hotelsController\HotelController;
-use App\Http\Controllers\hotelsController\HotelImgController;
 use App\Http\Controllers\hotelsController\BookedRoomController;
 use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
@@ -64,38 +62,8 @@ Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 // for all hotels review
 
 // data of the hotel that come from the form in the dashboard of hotel owner
-Route::get('/hotels',[HotelController::class,'index']);
 
-Route::post('/storeHotel',[HotelController::class,'store']);
 
-Route::get('/showHotel/{id}',[HotelController::class,'show']);
-
-Route::PUT('/updateHotel/{id}',[HotelController::class,'update']);
-
-Route::delete('/deleteHotel/{id}',[HotelController::class,'destroy']);
-
-//------------------------for imgs ----------------------
-Route::get('/hotelImgs',[HotelImgController::class,'index']);
-
-Route::post('/storeHotelImg',[HotelImgController::class,'store']);
-
-Route::get('/showHotelImg/{id}',[HotelImgController::class,'show']);
-
-Route::PUT('/updateHotelImg/{id}',[HotelImgController::class,'update']);
-
-Route::delete('/deleteHotelImg/{id}',[HotelImgController::class,'destroy']);
-
-// --------------dashboard of hotel owner ------------------------
-// for the both users and hotel owner -------------
-Route::get('/rooms',[RoomController::class,'index']);
-
-Route::post('/storeRooms',[RoomController::class,'store']);
-
-Route::get('/showRoom/{id}',[RoomController::class,'show']);
-
-Route::PUT('/updateRoom/{id}',[RoomController::class,'update']);
-
-Route::delete('/deleteRoom/{id}',[RoomController::class,'destroy']);
 //---------------------room imgs ---------------------------------------
 Route::get('/roomsImg',[RoomImgController::class,'index']);
 

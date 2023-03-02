@@ -13,6 +13,8 @@ class BookedRoom extends Model
         'order_id',
         'room_id',
         'n_of_rooms',
+        // 'check_in',
+        // 'check_out'
         // 'price'
     ];
 

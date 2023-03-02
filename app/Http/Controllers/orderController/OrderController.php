@@ -10,6 +10,7 @@ use DateTime;
 use App\Models\Order;
 use App\Models\Tourguide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 function returnDays($orderID){
     $order = order::find($orderID);
@@ -101,19 +102,21 @@ dd($final_days);
 
     public function index()
     {
+        $budget = 1000; // Example budget
+        $checkin = '2023-03-01'; // Example checkin date
+        $checkout = '2023-03-05'; // Example checkout date
+        $maxPrice = $budget * 0.6; // Maximum price based on 60% of the budget
         
-     $order=Order::find(1);
-     $checkin=$order->check_in;
-    //  dd($checkin);
-     $checkout=$order->check_out;
-     $availableRooms = Room::where('price', '<=', $order->budget * 0.6)
-     ->whereDoesntHave('booked_rooms', function ($query) use ($checkin, $checkout) {
-           $query->where(function ($query) use ($checkin, $checkout) {
-                   $query->where('check_in', '<', $checkout)
-                         ->where('check_out', '>', $checkin);
-           });
-     })
-     ->get();
+        $availableRooms = DB::table("rooms inner")
+        ->join("orders", function($join){
+            $join;
+        })
+        ->where("orders.check_in", ">",  $checkin )
+        ->where("orders.check_out", "<",  $checkout)
+        ->where("rooms.price", "<=", "orders.budget")
+            ->get();
+
+        
 
      dd($availableRooms);
 
