@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\hotelsController;
 use App\Http\Controllers\Controller;
-
+// namespace App\Http\Controllers;
+use App\Models\HotelImg;
 use App\Models\Hotel;
+use App\Models\HotelOwner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
@@ -16,8 +19,11 @@ class HotelController extends Controller
     public function index()
     {
         $allHotels =Hotel::all();
+        $hotelImgs= HotelImg::all();
 
-        return isset($allHotels)?$allHotels:"";
+        return response()->json([
+            'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
+        ]); 
     }
 
 
@@ -29,21 +35,47 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-
+        // $userID= Auth->user()
+        // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
         $request->validate([
             'name'=>'required',
-            'address '=>['required','min:10'],
+            // 'address '=>['required','min:10'],
             'type'=>'required',
         ]);
         $hotelName = $request['name'];
         $address =$request['address'];
         $type = $request['type'];
+        $cover_img = $request['cover_img'];
         $hotel = hotel::create([
             'name' => $hotelName,
             'address' =>$address,
             'type' =>$type,
+            'cover_img' =>$cover_img,
+
+            // 'hotel_owner_id'=> $hotelOwnID
+            'hotel_owner_id'=> $request['hotel_owner_id']
+
         ]);
-        return $hotel;
+      
+        // // the hashing to ignore the conflicts in names 
+        // foreach as we have multiple images 
+        foreach($request['img'] as $image){
+
+            $img = md5(microtime()).$image->getClientOriginalName();
+            // $request["img"]->storeAs("public/imgs",$img);
+            $hotelId = $hotel->id;
+            $hotelImg = HotelImg::create([
+                'image' => $img,
+                'hotel_id' =>$hotelId,
+               
+            ]);
+        }
+        // return 'the hotel info stored successfully';
+
+        return response()->json([
+            'hotel info '=> $hotel,
+            'hotel info is saved successfully '=>'message' 
+        ]);  
     }
 
     /**
@@ -54,8 +86,11 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotelId)
     {
-        $targetedHotel = Hotel::find($hotelId);
-        return $targetedHotel;
+        $hotelInfo = Hotel::find($hotelId);
+        HotelImg::where('hotel_id',$hotelId);
+        return  response()->json([
+            'hotel info'=>$hotelInfo 
+        ]);   
     }
 
 
@@ -86,7 +121,9 @@ class HotelController extends Controller
                 'address' => $request['address']
             ]);
         }
-        return $results;
+        return response()->json([
+            'hotel updated'=>$results 
+        ]);   
 
 
     }
@@ -100,5 +137,10 @@ class HotelController extends Controller
     public function destroy(hotel $hotelId)
     {
         Hotel::find($hotelId)->delete();
+
+        return response()->json([
+            'hotel deleted'
+        ]); 
+        
     }
 }

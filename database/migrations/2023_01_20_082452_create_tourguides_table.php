@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tourguides', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('price');
+            $table->string('price_per_day');
             $table->string('syndicate_No');
             $table->string('desc');
             $table->unsignedBigInteger('user_id');
@@ -31,7 +31,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tourgides');
+        Schema::dropIfExists('tourguides');
     }
 };
 

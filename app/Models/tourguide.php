@@ -18,8 +18,13 @@ class Tourguide extends Model
        'user_id'
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class, 'foreign_key');
+    }
+    public function Order()
+    {
+        return $this->hasMany(Order::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
+        
     }
 }

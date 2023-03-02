@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string("description");
             $table->integer("n_of_people");
             $table->integer("n_of_places");
+               // these trips depends on num of days 
+            // that the client will choose in the customize trip
+            $table->integer('num_of_days');
             $table->timestamps();
         });
     }

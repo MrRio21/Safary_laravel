@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('address');
+            $table->string('cover_img');
             $table->enum('type',['hotel','motel','nubian_house','cruise']);
             $table->unsignedBigInteger('hotel_owner_id');
             $table->foreign('hotel_owner_id')->references('id')->on('hotel_owners')->onDelete('cascade')->onUpdate('cascade');

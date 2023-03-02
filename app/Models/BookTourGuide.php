@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderedPlaces extends Model
+class BookTourGuide extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'place_id',
+    protected $fillable =[
+        'tourGuide_id',
         'order_id',
-       
-    ];
 
+    ];
 
     public function Order(){
         return $this->hasMany(Order::class);
     }
-    public function Place(){
-        return $this->hasMany(Place::class);
+    public function Tourguide(){
+        return $this->belongsTo(Tourguide::class);
     }
+
 }

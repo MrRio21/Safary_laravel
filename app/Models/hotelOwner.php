@@ -23,12 +23,12 @@ class HotelOwner extends Model
 
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
 
-    public function hotel()
+    public function Hotel()
     {
         return $this->hasMany(Hotel::class);
     }

@@ -36,8 +36,12 @@ class PlaceController extends Controller
             'name' => $request['name'],
             'description' =>$request['description'],
             'price' =>$request['price'],
+            'cover_img' =>$request['cover_img'],
         ]);
-        return $place; 
+        return response()->json([
+            'place info '=> $place,
+            'place info is saved successfully '=>'message' 
+        ]);  
     }
 
     /**
@@ -49,7 +53,10 @@ class PlaceController extends Controller
     public function show(Place $place)
     {
         $place = Place::find($place);
-        return $place;
+        return  response()->json([
+            'place info '=> $place,
+            'place info is saved successfully '=>'message' 
+        ]);  
     }
 
 
@@ -80,15 +87,25 @@ class PlaceController extends Controller
                   'price'=> $request['price'],
               ]);
           }
-          if($request['name']&&$request['description']&&$request['price']){
+          if($request['cover_img']){
+  
+              $results=Place::where ('id',$place)->update([
+                  'cover_img'=> $request['cover_img'],
+              ]);
+          }
+          if($request['name']&&$request['description']&&$request['price'] &&$request['cover_img']){
               $results=Place::where ('id',$place)->update([
                   'name'=> $request['name'],
                   'description' => $request['description'],
                   'price'=> $request['price'],
+                  'cover_img'=> $request['cover_img'],
 
                 ]);
           }
-          return $results;
+          return  response()->json([
+            'place info '=> $results,
+            'place info is saved successfully '=>'message' 
+        ]);  
   
     }
 

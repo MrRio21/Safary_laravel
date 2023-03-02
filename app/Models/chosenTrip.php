@@ -9,4 +9,16 @@ class ChosenTrip extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'user_id',
+        'trip_id',
+
+    ];
+
+    public function Trip(){
+        return $this->hasMany(Trip::class );
+    }
+    public function User(){
+        return $this->hasMany(User::class );
+    }
 }

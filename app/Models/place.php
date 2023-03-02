@@ -13,11 +13,18 @@ class Place extends Model
         'name',
         'description',
         'price',
+        'cover_img'
        
     ];
 
-    public function customizePlaces()
-    {
-        return $this->belongsTo(customizePlaces::class);
-    }
+     public function PlaceImg(){
+        return $this->hasMany(PlaceImg::class);
+     }
+     public function Order(){
+        return $this->belongsTo(order::class);
+     }
+     public function Trip()
+     {
+         return $this->hasMany(Trip::class , 'PlacesOfRecommTrips', 'trip_id', 'trip_id');
+     }
 }

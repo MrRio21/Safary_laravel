@@ -44,6 +44,15 @@ Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 
 // });
 
+// -----------------------------------------------------
+// register the hotel form that get all the hotel info 
+// in store func in hotel controller (store both the info and the images)
+// to show the hotel details it will displayed in two places :
+// 1- hotel page 
+// 2-dashboard of the hotelOwner to show all details and can edit it and delete it 
+
+// room form 
+// in store func in room controller (store both the info and the images)
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -65,7 +74,7 @@ Route::PUT('/updateHotel/{id}',[HotelController::class,'update']);
 
 Route::delete('/deleteHotel/{id}',[HotelController::class,'destroy']);
 
-//-------------for imgs ----------------
+//------------------------for imgs ----------------------
 Route::get('/hotelImgs',[HotelImgController::class,'index']);
 
 Route::post('/storeHotelImg',[HotelImgController::class,'store']);
@@ -76,7 +85,7 @@ Route::PUT('/updateHotelImg/{id}',[HotelImgController::class,'update']);
 
 Route::delete('/deleteHotelImg/{id}',[HotelImgController::class,'destroy']);
 
-// --------------dashboard of hotel owner ------------------------------------------
+// --------------dashboard of hotel owner ------------------------
 // for the both users and hotel owner -------------
 Route::get('/rooms',[RoomController::class,'index']);
 
@@ -135,10 +144,10 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 //
 Route::get('/showAllPlaces',[PlaceController::class,'index']);
 Route::post('/storePlace',[PlaceController::class,'store']);
-Route::get('/showPlace/{id}',[PlaceController::class,'show']);
-Route::PUT('/updatePlace/{id}',[PlaceController::class,'update']);
+Route::get('/showPlace/{placeID}',[PlaceController::class,'show']);
+Route::PUT('/updatePlace/{placeID}',[PlaceController::class,'update']);
 
-Route::delete('/deletePlace/{id}',[PlaceController::class,'destroy']);
+Route::delete('/deletePlace/{placeID}',[PlaceController::class,'destroy']);
 
 
 // ------------------orderedplaces---------

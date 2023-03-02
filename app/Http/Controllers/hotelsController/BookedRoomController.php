@@ -18,7 +18,9 @@ class BookedRoomController extends Controller
       // in hotl owner dashboard 
       $bookedRoom =BookedRoom::all();
         
-        return isset($bookedRoom)?$bookedRoom:"";
+        return response()->json([
+            'bookedRooms'=>$bookedRoom 
+        ]);
 
     }
 
@@ -32,19 +34,18 @@ class BookedRoomController extends Controller
     {
         
         $request->validate([
-            'n_of_booked_rooms'=>'required',
-            'n_of_adults '=>'required',
+            'order_id'=>'required',
+            'room_id '=>'required',
             
         ]);
-        $nOfBookedRooms = $request['n_of_booked_rooms'];
-        $nOfAdults =$request['n_of_adults'];
-        $nOfChild = isset($request['n_of_childeren'])?$request['n_of_childeren']:0;
         $booking = BookedRoom::create([
-            'n_of_booked_rooms' => $nOfBookedRooms,
-            'n_of_adults' =>$nOfAdults,
-            'n_of_childeren' => $nOfChild,
+            'order_id' => $request['order_id'],
+            'room_id' =>$request['room_id'],
+            'n_of_rooms' => $request['n_of_rooms'],
         ]);
-        return $booking; 
+        return response()->json([
+            'bookedRoom saved successfully'=>$booking 
+        ]); 
     }
 
     /**
@@ -55,8 +56,11 @@ class BookedRoomController extends Controller
      */
     public function show(BookedRoom $bookedRoom)
     {
-        $room = Hotel::find($bookedRoom);
-        return $room;
+        $room = BookedRoom::find($bookedRoom);
+
+        return response()->json([
+            'bookedRoom info'=>$room 
+        ]); 
         
     }
 
@@ -69,25 +73,16 @@ class BookedRoomController extends Controller
      */
     public function update(Request $request, BookedRoom $bookedRoom)
     {
-        if($request['n_of_booked_rooms']){
-
-            $results=BookedRoom::where ('id',$bookedRoom)->update([
-                  'n_of_booked_rooms'=> $request['n_of_booked_rooms'], 
+     
+              $results=BookedRoom::where ('id',$bookedRoom)->update([
+                'order_id' => $request['order_id'],
+                'room_id' =>$request['room_id'],
+                'n_of_rooms' => $request['n_of_rooms'],
               ]);
-          }
-          if($request['n_of_adults']){
-  
-              $results=Hotel::where ('id',$bookedRoom)->update([
-                  'n_of_adults'=> $request['n_of_adults'], 
-              ]);
-          }
-          if($request['n_of_booked_rooms']&&$request['n_of_adults']){
-              $results=Hotel::where ('id',$bookedRoom)->update([
-                  'n_of_booked_rooms'=> $request['n_of_booked_rooms'], 
-                  'n_of_adults' => $request['n_of_adults']
-              ]);
-          }
-          return $results;
+          
+          return response()->json([
+            'bookedRoom info'=>$results 
+        ]); 
     }
 
     /**
@@ -99,5 +94,9 @@ class BookedRoomController extends Controller
     public function destroy(BookedRoom $bookedRoom)
     {
         BookedRoom::find($bookedRoom)->delete();
+
+        return response()->json([
+            'bookedRoom deleted sucessfully'
+        ]);
     }
 }

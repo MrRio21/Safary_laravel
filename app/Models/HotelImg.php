@@ -23,7 +23,7 @@ class HotelImg extends Model
 
 
 
-    public function hotel()
+    public function Hotel()
     {
         return $this->hasMany(HotelImg::class,$foreignkey ='hotel_id');
         

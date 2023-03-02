@@ -30,13 +30,17 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function placesOfRecommTrips()
+    public function PlacesOfRecommTrips()
     {
         return $this->belongsTo(placesOfRecommTrips::class);
     }
-    public function room()
+    public function Room()
     {
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Room::class , 'booked_rooms', 'order_id', 'room_id')->withPivot('n_of_rooms');
+    }
+    public function Tourguide()
+    {
+        return $this->belongsTo(Tourguide::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
     }
 
 }

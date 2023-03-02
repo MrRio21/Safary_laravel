@@ -15,7 +15,7 @@ class RoomImg extends Model
        
     ];
 
-    public function room(){
+    public function Room(){
         return $this->belongsTo(Room::class);
     }
 }

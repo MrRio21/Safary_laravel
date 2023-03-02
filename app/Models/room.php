@@ -14,18 +14,24 @@ class Room extends Model
         'price',
         'available_rooms',
         'type',
-        'hotel_id'
+        'hotel_id',
+        'cover_img'
     ];
 
 
-    public function hotel()
+    public function Hotel()
     {
         return $this->belongsTo(Hotel::class,$foreignkey ='hotel_id');
         
     }
-    public function roomImg()
+    public function RoomImg()
     {
         return $this->hasMany(RoomImg::class);
+        
+    }
+    public function Order()
+    {
+        return $this->hasMany(Order::class , 'booked_rooms', 'order_id', 'room_id')->withPivot('n_of_rooms');
         
     }
 

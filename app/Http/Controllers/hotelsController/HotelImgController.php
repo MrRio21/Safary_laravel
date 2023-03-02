@@ -29,16 +29,16 @@ class HotelImgController extends Controller
      */
     public function store(Request $request)
     {
-        // the hashing to ignore the conflicts in names 
-        $img = md5(microtime()).$request['img']->getClientOriginalName();
-        // $request["img"]->storeAs("public/imgs",$img);
-        $hotelId = $request['hotel_id'];
-        $hotelImg = HotelImg::create([
-            'img' => $img,
-            'hotel_id' =>$hotelId,
+        // // the hashing to ignore the conflicts in names 
+        // $img = md5(microtime()).$request['img']->getClientOriginalName();
+        // // $request["img"]->storeAs("public/imgs",$img);
+        // $hotelId = $request['hotel_id'];
+        // $hotelImg = HotelImg::create([
+        //     'img' => $img,
+        //     'hotel_id' =>$hotelId,
            
-        ]);
-        return $hotelImg; 
+        // ]);
+        // return $hotelImg; 
     }
 
     /**
