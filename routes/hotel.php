@@ -82,3 +82,4 @@ Route::get('/showHotel/{hotelID}',[HotelController::class,'show']);
 Route::PUT('/updateHotel/{hotelID}',[HotelController::class,'update']);
 
 Route::delete('/deleteHotel/{hotelID}',[HotelController::class,'destroy']);
+ 

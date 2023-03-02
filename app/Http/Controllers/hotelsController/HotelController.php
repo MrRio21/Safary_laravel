@@ -20,7 +20,7 @@ class HotelController extends Controller
     {
         $allHotels =Hotel::all();
         $hotelImgs= HotelImg::all();
-        // dd($allHotels);6
+        // dd($allHotels);
 
         return response()->json([
             'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
@@ -129,10 +129,14 @@ class HotelController extends Controller
      * @param  \App\Models\hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel $hotelID)
+    public function update(Request $request, hotel $hotelID , HotelImg $hotelid )
     {
-      
-
+        
+        // dd($hotelid);
+      $hotelID->update($request->all());
+      return response()->json([
+            'hotel updated successfully'=>$hotelID  
+        ]);  
         // dd($request['name']);
     //   $hotel = Hotel::where('id', $hotelID)
     //   ->update($request->all());
@@ -141,59 +145,79 @@ class HotelController extends Controller
 
 
 // dd($request['name']);
-        if(!empty($request['name'])){
-            //   $hotel=Hotel::find($hotelID);
-            //   $hotel->name=$request['name'];
-            // $new= Hotel::where ('id',$hotelID)
-            //   ->update([
-            //     'name'=> $request['name'],
-            //   ]);
-            //   dd(Hotel::where ('id',$hotelID));
-            $new= Hotel::where ('id',$hotelID)->get();
-            dd($new->name);
-
-            }
+        // if(!empty($request['name'])){
+        //     //   $hotel=Hotel::find($hotelID);
+        //     //   $hotel->name=$request['name'];
+        //     // $new= Hotel::where ('id',$hotelID)
+        //     //   ->update([
+        //     //     'name'=> $request['name'],
+        //     //   ]);
+        //     //   dd(Hotel::where ('id',$hotelID));
+        //     $new= Hotel::find($hotelID);
+        //     // dd($new[0]->name);
+        //     $new[0]->name = $request['name'];
+        //     return response()->json([
+        //         'hotel updated'=>$new  
+        //     ]);  
+        //     }
             
 
-        //     $hotelNew=Hotel::find($hotelID);
-        //     return [
-        //         "message"=> "update done",
-        //         "hotel" =>$hotelNew,
-        //         'new'=>$new
+        // //     $hotelNew=Hotel::find($hotelID);
+        // //     return [
+        // //         "message"=> "update done",
+        // //         "hotel" =>$hotelNew,
+        // //         'new'=>$new
 
-        //     ];
-        // }
-        // if($request['description']){
+        // //     ];
+        // // }
+        // if($request['address']){
 
-        //     $results=Hotel::where ('id',$hotelID)->update([
-        //         'name'=> $request['description'],
-        //     ]);
+        // //     $results=Hotel::where ('id',$hotelID)->update([
+        // //         'name'=> $request['description'],
+        // //     ]);
+        // $hotelID->update([
+        //             'address'=> $request['address'],
+        //         ]);
+        // // $new= Hotel::find($hotelID);
+        // // // dd($new[0]->name);
+        // // $new[0]->description = $request['description'];
+        // return response()->json([
+        //     'hotel updated'=>$hotelID  
+        // ]);  
         // }
         // if($request['cover_img']){
 
-        //     $results=Hotel::where ('id',$hotelID)->update([
-        //         'cover_img'=> $request['cover_img'],
-        //     ]);
-        // }
-        // if($request['name']&&$request['address'] && $request['cover_img']){
-        //     $results=Hotel::where ('id',$hotelID)->update([
-        //         'name'=> $request['name'],
-        //         'address' => $request['address'],
-        //         'cover_img'=> $request['cover_img'],
-        //     ]);
-        // }
-        // // for imgs of the hotel 
-        // if($request['images']){
-        //     foreach( $request['images'] as $image )
-        //     $img = md5(microtime()).$image->getClientOriginalName();
-
-        //     $results=HotelImg::where ('hotel_id',$hotelID)->update([
-        //           'image'=> $img, 
-        //       ]);
-        // }
+        // //     $results=Hotel::where ('id',$hotelID)->update([
+        // //         'cover_img'=> $request['cover_img'],
+        // //     ]);
+        // // }
+        // // if($request['name']&&$request['address'] && $request['cover_img']){
+        // //     $results=Hotel::where ('id',$hotelID)->update([
+        // //         'name'=> $request['name'],
+        // //         'address' => $request['address'],
+        // //         'cover_img'=> $request['cover_img'],
+        // //     ]);
+        // $new= Hotel::find($hotelID);
+        // // dd($new[0]->name);
+        // $new[0]->cover_img = $request['cover_img'];
         // return response()->json([
         //     'hotel updated'=>$new  
-        // ]);   
+        // ]);  
+        // }
+        // // // for imgs of the hotel 
+        // if($request['images']){
+        // //     foreach( $request['images'] as $image )
+        // //     $img = md5(microtime()).$image->getClientOriginalName();
+
+        // //     $results=HotelImg::where ('hotel_id',$hotelID)->update([
+        // //           'image'=> $img, 
+        // //       ]);
+        // $new= HotelImg::where('hotel_id',$hotelID)->select('image')->get();
+        // dd($new);
+        // $new[0]->cover_img = $request['cover_img'];
+   
+        // }
+      
 
 
     }

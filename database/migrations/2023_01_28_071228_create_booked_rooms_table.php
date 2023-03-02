@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             // number of rooms that is picked from room id 
-            $table->integer("n_of_rooms");
+           
             // $table->date("check_out");
             // $table->date("check_in");
             $table->unsignedBigInteger('order_id');
