@@ -42,7 +42,7 @@ class User extends Authenticatable  implements JWTSubject
     public function Trip(){
         return $this->hasMany(Trip::class , 'ChosenTrip', 'order_id', 'room_id');
     }
-   
+
 
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
