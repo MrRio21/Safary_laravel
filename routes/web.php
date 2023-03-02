@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelController;
-// use App\Models\Room ; 
+// use App\Models\Room ;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\orderController\OrderController;
 
 /*
 |--------------------------------------------------------------------------
