@@ -94,10 +94,27 @@ class HotelController extends Controller
      * @param  \App\Models\hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(Hotel $hotelId)
+    
+
+    // ---------------------- by post Method --------------------------
+    // public function show(Request $hotelId)
+    // {
+    //     // dd($hotelId->id);
+    //     $hotelInfo = Hotel::where('id',$hotelId->id)->get();
+    //    $hotelImgs= HotelImg::where('hotel_id',$hotelId);
+    //     return  response()->json([
+    //         'hotel info'=>$hotelInfo ,
+    //         'hotel Imgs' => $hotelImgs
+    //     ]);   
+    // }
+
+    // ----------------------the original way -----------------------
+    public function show(Hotel $hotelID)
     {
-        $hotelInfo = Hotel::find($hotelId);
-       $hotelImgs= HotelImg::where('hotel_id',$hotelId);
+        // dd($id);
+        $hotelInfo = Hotel::find($hotelID);
+     
+       $hotelImgs= HotelImg::where('hotel_id',$hotelID);
         return  response()->json([
             'hotel info'=>$hotelInfo ,
             'hotel Imgs' => $hotelImgs
@@ -112,45 +129,71 @@ class HotelController extends Controller
      * @param  \App\Models\hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel $hotelId)
+    public function update(Request $request, hotel $hotelID)
     {
-        if($request['name']){
+      
 
-          $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['name'],
-            ]);
-        }
-        if($request['description']){
+        // dd($request['name']);
+    //   $hotel = Hotel::where('id', $hotelID)
+    //   ->update($request->all());
+    //   $new =  Hotel::find($hotelID);
+    //   return $hotel;
 
-            $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['description'],
-            ]);
-        }
-        if($request['cover_img']){
 
-            $results=Hotel::where ('id',$hotelId)->update([
-                'cover_img'=> $request['cover_img'],
-            ]);
-        }
-        if($request['name']&&$request['address'] && $request['cover_img']){
-            $results=Hotel::where ('id',$hotelId)->update([
-                'name'=> $request['name'],
-                'address' => $request['address'],
-                'cover_img'=> $request['cover_img'],
-            ]);
-        }
-        // for imgs of the hotel 
-        if($request['images']){
-            foreach( $request['images'] as $image )
-            $img = md5(microtime()).$image->getClientOriginalName();
+// dd($request['name']);
+        if(!empty($request['name'])){
+            //   $hotel=Hotel::find($hotelID);
+            //   $hotel->name=$request['name'];
+            // $new= Hotel::where ('id',$hotelID)
+            //   ->update([
+            //     'name'=> $request['name'],
+            //   ]);
+            //   dd(Hotel::where ('id',$hotelID));
+            $new= Hotel::where ('id',$hotelID)->get();
+            dd($new->name);
 
-            $results=HotelImg::where ('hotel_id',$hotelId)->update([
-                  'image'=> $img, 
-              ]);
-        }
-        return response()->json([
-            'hotel updated'=>$results 
-        ]);   
+            }
+            
+
+        //     $hotelNew=Hotel::find($hotelID);
+        //     return [
+        //         "message"=> "update done",
+        //         "hotel" =>$hotelNew,
+        //         'new'=>$new
+
+        //     ];
+        // }
+        // if($request['description']){
+
+        //     $results=Hotel::where ('id',$hotelID)->update([
+        //         'name'=> $request['description'],
+        //     ]);
+        // }
+        // if($request['cover_img']){
+
+        //     $results=Hotel::where ('id',$hotelID)->update([
+        //         'cover_img'=> $request['cover_img'],
+        //     ]);
+        // }
+        // if($request['name']&&$request['address'] && $request['cover_img']){
+        //     $results=Hotel::where ('id',$hotelID)->update([
+        //         'name'=> $request['name'],
+        //         'address' => $request['address'],
+        //         'cover_img'=> $request['cover_img'],
+        //     ]);
+        // }
+        // // for imgs of the hotel 
+        // if($request['images']){
+        //     foreach( $request['images'] as $image )
+        //     $img = md5(microtime()).$image->getClientOriginalName();
+
+        //     $results=HotelImg::where ('hotel_id',$hotelID)->update([
+        //           'image'=> $img, 
+        //       ]);
+        // }
+        // return response()->json([
+        //     'hotel updated'=>$new  
+        // ]);   
 
 
     }
@@ -161,11 +204,11 @@ class HotelController extends Controller
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotel $hotelId)
+    public function destroy(hotel $hotelID)
     {
-       $deleteHotel= Hotel::find($hotelId)->delete();
+       $deleteHotel= Hotel::find($hotelID)->delete();
         if($deleteHotel){
-            HotelImg::where ('hotel_id',$hotelId)->delete();
+            HotelImg::where ('hotel_id',$hotelID)->delete();
         }
 
         return response()->json([
