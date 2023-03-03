@@ -19,6 +19,7 @@ class Order extends Model
         'n_of_adults',
         'n_of_childeren',
         'n_of_rooms',
+        'room_type'
     ];
 
     // 'check_in_m',

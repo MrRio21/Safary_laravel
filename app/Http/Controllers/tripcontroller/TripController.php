@@ -43,14 +43,14 @@ class TripController extends Controller
     public function store(Request $request)
     {
         $trip = trip::create([
-            'name' => $request['description'],
-            'address' =>$request['n_of_people'],
-            'type' =>$request['n_of_places'],
-            'cover_img' => $request['num_of_days'],
+            'description' => $request['description'],
+            'n_of_people' =>$request['n_of_people'],
+            'n_of_places' =>$request['n_of_places'],
+            'num_of_days' => $request['num_of_days'],
           ]);
           return response()->json([
-            'Trips'=>$trip ,
-            'hotel info is saved successfully '=>'message' 
+              'Trips'=>$trip ,
+              'message'=> 'hotel info is saved successfully '
         ]); 
     }
 
@@ -63,7 +63,7 @@ class TripController extends Controller
     public function show(trip $trip)
     {
         return response()->json([
-            'Trips'=>$trip 
+            'Trips'=>$trip   
         ]); 
     }
 
@@ -87,7 +87,10 @@ class TripController extends Controller
      */
     public function update(Request $request, trip $trip)
     {
-        //
+        $trip->update($request->all());
+        return response()->json([
+              'hotel updated successfully'=>$trip  
+          ]); 
     }
 
     /**
@@ -98,6 +101,9 @@ class TripController extends Controller
      */
     public function destroy(trip $trip)
     {
-        //
+         trip::find($trip)->delete();
+         return response()->json([
+            'trip deleted'
+        ]); 
     }
 }

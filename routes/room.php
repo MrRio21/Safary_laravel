@@ -11,6 +11,9 @@ use App\Http\Controllers\hotelsController\RoomController;
 // for the both users and hotel owner -------------
 Route::get('/rooms',[RoomController::class,'index']);
 
+
+// localhost:8000/api/storeRooms
+
 Route::post('/storeRooms',[RoomController::class,'store']);
 
 Route::get('/showRoom/{id}',[RoomController::class,'show']);

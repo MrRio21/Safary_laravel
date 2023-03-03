@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('book_tour_guide', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tourGuide_id');
-        $table->foreign('tourGuide_id')->references('id')->on('tourguides')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('tourguide_id')->references('id')->on('tourguides')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('order_id');
         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
     });

@@ -12,7 +12,7 @@ class Room extends Model
        
     protected $fillable = [
         'price',
-        'available_rooms',
+        // 'available_rooms',
         'type',
         'hotel_id',
         'cover_img',
