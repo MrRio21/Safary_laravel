@@ -4,6 +4,7 @@ namespace App\Http\Controllers\placesController;
 use App\Http\Controllers\Controller;
 use App\Models\Place;
 use Illuminate\Http\Request;
+use App\Models\PlaceImg;
 
 class PlaceController extends Controller
 {
@@ -38,6 +39,16 @@ class PlaceController extends Controller
             'price' =>$request['price'],
             'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
         ]);
+        foreach( $request['image'] as $img){
+
+            // dd($img);
+               PlaceImg::create([
+                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+                    'place_id'=>$place->id
+                    // 
+                  ]);
+        
+        }
         return response()->json([
             'place info '=> $place,
             'place info is saved successfully '=>'message' 

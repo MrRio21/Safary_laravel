@@ -68,7 +68,7 @@ class OrderController extends Controller
         ]);
 
         $order = Order::create([
-            'user_id',
+            'user_id'=>$request['user_id'],
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
@@ -82,7 +82,7 @@ class OrderController extends Controller
             //   dd($nOfroomArray);
             // echo "here";
             OrderedRoom::create([
-                 'order_id' => 1,
+                 'order_id' => $order->id,
                  'n_of_room'=> (int)$nOfroomArray[$i],
                  'room_type' => $roomTypeArray[$i]
              ]);
