@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderedRoom extends Model
 {
+  protected $table ='ordered_room';
     use HasFactory;
 
     protected $fillable = [

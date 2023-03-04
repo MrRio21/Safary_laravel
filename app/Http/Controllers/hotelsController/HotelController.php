@@ -84,7 +84,7 @@ class HotelController extends Controller
             'hotel info '=> $hotel,
          
 
-            'hotel info is saved successfully '=>'message' 
+            'message' =>'hotel info is saved successfully '
         ]);  
     }
 

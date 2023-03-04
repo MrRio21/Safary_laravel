@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Models\TourGuide;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTourgideRequest;
+use App\Models\User;
 
 class TourgideController extends Controller
 {
@@ -55,8 +56,8 @@ class TourgideController extends Controller
         'gender' => $requestUser['gender'] ,
         ]);
 
-        tourgide::create([
-        'price' => $request['price'] ,
+        TourGuide::create([
+        'price_per_day' => $request['price_per_day'] ,
         'syndicate_No' => $request['syndicate_No'] ,
         'desc' => $request['desc']  ,
         'user_id' => $user['id']

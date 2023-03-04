@@ -12,7 +12,7 @@ class Tourguide extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'price',
+        'price_per_day',
         'syndicate_No',
         'desc',
        'user_id'

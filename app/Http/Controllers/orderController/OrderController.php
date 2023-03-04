@@ -95,15 +95,22 @@ use Illuminate\Database\Query\JoinClause;
             'n_of_childeren'=>$request['n_of_childeren'],
     
         ]);
-    
-            OrderedRoom::create([
-                'order_id' => $order->id,
-                'n_of_rooms'=> (int)$request['n_of_rooms'],
-                'room_type' =>$request['room_type']
-            ]);
+        $nOfroomArray=explode(',',$request['n_of_room']);
+        $roomTypeArray=explode(',',$request['room_type']);
+        for ($i=0; $i < count($nOfroomArray) ; $i++) { 
+         
+        //   dd($nOfroomArray);
+// echo "here";
+         OrderedRoom::create([
+              'order_id' => 1,
+              'n_of_room'=> (int)$nOfroomArray[$i],
+              'room_type' => $roomTypeArray[$i]
+          ]);
+      }
     
          return response()->json([
             'order info'=>$order,
+            'message'=>'the order is saved'
             
          ]);
 

@@ -3,6 +3,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\OrderController;
+use App\Http\Controllers\orderController\BookedRoomController;
+use App\Http\Controllers\orderController\OrderedPlaceController;
+use App\Http\Controllers\orderController\BookTourGuideController;
 
 
 // the update option isn't available in the buisness
@@ -11,7 +14,7 @@ use App\Http\Controllers\orderController\OrderController;
 Route::post('/storeOrder',[OrderController::class,'store']);
 
 // step 2 : view all available rooms (( in their hotels )) --store the ordered rooms 
-Route::get('/availableRooms',[BookedRoomController::class,'index']);
+Route::post('/availableRooms',[BookedRoomController::class,'index']);
 // get the order id and the room id 
 Route::post('/storeOrderedRooms',[BookedRoomController::class,'store']);
 Route::put('/updateOrderedPlaces/{room_id}',[BookedRoomController::class,'update']);

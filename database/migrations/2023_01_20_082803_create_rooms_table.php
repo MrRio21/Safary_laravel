@@ -20,8 +20,8 @@ return new class extends Migration
             // as the check in and out for a specific room 
             // $table->string('available_rooms');
             $table->string('cover_img');
-            $table->date('check_in');
-            $table->date('check_out');
+            $table->date('check_in')->default(0);
+            $table->date('check_out')->default(0);
             $table->enum('type',['single','double','triple']);
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');

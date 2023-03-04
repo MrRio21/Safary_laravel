@@ -46,37 +46,39 @@ class RoomController extends Controller
             'type'=>'required',
         ]);
         $roomPrice = $request['price'];
-        $available_rooms =$request['available_rooms'];
         $type = $request['type'];
         $cover_img = $request['cover_img'];
         $hotelID=  $request['hotel_id'];
         $checkIn=  $request['check_in'];
         $checkOut=  $request['check_out'];
-        $room = room::create([
-            'price' => $roomPrice,
-            // 'available_rooms' =>$available_rooms,
-            'type' =>$type,
-            'hotel_id' => $hotelID,
-            'cover_img' => $cover_img,
-            'check_in' => $checkIn,
-            'check_out' => $checkOut
-        ]);
-                foreach($request['image'] as $image){
-//  dd($image);
+        // $room = room::create([
+        //     'price' => $roomPrice,
+        //     // 'available_rooms' =>$available_rooms,
+        //     'type' =>$type,
+        //     'hotel_id' => $hotelID,
+        //     'cover_img' => $cover_img,
+        //     'check_in' => $checkIn,
+        //     'check_out' => $checkOut
+        // ]);
+        $imagesArray=$request->file('image');
+        // dd($imagesArray);
+      
+                foreach($imagesArray as $image){
+ dd($image);
             // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
             // $request["img"]->storeAs("public/imgs",$img);
             // $hotelId = $hotel->id;
             // dd($image);
             RoomImg::create([
                 'image' => md5(microtime()).$image->getClientOriginalName(),
-                'room_id' =>$room->id,
+                'room_id' => 1,
                
             ]);
         }
     
         // return 'the
         return response()->json([
-            'room info '=> $room,
+            // 'room info '=> $room,
             'room info is saved successfully '=>'message' 
         ]);  
     }
