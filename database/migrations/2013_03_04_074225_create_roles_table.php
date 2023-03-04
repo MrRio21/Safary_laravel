@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->float("budget");
-            $table->date("check_in");
-            $table->date("check_out");
-            $table->unsignedBigInteger("n_of_adults");
-            $table->unsignedBigInteger("n_of_childeren")->default(0);
-            $table->unsignedBigInteger("n_of_room");
-            $table->enum('room_type',['single','double','triple']);
-
+            $table->string('name');
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('roles');
     }
 };

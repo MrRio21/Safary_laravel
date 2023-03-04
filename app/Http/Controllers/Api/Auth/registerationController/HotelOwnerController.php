@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\User;
 use App\Http\Requests\StoreHotelOwnerRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class HotelOwnerController extends Controller
@@ -25,9 +27,10 @@ class HotelOwnerController extends Controller
         $user=  User::create([
             'name' => $request['name'] ,
             'email' => $request['email'],
-            'password' => $request['password'],
+            'password' => Hash::make( $request['password']),
             'gender' => $request['gender'] ,
-            'image' => $request['image']
+            'role_id' => $request['role_id'] ,
+            'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             ]);
 
          $hotelOwner=    HotelOwner::create([

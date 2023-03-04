@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 // use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable  
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,7 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'gender',
-        'image'
+        'image',
+        'role_id'
     ];
 
     public function Tourguide()
@@ -43,7 +44,9 @@ class User extends Authenticatable
         return $this->hasMany(Trip::class , 'ChosenTrip', 'order_id', 'room_id');
     }
 
-
+    public function hasRole(){
+        return $this->belongsTo(Role::class);
+    }
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

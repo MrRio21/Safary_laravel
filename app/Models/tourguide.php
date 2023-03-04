@@ -12,7 +12,7 @@ class Tourguide extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'price',
+        'price_per_day',
         'syndicate_No',
         'desc',
        'user_id'
@@ -25,6 +25,6 @@ class Tourguide extends Model
     public function Order()
     {
         return $this->hasMany(Order::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
-        
+
     }
 }

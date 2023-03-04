@@ -104,7 +104,7 @@ dd($final_days);
     public function index()
     {
 
-        
+
         $budget = 1000; // Example budget
         $checkin = '2023-03-01'; // Example checkin date
         $checkout = '2023-03-05'; // Example checkout date
@@ -124,7 +124,7 @@ $budgetPerDay=$maxPrice/5;
 
     public function store(Request $request)
     {
- 
+
         $request->validate([
             'budget'=>['required','digits_between:3,6'],
         ]);
@@ -143,7 +143,7 @@ $budgetPerDay=$maxPrice/5;
         // dd($checkin);
         $checkout=$order->checkout;
 
-        
+
      $availableRooms = Room::where('price', '<=', $order->budget * 0.6)
      ->whereDoesntHave('order', function ($query) use ($checkin, $checkout) {
            $query->where(function ($query) use ($checkin, $checkout) {

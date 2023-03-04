@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 class DriverController extends Controller
 {
@@ -25,9 +27,10 @@ class DriverController extends Controller
         $user=  User::create([
             'name' => $request['name'] ,
             'email' => $request['email'],
-            'password' => $request['password'],
+            'password' => Hash::make( $request['password']),
             'gender' => $request['gender'] ,
-            'image' => $request['image']
+            'role_id' => $request['role_id'] ,
+            'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             ]);
 
             $driver=  Driver::create([

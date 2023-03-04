@@ -11,10 +11,6 @@ use App\Http\Controllers\orderController\OrderedPlaceController;
 use App\Http\Controllers\placesController\PlaceImgController;
 use App\Http\Controllers\placesController\PlaceController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\Auth\registerationController\userController;
-use App\Http\Controllers\Api\Auth\registerationController\DriverController;
-use App\Http\Controllers\Api\Auth\registerationController\HotelOwnerController;
-use App\Http\Controllers\Api\Auth\registerationController\TourguideController;
 
 
 
@@ -23,19 +19,6 @@ use App\Http\Controllers\Api\Auth\registerationController\TourguideController;
 //     return $request->user();
 // });
 
-// //Driverregistrations---
-
-Route::get('/driverRegistrations',[DriverController :: class ,"index"]);
-Route::post('/driverRegistrations',[DriverController :: class ,"store"]);
-// //Userregistrations---
-Route::get('/userRegistrations',[userController :: class ,"index"]);
-Route::post('/userRegistrations',[userController :: class ,"store"]);
-// //hotelOwnerRegistrations---
-Route::get('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"index"]);
-Route::post('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"store"]);
-// //TourgideRegistrations---
-Route::get('/tourgideRegistrations',[TourguideController :: class ,"index"]);
-Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 
 // Route::group(['middleware' => ['web']], function () {
 //     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
@@ -43,13 +26,13 @@ Route::post('/tourgideRegistrations',[TourguideController :: class ,"store"]);
 // });
 
 // -----------------------------------------------------
-// register the hotel form that get all the hotel info 
+// register the hotel form that get all the hotel info
 // in store func in hotel controller (store both the info and the images)
 // to show the hotel details it will displayed in two places :
-// 1- hotel page 
-// 2-dashboard of the hotelOwner to show all details and can edit it and delete it 
+// 1- hotel page
+// 2-dashboard of the hotelOwner to show all details and can edit it and delete it
 
-// room form 
+// room form
 // in store func in room controller (store both the info and the images)
 
 
