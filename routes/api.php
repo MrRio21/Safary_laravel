@@ -8,8 +8,7 @@ use App\Http\Controllers\hotelsController\RegularBookedRoomController;
 use App\Http\Controllers\hotelsController\RoomController;
 use App\Http\Controllers\hotelsController\RoomImgController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
-use App\Http\Controllers\placesController\PlaceImgController;
-use App\Http\Controllers\placesController\PlaceController;
+
 use Illuminate\Http\Request;
 
 
@@ -93,12 +92,7 @@ Route::delete('/deleteRegBookedRoom/{id}',[RegularBookedRoomController::class,'d
 // ---------------customization------------------------
 // get the orderId and the placeId
 //
-Route::get('/showAllPlaces',[PlaceController::class,'index']);
-Route::post('/storePlace',[PlaceController::class,'store']);
-Route::get('/showPlace/{placeID}',[PlaceController::class,'show']);
-Route::PUT('/updatePlace/{placeID}',[PlaceController::class,'update']);
 
-Route::delete('/deletePlace/{placeID}',[PlaceController::class,'destroy']);
 
 
 // ------------------orderedplaces---------

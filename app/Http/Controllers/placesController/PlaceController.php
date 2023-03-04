@@ -15,7 +15,11 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        return Place::all();
+        $places= Place::all();
+        return response()->json([
+            'allPlaces '=> $places,
+           
+        ]);  
     }
 
 
@@ -37,8 +41,10 @@ class PlaceController extends Controller
             'name' => $request['name'],
             'description' =>$request['description'],
             'price' =>$request['price'],
-            'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
+            'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName()),
+            'type'=>$request['type']
         ]);
+        
         foreach( $request['image'] as $img){
 
             // dd($img);
@@ -61,12 +67,13 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function show(Place $place)
+    public function show(Place $placeID)
     {
-        $place = Place::find($place);
+        // $place = Place::find($placeID);
+        // dd($placeID);
         return  response()->json([
-            'place info '=> $place,
-            'place info is saved successfully '=>'message' 
+            'place info '=> $placeID,
+            'message' =>'place info is saved successfully '
         ]);  
     }
 
@@ -78,47 +85,19 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Place $place)
+    public function update(Request $request,Place $placeID)
     {
-        if($request['name']){
-
-            $results=Place::where ('id',$place)->update([
-                  'name'=> $request['name'],
-              ]);
+        // $place=Place::find($place);
+        $placeID->update($request->all());
+        // dd($placeID->id);
+        return response()->json([
+              'place updated successfully'=>$placeID
+          ]);
+        
+         
           }
-          if($request['description']){
   
-              $results=Place::where ('id',$place)->update([
-                  'description'=> $request['description'],
-              ]);
-          }
-          if($request['price']){
-  
-              $results=Place::where ('id',$place)->update([
-                  'price'=> $request['price'],
-              ]);
-          }
-          if($request['cover_img']){
-  
-              $results=Place::where ('id',$place)->update([
-                  'cover_img'=> $request['cover_img'],
-              ]);
-          }
-          if($request['name']&&$request['description']&&$request['price'] &&$request['cover_img']){
-              $results=Place::where ('id',$place)->update([
-                  'name'=> $request['name'],
-                  'description' => $request['description'],
-                  'price'=> $request['price'],
-                  'cover_img'=> $request['cover_img'],
-
-                ]);
-          }
-          return  response()->json([
-            'place info '=> $results,
-            'place info is saved successfully '=>'message' 
-        ]);  
-  
-    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -126,9 +105,13 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Place $place)
+    public function destroy(Place $placeID)
     {
-        Place::find($place)->delete();
-
+        $placeID->delete();
+        // Place::find($placeID)->delete();
+       
+        return response()->json([
+            'message' =>'place deleted'
+        ]);
     }
 }

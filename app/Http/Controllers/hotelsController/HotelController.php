@@ -118,7 +118,7 @@ foreach( $request['image'] as $img){
     // }
 
     // ----------------------the original way -----------------------
-    public function show(Hotel $hotelID)
+    public function show( $hotelID)
     {
         // dd($id);
         $hotelInfo = Hotel::find($hotelID);
