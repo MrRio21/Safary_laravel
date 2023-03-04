@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
@@ -19,19 +20,12 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        $user = $request->user();
-        // dd($user->hasRole($user->role_id));
-        if (! Auth::check()) {
-            return redirect('/login');
-        }
-        $userRole =DB::table('roles')
-        ->join('users',function(JoinClause $join,Request $request){
-            $user = $request->user();
-            $join->on('roles.id','=','users.role_id')
-            ->where('roles.id','=' ,$user->role_id);
-        })->limit(1)->get();
-        dd($userRole);
-        if (! $user->hasRole($role)) {
+        $user = auth()->user();
+        // dd($user->role_id);
+        $id=$user->role_id;
+        $test=Role::find($id);
+
+        if ($test->name !=$role) {
             abort(403, 'Unauthorized action.');
         }
 

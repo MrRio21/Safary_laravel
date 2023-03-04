@@ -19,7 +19,7 @@ use Illuminate\Validation\ValidationException;
 
 // //Driverregistrations---
 
-Route::get('/driverRegistrations',[DriverController :: class ,"index"])->middleware('auth:sanctum','role:admin');
+Route::get('/driverRegistrations',[DriverController :: class ,"index"])->middleware('auth:sanctum','role:user');
 Route::post('/driverRegistrations',[DriverController :: class ,"store"]);
 // //Userregistrations---
 Route::get('/userRegistrations',[userController :: class ,"index"]);
