@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\tripcontroller;
+namespace App\Http\Controllers\tripController;
 use App\Http\Controllers\Controller;
 use App\Models\chosenTrip;
 use Illuminate\Http\Request;

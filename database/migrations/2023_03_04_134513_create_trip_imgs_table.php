@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        // trips we recommend for the user and has 
-        // many placees in it 
-        Schema::create('places_of_recomm_trips', function (Blueprint $table) {
+        Schema::create('trip_imgs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('image');
             $table->unsignedBigInteger('trip_id');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('place_id');
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('places_of_recomm_trips');
+        Schema::dropIfExists('trip_imgs');
     }
 };

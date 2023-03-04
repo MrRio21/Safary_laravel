@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\tripcontroller;
+namespace App\Http\Controllers\tripController;
 use App\Http\Controllers\Controller;
 use App\Models\trip;
+use App\Models\TripImg;
 use Illuminate\Http\Request;
 
 class TripController extends Controller
@@ -14,12 +15,14 @@ class TripController extends Controller
      */
     public function index()
     {
-        $allTrips =trip::all();
+        $allTrips =Trip::all();
+        $tripImg=TripImg::all();
       
-        // dd($allHotels);6
+        // dd($allHotels);
 
         return response()->json([
-            'allTrips'=>$allTrips 
+            'allTrips'=>$allTrips, 
+            'allTrips'=>$tripImg 
         ]); 
     }
 
@@ -42,15 +45,25 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        $trip = trip::create([
+        $trip = Trip::create([
             'description' => $request['description'],
+            'price' => $request['price'],
             'n_of_people' =>$request['n_of_people'],
             'n_of_places' =>$request['n_of_places'],
-            'num_of_days' => $request['num_of_days'],
+            'n_of_days' => $request['num_of_days'],
+            'cover_img'=>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
+          ]);
+        //   loop
+        // if the loop didn't be managed 
+        // we can handle it by sending two routes
+
+          TripImg::create([
+            'image'=> $request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+            'trip_id'=>$trip->id
           ]);
           return response()->json([
               'Trips'=>$trip ,
-              'message'=> 'hotel info is saved successfully '
+              'message'=> 'trip info is saved successfully '
         ]); 
     }
 
@@ -60,10 +73,14 @@ class TripController extends Controller
      * @param  \App\Models\trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function show(trip $trip)
+    public function show(Trip $trip)
     {
+        $tripImgs=TripImg::where('trip_id',$trip->id)->get();
+        $tripPlaces=TripImg::where('trip_id',$trip->id)->get();
         return response()->json([
-            'Trips'=>$trip   
+            'Trip'=>$trip,   
+            'trip image'=>$tripImgs
+            
         ]); 
     }
 
@@ -85,11 +102,11 @@ class TripController extends Controller
      * @param  \App\Models\trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, trip $trip)
+    public function update(Request $request, Trip $trip)
     {
         $trip->update($request->all());
         return response()->json([
-              'hotel updated successfully'=>$trip  
+              'trip updated successfully'=>$trip  
           ]); 
     }
 
@@ -101,7 +118,7 @@ class TripController extends Controller
      */
     public function destroy(trip $trip)
     {
-         trip::find($trip)->delete();
+         Trip::find($trip)->delete();
          return response()->json([
             'trip deleted'
         ]); 

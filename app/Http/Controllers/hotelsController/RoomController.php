@@ -51,15 +51,15 @@ class RoomController extends Controller
         $hotelID=  $request['hotel_id'];
         $checkIn=  $request['check_in'];
         $checkOut=  $request['check_out'];
-        // $room = room::create([
-        //     'price' => $roomPrice,
-        //     // 'available_rooms' =>$available_rooms,
-        //     'type' =>$type,
-        //     'hotel_id' => $hotelID,
-        //     'cover_img' => $cover_img,
-        //     'check_in' => $checkIn,
-        //     'check_out' => $checkOut
-        // ]);
+        $room = room::create([
+            'price' => $roomPrice,
+            // 'available_rooms' =>$available_rooms,
+            'type' =>$type,
+            'hotel_id' => $hotelID,
+            'cover_img' => $cover_img->storeAs("public/imgs",md5(microtime()).$cover_img->getClientOriginalName()),
+            'check_in' => $checkIn,
+            'check_out' => $checkOut
+        ]);
         $imagesArray=$request->file('image');
         // dd($imagesArray);
       

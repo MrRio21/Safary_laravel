@@ -46,7 +46,7 @@ class HotelController extends Controller
         $hotelName = $request['name'];
         $address =$request['address'];
         $type = $request['type'];
-        $cover_img = $request['cover_img'];
+        $cover_img = $request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName());
         $hotel = hotel::create([
             'name' => $hotelName,
             'address' =>$address,

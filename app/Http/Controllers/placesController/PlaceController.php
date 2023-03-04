@@ -36,7 +36,7 @@ class PlaceController extends Controller
             'name' => $request['name'],
             'description' =>$request['description'],
             'price' =>$request['price'],
-            'cover_img' =>$request['cover_img'],
+            'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
         ]);
         return response()->json([
             'place info '=> $place,

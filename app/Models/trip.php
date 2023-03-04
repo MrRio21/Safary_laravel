@@ -11,9 +11,11 @@ class Trip extends Model
     
     protected $fillable =[
         'description',
+        'price',
         'n_of_people',
         'n_of_places',
         'num_of_days',
+        'cover_img'
         
     ];
        
@@ -23,5 +25,8 @@ class Trip extends Model
     }
     public function User(){
         return $this->hasMany(User::class  , 'ChosenTrip', 'order_id', 'room_id');
+    }
+    public function TripImg(){
+        return $this->hasMany(TripImg::class  , 'ChosenTrip', 'order_id', 'room_id');
     }
 }
