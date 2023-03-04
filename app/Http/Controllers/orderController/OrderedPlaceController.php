@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\orderController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\user as ResourcesUser;
+use App\Models\BookedRoom;
 use App\Models\Order;
 use App\Models\OrderedPlaces;
 use Illuminate\Http\Request;
+use DateTime;
+use Illuminate\Support\Facades\DB;
+use App\Models\Place;
+use Illuminate\Database\Query\JoinClause;
+
 
 class OrderedPlaceController extends Controller
 {
@@ -14,11 +20,37 @@ class OrderedPlaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $allOrderedPlaces =OrderedPlaces::all();
+       $order= Order::find($request['order_id']);
+
+       $check_out_datetime = new DateTime($order->check_out);
+       $check_in_datetime = new DateTime($order->check_in);
+       $interval = $check_in_datetime->diff($check_out_datetime);
+       $nOfDays = $interval->format('%a');//and then print do whatever you like with $final_days
         
-        return isset($allOrderedPlaces)?$allOrderedPlaces:"";
+       
+    //    check if the user book room or not 
+    // to know the rest of the budget 
+    $booked = BookedRoom::where('order_id',$request['order_id'])->limit(1)->get();
+if(is_null($booked[0]->id)){
+    $budget= $order->budget ;
+   
+}else{
+    $budget = $request['restOfMaxBudget']+($order->budget *0.4);
+}
+   $availablePlaces =DB::table("places")
+->where("price", "<=", $budget)
+->get();
+      
+       
+return response()->json([
+    'order'=>$order,
+    'places available'=>$availablePlaces,
+    'number of stayed days'=>$nOfDays
+    
+    
+ ]);
     }
 
 
@@ -30,13 +62,36 @@ class OrderedPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        // take the order in the auth find 
+    //   loop => array of places to be saved -------
         $orderedPlace = OrderedPlaces ::create([
             'order_id' => $request['order_id'],
             'place_id' =>$request['place_id'],
             
         ]);
-        return $orderedPlace; 
+        $order= Order::find($request['order_id']);
+
+        $check_out_datetime = new DateTime($order->check_out);
+        $check_in_datetime = new DateTime($order->check_in);
+        $interval = $check_in_datetime->diff($check_out_datetime);
+        $nOfDays = $interval->format('%a');//and then print do whatever you like with $final_days
+         
+        // the rest after booking the places 
+
+        $totalPaidinAllPlaces= DB::table("places")
+        ->select(DB::raw('sum(places.price)as sum'))
+        ->join('ordered_places', function (JoinClause $join ,Request $request) {
+         $order = Order::find($request['order_id']);
+ 
+           $join->on('places.id', '=', 'ordered_places.place_id')
+ 
+                ->where('ordered_places.order_id', '=', $order->id);
+       })->get();
+
+        return response()->json([
+            'ordered Place'=>$orderedPlace,
+            'totalPaidinAllPlaces'=>$totalPaidinAllPlaces
+            
+         ]);
     }
 
     /**
@@ -61,15 +116,12 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $orderId)
+    public function update(Request $request, OrderedPlaces $OrderedPlaces)
     {
-        if($request['place_id']){
-
-            $results=OrderedPlaces::where ('order_id',$orderId)->update([
-                  'place_id'=> $request['place_id'],
-              ]);
-          }  
-          return $results;
+        $OrderedPlaces->update($request->all());
+        return response()->json([
+              'OrderedPlaces updated successfully'=>$OrderedPlaces  
+          ]);  
      }
   
     
@@ -80,9 +132,9 @@ class OrderedPlaceController extends Controller
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $orderId)
+    public function destroy(Request $request)
     {
-        OrderedPlaces::where ('order_id',$orderId)->delete();
+        OrderedPlaces::where ('place_id',$request['place_id'])->delete();
 
     }
 }

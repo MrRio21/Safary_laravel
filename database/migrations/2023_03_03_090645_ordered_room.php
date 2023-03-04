@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('places', function (Blueprint $table) {
+        Schema::create('ordered_room', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('type');
-            $table->string('description');
-            $table->float('price')->nullable();
-            $table->string('cover_img');
-        });
+            $table->unsignedBigInteger("n_of_room");
+            $table->enum('room_type',['single','double','triple']);
+            $table->unsignedBigInteger('order_id');
+        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+       
+    });
+
     }
 
     /**
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('places');
+        //
     }
 };

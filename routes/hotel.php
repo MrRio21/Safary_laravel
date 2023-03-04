@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\hotelsController\HotelController;
+use App\Http\Controllers\hotelsController\RoomController;
 
 
 
@@ -83,3 +84,6 @@ Route::PUT('/updateHotel/{hotelID}',[HotelController::class,'update']);
 
 Route::delete('/deleteHotel/{hotelID}',[HotelController::class,'destroy']);
  
+
+// ----------------------------------
+Route::post('/storeRoom',[RoomController::class,'store']);

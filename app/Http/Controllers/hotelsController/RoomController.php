@@ -46,37 +46,39 @@ class RoomController extends Controller
             'type'=>'required',
         ]);
         $roomPrice = $request['price'];
-        $available_rooms =$request['available_rooms'];
         $type = $request['type'];
         $cover_img = $request['cover_img'];
         $hotelID=  $request['hotel_id'];
         $checkIn=  $request['check_in'];
         $checkOut=  $request['check_out'];
-        $room = room::create([
-            'price' => $roomPrice,
-            'available_rooms' =>$available_rooms,
-            'type' =>$type,
-            'hotel_id' => $hotelID,
-            'cover_img' => $cover_img,
-            'check_in' => $checkIn,
-            'check_out' => $checkOut
-        ]);
-                foreach($request['image'] as $image){
-//  dd($image);
+        // $room = room::create([
+        //     'price' => $roomPrice,
+        //     // 'available_rooms' =>$available_rooms,
+        //     'type' =>$type,
+        //     'hotel_id' => $hotelID,
+        //     'cover_img' => $cover_img,
+        //     'check_in' => $checkIn,
+        //     'check_out' => $checkOut
+        // ]);
+        $imagesArray=$request->file('image');
+        // dd($imagesArray);
+      
+                foreach($imagesArray as $image){
+ dd($image);
             // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
             // $request["img"]->storeAs("public/imgs",$img);
             // $hotelId = $hotel->id;
             // dd($image);
-            $hotelImg = room_imgs::create([
+            RoomImg::create([
                 'image' => md5(microtime()).$image->getClientOriginalName(),
-                'room_id' =>$room->id,
+                'room_id' => 1,
                
             ]);
         }
     
         // return 'the
         return response()->json([
-            'room info '=> $room,
+            // 'room info '=> $room,
             'room info is saved successfully '=>'message' 
         ]);  
     }
@@ -87,9 +89,9 @@ class RoomController extends Controller
      * @param  \App\Models\room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show(Room $roomID)
     {
-        $room = Room::find($room);
+        $room = Room::find($roomID);
         return response()->json([
             'room info '=> $room,
             'room info is saved successfully '=>'message' 
@@ -97,53 +99,14 @@ class RoomController extends Controller
     }
 
  
-    public function update(Request $request, Room $room)
+    public function update(Request $request, Room $roomID)
     {
-        if($request['price']){
+        $roomID->update($request->all());
+        return response()->json([
+              'room updated successfully'=>$roomID  
+          ]);  
 
-            $results=Room::where ('id',$room)->update([
-                  'price'=> $request['price'], 
-              ]);
-          }
-          if($request['available_rooms']){
-  
-              $results=Room::where ('id',$room)->update([
-                  'available_rooms'=> $request['available_rooms'], 
-              ]);
-          }
-          if($request['type']){
-
-            $results=Room::where ('id',$room)->update([
-                  'type'=> $request['type'], 
-              ]);
-          }
-          if($request['price']&&$request['available_rooms']&& $request['type'] &&$request['cover_img']){
-              $results=Room::where ('id',$room)->update([
-                  'price'=> $request['price'], 
-                  'available_rooms' => $request['available_rooms'],
-                  'type'=> $request['type'], 
-                  'cover_img'=> $request['cover_img'], 
-                ]);
-          }
-          //  dd($image);
-            // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
-            // $request["img"]->storeAs("public/imgs",$img);
-            // $hotelId = $hotel->id;
-            // dd($image);
-            $hotelImg = HotelImg::create([
-                'image' => md5(microtime()).$image->getClientOriginalName(),
-            //    from hotel
-                'hotel_id' =>$request["hotel_id"],
-
-                
-                //             ]);
-                //         }
-                
-            ]);  
-
-return 'room info is saved successfully '=>'message' ;
-          return response()->json([
-            'room info '=> //         foreach($request['image'] as $image){
+ 
 
 }
 

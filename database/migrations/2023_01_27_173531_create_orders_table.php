@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger("n_of_childeren")->default(0);
             $table->unsignedBigInteger("n_of_room");
             $table->enum('room_type',['single','double','triple']);
+           
 
         });
     }

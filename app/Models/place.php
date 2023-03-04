@@ -13,7 +13,8 @@ class Place extends Model
         'name',
         'description',
         'price',
-        'cover_img'
+        'cover_img',
+        'type'
        
     ];
 

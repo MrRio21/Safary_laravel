@@ -83,9 +83,8 @@ class HotelController extends Controller
         return response()->json([
             'hotel info '=> $hotel,
 
-
-            'hotel info is saved successfully '=>'message'
-        ]);
+            'message' =>'hotel info is saved successfully '
+        ]);  
     }
 
     /**

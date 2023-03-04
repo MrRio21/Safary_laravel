@@ -9,7 +9,7 @@ class BookTourGuide extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'tourGuide_id',
+        'tourguide_id',
         'order_id',
 
     ];

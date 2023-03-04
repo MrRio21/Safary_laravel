@@ -26,7 +26,7 @@ class StoreTourgideRequest extends FormRequest
     public function rules()
     {
         return [
-            'price' =>'required',
+            'price_per_day' =>'required',
             'syndicate_No' => 'required' ,
             'desc' => 'required' ,
       
@@ -39,7 +39,7 @@ class StoreTourgideRequest extends FormRequest
     public function messages(): array
 {
     return [
-        'price.required' => 'A price is required',
+        'price_per_day.required' => 'A price is required',
         'syndicate_No.required' => 'A syndicate_No is required',
         'desc.required' => 'A desc is required',
     ];
