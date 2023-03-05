@@ -49,7 +49,7 @@ class OrderController extends Controller
         return response()->json([
             // 'all orders'=>$orders,
             'order id'=>$order->id,
-            '$totalPrice'=>$totalPrice[0]->sum,
+            'totalPrice'=>$totalPrice[0]->sum,
             'totalPriceOfBookedRooms'=>$totalPriceOfBookedRooms,
             'restOfMaxBudget'=>$restOfMaxBudget,
             'book'=>$booked[0]->id,
@@ -63,10 +63,17 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+
+
+$check_in_datetime = new DateTime($request['check_in']);
+// dd($first_datetime);
+$check_out_datetime = new DateTime($request['check_out']);
+$interval = $check_in_datetime->diff($check_out_datetime);
+$n_of_days = $interval->format('%a');//and then print do whatever you like with $final_days
+// dd($n_of_days);
         $request->validate([
             'budget'=>['required','digits_between:3,6'],
         ]);
-
         $order = Order::create([
             'user_id'=>$request['user_id'],
             'budget' =>  $request['budget'],
@@ -74,20 +81,19 @@ class OrderController extends Controller
             'check_out' =>$request['check_out'],
             'n_of_adults'=> $request['n_of_adults'],
             'n_of_childeren'=>$request['n_of_childeren'],
-
+            'n_of_days'=>(int)$n_of_days
         ]);
         $nOfroomArray=explode(',', $request['n_of_room']);
         $roomTypeArray=explode(',', $request['room_type']);
-        for ($i=0; $i < count($nOfroomArray) ; $i++) {
-            //   dd($nOfroomArray);
-            // echo "here";
+        for($i=0; $i < count($nOfroomArray) ; $i++) {
+            // dd($nOfroomArray);
+           // echo "here";
             OrderedRoom::create([
                  'order_id' => $order->id,
                  'n_of_room'=> (int)$nOfroomArray[$i],
                  'room_type' => $roomTypeArray[$i]
              ]);
         }
-
         return response()->json([
            'order info'=>$order,
            'message'=>'the order is saved'
