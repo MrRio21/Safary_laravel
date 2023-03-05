@@ -45,6 +45,7 @@ class User extends Authenticatable
     }
 
     public function hasRole(){
+        // dd('hi');
         return $this->belongsTo(Role::class);
     }
      /**
