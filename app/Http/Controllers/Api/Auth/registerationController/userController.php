@@ -24,9 +24,9 @@ class userController extends Controller
             'password' =>  Hash::make($request['password']),
             'gender' => $request['gender'],
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
-            'role_id' => $request['role_id']
-            ]);
-            return $users;
+            // 'role_id' => $request['role_id']
+        ]);
+        return $users;
     }
 
 

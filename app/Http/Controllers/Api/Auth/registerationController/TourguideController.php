@@ -11,6 +11,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class TourguideController extends Controller
@@ -31,7 +32,7 @@ class TourguideController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'gender' => $request['gender'] ,
-            'role_id' => $request['role_id'] ,
+            // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
 
 
@@ -48,6 +49,12 @@ class TourguideController extends Controller
             'tourguide_id' => $tourguide['id']
            ]);
 
+            $newUser = User::find($user->id);
+
+            if(!empty ($tourguide)){
+                $role_id =Role::where('name','tourguide')->limit(1)->get();
+                $newUser->update(['role_id'=>$role_id[0]->id]);
+            }
            return $tourgideLanguage;
     }
 }
