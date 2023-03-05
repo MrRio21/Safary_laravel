@@ -22,8 +22,9 @@ return new class extends Migration
             $table->date("check_in");
             $table->date("check_out");
             $table->unsignedBigInteger("n_of_adults");
+            $table->unsignedBigInteger("n_of_days");
             $table->unsignedBigInteger("n_of_childeren")->default(0);
-            
+
 
 
         });

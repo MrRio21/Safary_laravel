@@ -19,14 +19,10 @@ class Order extends Model
         'check_out',
         'n_of_adults',
         'n_of_childeren',
-        'n_of_rooms',
-        'room_type'
+        'n_of_days'
     ];
 
-    // 'check_in_m',
-    // 'check_in_y',
-    // 'check_out_d',
-    // 'check_out_m',
+
     public function User()
     {
         return $this->belongsTo(User::class);

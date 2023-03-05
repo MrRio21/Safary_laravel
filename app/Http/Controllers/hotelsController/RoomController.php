@@ -60,16 +60,16 @@ class RoomController extends Controller
             'check_in' => $checkIn,
             'check_out' => $checkOut
         ]);
-        foreach( $request['image'] as $img){
+        // foreach( $request['image'] as $img){
 
-            // dd($img);
-               RoomImg::create([
-                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
-                    'room_id'=>$room->id
-                    // 
-                  ]);
+        //     // dd($img);
+        //        RoomImg::create([
+        //             'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+        //             'room_id'=>$room->id
+        //             // 
+        //           ]);
         
-        }
+        // }
         // tries 
         $imagesArray=$request->file('image');
         // dd($imagesArray);
@@ -102,14 +102,14 @@ class RoomController extends Controller
      */
     public function show(Room $roomID)
     {
-        $room = Room::find($roomID);
+       
         return response()->json([
-            'room info '=> $room,
-            'room info is saved successfully '=>'message' 
+            'room info '=> $roomID,
         ]);  
+
     }
 
- 
+
     public function update(Request $request, Room $roomID)
     {
         $roomID->update($request->all());

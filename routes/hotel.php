@@ -87,3 +87,8 @@ Route::delete('/deleteHotel/{hotelID}',[HotelController::class,'destroy']);
 
 // ----------------------------------
 Route::post('/storeRoom',[RoomController::class,'store']);
+
+Route::get('/showRoom/{roomID}',[RoomController::class,'show']);
+Route::put('updateRoom/{roomID}',[RoomController::class,'show']);
+Route::put('/{roomID}',[RoomController::class]);
+Route::put('/{roomID}',[RoomController::class,'show']);

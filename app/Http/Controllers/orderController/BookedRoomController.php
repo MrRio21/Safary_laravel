@@ -21,19 +21,16 @@ class BookedRoomController extends Controller
 
         $budget = $order->budget;
 
-        $check_out_datetime = new DateTime($order->check_out);
-        $check_in_datetime = new DateTime($order->check_in);
-        $interval = $check_in_datetime->diff($check_out_datetime);
-        $nOfDays = $interval->format('%a'); //and then print do whatever you like with $nOfDays
-        //   
-        $budgetPerDay = $budget / $nOfDays;
+        $budgetPerDay = $budget / $order->n_of_days;
+// dd($budgetPerDay);
+       
         $availableRooms = DB::table("rooms")
             ->select("id")
             ->where("check_in", "=", 0)
             ->where("check_out", "=", 0)
             ->where("price", "<=", $budgetPerDay)
             ->get();
-
+dd($availableRooms[0]);
         $hotels = Hotel::all();
         if(!is_null($availableRooms)){
 
@@ -41,20 +38,20 @@ class BookedRoomController extends Controller
                 'available rooms' => $availableRooms,
                 'all hotels' => $hotels,
                 'order' => $order
-    
+
             ]);
         }else{
             return response()->json([
                 'message' => "increase your budget or derease or change number of days you want to stay",
-                
-    
+
+
             ]);
         }
     }
     public function store(Request $request)
     {
         $order = Order::find($request['order_id']);
-        
+
         BookedRoom::create([
             'order_id' => $order->id,
             'room_id' => $request['room_id']
@@ -70,34 +67,29 @@ class BookedRoomController extends Controller
                ->where('booked_rooms.order_id', '=', $order->id);
       })->get();
 
-            $check_out_datetime = new DateTime($order->check_out);
-            $check_in_datetime = new DateTime($order->check_in);
-            $interval = $check_in_datetime->diff($check_out_datetime);
-            $nOfDays = $interval->format('%a'); //and then print do whatever you like with $nOfDays
-           
-            $totalPaidInRooms= $totalPaidInBookingPerDay[0]->sum*$nOfDays ;
+            $totalPaidInRooms= $totalPaidInBookingPerDay[0]->sum*$order->n_of_days ;
             $restOfMaxBudget =   ($order->budget * 0.6)-$totalPaidInRooms;
             return response()->json([
                 'order'=>$order,
                 'restOfMaxBudget' =>$restOfMaxBudget,
                 'totalPaidInRooms'=>$totalPaidInRooms
-                
+
              ]);
     }
- 
+
 
 
     public function update(Request $request, BookedRoom $BookedRoom)
     {
         $BookedRoom->update($request->all());
         return response()->json([
-              'OrderedPlaces updated successfully'=>$BookedRoom  
-          ]);  
+              'OrderedPlaces updated successfully'=>$BookedRoom
+          ]);
      }
 
      public function destroy(Request $request)
      {
          BookedRoom::where ('room_id',$request['room_id'])->delete();
- 
+
      }
 }
