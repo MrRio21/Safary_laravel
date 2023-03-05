@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Hotel;
 use Illuminate\Database\Query\JoinClause;
 use function PHPUnit\Framework\isNull;
+use App\Models\Room;
 
 class BookedRoomController extends Controller
 {
@@ -24,13 +25,8 @@ class BookedRoomController extends Controller
         $budgetPerDay = $budget / $order->n_of_days;
 // dd($budgetPerDay);
        
-        $availableRooms = DB::table("rooms")
-            ->select("id")
-            ->where("check_in", "=", 0)
-            ->where("check_out", "=", 0)
-            ->where("price", "<=", $budgetPerDay)
-            ->get();
-dd($availableRooms[0]);
+        $availableRooms = DB::table('rooms')->where('check_in','=',null)->orWhere('check_in','<>',$order->check_in)->where('check_out','=',null)->orWhere('check_out','<>',$order->check_out)->where('price','<=',$budgetPerDay)->get();
+// dd($availableRooms);
         $hotels = Hotel::all();
         if(!is_null($availableRooms)){
 
@@ -59,16 +55,14 @@ dd($availableRooms[0]);
         ]);
        $totalPaidInBookingPerDay= DB::table("rooms")
        ->select(DB::raw('sum(rooms.price)as sum'))
-       ->join('booked_rooms', function (JoinClause $join ,Request $request) {
-        $order = Order::find($request['order_id']);
+       ->join('booked_rooms','rooms.id', '=', 'booked_rooms.room_id')
+        // $order = Order::find($request['order_id']);
 
-          $join->on('rooms.id', '=', 'booked_rooms.room_id')
-
-               ->where('booked_rooms.order_id', '=', $order->id);
-      })->get();
-
+               ->where('booked_rooms.order_id', '=', $order->id)
+      ->get();
+dd($totalPaidInBookingPerDay[0]);
             $totalPaidInRooms= $totalPaidInBookingPerDay[0]->sum*$order->n_of_days ;
-            $restOfMaxBudget =   ($order->budget * 0.6)-$totalPaidInRooms;
+            $restOfMaxBudget = $order->budget * 0.6 -$totalPaidInRooms;
             return response()->json([
                 'order'=>$order,
                 'restOfMaxBudget' =>$restOfMaxBudget,

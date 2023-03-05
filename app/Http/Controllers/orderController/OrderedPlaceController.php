@@ -24,12 +24,7 @@ class OrderedPlaceController extends Controller
     {
        $order= Order::find($request['order_id']);
 
-       $check_out_datetime = new DateTime($order->check_out);
-       $check_in_datetime = new DateTime($order->check_in);
-       $interval = $check_in_datetime->diff($check_out_datetime);
-       $nOfDays = $interval->format('%a');//and then print do whatever you like with $final_days
-        
-       
+    
     //    check if the user book room or not 
     // to know the rest of the budget 
     $booked = BookedRoom::where('order_id',$request['order_id'])->limit(1)->get();
@@ -47,7 +42,6 @@ if(is_null($booked[0]->id)){
 return response()->json([
     'order'=>$order,
     'places available'=>$availablePlaces,
-    'number of stayed days'=>$nOfDays
     
     
  ]);
@@ -63,33 +57,29 @@ return response()->json([
     public function store(Request $request)
     {
     //   loop => array of places to be saved -------
+    $nOfPlacesArray=explode(',', $request['place_id']);
+    for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
         $orderedPlace = OrderedPlaces ::create([
             'order_id' => $request['order_id'],
             'place_id' =>$request['place_id'],
             
         ]);
+    }
         $order= Order::find($request['order_id']);
 
-        $check_out_datetime = new DateTime($order->check_out);
-        $check_in_datetime = new DateTime($order->check_in);
-        $interval = $check_in_datetime->diff($check_out_datetime);
-        $nOfDays = $interval->format('%a');//and then print do whatever you like with $final_days
+       
          
         // the rest after booking the places 
 
         $totalPaidinAllPlaces= DB::table("places")
         ->select(DB::raw('sum(places.price)as sum'))
-        ->join('ordered_places', function (JoinClause $join ,Request $request) {
-         $order = Order::find($request['order_id']);
- 
-           $join->on('places.id', '=', 'ordered_places.place_id')
- 
-                ->where('ordered_places.order_id', '=', $order->id);
-       })->get();
+        ->join('ordered_places','places.id', '=', 'ordered_places.place_id')
+                ->where('ordered_places.order_id', '=', $order->id)
+             ->get();
 
         return response()->json([
             'ordered Place'=>$orderedPlace,
-            'totalPaidinAllPlaces'=>$totalPaidinAllPlaces
+            'totalPaidinAllPlaces'=>$totalPaidinAllPlaces[0]->sum
             
          ]);
     }
@@ -104,7 +94,10 @@ return response()->json([
     { 
         // to show the places that the user choose
         $orderedplaces = OrderedPlaces::where('order_id',$orderId);
-        return $orderedplaces;
+        return response()->json([
+    'ordered places'=>$orderedplaces,
+    
+        ]) ;
     }
 
 
@@ -116,13 +109,46 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderedPlaces $OrderedPlaces)
+    public function update(Request $request)
     {
-        $OrderedPlaces->update($request->all());
+        $OrderedPlaces= OrderedPlaces::where('order_id',$request['order_id'])->get();
+        //    echo $OrderedPlace->id;
+        
+        $nOfPlacesArray=explode(',', $request['place_id']);
+        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
+            $count= DB::table("ordered_places")
+            ->select(DB::raw('count(place_id)as count'))->where('order_id','=',$request['order_id'])
+            ->get();
+            // dd($count[0]->count);
+            // dd($nOfPlacesArray);
+            
+            if($count[0]->count = count($nOfPlacesArray)){
+                 foreach($OrderedPlaces as $OrderedPlace){
+                   
+                        $OrderedPlace->update([
+                            'place_id'=>(int)$nOfPlacesArray
+                        ]);
+                    }
+             }
+             else{
+                OrderedPlaces ::create([
+                    'order_id' => $request['order_id'],
+                    'place_id' =>(int)$nOfPlacesArray
+                    
+                ]);
+             }
+            
+         
+        }
+           
+        
+        
         return response()->json([
               'OrderedPlaces updated successfully'=>$OrderedPlaces  
           ]);  
-     }
+       }
+    
+       
   
     
 
@@ -134,7 +160,14 @@ return response()->json([
      */
     public function destroy(Request $request)
     {
-        OrderedPlaces::where ('place_id',$request['place_id'])->delete();
+        $nOfPlacesArray=explode(',', $request['place_id']);
+        
+        $orderedPlaces= OrderedPlaces::where ('place_id','=',$request['place_id'])->where('order_id','=',$request['order_id'])->get();
+        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
+       foreach($orderedPlaces as $orderedPlace){
+        $orderedPlace->delete();
+       }
+        }
 
     }
 }

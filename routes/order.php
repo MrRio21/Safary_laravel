@@ -17,14 +17,16 @@ Route::post('/storeOrder',[OrderController::class,'store']);
 Route::post('/availableRooms',[BookedRoomController::class,'index']);
 // get the order id and the room id 
 Route::post('/storeOrderedRooms',[BookedRoomController::class,'store']);
-Route::put('/updateOrderedPlaces/{room_id}',[BookedRoomController::class,'update']);
-Route::delete('/deleteOrderedPlace/{room_id}',[BookedRoomController::class,'destroy']);
+
+Route::put('/updateOrderedRoom/{BookedRoom}',[BookedRoomController::class,'update']);
+Route::delete('/deleteOrderedRoom',[BookedRoomController::class,'destroy']);
 
 // step 3 : view places ((filter for their type and number of days in front)) -- store the selected 
-Route::get('/availablePlaces',[OrderedPlaceController::class,'index']);
+Route::post('/availablePlaces',[OrderedPlaceController::class,'index']);
 Route::post('/storeOrderedPlaces',[OrderedPlaceController::class,'store']);
-Route::put('/updateOrderedPlaces/{place_id}',[OrderedPlaceController::class,'update']);
-Route::delete('/deleteOrderedPlace/{place_id}',[OrderedPlaceController::class,'destroy']);
+
+Route::post('/updateOrderedPlaces',[OrderedPlaceController::class,'update']);
+Route::delete('/deleteOrderedPlace',[OrderedPlaceController::class,'destroy']);
 
 
 // step 4 : view places ((filter for their type and number of days in front)) -- store the selected 
