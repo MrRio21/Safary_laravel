@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tourgide_languages', function (Blueprint $table) {
+        Schema::create('tourguide_languages', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('language');

@@ -23,9 +23,8 @@ return new class extends Migration
             $table->date("check_out");
             $table->unsignedBigInteger("n_of_adults");
             $table->unsignedBigInteger("n_of_childeren")->default(0);
-            $table->unsignedBigInteger("n_of_room");
-            $table->enum('room_type',['single','double','triple']);
-           
+            
+
 
         });
     }
