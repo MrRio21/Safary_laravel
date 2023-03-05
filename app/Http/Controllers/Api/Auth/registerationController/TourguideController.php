@@ -24,7 +24,7 @@ class TourguideController extends Controller
     public function show ($TourguideId){
         return Tourguide::find($TourguideId);
     }
-    public function store(Request $request){
+    public function store(StoreUserRequest $request){
 
 
         $user=  User::create([
@@ -34,9 +34,13 @@ class TourguideController extends Controller
             'gender' => $request['gender'] ,
             // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
-
-
             ]);
+
+            $request->validate([
+        'price_per_day' => 'required',
+        'syndicate_No' => 'required',
+        'desc' => 'required',
+    ]);
 
          $tourguide= Tourguide::create([
             'price_per_day' => $request['price_per_day'] ,

@@ -29,7 +29,7 @@ class OrderController extends Controller
         ->join('booked_rooms', function (JoinClause $join) {
             $order=Order::find(1);
             $join->on('rooms.id', '=', 'booked_rooms.room_id')
-                 ->where('booked_rooms.order_id', '=', $order->id);
+            ->where('booked_rooms.order_id', '=', $order->id);
         })
 
         ->get();

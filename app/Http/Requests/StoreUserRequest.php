@@ -29,30 +29,31 @@ class StoreUserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(array $data)
+    public function rules()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+        // dd($data);
+        return  [
+            'name' => ['required', 'string', 'min:4'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6'],
             'image' => ['required','mimes:jpeg,png,jpg,gif'],
             // 'email' => 'email:rfc,dns'   for paypal
             'gender'  => "required",
-        ]);
+        ];
 
     }
 
 
 
 
-    public function messages(): array
-{
-    return [
-        'name.required' => 'A name is required',
-        'email.required' => 'A email is required',
-        'gender.required' => 'A gender is required',
+//     public function messages(): array
+// {
+//     return [
+//         'name.required' => ' name is required',
+//         'email.required' => ' email is required',
+//         'gender.required' => ' gender is required',
 
 
-    ];
-}
+//     ];
+// }
 }

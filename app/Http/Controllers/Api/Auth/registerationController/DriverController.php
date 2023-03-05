@@ -22,10 +22,7 @@ class DriverController extends Controller
     public function show ($driverId){
         return Driver::find($driverId);
     }
-    public function store(Request $request){
-
-
-
+    public function store(StoreUserRequest $request){
         $user=  User::create([
             'name' => $request['name'] ,
             'email' => $request['email'],
@@ -35,6 +32,9 @@ class DriverController extends Controller
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             ]);
 
+            $request->validate(
+            ['license' => 'required',]
+        );
             $driver=  Driver::create([
             'license' => $request['license'],
             'user_id' => $user['id']
