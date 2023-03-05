@@ -14,7 +14,7 @@ class Trip extends Model
         'price',
         'n_of_people',
         'n_of_places',
-        'num_of_days',
+        'n_of_days',
         'cover_img'
         
     ];

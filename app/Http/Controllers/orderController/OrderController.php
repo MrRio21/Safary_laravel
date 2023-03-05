@@ -32,9 +32,6 @@ class OrderController extends Controller
                  ->where('booked_rooms.order_id', '=', $order->id);
         })
 
-        //  ->sum('rooms.price')
-        //  ->Join("booked_rooms",'rooms.id', '=', 'booked_rooms.room_id')
-        //  ->where('booked_rooms.order_id', '=',1)
         ->get();
         $check_out_datetime = new DateTime('2023-10-03');
         $check_in_datetime = new DateTime('2023-10-10');
@@ -61,21 +58,7 @@ class OrderController extends Controller
 
          ]);
 
-//         //  for test
-//         $budget = 1000; // Example budget
-//         $checkin = '2023-03-01'; // Example checkin date
-//         $checkout = '2023-03-05'; // Example checkout date
-//         $maxPrice = $budget * 0.6; // Maximum price based on 60% of the budget
-        // $budgetPerDay=$maxPrice/5;
-//         $availableRooms = DB::table("rooms")
-//         ->select("id")
-//         ->where("type", "=", 'single')
-//         ->where("check_in", "=", 0)
-//         ->where("check_out", "=", 0)
-//         ->where("price","<=",$budgetPerDay)
-//         ->limit(1)->get() ;
 
-//      dd($availableRooms);
     }
 
     public function store(Request $request)
@@ -85,6 +68,7 @@ class OrderController extends Controller
         ]);
 
         $order = Order::create([
+            'user_id'=>$request['user_id'],
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
@@ -98,7 +82,7 @@ class OrderController extends Controller
             //   dd($nOfroomArray);
             // echo "here";
             OrderedRoom::create([
-                 'order_id' => 1,
+                 'order_id' => $order->id,
                  'n_of_room'=> (int)$nOfroomArray[$i],
                  'room_type' => $roomTypeArray[$i]
              ]);
@@ -109,9 +93,23 @@ class OrderController extends Controller
            'message'=>'the order is saved'
 
         ]);
+
     }
 
+   public function destroy(order $orderID)
+    {
+       $deleteOrder= Order::find($orderID)->delete();
+        if($deleteOrder){
+            BookedRoom::where ('order_id',$orderID)->delete();
+            BookTourGuide::where ('order_id',$orderID)->delete();
+            OrderedPlaces::where ('order_id',$orderID)->delete();
+        }
 
+        return response()->json([
+            'order deleted'
+        ]);
+
+    }
 
 
 

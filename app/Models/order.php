@@ -13,6 +13,7 @@ class Order extends Model
 
 
     protected $fillable = [
+        'user_id',
         'budget',
         'check_in',
         'check_out',
@@ -43,5 +44,10 @@ class Order extends Model
     {
         return $this->belongsTo(Tourguide::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
     }
+    public function Places()
+    {
+        return $this->hasMany(Place::class , 'ordered_places', 'order_id', 'places_id');
+    }
+
 
 }

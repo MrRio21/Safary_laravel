@@ -60,6 +60,17 @@ class RoomController extends Controller
             'check_in' => $checkIn,
             'check_out' => $checkOut
         ]);
+        foreach( $request['image'] as $img){
+
+            // dd($img);
+               RoomImg::create([
+                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+                    'room_id'=>$room->id
+                    // 
+                  ]);
+        
+        }
+        // tries 
         $imagesArray=$request->file('image');
         // dd($imagesArray);
       

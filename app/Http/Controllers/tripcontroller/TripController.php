@@ -50,19 +50,26 @@ class TripController extends Controller
             'price' => $request['price'],
             'n_of_people' =>$request['n_of_people'],
             'n_of_places' =>$request['n_of_places'],
-            'n_of_days' => $request['num_of_days'],
+            'n_of_days' => $request['n_of_days'],
             'cover_img'=>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
           ]);
         //   loop
         // if the loop didn't be managed
         // we can handle it by sending two routes
+// dd(is_file($request['image'])); //true
+foreach( $request['image'] as $img){
 
-          TripImg::create([
-            'image'=> $request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+    // dd($img);
+       TripImg::create([
+            'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
             'trip_id'=>$trip->id
+            // 
           ]);
+
+}
+       
           return response()->json([
-              'Trips'=>$trip ,
+            //   'Trips'=>$trip ,
               'message'=> 'trip info is saved successfully '
         ]);
     }

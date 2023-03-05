@@ -57,7 +57,17 @@ class HotelController extends Controller
             'hotel_owner_id'=> $request['hotel_owner_id']
 
         ]);
+// dd(is_file($request['image'])); //true
+foreach( $request['image'] as $img){
 
+    // dd($img);
+       HotelImg::create([
+            'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+            'hotel_id'=>$hotel->id
+            // 
+          ]);
+
+}
         // // the hashing to ignore the conflicts in names
         // foreach as we have multiple images
         // dd($request['image']);
@@ -108,7 +118,7 @@ class HotelController extends Controller
     // }
 
     // ----------------------the original way -----------------------
-    public function show(Hotel $hotelID)
+    public function show( $hotelID)
     {
         // dd($id);
         $hotelInfo = Hotel::find($hotelID);
