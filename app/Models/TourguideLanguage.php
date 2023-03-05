@@ -16,5 +16,7 @@ class TourguideLanguage extends Model
     public function Tourguide(){
         return $this->belongsTo(Tourguide::class,'tourguide_id');
     }
+
+    
 }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\User;
 use App\Http\Requests\StoreHotelOwnerRequest;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -21,23 +22,31 @@ class HotelOwnerController extends Controller
     public function show ($hotelOwnerId){
         return HotelOwner::find($hotelOwnerId);
     }
-    public function store(Request $request){
-
-
+    public function store(StoreUserRequest $request){
         $user=  User::create([
             'name' => $request['name'] ,
             'email' => $request['email'],
             'password' => Hash::make( $request['password']),
             'gender' => $request['gender'] ,
-            'role_id' => $request['role_id'] ,
+            // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             ]);
 
+        $request->validate(
+            ['commercial_reg_No' => 'required',]
+        );
          $hotelOwner=    HotelOwner::create([
             'commercial_reg_No' => $request['commercial_reg_No'],
             'user_id' => $user['id']
 
-           ]);
+        ]);
+            $newUser = User::find($user->id);
+
+            if(!empty ($hotelOwner)){
+                $role_id =Role::where('name','hotelOwner')->limit(1)->get();
+                $newUser->update(['role_id'=>$role_id[0]->id]);
+            }
+
            return $hotelOwner;
     }
 }

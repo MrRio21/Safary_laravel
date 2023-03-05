@@ -17,13 +17,13 @@ class TripController extends Controller
     {
         $allTrips =Trip::all();
         $tripImg=TripImg::all();
-      
+
         // dd($allHotels);
 
         return response()->json([
-            'allTrips'=>$allTrips, 
-            'allTrips'=>$tripImg 
-        ]); 
+            'allTrips'=>$allTrips,
+            'allTrips'=>$tripImg
+        ]);
     }
 
     /**
@@ -54,7 +54,7 @@ class TripController extends Controller
             'cover_img'=>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName())
           ]);
         //   loop
-        // if the loop didn't be managed 
+        // if the loop didn't be managed
         // we can handle it by sending two routes
 // dd(is_file($request['image'])); //true
 foreach( $request['image'] as $img){
@@ -71,7 +71,7 @@ foreach( $request['image'] as $img){
           return response()->json([
             //   'Trips'=>$trip ,
               'message'=> 'trip info is saved successfully '
-        ]); 
+        ]);
     }
 
     /**
@@ -85,10 +85,10 @@ foreach( $request['image'] as $img){
         $tripImgs=TripImg::where('trip_id',$trip->id)->get();
         $tripPlaces=TripImg::where('trip_id',$trip->id)->get();
         return response()->json([
-            'Trip'=>$trip,   
+            'Trip'=>$trip,
             'trip image'=>$tripImgs
-            
-        ]); 
+
+        ]);
     }
 
     /**
@@ -113,8 +113,8 @@ foreach( $request['image'] as $img){
     {
         $trip->update($request->all());
         return response()->json([
-              'trip updated successfully'=>$trip  
-          ]); 
+              'trip updated successfully'=>$trip
+          ]);
     }
 
     /**
@@ -128,6 +128,6 @@ foreach( $request['image'] as $img){
          Trip::find($trip)->delete();
          return response()->json([
             'trip deleted'
-        ]); 
+        ]);
     }
 }
