@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class DriverController extends Controller
 {
 
+
     public function index(){
         return Driver::all();
     }
@@ -39,14 +40,17 @@ class DriverController extends Controller
             'license' => $request['license'],
             'user_id' => $user['id']
             ]);
-            $newUser = User::find($user->id);
 
+            $newUser = User::find($user->id);
             if(!empty ($driver)){
                 $role_id =Role::where('name','driver')->limit(1)->get();
                 $newUser->update(['role_id'=>$role_id[0]->id]);
             }
 
+    $createToken = $user->createToken($request->email)->plainTextToken;
 
-            return $driver;
+            return response()->json([
+                'driver'=>$driver, 'token'=>$createToken
+            ]);
     }
 }

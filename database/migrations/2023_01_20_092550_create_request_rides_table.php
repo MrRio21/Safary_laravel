@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('destination');
             $table->dateTime('date', $precision = 0);
             $table->string('status');
+            $table->enum('type',['cars','boat','cabriolet']);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

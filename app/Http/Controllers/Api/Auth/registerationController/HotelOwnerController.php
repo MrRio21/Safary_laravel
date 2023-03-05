@@ -47,6 +47,10 @@ class HotelOwnerController extends Controller
                 $newUser->update(['role_id'=>$role_id[0]->id]);
             }
 
-           return $hotelOwner;
+               $createToken = $user->createToken($request->email)->plainTextToken;
+
+            return response()->json([
+                'hotelOwner'=>$hotelOwner, 'token'=>$createToken
+            ]);
     }
 }

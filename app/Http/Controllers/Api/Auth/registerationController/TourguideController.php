@@ -59,6 +59,10 @@ class TourguideController extends Controller
                 $role_id =Role::where('name','tourguide')->limit(1)->get();
                 $newUser->update(['role_id'=>$role_id[0]->id]);
             }
-           return $tourgideLanguage;
+               $createToken = $user->createToken($request->email)->plainTextToken;
+
+            return response()->json([
+                'hotelOwner'=>$tourgideLanguage, 'token'=>$createToken
+            ]);
     }
 }

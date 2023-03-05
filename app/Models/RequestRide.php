@@ -12,6 +12,7 @@ class RequestRide extends Model
         'position',
         'destination',
         'date',
+        'type',
         'status',
         'user_id',
     ];

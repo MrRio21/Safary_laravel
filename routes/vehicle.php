@@ -4,22 +4,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\VehicleController;
 // use App\Http\Controllers\hotelsController\HotelController;
 use App\Http\Controllers\Api\Auth\registerationController\userController;
-
-
-
+use App\Http\Controllers\vehicleController\RequestRideController;
 
 ///////////Request ride   /////////////
 // Route::get('/hotels',[HotelController::class,'index']);
 
-Route::get('/requestRide',[VehicleController::class,'index']);
+Route::get('/requestRide',[RequestRideController::class,'index']);
 
-Route::post('/storeRide',[VehicleController::class,'store']);
+Route::post('/storeRide',[RequestRideController::class,'store']);
 
-Route::get('/showRide/{id}',[VehicleController::class,'show']);
+Route::get('/showRide/{id}',[RequestRideController::class,'show']);
 
-Route::PUT('/updateRide/{id}',[VehicleController::class,'update']);
+Route::PUT('/updateRide/{id}',[RequestRideController::class,'update']);
 
-Route::delete('/deleteRide/{id}',[VehicleController::class,'destroy']);
+Route::delete('/deleteRide/{id}',[RequestRideController::class,'destroy']);
 
 
 
