@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\vehicleController;
 use App\Http\Controllers\Controller;
-use App\Models\vehicle;
+
 use App\Models\RequestRide;
 use Illuminate\Http\Request;
 
-class VehicleController extends Controller
+class RequestRideController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +20,14 @@ class VehicleController extends Controller
         return isset($allVehicle)?$allVehicle:"";
     }
 
+
     public function store(Request $request)
     {
-        $request->validate([
+            $request->validate([
             'position'=>'required',
             'destination '=>'required',
             'date'=>'required',
+            'type'=>'required',
 
         ]);
         $requestRide = RequestRide::create([
@@ -33,11 +35,12 @@ class VehicleController extends Controller
             'position'=>$request['position'],
             'destination'=>$request['destination'],
             'date'=>$request['date'],
-            'now'=>$request['now'],
+            'type'=>$request['type'],
             'status'=>'Pendding'
         ]);
         return $requestRide;
     }
+
 
     public function show(RequestRide $requestRideId)
     {
@@ -45,10 +48,21 @@ class VehicleController extends Controller
         return $target;
     }
 
+    public function edit(RequestRide $requestRide)
+    {
+        //
+    }
+
+
+    public function update(Request $request, RequestRide $requestRide)
+    {
+        //
+    }
 
 
     public function destroy(RequestRide $requestRideId)
     {
         RequestRide::find($requestRideId)->delete();
+
     }
 }

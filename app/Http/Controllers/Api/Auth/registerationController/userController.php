@@ -27,7 +27,12 @@ class userController extends Controller
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             // 'role_id' => $request['role_id']
         ]);
-        return $users;
+
+    $createToken = $users->createToken($request->email)->plainTextToken;
+
+        return response()->json([
+                'users'=>$users, 'token'=>$createToken
+            ]);
     }
 
 
@@ -35,7 +40,7 @@ class userController extends Controller
     $request->validate([
         'email' => 'required|email',
         'password' => 'required',
-        'device_name' => 'required',
+
     ]);
 
     $user = User::where('email', $request->email)->first();
@@ -47,7 +52,7 @@ class userController extends Controller
     }
     $role = $user->role_id;
     // dd($role);
-    $createToken = $user->createToken($request->device_name)->plainTextToken;
+    $createToken = $user->createToken($request->email)->plainTextToken;
     return response()->json(['token'=> $createToken,'role'=>$role],201);
 }
 
