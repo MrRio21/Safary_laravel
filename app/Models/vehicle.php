@@ -9,13 +9,13 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable = [
         'type',
         'license',
         'image',
         'driver_id'
-       
+
     ];
 
     public function Driver()
