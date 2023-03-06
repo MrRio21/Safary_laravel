@@ -15,40 +15,53 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $allVehicle =RequestRide::all();
-
-        return isset($allVehicle)?$allVehicle:"";
+        $allVehicle =vehicle::all();
+        // dd($allVehicle);
+        return response()->json([
+            'vehicle'=>$allVehicle
+        ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'position'=>'required',
-            'destination '=>'required',
-            'date'=>'required',
+        // $request->validate([
+        //     'type'=>'required',
+        //     'license '=>'required',
+        //     'image'=>'required','mimes:jpeg,png,jpg,gif',
 
+        // ]);
+        $request = vehicle::create([
+            'driver_id'=> $request['driver_id'],
+            'type'=>$request['type'],
+            'license'=>$request['license'],
+            'image'=>$request['image'],
+            // 'status'=>'Pendding'
         ]);
-        $requestRide = RequestRide::create([
-            'user_id'=>auth()->user()['id'],
-            'position'=>$request['position'],
-            'destination'=>$request['destination'],
-            'date'=>$request['date'],
-            'now'=>$request['now'],
-            'status'=>'Pendding'
+        // dd($request);
+        return response()->json([
+            'vehicle'=>$request,
+            'message'=>'store success'
         ]);
-        return $requestRide;
     }
 
-    public function show(RequestRide $requestRideId)
+    public function show(vehicle $requestRideId)
     {
-        $target = RequestRide::find($requestRideId);
+        $target = vehicle::find($requestRideId);
         return $target;
     }
 
-
-
-    public function destroy(RequestRide $requestRideId)
+    public function update(Request $request, vehicle $vehicleId )
     {
-        RequestRide::find($requestRideId)->delete();
+    // dd($hotelid);
+    $request->update($request->all());
+
+    return response()->json([
+            'vehicle updated successfully'=>$request
+    ]);
+}
+
+    public function destroy(vehicle $requestRideId)
+    {
+        vehicle::find($requestRideId)->delete();
     }
 }
