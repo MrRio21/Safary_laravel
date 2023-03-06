@@ -79,23 +79,24 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
-            'n_of_adults'=> $request['n_of_adults'],
-            'n_of_childeren'=>$request['n_of_childeren'],
+            'n_of_adults'=>(int)$request['n_of_adults'],
+            'n_of_childeren'=>isset($request['n_of_childeren'])?(int)$request['n_of_childeren']:0,
             'n_of_days'=>(int)$n_of_days
         ]);
-        $nOfroomArray=explode(',', $request['n_of_room']);
-        $roomTypeArray=explode(',', $request['room_type']);
-        for($i=0; $i < count($nOfroomArray) ; $i++) {
+
+        for($i=0; $i < count($request['n_of_room']) ; $i++) {
             // dd($nOfroomArray);
            // echo "here";
             OrderedRoom::create([
                  'order_id' => $order->id,
-                 'n_of_room'=> (int)$nOfroomArray[$i],
-                 'room_type' => $roomTypeArray[$i]
+                 'n_of_room'=> (int)$request['n_of_room'][$i],
+                 'room_type' => $request['room_type'][$i]
              ]);
         }
+       $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
         return response()->json([
            'order info'=>$order,
+           'ordered room '=>$orderedRoom,
            'message'=>'the order is saved'
 
         ]);
@@ -104,11 +105,33 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
 
    public function destroy(order $orderID)
     {
-       $deleteOrder= Order::find($orderID)->delete();
+       $deleteOrder= $orderID->delete();
         if($deleteOrder){
-            BookedRoom::where ('order_id',$orderID)->delete();
-            BookTourGuide::where ('order_id',$orderID)->delete();
-            OrderedPlaces::where ('order_id',$orderID)->delete();
+            $rooms=OrderedRoom::where('order_id',$orderID->id)->get();
+            if(!is_null($rooms)){
+
+                foreach($rooms as $room){
+                    $room->delete();
+                }
+            }
+           $roomsBooked= BookedRoom::where ('order_id',$orderID->id)->get();
+           if(!is_null($roomsBooked)){
+
+               foreach($roomsBooked as $room){
+                        $room->delete();
+                      }
+           }
+           $tourguideBooked= BookTourGuide::where('order_id',$orderID->id)->first();
+                    $tourguideBooked->delete();
+
+                    $placesBooked= OrderedPlaces::where ('order_id',$orderID->id)->get();
+                  if(!is_null($placesBooked)){
+
+                      foreach($placesBooked as $place){
+                        $place->delete();
+                      }
+                  }
+
         }
 
         return response()->json([

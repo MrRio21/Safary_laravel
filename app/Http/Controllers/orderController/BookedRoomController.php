@@ -16,33 +16,33 @@ use App\Models\Room;
 
 class BookedRoomController extends Controller
 {
-    public function index(Request $request)
+    public function index(Order $order)
     {
-        $order = Order::find($request['order_id']);
+        // dd($order);
 
         $budget = $order->budget;
 
         $budgetPerDay = $budget / $order->n_of_days;
-// dd($budgetPerDay);
-       
-        $availableRooms = DB::table('rooms')->where('check_in','=',null)->orWhere('check_in','<>',$order->check_in)->where('check_out','=',null)->orWhere('check_out','<>',$order->check_out)->where('price','<=',$budgetPerDay)->get();
-// dd($availableRooms);
-        $hotels = Hotel::all();
-        if(!is_null($availableRooms)){
+dd($budgetPerDay);
 
-            return response()->json([
-                'available rooms' => $availableRooms,
-                'all hotels' => $hotels,
-                'order' => $order
+//         $availableRooms = DB::table('rooms')->where('check_in','=',null)->orWhere('check_in','<>',$order->check_in)->where('check_out','=',null)->orWhere('check_out','<>',$order->check_out)->where('price','<=',$budgetPerDay)->get();
+// // dd($availableRooms);
+//         $hotels = Hotel::all();
+//         if(!is_null($availableRooms)){
 
-            ]);
-        }else{
-            return response()->json([
-                'message' => "increase your budget or derease or change number of days you want to stay",
+//             return response()->json([
+//                 'available rooms' => $availableRooms,
+//                 'all hotels' => $hotels,
+//                 'order' => $order
+
+//             ]);
+//         }else{
+//             return response()->json([
+//                 'message' => "increase your budget or derease or change number of days you want to stay",
 
 
-            ]);
-        }
+//             ]);
+//         }
     }
     public function store(Request $request)
     {

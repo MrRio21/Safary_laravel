@@ -13,25 +13,28 @@ use App\Http\Controllers\orderController\BookTourGuideController;
 // step 1 in customization :store the  order
 Route::post('/storeOrder',[OrderController::class,'store']);
 
-// step 2 : view all available rooms (( in their hotels )) --store the ordered rooms 
-Route::post('/availableRooms',[BookedRoomController::class,'index']);
-// get the order id and the room id 
+//
+Route::post('/deleteOrder/{orderID}',[OrderController::class,'destroy']);
+
+// step 2 : view all available rooms (( in their hotels )) --store the ordered rooms
+Route::post('/availableRooms/{order}',[BookedRoomController::class,'index']);
+// get the order id and the room id
 Route::post('/storeOrderedRooms',[BookedRoomController::class,'store']);
 
 Route::put('/updateOrderedRoom/{BookedRoom}',[BookedRoomController::class,'update']);
 Route::delete('/deleteOrderedRoom',[BookedRoomController::class,'destroy']);
 
-// step 3 : view places ((filter for their type and number of days in front)) -- store the selected 
+// step 3 : view places ((filter for their type and number of days in front)) -- store the selected
 Route::post('/availablePlaces',[OrderedPlaceController::class,'index']);
 Route::post('/storeOrderedPlaces',[OrderedPlaceController::class,'store']);
 Route::get('/showStoredOrderedPlaces/{orderId}',[OrderedPlaceController::class,'show']);
-// he shouldn't be able to update the places he choose because it was picked 
-// by algorthism of the price 
+// he shouldn't be able to update the places he choose because it was picked
+// by algorthism of the price
 Route::post('/updateOrderedPlaces/{orderId}',[OrderedPlaceController::class,'update']);
 Route::post('/deleteOrderedPlace/{orderId}',[OrderedPlaceController::class,'destroy']);
 
 
-// step 4 : view places ((filter for their type and number of days in front)) -- store the selected 
+// step 4 : view places ((filter for their type and number of days in front)) -- store the selected
 Route::get('/availableTourguides',[BookTourGuideController::class,'index']);
 Route::post('/storeOrderedTourguides',[BookTourGuideController::class,'store']);
 Route::put('/updateOrderedTourguides/{tourguide_id}',[BookTourGuideController::class,'update']);
