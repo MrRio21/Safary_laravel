@@ -36,7 +36,7 @@ class PlaceController extends Controller
             'description'=>['required','min:10'],
             // 'price'=>'numric'
         ]);
-
+// dd($request['image']);
         $place = Place::create([
             'name' => $request['name'],
             'description' =>$request['description'],
@@ -45,18 +45,20 @@ class PlaceController extends Controller
             'type'=>$request['type']
         ]);
         
-        // foreach( $request['image'] as $img){
+        foreach( $request['image'] as $img){
 
-        //     // dd($img);
-        //        PlaceImg::create([
-        //             'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
-        //             'place_id'=>$place->id
-        //             // 
-        //           ]);
+            // dd($img);
+               PlaceImg::create([
+                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+                    'place_id'=>$place->id
+                    // 
+                  ]);
         
-        // }
+        }
+        $placeImgs= PlaceImg::where('place_id',$place->id)->get();
         return response()->json([
             'place info '=> $place,
+            'place img'=>$placeImgs,
             'message'=>'place info is saved successfully ' 
         ]);  
     }

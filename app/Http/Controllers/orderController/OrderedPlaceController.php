@@ -56,30 +56,30 @@ return response()->json([
      */
     public function store(Request $request)
     {
-    //   loop => array of places to be saved -------
-    $nOfPlacesArray=explode(',', $request['place_id']);
-    for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
-        $orderedPlace = OrderedPlaces ::create([
-            'order_id' => $request['order_id'],
-            'place_id' =>$request['place_id'],
-            
+
+    foreach($request['place_id'] as $placeID){
+        // dd($placeID);
+        // echo"here";
+         OrderedPlaces ::create([
+                    'order_id' => $request['order_id'],
+                    'place_id' =>$placeID,
         ]);
     }
         $order= Order::find($request['order_id']);
-
+        $orderedPlaces = OrderedPlaces ::where('order_id',$request->order_id)->get();
        
          
         // the rest after booking the places 
 
-        $totalPaidinAllPlaces= DB::table("places")
+        $totalPaidInAllPlaces= DB::table("places")
         ->select(DB::raw('sum(places.price)as sum'))
         ->join('ordered_places','places.id', '=', 'ordered_places.place_id')
                 ->where('ordered_places.order_id', '=', $order->id)
              ->get();
 
         return response()->json([
-            'ordered Place'=>$orderedPlace,
-            'totalPaidinAllPlaces'=>$totalPaidinAllPlaces[0]->sum
+            'ordered Place'=>$orderedPlaces,
+            'totalPaidInAllPlaces'=>$totalPaidInAllPlaces[0]->sum
             
          ]);
     }
@@ -92,8 +92,9 @@ return response()->json([
      */
     public function show(Order $orderId)
     { 
+        // dd($orderId->id);
         // to show the places that the user choose
-        $orderedplaces = OrderedPlaces::where('order_id',$orderId);
+        $orderedplaces = OrderedPlaces::where('order_id',$orderId->id)->get();
         return response()->json([
     'ordered places'=>$orderedplaces,
     
@@ -109,34 +110,51 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Order $orderId, Request $request)
     {
-        $OrderedPlaces= OrderedPlaces::where('order_id',$request['order_id'])->get();
+    //    dd($request->totalPaidInAllPlaces);
+        // $availablePlacesForUser = DB::table('places')
+        // ->where('price','<=',$request->totalPaidInAllPlaces)->get();
+// dd( $availablePlacesForUser);
+        $OrderedPlaces= OrderedPlaces::where('order_id',$orderId->id)->get();
         //    echo $OrderedPlace->id;
+        // dd($request);
+        // dd(count($OrderedPlaces));
         
-        $nOfPlacesArray=explode(',', $request['place_id']);
-        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
+        foreach($OrderedPlaces as $orderedPlace){
+            // dd($orderedPlace);
+            foreach($request['place_id'] as $place){
+                //  echo (int)$place;
+                $orderedPlace->update([(int)$place]);
+                // dd($orderedPlace);
+            }
+
+        }
+        // dd($OrderedPlaces[0]->update());
+        // dd($orderId);
+        // $OrderedPlaces[0]->update([$request->all()]);        // $nOfPlacesArray=explode(',', $request['place_id']);
+        for($i=0; $i < count( $request->place_id) ; $i++) {
             $count= DB::table("ordered_places")
-            ->select(DB::raw('count(place_id)as count'))->where('order_id','=',$request['order_id'])
+            ->select(DB::raw('count(place_id)as count'))->where('order_id','=',$orderId->id)
             ->get();
-            // dd($count[0]->count);
+            dd($count[0]->count);
             // dd($nOfPlacesArray);
             
-            if($count[0]->count = count($nOfPlacesArray)){
-                 foreach($OrderedPlaces as $OrderedPlace){
+            // if($count[0]->count = count($nOfPlacesArray)){
+            //      foreach($OrderedPlaces as $OrderedPlace){
                    
-                        $OrderedPlace->update([
-                            'place_id'=>(int)$nOfPlacesArray
-                        ]);
-                    }
-             }
-             else{
-                OrderedPlaces ::create([
-                    'order_id' => $request['order_id'],
-                    'place_id' =>(int)$nOfPlacesArray
+            //             $OrderedPlace->update([
+            //                 'place_id'=>(int)$nOfPlacesArray
+            //             ]);
+            //         }
+            //  }
+            //  else{
+            //     OrderedPlaces ::create([
+            //         'order_id' => $request['order_id'],
+            //         'place_id' =>(int)$nOfPlacesArray
                     
-                ]);
-             }
+            //     ]);
+            //  }
             
          
         }
@@ -144,7 +162,7 @@ return response()->json([
         
         
         return response()->json([
-              'OrderedPlaces updated successfully'=>$OrderedPlaces  
+              'OrderedPlaces updated successfully'=>$OrderedPlaces[0]  
           ]);  
        }
     
@@ -158,16 +176,16 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        $nOfPlacesArray=explode(',', $request['place_id']);
-        
-        $orderedPlaces= OrderedPlaces::where ('place_id','=',$request['place_id'])->where('order_id','=',$request['order_id'])->get();
-        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
-       foreach($orderedPlaces as $orderedPlace){
-        $orderedPlace->delete();
-       }
-        }
+    public function destroy(Order $orderId,Request $request)
+    { 
+        // dd($request['place_id']->delete());
+        foreach($request->place_id as $orderedPlaceID){
+            $orderedPlace= OrderedPlaces::where('order_id',$orderId->id)->where('place_id',$orderedPlaceID)->first();
+            // dd($orderedPlace->delete());
+           $orderedPlace->delete();
+           
 
-    }
+        }
+   
+   }
 }

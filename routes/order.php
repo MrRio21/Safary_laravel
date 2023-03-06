@@ -24,9 +24,11 @@ Route::delete('/deleteOrderedRoom',[BookedRoomController::class,'destroy']);
 // step 3 : view places ((filter for their type and number of days in front)) -- store the selected 
 Route::post('/availablePlaces',[OrderedPlaceController::class,'index']);
 Route::post('/storeOrderedPlaces',[OrderedPlaceController::class,'store']);
-
-Route::post('/updateOrderedPlaces',[OrderedPlaceController::class,'update']);
-Route::delete('/deleteOrderedPlace',[OrderedPlaceController::class,'destroy']);
+Route::get('/showStoredOrderedPlaces/{orderId}',[OrderedPlaceController::class,'show']);
+// he shouldn't be able to update the places he choose because it was picked 
+// by algorthism of the price 
+Route::post('/updateOrderedPlaces/{orderId}',[OrderedPlaceController::class,'update']);
+Route::post('/deleteOrderedPlace/{orderId}',[OrderedPlaceController::class,'destroy']);
 
 
 // step 4 : view places ((filter for their type and number of days in front)) -- store the selected 

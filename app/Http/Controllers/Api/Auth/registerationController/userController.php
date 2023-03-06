@@ -53,7 +53,12 @@ class userController extends Controller
     $role = $user->role_id;
     // dd($role);
     $createToken = $user->createToken($request->email)->plainTextToken;
-    return response()->json(['token'=> $createToken,'role'=>$role],201);
+    $userID = $user->tokens;
+    foreach($userID as $user){
+        if($user->id ==)
+    }
+    return response()->json(['token'=> $createToken,'role'=>$role ,
+'userid'=>$userID],201);
 }
 
 
