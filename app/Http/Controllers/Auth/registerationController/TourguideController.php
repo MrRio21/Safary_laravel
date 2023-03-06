@@ -22,7 +22,7 @@ class TourgideController extends Controller
     public function index()
     {
         $users=User::all(); //fk
-        $tourGides=tourgide::all();
+        $tourGides=tourguide::all();
 
         return view("tourgideRegistrations.index",[ "tourGides" => $tourGides],["users"=> $users]);
         //show table from DB

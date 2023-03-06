@@ -114,8 +114,9 @@ class RoomController extends Controller
     {
         $roomID->update($request->all());
         return response()->json([
-              'room updated successfully'=>$roomID  
-          ]);  
+            'message'=> 'room updated successfully',
+            'room info '=> $roomID,
+    ]);  
 
  
 
@@ -127,9 +128,12 @@ class RoomController extends Controller
      * @param  \App\Models\room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy(Room $roomID)
     {
-        Room::find($room)->delete();
+        $roomID->delete();
+        return response()->json([
+            'message'=>'room deleted successfully' 
+        ]); 
 
     }
 }

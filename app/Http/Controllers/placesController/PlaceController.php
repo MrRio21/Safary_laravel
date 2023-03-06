@@ -45,19 +45,19 @@ class PlaceController extends Controller
             'type'=>$request['type']
         ]);
         
-        foreach( $request['image'] as $img){
+        // foreach( $request['image'] as $img){
 
-            // dd($img);
-               PlaceImg::create([
-                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
-                    'place_id'=>$place->id
-                    // 
-                  ]);
+        //     // dd($img);
+        //        PlaceImg::create([
+        //             'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+        //             'place_id'=>$place->id
+        //             // 
+        //           ]);
         
-        }
+        // }
         return response()->json([
             'place info '=> $place,
-            'place info is saved successfully '=>'message' 
+            'message'=>'place info is saved successfully ' 
         ]);  
     }
 
