@@ -1,0 +1,341 @@
+:root {
+	/* COLORS */
+	--white: #e9e9e9;
+	--gray: #333;
+	--blue: #0367a6;
+	--lightblue: #008997;
+
+	/* RADII */
+	--button-radius: 0.7rem;
+
+	/* SIZES */
+	--max-width: 1200px;
+	--max-height: 600px;
+
+	font-size: 16px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+	align-items: center;
+	
+	
+	background-position: center;
+	
+	display: grid;
+	height: 100vh;
+	place-items: center;
+}
+
+.form__title {
+	font-weight: 300;
+	margin: 0;
+	margin-bottom: 1.25rem;
+}
+
+.link {
+	color: var(--gray);
+	font-size: 0.9rem;
+	margin: 1.5rem 0;
+	text-decoration: none;
+}
+
+.container {
+	background-color: white;
+	/* border: solid rgb(175, 169, 169) 0.1px; */
+	border-radius: 0.5rem;
+	height: 110%;
+	width: 110%;
+	width:var(--max-width);
+	position: relative;
+	/* width: 100%; */
+}
+
+.container__form {
+	height: 100%;
+
+	position: absolute;
+	top: 0;
+	transition: all 0.6s ease-in-out;
+}
+
+.container--signin {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.container.right-panel-active .container--signin {
+	transform: translateX(100%);
+}
+
+.container--signup {
+	left: 0;
+	opacity: 0;
+	width: 50%;
+	z-index: 1;
+}
+
+.container.right-panel-active .container--signup {
+	animation: show 0.6s;
+	opacity: 1;
+	transform: translateX(100%);
+	z-index: 5;
+}
+
+.container__overlay {
+	height: 100%;
+	left: 50%;
+
+	position: absolute;
+
+	top: 0;
+	transition: transform 0.6s ease-in-out;
+	width: 50%;
+	z-index: 100;
+}
+
+.container.right-panel-active .container__overlay {
+	transform: translate(-100%);
+}
+
+.overlay {
+	/* background-color: var(--lightblue); */
+	background: rgb(63,94,251);
+     background: radial-gradient(circle, rgba(133, 150, 233, 0.267) 0%, rgba(253,254,255,1) 100%);
+	background-attachment: fixed; 
+
+	background-size: cover;
+	height: 100%;
+	left: -100%;
+	position: relative;
+	transform: translateX(0);
+	width: 200%;
+}
+
+.container.right-panel-active .overlay {
+	transform: translateX(50%);
+}
+
+.overlay__panel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+	width: 50%;
+}
+
+.overlay--left {
+	transform: translateX(-20%);
+}
+
+
+
+.container.right-panel-active .overlay--left {
+	transform: translateX(0);
+}
+
+.overlay--right {
+	right: 3rem;
+	transform: translateX(0);
+  
+}
+
+.container.right-panel-active .overlay--right {
+	transform: translateX(20%);
+    background-color: #0367a6;
+}
+
+.btn {
+	background-color: var(--blue);
+	background-image: linear-gradient(90deg, var(--blue) 0%, var(--lightblue) 74%);
+	border-radius: 20px;
+	border: 1px solid var(--blue);
+	color: var(--white);
+	cursor: pointer;
+	font-size: 0.8rem;
+	z-index: 999;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	/* padding: 0.9rem 4rem; */
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+/* overlay btn */
+.overlay .btn{
+	margin-bottom:35rem ;
+	position: absolute;
+}
+/* overlays Imgs */
+.overlay img{
+	position: relative;
+	 width:100%;
+	 height: 100%;
+	
+	}
+	
+/* form btns */
+.form > .btn {
+	margin-top: 0.3rem;
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.form {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 3rem;
+	height: 100%;
+	text-align: center;
+}
+
+.input {
+	/* background-color: #fff; */
+	padding: 0.9rem 0.9rem;
+	margin: 0.5rem 0;
+	width: 100%;
+	border: solid rgb(175, 169, 169) 0.1px;
+	border-radius: 0.5rem;
+}
+/* on focus  */
+input:focus-within {
+	border: 3px solid var(--blue);
+	
+  }
+/* to change the color of the radio btns */
+.specifyColor{
+
+	accent-color: var(--blue);
+}
+@keyframes show {
+	0%,
+	49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+
+	50%,
+	100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+/* Responsitivity */
+@media only screen and (min-width: 320px)  {
+
+	.overlay img{
+		
+	 width: 60%;
+	 height: 30%;
+	}
+	
+	.container{
+		width: 110%;
+	}
+	
+	.btn{
+		font-size: 0.5rem;
+		padding: 0.4rem 0.2rem;
+	}
+	.right-btn {
+		width: 7rem;
+	}
+	body{
+		font-size: 10px;
+	}
+	.input{
+		padding: 0.5rem 1rem;
+		
+	}
+	.input:placeholder-shown {
+		font-size: 0.5rem;
+	  }
+	img{
+		width: 30%;
+	}
+	.overlay--right {
+		right: 0.1rem;
+		
+	  
+	}
+}
+@media only screen and (min-width: 368px)  {
+	body{
+		font-size: 15px;
+	}
+	.input:placeholder-shown {
+		font-size: 0.7rem;
+	  }
+	  .input{
+		padding: 0.7rem 1rem;
+		
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+	.right-btn {
+		width: 9rem;
+	}
+}
+@media only screen and (min-width: 336px){
+	.specifyColor{
+		margin: 0 2rem;
+		
+	}
+}
+@media only screen and (min-width: 424px)  {
+	body{
+		font-size: 16px;
+	}
+	.input:placeholder-shown {
+		font-size: 0.7rem;
+	  }
+	  .input{
+		padding: 0.7rem 1rem;
+		
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+}
+@media only screen and (min-width: 437px) and (max-width: 480px){
+	
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	  }
+	  .input{
+		padding: 0.6rem 0.7rem;
+		
+	}
+	span{
+		font-size: 0.7rem;
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+}
+@media only screen and (min-width: 700px){
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	  }
+}

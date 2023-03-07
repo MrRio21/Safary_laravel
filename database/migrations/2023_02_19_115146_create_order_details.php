@@ -20,8 +20,9 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             // not only for the room confirmation 
             // but also for the tourguide confirmation 
-            // $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
-            // $table->enum('tourGuide_status',['Accept','pending','Reject'])->default('pending');
+
+            $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
+            $table->enum('tourGuide_status',['Accept','pending','Reject'])->default('pending');
             // the price that the user will pay 
             $table->float('price_paid');
        
