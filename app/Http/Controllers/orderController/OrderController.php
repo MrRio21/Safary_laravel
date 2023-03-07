@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BookedRoom;
 use App\Models\Room;
 use App\Models\BookTourGuide;
+use App\Models\Hotel;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use DateTime;
@@ -144,13 +145,20 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         // foreach($orderID->Room as $room_id){
         //     dd($room_id->id);
         // }
-        dd($orderID->Tourguide);   
-        // dd($orderID->Places);   
+        // dd($orderID->Tourguide->Tourguide->User);   
+        // dd($orderID->Places); 
+        $allrooms= Room::all();
+        $allHotels=Hotel::all();
+        $allPlaces=Place::all(); 
         
         return response()->json([
             'message'=> 'order deleted',
             'userInfo'=>$orderID->User,
             'orderedRooms'=>count($orderID->Room),
+            'allrooms'=>$allrooms,
+            'allHotels'=>$allHotels,
+            'allPlaces'=>$allPlaces,
+            'tourguide'=> $orderID->Tourguide->Tourguide->User,
             
          ]);
     }

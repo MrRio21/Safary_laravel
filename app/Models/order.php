@@ -39,7 +39,7 @@ class Order extends Model
 
     public function Tourguide()
     {
-        return $this->belongsTo(BookTourGuide::class );
+        return $this->hasOne(BookTourGuide::class );
     }
     public function Places()
     {
