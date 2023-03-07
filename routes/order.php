@@ -6,6 +6,7 @@ use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\BookedRoomController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
 use App\Http\Controllers\orderController\BookTourGuideController;
+use App\Http\Controllers\orderController\OrderDetailsController;
 
 
 // the update option isn't available in the buisness
@@ -45,3 +46,8 @@ Route::post('/deleteBookedTourguide/{orderID}',[BookTourGuideController::class,'
 Route::get('/showOrder/{orderID}',[OrderController::class,'show']);
 
 Route::delete('/deleteOrder/{orderID}',[OrderController::class,'destroy']);
+
+
+// ----------------------------------
+
+Route::post('/sendOrderRequests/{orderID}',[OrderDetailsController::class,'store']);

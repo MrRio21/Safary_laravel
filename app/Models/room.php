@@ -37,6 +37,12 @@ class Room extends Model
         return $this->hasMany(Order::class);
         
     }
+    public function BookedRoom()
+    {
+        return $this->hasMany(BookedRoom::class);
+        
+    }
+
 
 
 }

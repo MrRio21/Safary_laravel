@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
             $table->primary([ 'order_id','room_id']);
+            $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
+
 /////////////////
 //there is another booking table for regular bookig
 

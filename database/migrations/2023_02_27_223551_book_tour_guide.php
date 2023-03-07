@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
         $table->primary([ 'order_id','tourguide_id']);
+        $table->enum('tourguide_status',['Accept','pending','Reject'])->default('pending');
 
     });
      }
