@@ -23,8 +23,9 @@ Route::get('/availableRooms/{orderID}',[BookedRoomController::class,'index']);
 // get the order id and the room id[]
 Route::post('/storeOrderedRooms/{orderID}',[BookedRoomController::class,'store']);
  Route::post('/deleteOrderedRoom/{orderID}',[BookedRoomController::class,'destroy']);
+ Route::get('/showStoredBookedRooms/{orderID}',[BookedRoomController::class,'show']);
 
-Route::put('/updateOrderedRoom/{orderID}/{roomID}',[BookedRoomController::class,'update']);
+Route::post('/updateOrderedRoom/{orderID}',[BookedRoomController::class,'update']);
 // step 3 : view places ((filter for their type and number of days in front)) -- store the selected
 Route::post('/availablePlaces/{orderID}',[OrderedPlaceController::class,'index']);
 Route::post('/storeOrderedPlaces/{orderID}',[OrderedPlaceController::class,'store']);
@@ -32,12 +33,12 @@ Route::get('/showStoredOrderedPlaces/{orderID}',[OrderedPlaceController::class,'
 // he shouldn't be able to update the places he choose because it was picked
 // by algorthism of the price
 Route::post('/updateOrderedPlaces/{orderId}',[OrderedPlaceController::class,'update']);
-Route::post('/deleteOrderedPlace/{orderId}',[OrderedPlaceController::class,'destroy']);
+Route::post('/deleteOrderedPlace/{orderID}',[OrderedPlaceController::class,'destroy']);
 
 
 // step 4 : view places ((filter for their type and number of days in front)) -- store the selected
-Route::get('/availableTourguides',[BookTourGuideController::class,'index']);
-Route::post('/storeOrderedTourguides',[BookTourGuideController::class,'store']);
+Route::post('/availableTourguides/{orderID}',[BookTourGuideController::class,'index']);
+Route::post('/storeOrderedTourguides/{orderID}',[BookTourGuideController::class,'store']);
 Route::put('/updateOrderedTourguides/{tourguide_id}',[BookTourGuideController::class,'update']);
 Route::delete('/deleteOrderedTourguides/{tourguide_id}',[BookTourGuideController::class,'destroy']);
 
