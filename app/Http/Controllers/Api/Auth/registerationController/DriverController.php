@@ -28,6 +28,7 @@ class DriverController extends Controller
             'name' => $request['name'] ,
             'email' => $request['email'],
             'password' => Hash::make( $request['password']),
+            'phone' => $request['phone'],
             'gender' => $request['gender'] ,
             // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),

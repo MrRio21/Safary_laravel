@@ -56,15 +56,16 @@ return response()->json([
     public function store(Order $orderID,Request $request)
     {
         if(is_array($request['place_id'])){
-         foreach($request['place_id'] as $placeID){
+         foreach($request['place_id'] as $placeID)
+        {
         // dd($placeID);
         // echo"here";
          OrderedPlaces ::create([
                     'order_id' =>  $orderID->id,
                     'place_id' =>$placeID,
         ]);
-    }
-}
+        }
+          }
 // the rest after booking the places 
         $orderedPlaces = OrderedPlaces ::where('order_id',$orderID->id)->get();
        

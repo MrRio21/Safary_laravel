@@ -24,7 +24,8 @@ class User extends Authenticatable
         'password',
         'gender',
         'image',
-        'role_id'
+        'role_id',
+        'phone'
     ];
 
     public function Tourguide()

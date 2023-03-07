@@ -38,10 +38,10 @@ Route::post('/deleteOrderedPlace/{orderID}',[OrderedPlaceController::class,'dest
 
 // step 4 : view places ((filter for their type and number of days in front)) -- store the selected
 Route::post('/availableTourguides/{orderID}',[BookTourGuideController::class,'index']);
-Route::post('/storeOrderedTourguides/{orderID}',[BookTourGuideController::class,'store']);
-Route::put('/updateOrderedTourguides/{tourguide_id}',[BookTourGuideController::class,'update']);
-Route::delete('/deleteOrderedTourguides/{tourguide_id}',[BookTourGuideController::class,'destroy']);
+Route::post('/bookTourguide/{orderID}',[BookTourGuideController::class,'store']);
+Route::post('/updateBookedTourguide/{orderID}',[BookTourGuideController::class,'update']);
+Route::post('/deleteBookedTourguide/{orderID}',[BookTourGuideController::class,'destroy']);
 
-Route::get('/showOrder/{id}',[OrderController::class,'show']);
+Route::get('/showOrder/{orderID}',[OrderController::class,'show']);
 
-Route::delete('/deleteOrder/{id}',[OrderController::class,'destroy']);
+Route::delete('/deleteOrder/{orderID}',[OrderController::class,'destroy']);

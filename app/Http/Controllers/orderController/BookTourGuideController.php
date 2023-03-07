@@ -24,42 +24,72 @@ class BookTourGuideController extends Controller
     $budget = (int)$request['restOfBudget'] / $orderID->n_of_days;
 
 // dd($budget);
-           $availableTourguides =Tourguide::where("price_per_day", "<=", $budget)->get();
+           $availableTourguides =DB::table('tourguides')->where("price_per_day", "<=", $budget)->get();
         //    dd($availableTourguides);
         $tourguideLang=TourguideLanguage::all();
-        if(is_null($availableTourguides)){
+        if(count($availableTourguides) == 0 ){
+           
             return response()->json([
                 'message'=>'there is no tourguides available or you should raise your budget'
             ]);
         }else{
             return response()->json([
                 'availableTourguides'=>$availableTourguides,
-                'tourguideLang' =>$tourguideLang
+                'tourguideLang' =>$tourguideLang,
+                'restOfBudget'=>(int)$request['restOfBudget']
             ]);
         }
               
     }
 
-    public function store(Request $request)
+    public function store(Order $orderID,Request $request)
     {
-        $order = Order::find($request['order_id']);
-        BookTourGuide::create([
-            'tourguide_id'=>$request['tourguide_id'],
-            'order_id'=>$request['order_id']
+        // dd($orderID->id);
+
+        // dd($placeID);
+        // echo"here";
+       $tourguideBooked=  BookTourGuide ::create([
+                    'order_id' =>  $orderID->id,
+                    'tourguide_id' =>$request['tourguide_id'],
         ]);
+        $tourguideInfo=Tourguide::where('id',$request['tourguide_id'])->first();
+        // dd($tourguideInfo->price_per_day);
+        $tourguideBudget= $tourguideInfo->price_per_day * $orderID->n_of_days;
+            //  dd($tourguideBudget);
+           
+        return response()->json([
+            // 'tourguideBooked'=>$tourguideBooked,
+            'tourguideInfo'=>$tourguideInfo,
+            'tourguideBudget'=>$tourguideBudget
+
+            
+         ]);
+    
         
     }
-    public function update(Request $request, BookTourGuide $BookTourGuide)
+    public function update(Request $request,Order $orderID)
     {
-        $BookTourGuide->update($request->all());
+        DB::table('book_tour_guide')
+                ->where('order_id',$orderID->id)
+                ->delete();
+                $this->store($orderID,$request);
+
+                $BookTourGuide= DB::table('book_tour_guide')
+                ->where('order_id',$orderID->id)->get();
         return response()->json([
-              'BookTourGuide updated successfully'=>$BookTourGuide  
+            'BookTourGuide'=>$BookTourGuide,  
+            'message'=>'updated successfully',
           ]);  
      }
 
-     public function destroy(Request $request)
+     public function destroy(Order $orderID)
      {
-        BookTourGuide::where ('tourguide_id',$request['tourguide_id'])->delete();
+        DB::table('book_tour_guide')
+        ->where('order_id',$orderID->id)
+        ->delete();
+        return response()->json([
+            'mesaage '=>'Booking deleted successfully'
+        ]);
  
      }
 }

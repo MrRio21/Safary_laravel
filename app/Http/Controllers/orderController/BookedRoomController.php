@@ -107,18 +107,13 @@ $availableRooms = DB::table('rooms')
 
     public function update(Request $request, Order $orderID)
     {
-        if(is_array($request['room_id'])){
-
-            foreach($request['room_id'] as $roomID){
     
-                $roomBooked= DB::table('booked_rooms')
+                DB::table('booked_rooms')
                 ->where('order_id',$orderID->id)
-                ->where('room_id',$roomID)
                 ->delete();
-            //    dd($roomBooked);
-               }
+
 $this->store($orderID,$request);
-            }
+            
             $roomsBooked= DB::table('booked_rooms')
             ->where('order_id',$orderID->id)->get();
 

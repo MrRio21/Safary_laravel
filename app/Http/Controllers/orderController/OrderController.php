@@ -110,34 +110,45 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             $rooms=OrderedRoom::where('order_id',$orderID->id)->get();
             if(!is_null($rooms)){
 
-                foreach($rooms as $room){
-                    $room->delete();
-                }
+                $query='delete from ordered_room where order_id ='.$orderID->id;
+                DB::delete($query);
             }
            $roomsBooked= BookedRoom::where ('order_id',$orderID->id)->get();
            if(!is_null($roomsBooked)){
-
-               foreach($roomsBooked as $room){
-                        $room->delete();
-                      }
+            $query='delete from booked_rooms where order_id ='.$orderID->id;
+            DB::delete($query);
            }
            $tourguideBooked= BookTourGuide::where('order_id',$orderID->id)->first();
-                    $tourguideBooked->delete();
+           if(!is_null($roomsBooked)){
 
+               $query='delete from book_tour_guide where order_id ='.$orderID->id;
+               DB::delete($query);
+           }
                     $placesBooked= OrderedPlaces::where ('order_id',$orderID->id)->get();
                   if(!is_null($placesBooked)){
-
-                      foreach($placesBooked as $place){
-                        $place->delete();
-                      }
+                    $query='delete from ordered_places where order_id ='.$orderID->id;
+                    DB::delete($query);
                   }
 
         }
 
         return response()->json([
-            'order deleted'
+           'message'=> 'order deleted'
         ]);
 
+    }
+
+    public function show(Order $orderID){
+        // dd($orderID->User);   
+        dd($orderID->Room);   
+        // dd($orderID->Tourguide);   
+        // dd($orderID->Places);   
+        
+        return response()->json([
+            'message'=> 'order deleted',
+            'userInfo'=>$orderID->User,
+            // 'orderedRooms'=>
+         ]);
     }
 
 
