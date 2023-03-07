@@ -23,7 +23,7 @@ class BookedRoom extends Model
 
     public function Room()
     {
-        return $this->hasMany(Room::class);
+        return $this->hasOne(Room::class);
     }
 
 

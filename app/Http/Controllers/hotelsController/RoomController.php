@@ -23,11 +23,11 @@ class RoomController extends Controller
 })
 ->where('rooms.id','room_imgs.room_id')
 ->get();
-        
+
         return response()->json([
             'rooms'=>$rooms ,
             'roomsImgs'=>$roomsImgs
-        ]); 
+        ]);
     }
 
 
@@ -39,59 +39,37 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'price'=>'required',
             // 'available_rooms '=>'required',
             'type'=>'required',
         ]);
-        $roomPrice = $request['price'];
-        $type = $request['type'];
-        $cover_img = $request['cover_img'];
-        $hotelID=  $request['hotel_id'];
-        $checkIn=  $request['check_in'];
-        $checkOut=  $request['check_out'];
         $room = room::create([
-            'price' => $roomPrice,
+            'price' => $request['price'],
             // 'available_rooms' =>$available_rooms,
-            'type' =>$type,
-            'hotel_id' => $hotelID,
-            'cover_img' => $cover_img->storeAs("public/imgs",md5(microtime()).$cover_img->getClientOriginalName()),
-            'check_in' => $checkIn,
-            'check_out' => $checkOut
+            'type' =>$request['type'],
+            'hotel_id' => $request['hotel_id'],
+            'cover_img' => $request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName()),
+            'check_in' => $request['check_in'],
+            'check_out' => $request['check_out']
         ]);
-        // foreach( $request['image'] as $img){
 
-        //     // dd($img);
-        //        RoomImg::create([
-        //             'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
-        //             'room_id'=>$room->id
-        //             // 
-        //           ]);
-        
-        // }
-        // tries 
-        $imagesArray=$request->file('image');
-        // dd($imagesArray);
-      
-                foreach($imagesArray as $image){
- dd($image);
-            // $image ->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName());
-            // $request["img"]->storeAs("public/imgs",$img);
-            // $hotelId = $hotel->id;
-            // dd($image);
-            RoomImg::create([
-                'image' => md5(microtime()).$image->getClientOriginalName(),
-                'room_id' => 1,
-               
+                foreach($request['image'] as $image){
+
+               RoomImg::create([
+                'image' =>$image->storeAs("public/imgs",md5(microtime()).$image->getClientOriginalName()),
+                'room_id' => $room->id,
+
             ]);
         }
-    
-        // return 'the
+          $roomImg=RoomImg::where('room_id',$room->id)->get();
+        
         return response()->json([
-            // 'room info '=> $room,
-            'room info is saved successfully '=>'message' 
-        ]);  
+            'room info '=> $room,
+            'room imgs'=>$roomImg,
+            'message'=>'room info is saved successfully '
+        ]);
     }
 
     /**
@@ -102,10 +80,10 @@ class RoomController extends Controller
      */
     public function show(Room $roomID)
     {
-       
+
         return response()->json([
             'room info '=> $roomID,
-        ]);  
+        ]);
 
     }
 
@@ -116,9 +94,9 @@ class RoomController extends Controller
         return response()->json([
             'message'=> 'room updated successfully',
             'room info '=> $roomID,
-    ]);  
+    ]);
 
- 
+
 
 }
 
@@ -132,8 +110,8 @@ class RoomController extends Controller
     {
         $roomID->delete();
         return response()->json([
-            'message'=>'room deleted successfully' 
-        ]); 
+            'message'=>'room deleted successfully'
+        ]);
 
     }
 }

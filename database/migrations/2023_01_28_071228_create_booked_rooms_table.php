@@ -14,14 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('booked_rooms', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->timestamps();
             // number of rooms that is picked from room id
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            // $table->primary([ 'order_id','room_id']);
+            $table->primary([ 'order_id','room_id']);
+            $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
+
 /////////////////
 //there is another booking table for regular bookig
 

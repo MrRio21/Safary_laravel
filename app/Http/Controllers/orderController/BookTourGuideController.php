@@ -16,61 +16,80 @@ use Illuminate\Support\Facades\DB;
 class BookTourGuideController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Order $orderID,Request $request)
     {
-        $order = Order::find($request['order_id']);
+        $booked = BookedRoom::where('order_id',$orderID->id)->first();
+        $places = OrderedPlaces::where('order_id',$orderID->id)->get();
 
-        $check_out_datetime = new DateTime($order->check_out);
-        $check_in_datetime = new DateTime($order->check_in);
-        $interval = $check_in_datetime->diff($check_out_datetime);
-        $nOfDays = $interval->format('%a'); //and then print do whatever you like with $nOfDays
-        //   
-        $booked = BookedRoom::where('order_id',$request['order_id'])->limit(1)->get();
-        $bookedPlaces = OrderedPlaces::where('order_id',$request['order_id'])->get();
-        if(is_null($booked[0]->id)){
-            $budget= $order->budget ;
-           
-        }else{
-            // the rest that came after booking the places 
-            $budget = $request['restOfMaxBudget']+($order->budget *0.2);
-        }
-           $availableTourguides =DB::table("tourguides")
-        ->where("price_per_day", "<=", $budget)
-        ->get();
+    $budget = (int)$request['restOfBudget'] / $orderID->n_of_days;
+
+// dd($budget);
+           $availableTourguides =DB::table('tourguides')->where("price_per_day", "<=", $budget)->get();
+        //    dd($availableTourguides);
         $tourguideLang=TourguideLanguage::all();
-        if(is_null($availableTourguides)){
+        if(count($availableTourguides) == 0 ){
+           
             return response()->json([
-                'message'=>'there is no tourguides available'
+                'message'=>'there is no tourguides available or you should raise your budget'
             ]);
         }else{
             return response()->json([
                 'availableTourguides'=>$availableTourguides,
-                'tourguideLang' =>$tourguideLang
+                'tourguideLang' =>$tourguideLang,
+                'restOfBudget'=>(int)$request['restOfBudget']
             ]);
         }
               
     }
 
-    public function store(Request $request)
+    public function store(Order $orderID,Request $request)
     {
-        $order = Order::find($request['order_id']);
-        BookTourGuide::create([
-            'tourguide_id'=>$request['tourguide_id'],
-            'order_id'=>$request['order_id']
+        // dd($orderID->id);
+
+        // dd($placeID);
+        // echo"here";
+       $tourguideBooked=  BookTourGuide ::create([
+                    'order_id' =>  $orderID->id,
+                    'tourguide_id' =>$request['tourguide_id'],
         ]);
+        $tourguideInfo=Tourguide::where('id',$request['tourguide_id'])->first();
+        // dd($tourguideInfo->price_per_day);
+        $tourguideBudget= $tourguideInfo->price_per_day * $orderID->n_of_days;
+            //  dd($tourguideBudget);
+           
+        return response()->json([
+            // 'tourguideBooked'=>$tourguideBooked,
+            'tourguideInfo'=>$tourguideInfo,
+            'tourguideBudget'=>$tourguideBudget
+
+            
+         ]);
+    
         
     }
-    public function update(Request $request, BookTourGuide $BookTourGuide)
+    public function update(Request $request,Order $orderID)
     {
-        $BookTourGuide->update($request->all());
+        DB::table('book_tour_guide')
+                ->where('order_id',$orderID->id)
+                ->delete();
+                $this->store($orderID,$request);
+
+                $BookTourGuide= DB::table('book_tour_guide')
+                ->where('order_id',$orderID->id)->get();
         return response()->json([
-              'BookTourGuide updated successfully'=>$BookTourGuide  
+            'BookTourGuide'=>$BookTourGuide,  
+            'message'=>'updated successfully',
           ]);  
      }
 
-     public function destroy(Request $request)
+     public function destroy(Order $orderID)
      {
-        BookTourGuide::where ('tourguide_id',$request['tourguide_id'])->delete();
+        DB::table('book_tour_guide')
+        ->where('order_id',$orderID->id)
+        ->delete();
+        return response()->json([
+            'mesaage '=>'Booking deleted successfully'
+        ]);
  
      }
 }

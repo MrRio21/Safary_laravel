@@ -28,6 +28,8 @@ class HotelOwnerController extends Controller
             'email' => $request['email'],
             'password' => Hash::make( $request['password']),
             'gender' => $request['gender'] ,
+            'phone' => $request['phone'],
+
             // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
             ]);

@@ -29,4 +29,12 @@ class DashboardController extends Controller
             ]);
         
     }
+    public function allUsers(Request $request){
+        $hotelOwner =HotelOwner::find($request['hotel_owner_id']);
+            return response()->json([
+                'hotelOwner Info'=>$hotelOwner,
+                
+            ]);
+        
+    }
 }

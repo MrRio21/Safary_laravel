@@ -20,19 +20,18 @@ class OrderedPlaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Order $orderID,Request $request)
     {
-       $order= Order::find($request['order_id']);
-
-    
+      
     //    check if the user book room or not 
     // to know the rest of the budget 
-    $booked = BookedRoom::where('order_id',$request['order_id'])->limit(1)->get();
-if(is_null($booked[0]->id)){
-    $budget= $order->budget ;
+    $booked = BookedRoom::where('order_id',$orderID->id)->first();
+if(is_null($booked)){
+
+    $budget= $orderID->budget ;
    
 }else{
-    $budget = $request['restOfMaxBudget']+($order->budget *0.4);
+    $budget = $request['restOfMaxBudget']+($orderID->budget *0.4);
 }
    $availablePlaces =DB::table("places")
 ->where("price", "<=", $budget)
@@ -40,10 +39,10 @@ if(is_null($booked[0]->id)){
       
        
 return response()->json([
-    'order'=>$order,
-    'places available'=>$availablePlaces,
-    
-    
+    'order'=>$orderID->id,
+    'availablePlaces'=>$availablePlaces,
+    'restOfBudgetAfterBookingRooms'=>$budget
+
  ]);
     }
 
@@ -54,34 +53,57 @@ return response()->json([
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Order $orderID,Request $request)
     {
-    //   loop => array of places to be saved -------
-    $nOfPlacesArray=explode(',', $request['place_id']);
-    for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
-        $orderedPlace = OrderedPlaces ::create([
-            'order_id' => $request['order_id'],
-            'place_id' =>$request['place_id'],
-            
+        if(is_array($request['place_id'])){
+         foreach($request['place_id'] as $placeID)
+        {
+        // dd($placeID);
+        // echo"here";
+         OrderedPlaces ::create([
+                    'order_id' =>  $orderID->id,
+                    'place_id' =>$placeID,
         ]);
-    }
-        $order= Order::find($request['order_id']);
-
+        }
+          }
+// the rest after booking the places 
+        $orderedPlaces = OrderedPlaces ::where('order_id',$orderID->id)->get();
        
          
-        // the rest after booking the places 
 
-        $totalPaidinAllPlaces= DB::table("places")
+        $totalPaidInAllPlaces= DB::table("places")
         ->select(DB::raw('sum(places.price)as sum'))
         ->join('ordered_places','places.id', '=', 'ordered_places.place_id')
-                ->where('ordered_places.order_id', '=', $order->id)
+                ->where('ordered_places.order_id', '=',$orderID->id)
              ->get();
+            //  dd($totalPaidInAllPlaces[0]->sum);
+            $restOfBudgetAfterBookingRooms= $request->restOfBudgetAfterBookingRooms;
+            if( $restOfBudgetAfterBookingRooms = $orderID->budget){
+                $restOfBudget = $orderID->budget - $totalPaidInAllPlaces[0]->sum;
+            }
+            else{
+
+                $restOfBudget = $orderID->budget - ($totalPaidInAllPlaces[0]->sum + $restOfBudgetAfterBookingRooms);
+            }
+            //  dd($totalPaidInAllPlaces[0]->sum+ $request->restOfBudgetAfterBookingRooms);
+            // dd($restOfBudget);
+             
+             if($restOfBudget>=0){
 
         return response()->json([
-            'ordered Place'=>$orderedPlace,
-            'totalPaidinAllPlaces'=>$totalPaidinAllPlaces[0]->sum
-            
-         ]);
+       'orderedPlaces'=>$orderedPlaces,
+       'totalPaidInAllPlaces'=>$totalPaidInAllPlaces[0]->sum,
+       'restOfBudget'=>$restOfBudget
+       
+    ]);
+    }else{
+        $query='delete from ordered_places where order_id ='.$orderID->id;
+        DB::delete($query);
+           return response()->json([
+               'message'=>'the budget for booking all these places isnot enough to select'
+
+            ]);
+    }
     }
 
     /**
@@ -90,14 +112,25 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $orderId)
+    public function show(Order $orderID)
     { 
+        // dd($orderId->id);
         // to show the places that the user choose
-        $orderedplaces = OrderedPlaces::where('order_id',$orderId);
-        return response()->json([
-    'ordered places'=>$orderedplaces,
-    
-        ]) ;
+        $orderedplaces = OrderedPlaces::where('order_id',$orderID->id)->get();
+        $places = Place::all();
+        if(!is_null($orderedplaces)){
+
+            return response()->json([
+        'ordered places'=>$orderedplaces,
+        'places'=>$places
+        
+            ]) ;
+        }else{
+            return response()->json([
+                'message'=>'you didnot pick places',
+                
+                    ]) ;
+        }
     }
 
 
@@ -109,45 +142,31 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Order $orderId, Request $request)
     {
-        $OrderedPlaces= OrderedPlaces::where('order_id',$request['order_id'])->get();
-        //    echo $OrderedPlace->id;
-        
-        $nOfPlacesArray=explode(',', $request['place_id']);
-        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
-            $count= DB::table("ordered_places")
-            ->select(DB::raw('count(place_id)as count'))->where('order_id','=',$request['order_id'])
-            ->get();
-            // dd($count[0]->count);
-            // dd($nOfPlacesArray);
-            
-            if($count[0]->count = count($nOfPlacesArray)){
-                 foreach($OrderedPlaces as $OrderedPlace){
-                   
-                        $OrderedPlace->update([
-                            'place_id'=>(int)$nOfPlacesArray
-                        ]);
-                    }
-             }
-             else{
-                OrderedPlaces ::create([
-                    'order_id' => $request['order_id'],
-                    'place_id' =>(int)$nOfPlacesArray
-                    
-                ]);
-             }
-            
-         
-        }
-           
-        
-        
-        return response()->json([
-              'OrderedPlaces updated successfully'=>$OrderedPlaces  
-          ]);  
-       }
+        if(is_array($request['place_id'])){
+
+            foreach($request['place_id'] as $placeID){
     
+                $roomBooked= DB::table('ordered_places')
+                ->where('order_id',$orderId->id)
+                ->where('place_id',$placeID)
+                ->delete();
+            //    dd($roomBooked);
+               }
+               
+$this->store($orderId,$request);
+            }
+        $placeOrdered= DB::table('ordered_places')
+        ->where('order_id',$orderId->id)->get();
+       dd($placeOrdered);
+return response()->json([
+     'placeOrdered'=>$placeOrdered,
+     'message'=>'updated successfully'
+ ]);
+
+
+}  
        
   
     
@@ -158,16 +177,32 @@ return response()->json([
      * @param  \App\Models\ordered_place  $ordered_place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        $nOfPlacesArray=explode(',', $request['place_id']);
-        
-        $orderedPlaces= OrderedPlaces::where ('place_id','=',$request['place_id'])->where('order_id','=',$request['order_id'])->get();
-        for($i=0; $i < count( $nOfPlacesArray) ; $i++) {
-       foreach($orderedPlaces as $orderedPlace){
-        $orderedPlace->delete();
-       }
-        }
+    public function destroy(Order $orderID,Request $request)
+    { 
+        // dd($request['place_id']->delete());
+        if(is_array($request['place_id'])){
 
-    }
+            foreach($request['place_id'] as $placeID){
+    
+                $query='delete from ordered_places where order_id ='.$orderID->id.' and place_id ='.$placeID;
+                DB::delete($query);
+                // $placeSelected= DB::table('ordered_places')
+                // ->where('order_id',$orderID->id)
+                // ->where('place_id',$placeID)
+                // ->delete();
+            //    dd($placeSelected);
+               }
+        }else{
+            $query='delete from ordered_places where order_id ='.$orderID->id.' and place_id ='.$request['place_id'];
+            DB::delete($query);
+            // $placeSelected= DB::table('ordered_places')
+            // ->where('order_id',$orderID->id)
+            // ->where('place_id',$request['place_id'])
+            // ->delete();
+        }
+           return response()->json([
+            'mesaage '=>'Booking deleted successfully'
+        ]);
+   
+   }
 }
