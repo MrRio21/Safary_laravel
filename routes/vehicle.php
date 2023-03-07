@@ -10,7 +10,7 @@ use App\Http\Controllers\vehicleController\VehicleController;
 ///////////Request ride   /////////////
 // Route::get('/hotels',[HotelController::class,'index']);
 
-Route::get('/requestRide',[RequestRideController::class,'index']);
+Route::get('/allRequestRide',[RequestRideController::class,'index']);
 
 Route::post('/storeRide',[RequestRideController::class,'store']);
 

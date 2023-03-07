@@ -23,29 +23,36 @@ class RequestRideController extends Controller
 
     public function store(Request $request)
     {
-            $request->validate([
-            'position'=>'required',
-            'destination '=>'required',
-            'date'=>'required',
-            'type'=>'required',
+        //     $request->validate([
+        //     'position'=>'required',
+        //     'destination '=>'required',
+        //     'date'=>'required',
+        //     'type'=>'required',
 
-        ]);
+        // ]);
         $requestRide = RequestRide::create([
-            'user_id'=>auth()->user()['id'],
+            'user_id'=>$request['user_id'],
             'position'=>$request['position'],
             'destination'=>$request['destination'],
             'date'=>$request['date'],
             'type'=>$request['type'],
             'status'=>'Pendding'
         ]);
-        return $requestRide;
+        return response()->json([
+            'data'=>$requestRide,
+            201
+        ]);
     }
 
 
-    public function show(RequestRide $requestRideId)
+    public function show(RequestRide $id)
     {
-        $target = RequestRide::find($requestRideId);
-        return $target;
+        // dd($id);
+        $target = RequestRide::find($id);
+        return response()->json([
+            'data'=>$target,
+            201
+        ]);
     }
 
     public function edit(RequestRide $requestRide)
