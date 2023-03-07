@@ -140,14 +140,18 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
 
     public function show(Order $orderID){
         // dd($orderID->User);   
-        dd($orderID->Room);   
-        // dd($orderID->Tourguide);   
+        // dd($orderID->Room);   
+        // foreach($orderID->Room as $room_id){
+        //     dd($room_id->id);
+        // }
+        dd($orderID->Tourguide);   
         // dd($orderID->Places);   
         
         return response()->json([
             'message'=> 'order deleted',
             'userInfo'=>$orderID->User,
-            // 'orderedRooms'=>
+            'orderedRooms'=>count($orderID->Room),
+            
          ]);
     }
 

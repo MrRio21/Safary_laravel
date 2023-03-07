@@ -34,15 +34,16 @@ class Order extends Model
     // }
     public function Room()
     {
-        return $this->hasMany(Room::class , 'booked_rooms','order_id', 'room_id');
+        return $this->hasMany(BookedRoom::class );
     }
+
     public function Tourguide()
     {
-        return $this->belongsTo(Tourguide::class , 'book_tour_guide', 'order_id', 'tourguide_id');
+        return $this->belongsTo(BookTourGuide::class );
     }
     public function Places()
     {
-        return $this->hasMany(Place::class , 'ordered_places', 'order_id', 'places_id');
+        return $this->hasMany(OrderedPlaces::class );
     }
 
 
