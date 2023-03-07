@@ -39,9 +39,9 @@ class HotelController extends Controller
         // $userID= Auth->user()
         // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
         $request->validate([
-            'name'=>['required','unique'],
-            // 'address '=>['required','min:10'],
-            'type'=>'required',
+            // 'name'=>['required','unique'],
+            // // 'address '=>['required','min:10'],
+            // 'type'=>'required',
         ]);
         $hotelName = $request['name'];
         $address =$request['address'];
@@ -58,16 +58,16 @@ class HotelController extends Controller
 
         ]);
 // dd(is_file($request['image'])); //true
-// foreach( $request['image'] as $img){
+foreach( $request['image'] as $img){
 
-//     // dd($img);
-//        HotelImg::create([
-//             'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
-//             'hotel_id'=>$hotel->id
-//             // 
-//           ]);
+    // dd($img);
+       HotelImg::create([
+            'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+            'hotel_id'=>$hotel->id
+            // 
+          ]);
 
-// }
+}
         // // the hashing to ignore the conflicts in names
         // foreach as we have multiple images
         // dd($request['image']);

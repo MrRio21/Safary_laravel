@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['id', 'order_id','room_id']);
+            // $table->primary([ 'order_id','room_id']);
 /////////////////
 //there is another booking table for regular bookig
 
