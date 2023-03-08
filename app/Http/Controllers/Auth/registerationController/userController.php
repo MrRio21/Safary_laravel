@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\registerationController;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\HotelOwner;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
@@ -66,21 +67,30 @@ public function login(){
 }
 public function validateLogin(Request $request) {
     // dd($request);
-    $request->validate([
+    validator($request->all(),[
         'email' => 'required|email',
         'password' => 'required',
 
-    ]);
+    ])->validate();
+    if(auth()->attempt(request()->only(['email','password']))){
 
-    $user = User::where('email', $request->email)->first();
-
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-            // 'password' => ['The provided credentials are incorrect.'],
-        ]);
+        return redirect('/MUT');
     }
-    return view("MUT.room");
+    return redirect()->back()->withErrors(['email'=>'credentials invalid!']);
+    // $request->validate([
+    //     'email' => 'required|email',
+    //     'password' => 'required',
+
+    // ]);
+
+    // $user = User::where('email', $request->email)->first();
+
+    // if (! $user || ! Hash::check($request->password, $user->password)) {
+    //     throw ValidationException::withMessages([
+    //         'email' => ['The provided credentials are incorrect.'],
+    //         // 'password' => ['The provided credentials are incorrect.'],
+    //     ]);
+    // }
 }
     /**
      * Display the specified resource.
@@ -88,7 +98,7 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function show(hotelOwner $hotelOwner)
+    public function show(HotelOwner $hotelOwner)
     {
         //
     }

@@ -45,6 +45,10 @@ class Order extends Model
     {
         return $this->hasMany(OrderedPlaces::class );
     }
+    public function OrderedRoomType()
+    {
+        return $this->hasMany(OrderedRoom::class );
+    }
 
 
 }

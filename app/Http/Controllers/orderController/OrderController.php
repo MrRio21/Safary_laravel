@@ -23,7 +23,9 @@ class OrderController extends Controller
 {
     public function create()
     {
-return view('MUT.customize');
+        // dd(Auth::user());
+
+return view('MUT.MUT');
     }
     public function index()
     {
@@ -68,7 +70,8 @@ return view('MUT.customize');
 
     public function store(Request $request)
     {
-dd(Auth::user());
+// dd(Auth::user());
+// dd(Auth::user()->id);
 
 $check_in_datetime = new DateTime($request['check_in']);
 // dd($first_datetime);
@@ -80,7 +83,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             'budget'=>['required','digits_between:3,6'],
         ]);
         $order = Order::create([
-            'user_id'=>$request['user_id'],
+            'user_id'=>Auth::user()->id,
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
@@ -100,8 +103,9 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
 
-       return view('MUT.bookHotel',['order'=>$order,
-    'orderedRoom'=>$orderedRoom, 'message'=>'the order is saved']);
+       return redirect()->route('availableRooms.index',['orderID'=>$order->id]);
+    //    return view('MUT.hotel',['data'=>['order'=>$order,
+    //    'orderedRoom'=>$orderedRoom,] ,'message'=>'the order is saved']);
 
 
     }
@@ -135,7 +139,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
 
         }
 
-        return view('home',[
+        return view('MUT.index',[
            'message'=> 'order deleted'
         ]);
 
