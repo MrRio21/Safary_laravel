@@ -52,6 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web/signning.php'))
                 ->group(base_path('routes/web/trip.php'))
                 ->group(base_path('routes/web/place.php'))
+                ->group(base_path('routes/web/MUT.php'))
                 ->group(base_path('routes/web/dashboard.php'));
         });
     }

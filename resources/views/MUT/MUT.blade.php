@@ -9,7 +9,7 @@
 </head>
 <body>
 <section>
-    <div class="comtainer m-5">
+    <div class="container m-5">
 
       <div class="booking-form">
         <form action="{{route('MUT.store')}}" method="POST">
