@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/*======= Scroll bar =======*/
+::-webkit-scrollbar {
+  width: 11px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 100%;
+  background: #282f4e;
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #454f6b;
+}
+
+.savary-colorlink {
+  color: #0189a1;
+}
+.savary-colorlink :hover {
+  color: #1ec3e0;
+}
+
+.savary_title {
+  color: #485664;
+  margin-bottom: 25px;
+  font-size: 48px;
+  font-weight: 300;
+  font-family: "Abril Fatface", "cursive";
+}
+.savary_hero {
+  margin-bottom: 20px;
+  font-size: 3em;
+  color: #252531;
+  font-weight: 600;
+}
+.savary_subtitle {
+  margin-bottom: 10px;
+  font-size: 4.4rem;
+  font-weight: 400;
+  font-family: "Comforter Brush", "cursive";
+  color: #485664;
+}
+.savary_parg {
+  color: #8f9fae;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.safary {
+  cursor: pointer;
+  padding-bottom: 0.5rem !important;
+  padding-top: 0.5rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+.safary_btn_autline {
+  color: #0189a1;
+  background-color: #ffffff;
+  border: 2px solid #0189a1;
+}
+.safary_btn_autline :hover {
+  background-color: #0189a1;
+  color: #ffffff;
+}
+.safary_btn {
+  background-color: #0189a1;
+  color: #ffffff;
+}
+.safary_btn :hover {
+  color: #0189a1;
+  background-color: #ffffff;
+  border: 2px solid #0189a1;
+}/*# sourceMappingURL=variables.css.map */
+
+
