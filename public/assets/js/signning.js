@@ -12,8 +12,8 @@ signUpBtn.addEventListener("click", () => {
 	container.classList.add("right-panel-active");
 });
 
-firstForm.addEventListener("submit", (e) => e.preventDefault());
-secondForm.addEventListener("submit", (e) => e.preventDefault());
+// firstForm.addEventListener("submit", (e) => e.preventDefault());
+// secondForm.addEventListener("submit", (e) => e.preventDefault());
 
 
 
@@ -38,7 +38,7 @@ overlay[0].style.backgroundImage = urlArray[i];
 (function(){
     show=setInterval(
           next()
-          
+
 ,3000);
 });
 

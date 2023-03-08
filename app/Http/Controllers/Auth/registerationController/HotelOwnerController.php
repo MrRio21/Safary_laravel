@@ -8,7 +8,7 @@ use App\Models\hotelOwner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHotelOwnerRequest;
-
+use Illuminate\Support\Facades\Hash;
 class HotelOwnerController extends Controller
 {
     /**
@@ -32,7 +32,7 @@ class HotelOwnerController extends Controller
      */
     public function create()
     {
-        return view("hotelOwnerRegistrations.create");
+        return view("MUT.hotelOwnerSignUp");
     }
 
     /**
@@ -43,26 +43,27 @@ class HotelOwnerController extends Controller
      */
     public function store(StoreHotelOwnerRequest $request,StoreUserRequest $requestUser)
     {
-    
-       
-   
+
+
+
        $user=  User::create([
-        'name' => $requestUser['name'] ,
-        'email' => $requestUser['email'],
-        'password' => $requestUser['password'], 
-        'gender' => $requestUser['gender'] ,
-         'image'=>   $requestUser['image']
-    ]);
+        'name' => $request['name'] ,
+        'email' => $request['email'],
+        'password' =>  Hash::make($request['password']),
+        'gender' => $request['gender'],
+        'phone' => $request['phone'],
+         'image'=>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+        ]);
 
 
-
-        hotelOwner::create([
+       $hotelOwner= hotelOwner::create([
         'commercial_reg_No' => $request['commercial_reg_No'],
         'user_id' => $user['id']
-        
+
        ]);
+
        return redirect(route('hotelOwnerRegistrations.index'));
-       
+
     }
 
     /**
