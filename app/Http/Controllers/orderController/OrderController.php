@@ -17,10 +17,14 @@ use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
-
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function create()
+    {
+return view('MUT.customize');
+    }
     public function index()
     {
         $orders=Order::all();
@@ -64,7 +68,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-
+dd(Auth::user());
 
 $check_in_datetime = new DateTime($request['check_in']);
 // dd($first_datetime);
@@ -140,17 +144,17 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
     }
 
     public function show(Order $orderID){
-        // dd($orderID->User);   
-        // dd($orderID->Room);   
+        // dd($orderID->User);
+        // dd($orderID->Room);
         // foreach($orderID->Room as $room_id){
         //     dd($room_id->id);
         // }
-        // dd($orderID->Tourguide->Tourguide->User);   
-        // dd($orderID->Places); 
+        // dd($orderID->Tourguide->Tourguide->User);
+        // dd($orderID->Places);
         $allrooms= Room::all();
         $allHotels=Hotel::all();
-        $allPlaces=Place::all(); 
-        
+        $allPlaces=Place::all();
+
         return response()->json([
             'message'=> 'order deleted',
             'userInfo'=>$orderID->User,
@@ -159,7 +163,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             'allHotels'=>$allHotels,
             'allPlaces'=>$allPlaces,
             'tourguide'=> $orderID->Tourguide->Tourguide->User,
-            
+
          ]);
     }
 
