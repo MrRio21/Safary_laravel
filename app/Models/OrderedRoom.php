@@ -19,4 +19,8 @@ class OrderedRoom extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function Room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

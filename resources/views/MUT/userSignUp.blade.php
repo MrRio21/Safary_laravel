@@ -58,7 +58,7 @@
                 @csrf
 				<h2 class="form__title">Sign In</h2>
 				<input type="email" placeholder="Email" name="email" class="input" required />
-				<input type="password" placeholder="Password" name="pass" class="input" required />
+				<input type="password" placeholder="Password" name="password" class="input" required />
 				<a href="#" class="link">Forgot your password?</a>
 				<button type="submit" class="btn">Sign In</button>
 				<a href="#" class="link" id="signUp">Don't have an account Yet?</a>

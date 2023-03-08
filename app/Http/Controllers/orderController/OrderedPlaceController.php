@@ -22,6 +22,25 @@ class OrderedPlaceController extends Controller
      */
     public function index(Order $orderID,Request $request)
     {
+
+        $totalPaidInBookingPerDay= DB::table("rooms")
+               ->select(DB::raw('sum(rooms.price)as sum'))
+               ->join('booked_rooms','rooms.id', '=', 'booked_rooms.room_id')
+                // $order = Order::find($request['order_id']);
+        
+                       ->where('booked_rooms.order_id', '=', $orderID->id)
+              ->get();
+        // dd($totalPaidInBookingPerDay[0]);
+                    $totalPaidInRooms= $totalPaidInBookingPerDay[0]->sum*$orderID->n_of_days ;
+                    // dd($totalPaidInRooms);
+                    // dd($orderID->n_of_days);
+                    $restOfMaxBudget = ($orderID->budget * 0.6) - $totalPaidInRooms;
+                    // dd($restOfMaxBudget);
+                    if($restOfMaxBudget >0){
+                        return redirect()->route('availablePlaces.index',['orderID'=>$orderID->id]);
+                    }else{
+                        return view('') 
+                    }
       
     //    check if the user book room or not 
     // to know the rest of the budget 
