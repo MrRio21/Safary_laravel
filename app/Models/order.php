@@ -32,9 +32,13 @@ class Order extends Model
     // {
     //     return $this->belongsTo(placesOfRecommTrips::class);
     // }
-    public function Room()
+    public function BookedRoom()
     {
         return $this->hasMany(BookedRoom::class );
+    }
+    public function Hotel()
+    {
+        return $this->hasMany(Hotel::class );
     }
 
     public function Tourguide()

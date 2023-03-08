@@ -11,7 +11,7 @@ class BookedRoom extends Model
 
     protected $fillable = [
         'order_id',
-        'room_id',
+        'hotel_id',
 
 
     ];
@@ -21,9 +21,13 @@ class BookedRoom extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function Room()
+    // public function Room()
+    // {
+    //     return $this->hasOne(Room::class);
+    // }
+    public function Hotel()
     {
-        return $this->hasOne(Room::class);
+        return $this->hasMany(Hotel::class );
     }
 
 

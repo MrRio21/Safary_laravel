@@ -38,5 +38,11 @@ class Hotel extends Model
         return $this->belongsTo(Hotel::class);
 
     }
+        public function Order()
+    {
+        return $this->hasMany(Order::class);
+        
+    }
+
 
 }
