@@ -1,0 +1,216 @@
+
+
+// /*============ Google fonts ============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+//  color
+$safary-color: #029d9d;
+$safary-primary-light: #1ec3e0;
+$safary-primary-dark: #0189a1;
+
+$safary-secondary: #485664;
+$safary-secondary-light: #8f9fae;
+$safary-secondary-dark: #3a4753;
+
+$safary-primary-dark3: #252531;
+
+
+
+
+$safary-blue: #0d6efd;
+$safary-indigo: #6610f2;
+$safary-purple: #6f42c1;
+$safary-pink: #f3268c;
+$safary-red: #df1529;
+$safary-orange: #fd7e14;
+$safary-yellow: #ffc107;
+$safary-yellow: #ffee07;
+$safary-green: #059652;
+$safary-teal: #20c997;
+$safary-cyan: #0dcaf0;
+$safary-white: #ffffff;
+$safary-gray: #6c757d;
+$safary-black1: #000000;
+$safary-black2: #222;
+
+    $primary: #DFB163;
+  
+
+$safary-green-light: #CCF6C8;
+$safary-orange-light: #E8DFCA;
+$safary-indigo-light: #7895B2;
+$safary-cyan-light: #B9F3FC;
+$safary-teal-light: #CDF0EA;
+$safary-yellow-light: #FDFFBC;
+
+//font
+$safary_font1 : 'Abril Fatface',
+'cursive';
+$safary_font2 :'Comforter Brush',
+'cursive';
+$safary_font3 : 'Poppins',
+sans-serif;
+
+
+$navitem-hover: #1fbbd6;
+
+$scroll-bar-color: #fff;
+$scroll-thumb-color: #282f4e;
+$scroll-thumb-hover-color: #454f6b;
+
+$text-shadow: 0 5px 25px rgba(0, 0, 0, 0.155);
+$box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+
+
+
+
+
+
+//   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*======= Scroll bar =======*/
+::-webkit-scrollbar{
+  width: 11px;
+  background: $scroll-bar-color;
+}
+
+::-webkit-scrollbar-thumb{
+  width: 100%;
+  background:$scroll-thumb-color;
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: $scroll-thumb-hover-color;
+}
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.savary-colorlink{
+  color: $safary-primary-dark;
+   :hover{
+    color:$safary-primary-light;
+   }
+
+
+}
+
+.savary{
+ 
+  &_title{
+    color: $safary-secondary;
+    margin-bottom: 25px;
+    font-size: 48px;
+    font-weight: 300;
+    font-family:$safary_font1;
+  }
+  &_hero{
+    margin-bottom: 20px;
+    font-size: 3em;
+    color:$safary-primary-dark3;
+    font-weight: 600;
+  }
+
+
+  &_subtitle{
+    margin-bottom: 10px;
+    font-size:4.4rem;
+    font-weight: 400;
+    font-family:$safary_font2 ;
+    color:$safary-secondary ;
+  }
+
+  &_parg{
+    color: $safary-secondary-light;
+    font-weight: 500;
+    margin-bottom: 30px;
+
+
+  }
+
+}
+
+
+
+.safary{
+  cursor: pointer;
+  padding-bottom: 0.5rem !important;
+   padding-top: 0.5rem !important;
+   padding-left: 1.5rem !important;
+   padding-right: 1.5rem !important;
+
+
+  &_btn_autline{
+color:$safary-primary-dark;
+background-color:$safary-white;
+border: 2px solid $safary-primary-dark;
+    :hover{
+      background-color:$safary-primary-dark;
+   color:$safary-white;
+    }
+
+
+  }
+  &_btn{
+   background-color:$safary-primary-dark;
+   color:$safary-white;
+   :hover{
+    color:$safary-primary-dark;
+background-color:$safary-white;
+border: 2px solid $safary-primary-dark;
+   }
+}
+}
+
+
+
+
+
+.safary-link{
+   color:$safary-primary-dark;
+  font-size:20px;
+  font-weight: 600 !important;
+      :hover{
+        color:$safary-primary-light;
+
+      }
+}
+
+
+
+
+
+
+
+//     /**
+//      * typography
+//      */
+
+//     --ff-abril-fatface: 'Abril Fatface', cursive;
+//     --ff-comforter-brush: 'Comforter Brush', cursive;
+//     --ff-heebo: 'Heebo', sans-serif;
+
+//     --fs-1: 3.4rem;
+//     --fs-2: 3.2rem;
+//     --fs-3: 3rem;
+//     --fs-4: 2.4rem;
+//     --fs-5: 1.8rem;
+//     --fs-6: 1.7rem;
+//     --fs-7: 1.4rem;
+//     --fs-8: 1.2rem;
+
+//     --fw-400: 400;
+//     --fw-500: 500;
+//     --fw-600: 600;
+//     --fw-700: 700;
+
+//     /**
+//      * border radius
+//      */
+
+//     --radius-6: 6px;
+
+//     /**
+//      * spacing
+//      */
+
+//     --section-padding: 40px;

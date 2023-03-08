@@ -20,7 +20,7 @@ class userController extends Controller
     {
         $users=User::all();
 
-
+        
         //show table from DB
     }
 
