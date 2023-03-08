@@ -17,7 +17,7 @@ class userController extends Controller
     {
         $users=User::all();
 
-        return view("userRegistrations.index",["users"=> $users]);
+        return view("signUp.userSignUp");
         //show table from DB
     }
 
@@ -39,19 +39,19 @@ class userController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
- 
+dd($request);
        User::create([
         'name' => $request['name'] ,
         'email' => $request['email'],
-        'password' => $request['password'], 
+        'password' => $request['password'],
         'gender' => $request['gender'],
         'user_type' =>$request['name'],
-        
+
        ]);
        return redirect(route('userRegistrations.index'));
-       
+
     }
- 
+
     /**
      * Display the specified resource.
      *
