@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamps();
             $table->float('price');
             // as the check in and out for a specific room
-            // $table->string('available_rooms');
+            $table->string('n_of_available_rooms');
             $table->string('cover_img');
-            $table->date('check_in')->nullable()->default(null);
-            $table->date('check_out')->nullable()->default(null);
+            // $table->date('check_in')->nullable()->default(null);
+            // $table->date('check_out')->nullable()->default(null);
             $table->enum('type',['single','double','triple']);
             $table->unsignedBigInteger('hotel_id');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');

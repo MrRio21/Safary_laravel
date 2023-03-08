@@ -12,12 +12,11 @@ class Room extends Model
        
     protected $fillable = [
         'price',
-        // 'available_rooms',
+        'n_of_available_rooms',
         'type',
         'hotel_id',
         'cover_img',
-        'check_in',
-        'check_out',
+
 
     ];
 
@@ -32,16 +31,16 @@ class Room extends Model
         return $this->hasMany(RoomImg::class);
         
     }
-    public function Order()
-    {
-        return $this->hasMany(Order::class);
+    // // public function Order()
+    // // {
+    // //     return $this->hasMany(Order::class);
         
-    }
-    public function BookedRoom()
-    {
-        return $this->hasMany(BookedRoom::class);
+    // // }
+    // public function BookedRoom()
+    // {
+    //     return $this->hasMany(BookedRoom::class);
         
-    }
+    // }
 
 
 

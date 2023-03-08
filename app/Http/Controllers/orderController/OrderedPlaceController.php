@@ -39,7 +39,7 @@ class OrderedPlaceController extends Controller
                     if($restOfMaxBudget >0){
                         return redirect()->route('availablePlaces.index',['orderID'=>$orderID->id]);
                     }else{
-                        return view('') 
+                        return redirect()->route('MUT.create',['orderID'=>$orderID->id]);
                     }
       
     //    check if the user book room or not 
