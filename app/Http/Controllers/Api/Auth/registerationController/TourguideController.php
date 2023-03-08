@@ -47,6 +47,7 @@ class TourguideController extends Controller
             'price_per_day' => (int)$request['price_per_day'] ,
             'syndicate_No' => $request['syndicate_No'] ,
             'desc' => $request['desc']  ,
+            // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
             'user_id' => $user['id']
            ]);
            if(is_array($request['language'])){

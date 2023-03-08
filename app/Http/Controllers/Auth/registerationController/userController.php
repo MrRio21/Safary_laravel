@@ -5,7 +5,8 @@ use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Dotenv\Exception\ValidationException;
+use Illuminate\Validation\ValidationException;
+
 use Illuminate\Support\Facades\Hash;
 class userController extends Controller
 {
@@ -64,6 +65,7 @@ public function login(){
 
 }
 public function validateLogin(Request $request) {
+    // dd($request);
     $request->validate([
         'email' => 'required|email',
         'password' => 'required',
@@ -75,8 +77,10 @@ public function validateLogin(Request $request) {
     if (! $user || ! Hash::check($request->password, $user->password)) {
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
+            // 'password' => ['The provided credentials are incorrect.'],
         ]);
     }
+    return view("MUT.room");
 }
     /**
      * Display the specified resource.

@@ -12,20 +12,33 @@
 </head>
 
 <body>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 	<div class="container right-panel-active">
 		<!-- Sign Up -->
 		<div class="container__form container--signup">
-			<form action="#" class="form" id="form1" method="post" enctype="multipart/form-data">
-				<h2 class="form__title">Sign Up</h2>
-				<div class="profImg"> <label for="files">
+			<form action="{{route('driver.store')}}" class="form" id="form1" method="post" enctype="multipart/form-data">
+				@csrf
+                <h2 class="form__title">Sign Up</h2>
+				{{-- <div class="profImg"> <label for="files">
 						<img src="./assets/imgs/profImg.png" alt="">
 
 
 						<input type="file" id="files" style="visibility:hidden;"
 							accept="image/png, image/gif, image/jpeg" />
 					</label>
-				</div>
-				<input type="text" placeholder="Your Name" name="userName" class="input" required />
+				</div> --}}
+                <input type="file" accept="image/png, image/gif, image/jpeg" name ="image" >
+
+				<input type="text" placeholder="Your Name" name="name" class="input" required />
 				<div>
 					<span>Male<input class="specifyColor" type="radio" name="gender" id="male" value="male"
 							checked></span>
@@ -33,8 +46,10 @@
 							value="female"></span>
 				</div>
 				<input type="email" placeholder="Email" name="email" class="input" required />
-				<input type="password" placeholder="Password" name="pass" class="input" required />
-				<input type="password" placeholder="License" name="txt" class="input" required />
+				<input type="phone" placeholder="Phone" name="phone" class="input" required />
+
+                <input type="password" placeholder="Password" name="password" class="input" required />
+				<input type="text" placeholder="License" name="license" class="input" required />
 				<button type="submit" class="btn">Sign Up</button>
 				<a href="#" class="link" id="signIn">Already a user </a>
 			</form>
@@ -42,12 +57,13 @@
 
 		<!-- Sign In -->
 		<div class="container__form container--signin">
-			<form action="#" class="form" id="form2">
+			<form action="{{route('login.store')}}" class="form" id="form2" method="POST">
+                @csrf
 				<h2 class="form__title">Sign In</h2>
 				<input type="email" placeholder="Email" name="email" class="input" required />
 				<input type="password" placeholder="Password" name="pass" class="input" required />
 				<a href="#" class="link">Forgot your password?</a>
-				<button class="btn">Sign In</button>
+				<button type="submit" class="btn">Sign In</button>
 				<a href="#" class="link" id="signUp">Don't have an account Yet?</a>
 			</form>
 		</div>

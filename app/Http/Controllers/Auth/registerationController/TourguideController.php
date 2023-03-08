@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Auth\registerationController;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Tourguide;
-use App\Models\User;
-namespace App\Http\Controllers;
-
 use App\Models\TourGuide;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTourgideRequest;
+use App\Models\Role;
+use App\Models\TourguideLanguage;
 use App\Models\User;
 
-class TourgideController extends Controller
+class TourguideController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +34,7 @@ class TourgideController extends Controller
      */
     public function create()
     {
-        return view("tourgideRegistrations.create");
+        return view("MUT.tourguideSignUp");
     }
 
     /**
@@ -47,22 +45,47 @@ class TourgideController extends Controller
      */
     public function store(StoreTourgideRequest $request,StoreUserRequest $requestUser)
     {
-
+// dd($request);
 
        $user=  User::create([
         'name' => $requestUser['name'] ,
         'email' => $requestUser['email'],
         'password' => $requestUser['password'],
         'gender' => $requestUser['gender'] ,
+        'phone' => $requestUser['phone'],
+        'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
         ]);
 
-        TourGuide::create([
-        'price_per_day' => $request['price_per_day'] ,
+       $tourguide= TourGuide::create([
+        'price_per_day' =>(int)$request['price_per_day'] ,
         'syndicate_No' => $request['syndicate_No'] ,
         'desc' => $request['desc']  ,
+          // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
         'user_id' => $user['id']
        ]);
-       return redirect(route('TourgideRegistrations.index'));
+// print_r($request['language']);
+       if(is_array($request['language'])){
+        foreach($request['language'] as $lang){
+
+          TourguideLanguage::create([
+               'language' => $lang ,
+               'tourguide_id' => $tourguide['id']
+              ]);
+        }
+       }else{
+       TourguideLanguage::create([
+            'language' => $request['language'] ,
+            'tourguide_id' => $tourguide['id']
+           ]);
+       }
+       $newUser = User::find($user->id);
+
+       if(!empty ($tourguide)){
+           $role_id =Role::where('name','tourguide')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+       return redirect(route('tourguide.create'));
 
     }
 

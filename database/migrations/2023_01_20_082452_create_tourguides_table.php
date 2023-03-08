@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->float('price_per_day');
             $table->string('syndicate_No');
-            $table->string('desc');
+            $table->string('bio')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });

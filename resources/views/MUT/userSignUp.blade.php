@@ -12,6 +12,16 @@
 </head>
 
 <body>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 	<div class="container right-panel-active">
 		<!-- Sign Up -->
 		<div class="container__form container--signup">
@@ -44,10 +54,11 @@
 
 		<!-- Sign In -->
 		<div class="container__form container--signin">
-			<form action="#" class="form" id="form2">
+			<form action="{{route('login.store')}}" class="form" id="form2" method="POST">
+                @csrf
 				<h2 class="form__title">Sign In</h2>
 				<input type="email" placeholder="Email" name="email" class="input" required />
-				<input type="password" placeholder="Password" name="password" class="input" required />
+				<input type="password" placeholder="Password" name="pass" class="input" required />
 				<a href="#" class="link">Forgot your password?</a>
 				<button type="submit" class="btn">Sign In</button>
 				<a href="#" class="link" id="signUp">Don't have an account Yet?</a>

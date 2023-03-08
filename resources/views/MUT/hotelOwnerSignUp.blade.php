@@ -33,10 +33,10 @@
 
 
 						<input type="file" id="files" style="visibility:hidden;"
-							accept="image/png, image/gif, image/jpeg" />
+							accept="image/png, image/gif, image/jpeg" name ="image"/>
 					</label>
 				</div> --}}
-                <input type="file" accept="image/png, image/gif, image/jpeg" >
+                <input type="file" accept="image/png, image/gif, image/jpeg" name ="image" >
 				<input type="text" placeholder="Your Name" name="name" class="input" required />
 				<div>
 					<span>Male<input class="specifyColor" type="radio" name="gender" id="male" value="male"
@@ -56,13 +56,14 @@
 		</div>
 
 		<!-- Sign In -->
-		<div class="container__form container--signin">
-			<form action="#" class="form" id="form2">
+        <div class="container__form container--signin">
+			<form action="{{route('login.store')}}" class="form" id="form2" method="POST">
+                @csrf
 				<h2 class="form__title">Sign In</h2>
 				<input type="email" placeholder="Email" name="email" class="input" required />
 				<input type="password" placeholder="Password" name="pass" class="input" required />
 				<a href="#" class="link">Forgot your password?</a>
-				<button class="btn">Sign In</button>
+				<button type="submit" class="btn">Sign In</button>
 				<a href="#" class="link" id="signUp">Don't have an account Yet?</a>
 			</form>
 		</div>

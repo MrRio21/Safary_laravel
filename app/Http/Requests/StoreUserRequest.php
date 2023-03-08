@@ -36,8 +36,7 @@ class StoreUserRequest extends FormRequest
             'name' => ['required', 'string', 'min:4'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
-            'image' => ['required','mimes:jpeg,png,jpg,gif'],
-            // 'email' => 'email:rfc,dns'   for paypal
+            'image' => 'mimes:jpeg,png,jpg,gif',
             'gender'  => "required",
         ];
 
