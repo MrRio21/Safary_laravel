@@ -8,6 +8,7 @@ use App\Models\hotelOwner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHotelOwnerRequest;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 class HotelOwnerController extends Controller
 {
@@ -47,12 +48,12 @@ class HotelOwnerController extends Controller
 
 
        $user=  User::create([
-        'name' => $request['name'] ,
-        'email' => $request['email'],
-        'password' =>  Hash::make($request['password']),
-        'gender' => $request['gender'],
-        'phone' => $request['phone'],
-         'image'=>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+        'name' => $requestUser['name'] ,
+        'email' => $requestUser['email'],
+        'password' =>  Hash::make($requestUser['password']),
+        'gender' => $requestUser['gender'],
+        'phone' => $requestUser['phone'],
+         'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
         ]);
 
 
@@ -61,8 +62,15 @@ class HotelOwnerController extends Controller
         'user_id' => $user['id']
 
        ]);
+       $newUser = User::find($user->id);
 
-       return redirect(route('hotelOwnerRegistrations.index'));
+       if(!empty ($hotelOwner)){
+           $role_id =Role::where('name','hotelOwner')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+// print_r($hotelOwner->User);
+return view("MUT.hotelOwnerSignUp",['userData'=>$hotelOwner->User]);
 
     }
 

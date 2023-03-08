@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
 {
@@ -35,7 +37,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        return view("driverRegistrations.create");
+        return view("MUT.driverSignUp");
     }
 
     /**
@@ -44,22 +46,30 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request, StoreUserRequest $requestUser)
+    public function store(StoreDriverRequest $request, StoreUserRequest $requestUser)
     {
 
-      $user=  User::create([
+        $user=  User::create([
             'name' => $requestUser['name'] ,
             'email' => $requestUser['email'],
-            'password' => $requestUser['password'],
-            'gender' => $requestUser['gender'] ,
+            'password' =>  Hash::make($requestUser['password']),
+            'gender' => $requestUser['gender'],
+            'phone' => $requestUser['phone'],
+             'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
             ]);
-
 
        driver::create([
         'license' => $request['license'],
         'user_id' => $user['id']
        ]);
-       return redirect(route('driverRegistrations.index'));
+
+       $newUser = User::find($user->id);
+       if(!empty ($driver)){
+           $role_id =Role::where('name','driver')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+       return view("MUT.driverSignUp");
 
     }
 

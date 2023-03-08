@@ -12,7 +12,7 @@
 
 	/* SIZES */
 	--max-width: 1150px;
-	--max-height: 560px;
+	--max-height: 680px;
 	font-size: 16px;
 	font-family: "Segoe UI","Open Sans", "Helvetica Neue", sans-serif;
 	box-sizing: border-box;
@@ -68,7 +68,7 @@ body {
 
 .profImg{
 	position: relative;
-	
+
 }
 
 /* to change the color of the radio btns */
@@ -186,7 +186,7 @@ body {
 
 .overlay {
 	/* background-color: var(--lightblue); */
-	
+
 	/* background-attachment: fixed; */
 	/* background-position: center; */
 	/* background-repeat: repeat; */
@@ -219,7 +219,7 @@ body {
 	transform: translateX(-20%);
 	/* background: url('../imgs/sign-up-page-1886582-1598253.png'); */
 	/* height: 100%; */
-	
+
 }
 
 
@@ -241,9 +241,9 @@ body {
 	position: relative;
 	 width:100%;
 	 height: 100%;
-	
+
 	}
-	
+
 /* form btns */
 .form > .btn {
 	margin-top: 0.3rem;
@@ -263,7 +263,7 @@ body {
 /* on focus  */
 input:focus-within {
 	border: 3px solid var(--blue);
-	
+
   }
 
 /* --------------------------------------------------------------------- */
@@ -280,7 +280,7 @@ input:focus-within {
 	}
 	.input{
 		padding: 0.5rem 1rem;
-		
+
 	}
 	.input:placeholder-shown {
 		font-size: 0.5rem;
@@ -305,7 +305,7 @@ input:focus-within {
 	  }
 	  .input{
 		padding: 0.7rem 1rem;
-		
+
 	}
 	.btn{
 		font-size: 0.8rem;
@@ -322,7 +322,7 @@ input:focus-within {
 	  }
 	  .input{
 		padding: 0.7rem 1rem;
-		
+
 	}
 	.btn{
 		font-size: 0.8rem;
@@ -330,13 +330,13 @@ input:focus-within {
 	}
 }
 @media only screen and (min-width: 437px) and (max-width: 480px){
-	
+
 	.input:placeholder-shown {
 		font-size: 0.9rem;
 	  }
 	  .input{
 		padding: 0.6rem 0.7rem;
-		
+
 	}
 	span{
 		font-size: 0.7rem;
