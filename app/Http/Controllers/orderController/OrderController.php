@@ -99,12 +99,10 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
              ]);
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
-        return response()->json([
-           'order info'=>$order,
-           'ordered room '=>$orderedRoom,
-           'message'=>'the order is saved'
 
-        ]);
+       return view('MUT.bookHotel',['order'=>$order,
+    'orderedRoom'=>$orderedRoom, 'message'=>'the order is saved']);
+
 
     }
 
@@ -137,7 +135,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
 
         }
 
-        return response()->json([
+        return view('home',[
            'message'=> 'order deleted'
         ]);
 
@@ -155,7 +153,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         $allHotels=Hotel::all();
         $allPlaces=Place::all();
 
-        return response()->json([
+        return view('myOrder',[
             'message'=> 'order deleted',
             'userInfo'=>$orderID->User,
             'orderedRooms'=>count($orderID->Room),
