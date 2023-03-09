@@ -11,7 +11,7 @@ class DriverRequestController extends Controller
 
     public function index()
     {
-        
+        $data = RequestRide::all();
     }
 
 
