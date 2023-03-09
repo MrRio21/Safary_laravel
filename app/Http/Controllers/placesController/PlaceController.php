@@ -69,13 +69,12 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function show(Place $placeID)
+    public function show(Place $place)
     {
         // $place = Place::find($placeID);
         // dd($placeID);
-        return  response()->json([
-            'place info '=> $placeID,
-            'message' =>'place info is saved successfully '
+        return  view('placeDetails',[
+            'place'=> $place,
         ]);  
     }
 
