@@ -17,9 +17,11 @@ class VehicleController extends Controller
     {
         $allVehicle =vehicle::all();
         // dd($allVehicle);
-        return response()->json([
-            'vehicle'=>$allVehicle
-        ]);
+
+        // return response()->json([
+        //     'vehicle'=>$allVehicle
+        // ]);
+        return view("dashboardAdmin.allVehcile.Vechile",["allVehicle"=> $allVehicle]);
     }
 
     public function create( )
@@ -65,8 +67,8 @@ class VehicleController extends Controller
     ]);
 }
 
-    public function destroy(vehicle $requestRideId)
+    public function destroy($Id)
     {
-        vehicle::find($requestRideId)->delete();
+        vehicle::find($Id)->delete();
     }
 }

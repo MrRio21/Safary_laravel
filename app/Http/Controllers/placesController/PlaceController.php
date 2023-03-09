@@ -6,6 +6,9 @@ use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Models\PlaceImg;
 
+
+
+
 class PlaceController extends Controller
 {
     /**
@@ -16,12 +19,20 @@ class PlaceController extends Controller
     public function index()
     {
         $places= Place::all();
-        return response()->json([
-            'allPlaces '=> $places,
+        // return response()->json([
+        //     'allPlaces '=> $places,
            
-        ]);  
+        // ]);  
+
+        
+        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places]);
     }
 
+    public function create()
+    {
+        return view("dashboardAdmin.allPlacses.placesForm");
+
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -106,13 +117,21 @@ class PlaceController extends Controller
      * @param  \App\Models\place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Place $placeID)
+    public function destroy($ID)
     {
-        $placeID->delete();
-        // Place::find($placeID)->delete();
+        // $placeID->delete();
+        // Place::find($ID)->delete();
+
+
+        $DelplaceID= Place::find($ID)->delete();
+        if($DelplaceID){
+            HotelImg::where ('place_id',$ID)->delete();
+        }
+
        
-        return response()->json([
-            'message' =>'place deleted'
-        ]);
+        // return response()->json([
+        //     'message' =>'place deleted'
+        // ]);
+        return back();
     }
 }
