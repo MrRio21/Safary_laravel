@@ -55,14 +55,14 @@ class userController extends Controller
         'password' =>  Hash::make($request['password']),
         'gender' => $request['gender'],
         'phone' => $request['phone'],
-        'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
         // 'role_id' => $request['role_id']
     ]);
             print_r($user);
 $createToken = $user->createToken($request->email)->plainTextToken;
 
     //    return redirect(route('userRegistrations.index'));
-       return redirect(route('hotelOwner.create'));
+       return redirect(route('login.create'));
 
     }
 public function login(){

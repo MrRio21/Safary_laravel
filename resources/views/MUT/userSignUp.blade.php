@@ -47,12 +47,13 @@
 				<input type="email" placeholder="Email" name="email" class="input" required />
 				<input type="phone" placeholder="Phone" name="phone" class="input" required />
 				<input type="password" placeholder="Password" name="password" class="input" required />
-				<button type="submit" class="btn">Sign Up</button>
+				<button type="submit" class="btn" onclick="signUp()">Sign Up</button>
 				<a href="#" class="link" id="signIn">Already a user </a>
 			</form>
 		</div>
 
 		<!-- Sign In -->
+
 		<div class="container__form container--signin">
 			<form action="{{route('login.store')}}" class="form" id="form2" method="POST">
                 @csrf
