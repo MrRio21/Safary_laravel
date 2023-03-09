@@ -66,7 +66,7 @@ return view('MUT.MUT');
         // ]);
         $room=Room::find($request->room_id);
         // dd($room);
-        $roomBudget = $room->price * $order->n_of_days;
+        $roomBudget = isset($room->price)?$room->price:0 * $order->n_of_days;
         // dd($roomBudget);
         $restOfBudget= $order->budget-$roomBudget;
         // dd($restOfBudget);
@@ -88,7 +88,10 @@ return view('MUT.MUT');
             ]);
            
         }
+    }
+        public function bookPlaces(Order $order , Request $request ){
+            dd($request);
+        }
 
     }
 
-}

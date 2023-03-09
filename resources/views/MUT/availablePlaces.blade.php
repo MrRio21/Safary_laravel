@@ -8,21 +8,17 @@
 </head>
 <body>
 {{-- {{dd($availablePlaces)}} --}}
-    @foreach ($availablePlaces as $place )
-    {{-- {{dd($hotel['id'])}} --}}
-    {{-- {{dd($room)}} --}}
-          <div class="card" style="width: 18rem;">
-           placeImg :<img src="..." {{$place->cover_img}} class="card-img-top" alt="...">
-           <div class="card-body">
-             <h5 class="card-title">ticket  {{$place->price}} </h5>
-             <p class="card-text">Nice Place</p>
-             <form action="{{route('BookInHotel',['order'=>$order->id,'hotel'=>$hotel->id])}}" method="POST">
-               @csrf
-               <input type="text" name="room_id" value="{{ $room->id }}" hidden>
-             <button type="submit" >Book Now</button>
-           </form>
-           </div>
-         </div>
-         @endforeach
+{{-- {{dd($order)}} --}}
+<div>
+    <form action="{{route('bookPlaces',['order'=>$order])}}" method="POST">
+    @csrf
+        @foreach ($availablePlaces as $place )
+        
+
+        <input type="checkbox" name="place_id"  value="{{$place->id}}">{{$place->name}}
+        @endforeach
+        <button type="submit">Next</button>
+    </form>
+    </div>
 </body>
 </html>
