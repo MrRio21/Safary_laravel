@@ -113,7 +113,7 @@ ul li ul li a {
         <li>  <a class="dropdown-item" href="{{route('UserDash.create')}}"> 😎User</a></li>
         <li>   <a class="dropdown-item" href="{{route('driverDash.create')}}">🚐User AS Driver</a></li>
         <li>   <a class="dropdown-item"  href="{{route('tourgideDash.create')}}">💁‍♂️User AS Tourguide</a></li>
-        <li>  <a class="dropdown-item" href="{{route('hotelOwnerDash.create')}}">💖User AS HotelOwner</a></li>
+        {{-- <li>  <a class="dropdown-item" href="{{route('hotelOwnerDash.create')}}">💖User AS HotelOwner</a></li> --}}
       </ul>
       </li>
     </ul>
@@ -154,7 +154,7 @@ ul li ul li a {
                                        
                          
                 <td>
-                <form method="POST" action="{{route('UserrDash.destroy'),['ID'=>$admin->id]}}" accept-charset="UTF-8" style="display:inline">
+                <form method="POST" action="{{route('UserrDash.destroy') , [ 'ID'=>$admin->id ]}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
@@ -248,12 +248,12 @@ ul li ul li a {
                                       <td>$Tourgide->users->id</td> 
                                       <td><img src="$Tourgide->users->image'] }}" ></td>
                                       <td>{{$Tourgide->User->name}}</td>
-                                      <td>$Tourgide->users->email</td>
-                                      <td>$Tourgide->users->gender</td>
+                                      <td>{{$Tourgide->User->email}}</td>
+                                      <td>{{$Tourgide->User->gender}}</td>
                                       <td>Tourgide</td>
-                                      <td>$Tourgide->price_per_day</td>
-                                     <td>$Tourgide->syndicate_No</td>
-                                     <td>$Tourgide->desc</td>
+                                      <td>{{$Tourgide->price_per_day}}</td>
+                                     <td>{{$Tourgide->syndicate_No}}</td>
+                                     <td>{{$Tourgide->desc}}</td>
 
                           @endif                       
                           <td>     
@@ -296,14 +296,14 @@ ul li ul li a {
               @foreach ($users as $HotelOwner)
                 <tr>
      
-                          @if($HotelOwner->users->user_type == 0 )  
-                                      <td>$HotelOwner->users->name</td> 
+                          @if($HotelOwner->User->role_id == 0 )  
+                                      <td>{{$HotelOwner->User->name}}</td> 
                                       <td><img src="$HotelOwner->users->image" ></td>
-                                      <td>$HotelOwner->users->name</td>
-                                      <td>$HotelOwner->users->email</td>
-                                      <td>$HotelOwner->users->gender</td>
+                                      <td>{{$HotelOwner->User->name}}</td>
+                                      <td>{{$HotelOwner->User->email}}</td>
+                                      <td>{{$HotelOwner->User->gender}}</td>
                                       <td>HotelOwner</td>
-                                      <td>$HotelOwner->commercial_reg_No</td>
+                                      <td>{{$HotelOwner->commercial_reg_No}}</td>
 
                           @endif                       
                          
@@ -347,14 +347,14 @@ ul li ul li a {
               @foreach ($users as $Driver)
                 <tr>
      
-                          @if($Driver->users->user_type == 0 )  
-                                      <td>$Driver->users->id</td> 
+                          @if($Driver->users->role_id == 2 )  
+                                      <td>{{$Driver->User->id}}</td> 
                                       <td><img src="$Driver->users->image" ></td>
                                       <td>Driver</td>
-                                      <td>$Driver->users->name</td>
-                                      <td>$Driver->users->email</td>
-                                      <td>$Driver->users->gender</td>
-                                      <td>$Driver['license']</td>
+                                      <td>{{$Driver->User->name}}</td>
+                                      <td>{{$Driver->User->email}}</td>
+                                      <td>{{$Driver->User->gender}}</td>
+                                      <td>{{$Driver['license']}}</td>
                                       
                           @endif                       
                          

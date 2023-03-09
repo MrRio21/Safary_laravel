@@ -28,8 +28,8 @@
              <td>{{$Vehicle->driver_id->users['name']}}</td>
              <td><img src="{{ asset('img/'.$Vehicle->image) }}" alt="" width="75px">
            </td>
-             <td>$Vehicle->type</td>
-             <td>$Vehicle->license</td>
+             <td>{{$Vehicle->type}}</td>
+             <td>{{$Vehicle->license}}</td>
           
           
              <td>

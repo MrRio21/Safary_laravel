@@ -39,7 +39,7 @@ class HotelOwnerController extends Controller
 
     public function createHotelOwnwer()
     {
-        return view("dashboardAdmin.user.hotelform");
+        return view("dashboardAdmin.HotelOwner.hotelform");
     }
 
     /**
