@@ -8,6 +8,6 @@
 </head>
 <body>
     {{dd($place)}}
-    <h1>{{$}}</h1>
+    <h1>{{$place}}</h1>
 </body>
 </html>
