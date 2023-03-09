@@ -9,6 +9,7 @@
 </head>
 <body>
 <section>
+    {{-- {{dd(Auth::user()->role_id)}} --}}
     <div class="container m-5">
 
       <div class="booking-form">

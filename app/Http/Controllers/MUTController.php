@@ -30,8 +30,10 @@ return view('MUT.MUT');
         // $doubleRoomsArray=[];
         // $TripleRoomArray=[];
         // $RoomsOrdered=[{
-        //     's'=>n;
-        // }]
+        //     's'->$n,
+        //     'd'->
+
+        // }];
         $budgetperday = $order->budget / $order->n_of_days;
 
         $availableRooms = Room::where('price','<',$budgetperday)
