@@ -13,6 +13,10 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
     public function index()
     {
         $allTrips =Trip::all();
@@ -20,11 +24,14 @@ class TripController extends Controller
 
         // dd($allHotels);
 
-        return response()->json([
-            'allTrips'=>$allTrips,
-            'allTrips'=>$tripImg
-        ]);
+        // return response()->json([
+        //     'allTrips'=>$allTrips,
+        //     'allTrips'=>$tripImg
+        // ]);
+
+        return view("dashboardAdmin.allTrips.tripTable",["allTrips"=> $allTrips],["tripImg"=>$tripImg]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +40,7 @@ class TripController extends Controller
      */
     public function create()
     {
-          //
+        return view("dashboardAdmin.allTrips.TripForm ");
 
     }
 
@@ -68,10 +75,11 @@ foreach( $request['image'] as $img){
 
 }
        
-          return response()->json([
-            //   'Trips'=>$trip ,
-              'message'=> 'trip info is saved successfully '
-        ]);
+        //   return response()->json([
+        //     //   'Trips'=>$trip ,
+        //       'message'=> 'trip info is saved successfully '
+        // ]);
+        return redirect(route('TripDash.create'));
     }
 
     /**
@@ -123,11 +131,20 @@ foreach( $request['image'] as $img){
      * @param  \App\Models\trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(trip $trip)
+    public function destroy($id)
     {
-         Trip::find($trip)->delete();
-         return response()->json([
-            'trip deleted'
-        ]);
+
+   
+
+
+        $delTrip= Trip::find($id)->delete();
+        if($delTrip){
+            TripImg :: where ('trip_id',$id)->delete();
+        }
+        //  return response()->json([
+        //     'trip deleted'
+        // ]);
+        return back();
+
     }
 }

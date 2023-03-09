@@ -22,12 +22,14 @@ class HotelController extends Controller
         $hotelImgs= HotelImg::all();
         // dd($allHotels);
 
-        return response()->json([
-            'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
-        ]);
+        // return response()->json([
+        //     'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
+        // ]);
+        return view("dashboardAdmin.allHotels.HotelTable",["allHotels"=> $allHotels],["hotelImgs"=>$hotelImgs]);
     }
 
-
+    
+     
     /**
      * Store a newly created resource in storage.
      *
@@ -237,16 +239,17 @@ foreach( $request['image'] as $img){
      * @param  \App\Models\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotel $hotelID)
+    public function destroy($ID)
     {
-       $deleteHotel= Hotel::find($hotelID)->delete();
+       $deleteHotel= Hotel::find($ID)->delete();
         if($deleteHotel){
-            HotelImg::where ('hotel_id',$hotelID)->delete();
+            HotelImg::where ('hotel_id',$ID)->delete();
         }
 
-        return response()->json([
-            'hotel deleted'
-        ]);
+        // return response()->json([
+        //     'hotel deleted'
+        // ]);
+        return back();
 
     }
 }

@@ -115,9 +115,12 @@ class DriverController extends Controller
      * @param  \App\Models\driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function destroy($DriverId)
+    public function destroy($ID)
     {
-        User::find($DriverId)->delete();
+        $DelID= driver::find($ID)->delete();
+        if($DelID){
+            User::where ('user_id',$ID)->delete();
+        }
 
         return back();
     }

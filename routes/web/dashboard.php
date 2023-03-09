@@ -8,6 +8,10 @@ use App\Http\Controllers\Auth\registerationController\userController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\BookedRoomController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
+use App\Http\Controllers\placesController\PlaceController;
+use App\Http\Controllers\vehicleController\vehicleController;
+use App\Http\Controllers\hotelsController\hotelsController;
+use App\Http\Controllers\tripController\tripController;
 
 
 
@@ -35,3 +39,54 @@ Route::delete('/deletetourguideReg/{id}',[TourguideController::class,'destroy'])
 
 ///   login
 Route::post('/login',[userController :: class ,"login"]);
+
+
+
+
+
+// //=============================================================================================================================================
+
+
+Route::get('/PlaceDashForm',[PlaceController :: class ,"createTourguide"])->name("PlaceeDash.create");
+Route::get('/PlaceDash',[PlaceController :: class ,"index"])->name("PlaceeDash.index");
+Route::post('/PlaceDash',[PlaceController :: class ,"store"])->name("PlaceeDash.store");
+Route::delete('/deletePlaceDash/{id}',[PlaceController::class,'destroy'])->name("PlaceeDash.destroy");
+
+
+// //=============================================================================================================================================
+
+
+Route::get('/VehicleDashForm',[VehicleController :: class ,"createTourguide"])->name("VehiclleDash.create");
+Route::get('/VehicleDash',[VehicleController :: class ,"index"])->name("VehiclleDash.index");
+Route::post('/VehicleDash',[VehicleController :: class ,"store"])->name("VehiclleDash.store");
+Route::delete('/deleteVehicleDash/{id}',[VehicleController::class,'destroy'])->name("VehiclleDash.destroy");
+
+// //=============================================================================================================================================
+
+
+
+Route::get('/HotelDashForm',[HotelController :: class ,"create"])->name("HotellDash.create");
+Route::get('/HotelDash',[HotelController :: class ,"index"])->name("HotellDash.index");
+Route::post('/HotelDash',[HotelController :: class ,"store"])->name("HotellDash.store");
+Route::delete('/deleteHotelDash/{id}',[HotelController::class,'destroy'])->name("HotellDash.destroy");
+
+
+// //=============================================================================================================================================
+
+
+
+Route::get('/TripDashForm',[TripController :: class ,"create"])->name("TrippDash.create");
+Route::get('/TripDash',[TripController :: class ,"index"])->name("TrippDash.index");
+Route::post('/TripDash',[TripController :: class ,"store"])->name("TrippDash.store");
+Route::delete('/deleteTripDash/{id}',[TripController::class,'destroy'])->name("TrippDash.destroy");
+
+// //=============================================================================================================================================
+
+
+
+Route::get('/OrderDetails',[OrderDetailsController :: class ,"createTourguide"])->name("OrderrDetails.create");
+Route::get('/OrderDetails',[OrderDetailsController :: class ,"index"])->name("OrderrDetails.index");
+Route::post('/OrderDetails',[OrderDetailsController :: class ,"store"])->name("OrderrDetails.store");
+Route::delete('/deleteOrderDetails/{id}',[OrderDetailsController::class,'destroy'])->name("OrderrDetails.destroy");
+
+// //=============================================================================================================================================

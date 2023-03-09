@@ -39,7 +39,7 @@ class HotelOwnerController extends Controller
 
     public function createHotelOwnwer()
     {
-        return view("dashboardAdmin.HotelOwner.hotelform");
+        return view("dashboardAdmin.user.hotelform");
     }
 
     /**
@@ -120,9 +120,12 @@ return view("MUT.hotelOwnerSignUp",['userData'=>$hotelOwner->User]);
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy($hotelOwnerId)
+    public function destroy($ID)
     {
-        User::find($hotelOwnerId)->delete();
+        $DelID= hotelOwner::find($ID)->delete();
+        if($DelID){
+            User::where ('user_id',$ID)->delete();
+        }
 
         return back();
     }

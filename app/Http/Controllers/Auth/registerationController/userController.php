@@ -24,6 +24,7 @@ class userController extends Controller
         //show table from DB
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

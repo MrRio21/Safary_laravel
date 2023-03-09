@@ -134,9 +134,12 @@ class TourguideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function destroy($tourgideId)
+    public function destroy($ID)
     {
-        User::find($tourgideId)->delete();
+        $DelID= TourGuide::find($ID)->delete();
+        if($DelID){
+            User::where ('user_id',$ID)->delete();
+        }
 
         return back();
     }
