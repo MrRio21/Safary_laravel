@@ -55,6 +55,11 @@ class RequestRideController extends Controller
         ]);
     }
 
+    public function create(RequestRide $requestRide)
+    {
+        return view("driver.requestRide");
+    }
+
     public function edit(RequestRide $requestRide)
     {
         //
