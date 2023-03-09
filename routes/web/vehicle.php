@@ -12,7 +12,7 @@ use App\Http\Controllers\vehicleController\VehicleController;
 
 Route::get('/allRequestRide',[RequestRideController::class,'index']);
 
-Route::post('/storeRide',[RequestRideController::class,'store']);
+Route::post('/storeRide',[RequestRideController::class,'store'])->name('storeRide');
 
 Route::get('/createRide',[RequestRideController::class,'create']);
 
@@ -26,7 +26,9 @@ Route::delete('/deleteRide/{id}',[RequestRideController::class,'destroy']);
 /////////// vehicle   /////////////
 
 Route::get('/vehicle',[VehicleController::class,'index']);
-Route::post('/storeVehicle',[VehicleController::class,'store']);
+Route::post('/storeVehicle',[VehicleController::class,'store'])->name('storeVehicle');
+Route::get('/storeVehicle',[VehicleController::class,'create']);
+
 Route::PUT('/updateVehicle/{id}',[VehicleController::class,'update']);
 
 

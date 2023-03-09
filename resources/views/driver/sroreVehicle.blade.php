@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>storeVehicle</title>
     <link rel="stylesheet" href="./assets/css/all.min.css" />
     <link rel="stylesheet" href="./assets/css/framework.css" />
     <link rel="stylesheet" href="./assets/css/master.css" />
@@ -63,12 +63,12 @@
         <div class="wrapper d-grid gap-20">
 
           <div class="quick-draft p-20 bg-white rad-10">
-            <h2 class="mt-0 mb-10">Request Ride </h2>
-            <form method="post" action="{{route('storeRide')}}">
+            <h2 class="mt-0 mb-10">Add vehicle </h2>
+            <form method="post" action="{{route('storeVehicle')}}">
                 @csrf
-            <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="position" type="text" placeholder="position" />
-            <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="destination" type="text" placeholder="Address" />
-            <input class="form-select bg-eee mb-20" type="datetime-local" name="date">
+            <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="license" type="numper" placeholder="license" />
+            {{-- <input class="form-select bg-eee mb-20" type="datetime-local" name="date"> --}}
+            <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
             <select class="form-select bg-eee mb-20 " name="type" aria-label="Default select example">
                 <option selected>Type </option>
                 <option value="cars">Cars</option>
