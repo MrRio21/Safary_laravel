@@ -16,4 +16,4 @@ Route::post('/BookInHotel/{order}/{hotel}',[MUTController::class,'BookInHotel'])
 
 Route::post('/availablePlaces/{order}',[MUTController::class,'getAvailableRooms'])->name("getAvailablePlaces");
 
-Route::get('/showPlace/{place}',[PlaceController::class,''])
+Route::get('/showPlace/{place}',[PlaceController::class,'show'])->name('showPlace');
