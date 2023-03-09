@@ -12,6 +12,7 @@ class BookedRoom extends Model
     protected $fillable = [
         'order_id',
         'hotel_id',
+        'room_id',
 
 
     ];

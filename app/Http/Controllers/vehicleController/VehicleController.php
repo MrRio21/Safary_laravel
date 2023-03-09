@@ -22,19 +22,24 @@ class VehicleController extends Controller
         ]);
     }
 
+    public function create( )
+    {
+        return view("driver.sroreVehicle");
+    }
+
     public function store(Request $request)
     {
         // $request->validate([
         //     'type'=>'required',
         //     'license '=>'required',
-        //     'image'=>'required','mimes:jpeg,png,jpg,gif',
+        //     'image'=>'requi[red','mimes:jpeg,png,jpg,gif',
 
         // ]);
         $request = vehicle::create([
-            'driver_id'=> $request['driver_id'],
+            'driver_id'=>auth()->user()->Driver['id'],
             'type'=>$request['type'],
             'license'=>$request['license'],
-            'image'=>$request['image'],
+            'image'=>$request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName())
             // 'status'=>'Pendding'
         ]);
         // dd($request);

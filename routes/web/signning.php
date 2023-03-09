@@ -14,6 +14,8 @@ use App\Http\Controllers\orderController\OrderedPlaceController;
 Route::get('/register',[userController :: class ,"create"])->name("user.store");
 // Route::get('/userRegistrations/create',[userController :: class ,"create"])->name("userRegistrations");
 // Route::post('/userRegistrations',[userController :: class ,"store"])->name("user.store");
+
+
 Route::post('/userRegister',[userController :: class ,"store"])->name("user.store");
 Route::get('/hotelOwnerRegister',[HotelOwnerController :: class ,"create"])->name("hotelOwner.create");
 Route::post('/hotelOwnerRegister',[HotelOwnerController :: class ,"store"])->name("hotelOwner.store");
@@ -27,8 +29,8 @@ Route::get('/login',[userController :: class ,"login"])->name("login.create");
 Route::post('/userlogin',[userController :: class ,"validateLogin"])->name("login.store");
 
 
-Route::get('/MUT',[OrderController::class,'create'])->name("MUT.create");
-Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");
+
+// Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");
 Route::get('/availableRooms/{orderID}',[BookedRoomController::class,'index'])->name("availableRooms.index");
 Route::post('/bookingRoom',[BookedRoomController::class,'store'])->name("bookingRoom");
 Route::get('/availablePlaces/{orderID}',[OrderedPlaceController::class,'index'])->name("availablePlaces.index");
