@@ -27,17 +27,17 @@
               @foreach ($places as $place)
                 <tr>
        
-                  <td>$place->name</td>
-                  <td><img src="{{ asset('img/'.$place->cover_img') }}" alt="" width="75px">
+                  <td>{{$place->name}}</td>
+                  <td><img src="{{ asset('img/'.'$place->cover_img') }}" alt="" width="75px">
                   </td>
-                  <td>$place->description</td>
-                  <td>$place->price</td>
-                  <td>$place->type</td>
+                  <td>{{$place->description}}</td>
+                  <td>{{$place->price}}</td>
+                  <td>{{$place->type}}</td>
                   <td>
                    
                   <form method="POST" action="{{route('PlaceeDash.destroy'),['ID'=>$place->id]}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$place['id']);
+                    @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete

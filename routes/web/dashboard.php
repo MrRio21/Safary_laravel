@@ -15,6 +15,7 @@ use App\Http\Controllers\tripController\tripController;
 
 
 
+
 // //Driverregistrations---
 Route::get('/driverDashForm',[DriverController :: class ,"createDriver"])->name("driverDash.create");
 Route::get('/driverRegistrations',[DriverController :: class ,"index"])->name("driverDash.index");

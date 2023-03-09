@@ -31,12 +31,12 @@
            <tr>
          
              <td>{{$order->user_id->users['name']}}</td>
-             <td>$order->budget</td>
-             <td>$order->check_in</td>
-             <td>$order->check_out</td>
-             <td>$order->n_of_adults</td>
-             <td>$order->n_of_childeren</td>
-             <td>$order->n_of_days</td>
+             <td>{{$order->budget}}</td>
+             <td>{{$order->check_in}}</td>
+             <td>{{$order->check_out}}</td>
+             <td>{{$order->n_of_adults}}</td>
+             <td>{{$order->n_of_childeren}}</td>
+             <td>{{$order->n_of_days}}</td>
           
              <td>
               

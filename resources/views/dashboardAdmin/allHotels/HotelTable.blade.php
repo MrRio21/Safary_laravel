@@ -28,13 +28,13 @@
               <tbody>
               @foreach ($allHotels as $Hotel)
            <tr>
-           <td>$Hotel->id</td>
-             <td>{{$Hotel->hotel->hotel_owner_id->users['name']}}</td>
+           <td>{{$Hotel->id}}</td>
+             <td>{{$Hotel->Hotel->hotel_owner_id->users['name']}}</td>
              <td><img src="{{ asset('img/'.$Hotel->cover_img) }}" alt="" width="75px">
            </td>
-           <td>$Hotel->name</td>
-             <td>$Hotel->address</td>
-             <td>$Hotel->type</td>
+           <td>{{$Hotel->name}}</td>
+             <td>{{$Hotel->address}}</td>
+             <td>{{$Hotel->type}}</td>
           
           
              <td>

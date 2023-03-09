@@ -29,15 +29,16 @@
               <tbody>
               @foreach ($allTrips as $Trips)
            <tr>
-           <td>$Trips->id</td>
+           <td>{{$Trips->id}}</td>
              <td>{{$Trips->trip_id->users['name']}}</td>
              <td><img src="{{ asset('img/'.$Trips->cover_img) }}" alt="" width="75px">
            </td>
-           <td>$Trips->description</td>
-             <td>$Trips->price</td>
-             <td>$Trips->n_of_people</td>
-             <td>$Trips->n_of_places</td>
-             <td>$Trips->n_of_days</td>
+           <td>{{$Trips->description}}</td>
+             <td>{{$Trips->price}}</td>
+             <td>{{$Trips->n_of_people}}</td>
+             <td>{{$Trips->n_of_places}}</td>
+             <td>{{
+             }}</td>
          
           
           
