@@ -20,15 +20,18 @@ class RequestRideController extends Controller
         return isset($allVehicle)?$allVehicle:"";
     }
 
+    public function create(RequestRide $requestRide)
+    {
+        return view("driver.requestRide");
+    }
 
     public function store(Request $request)
     {
-        //     $request->validate([
+        // $request->validate([
         //     'position'=>'required',
         //     'destination '=>'required',
         //     'date'=>'required',
         //     'type'=>'required',
-
         // ]);
         $requestRide = RequestRide::create([
             'user_id'=>$request['user_id'],
@@ -55,10 +58,7 @@ class RequestRideController extends Controller
         ]);
     }
 
-    public function create(RequestRide $requestRide)
-    {
-        return view("driver.requestRide");
-    }
+
 
     public function edit(RequestRide $requestRide)
     {

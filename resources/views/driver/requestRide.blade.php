@@ -64,19 +64,17 @@
           <!-- Start Welcome Widget -->
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
-            <h2 class="mt-0 mb-10">Add Room </h2>
+            <h2 class="mt-0 mb-10">Request Ride </h2>
             <form>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Hotel Name" />
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Address" />
-              <select class="form-select bg-eee mb-20 " aria-label="Default select example">
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="position" type="text" placeholder="position" />
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="destination" type="text" placeholder="Address" />
+              {{-- <select class="form-select bg-eee mb-20 " name="type" aria-label="Default select example">
                 <option selected>Type </option>
-                <option value="1">Single</option>
-                <option value="2">Double</option>
-                <option value="3">Triple</option>
-              </select>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea>
+                <option value="cars">Cars</option>
+                <option value="boat">Boats</option>
+                <option value="cabriolet">cabriolet</option>
+              </select> --}}
+
               <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
             </form>
           </div>
