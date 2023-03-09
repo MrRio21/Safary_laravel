@@ -65,10 +65,10 @@ $createToken = $user->createToken($request->email)->plainTextToken;
        return redirect(route('login.create'));
 
     }
-public function login(){
+public function login($uri){
     // echo "hey ";/
     // dd($request);
-    return view("MUT.userSignUp");
+    return view("MUT.$uri.SignUp");
 
 }
 public function validateLogin(Request $request) {

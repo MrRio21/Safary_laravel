@@ -4,6 +4,7 @@ namespace App\Http\Controllers\tripController;
 use App\Http\Controllers\Controller;
 use App\Models\chosenTrip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChosenTripController extends Controller
 {
@@ -35,7 +36,11 @@ class ChosenTripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ChosenTrip::create([
+
+            'user_id'=>Auth::user()->id,
+            'trip_id'=>$request->trip_id
+        ]);
     }
 
     /**

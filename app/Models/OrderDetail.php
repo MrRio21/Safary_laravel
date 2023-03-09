@@ -11,7 +11,7 @@ class OrderDetail extends Model
     protected $fillable = [
         'order_id',
         'room_status',
-        'tourGuide_status',
+        'tourguide_status',
         'price_paid',
     ];
 
