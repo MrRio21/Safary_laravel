@@ -103,7 +103,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
 
-       return redirect()->route('availableRooms.index',['orderID'=>$order->id]);
+       return redirect()->route('getAvailableHotels',['order'=>$order->id]);
     //    return view('MUT.hotel',['data'=>['order'=>$order,
     //    'orderedRoom'=>$orderedRoom,] ,'message'=>'the order is saved']);
 

@@ -29,8 +29,8 @@ Route::get('/login',[userController :: class ,"login"])->name("login.create");
 Route::post('/userlogin',[userController :: class ,"validateLogin"])->name("login.store");
 
 
-Route::get('/MUT',[OrderController::class,'create'])->name("MUT.create");
-Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");
+
+// Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");
 Route::get('/availableRooms/{orderID}',[BookedRoomController::class,'index'])->name("availableRooms.index");
 Route::post('/bookingRoom',[BookedRoomController::class,'store'])->name("bookingRoom");
 Route::get('/availablePlaces/{orderID}',[OrderedPlaceController::class,'index'])->name("availablePlaces.index");
