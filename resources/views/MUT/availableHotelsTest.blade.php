@@ -9,14 +9,15 @@
 <body>
     {{-- {{dd($availableRooms)}} --}}
 
-    <?php $prev_hotel =null; 
-
+    <?php $prev_hotel =null;
+$allHotels=[];
      ?>
        @foreach ($availableRooms as $room )
-     
-       @if($prev_hotel != $room->Hotel )
+
+       @if($prev_hotel != $room->Hotel  )
        <?php $prev_hotel = $room->Hotel; ?>
-      
+    @if(!in_array($prev_hotel,$allHotels))
+     <?php  array_push($allHotels,$prev_hotel) ;?>
        <div class="card" style="width: 18rem;">
         HotelImg :<img src="..." {{$room->Hotel->cover_img}} class="card-img-top" alt="...">
         <div class="card-body">
@@ -26,14 +27,14 @@
             @csrf
             <input type="text" name="availableRooms" value="{{ $availableRooms }}" hidden>
           <button type="submit" >view Rooms &Book here</button>
-        
+
         </form>
-          <a href="#" class="btn btn-primary">Rooms</a>
         </div>
       </div>
       @endif
       @endif
-      @endforeach
+      {{-- @endforeach --}}
+
       @endforeach
        {{-- @foreach ($availableRooms as $room )
        @foreach($order->OrderedRoomType as $orRoom)
@@ -49,7 +50,7 @@
             @csrf
             <input type="text" name="availableRooms" value="{{ $availableRooms }}" hidden>
           <button type="submit" >view Rooms &Book here</button>
-        
+
         </form>
           <a href="#" class="btn btn-primary">Rooms</a>
         </div>

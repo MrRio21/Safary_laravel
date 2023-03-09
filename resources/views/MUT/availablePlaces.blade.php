@@ -9,14 +9,19 @@
 <body>
 {{-- {{dd($availablePlaces)}} --}}
 {{-- {{dd($order)}} --}}
+{{-- {{dd($restOfBudget)}} --}}
 <div>
     <form action="{{route('bookPlaces',['order'=>$order])}}" method="POST">
     @csrf
         @foreach ($availablePlaces as $place )
-        
 
-        <input type="checkbox" name="place_id"  value="{{$place->id}}">{{$place->name}}
+
+        <a href="{{route('showPlace',['place'=>$place->id])}}">{{$place->name}}</a>
+        <input type="checkbox" name="place_id[]"  value="{{$place->id}}">
+
         @endforeach
+        <input type="text" name="restOfBudget" value="{{ $restOfBudget }}" hidden>
+
         <button type="submit">Next</button>
     </form>
     </div>

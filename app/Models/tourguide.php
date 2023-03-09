@@ -14,7 +14,7 @@ class Tourguide extends Model
     protected $fillable = [
         'price_per_day',
         'syndicate_No',
-        'desc',
+        'bio',
        'user_id'
     ];
 
@@ -27,4 +27,10 @@ class Tourguide extends Model
         return $this->hasMany(Order::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
 
     }
+    public function languages()
+    {
+        return $this->hasMany(TourguideLanguage::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
+
+    }
+
 }
