@@ -22,7 +22,7 @@ class HotelOwnerController extends Controller
         $users=User::all(); //fk
         $hotelOwner=hotelOwner::all();
 
-        return view("hotelOwnerRegistrations.index",["users"=> $users],["hotelOwner"=> $hotelOwner]);
+        return view("dashboardAdmin.user.users",["users"=> $users],["hotelOwner"=> $hotelOwner]);
         //show table from DB
     }
 
@@ -34,6 +34,12 @@ class HotelOwnerController extends Controller
     public function create()
     {
         return view("MUT.hotelOwnerSignUp");
+    }
+
+
+    public function createHotelOwnwer()
+    {
+        return view("dashboardAdmin.HotelOwner.hotelform");
     }
 
     /**
@@ -114,8 +120,10 @@ return view("MUT.hotelOwnerSignUp",['userData'=>$hotelOwner->User]);
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotelOwner $hotelOwner)
+    public function destroy($hotelOwnerId)
     {
-        //
+        User::find($hotelOwnerId)->delete();
+
+        return back();
     }
 }

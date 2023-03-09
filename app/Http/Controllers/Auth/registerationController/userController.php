@@ -20,7 +20,7 @@ class userController extends Controller
     {
         $users=User::all();
 
-        
+        return view("dashboardAdmin.user.users",["users"=> $users]);
         //show table from DB
     }
 
@@ -32,6 +32,11 @@ class userController extends Controller
     public function create()
     {
         return view("MUT.userSignUp");
+    }
+
+    public function createUser()
+    {
+        return view("dashboardAdmin.user.userform");
     }
 
     /**
@@ -132,9 +137,10 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotelOwner $hotelOwner)
+    public function destroy( $userId)
     {
-        //
+        User::find($userId)->delete();
+        return back();
     }
 }
 

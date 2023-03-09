@@ -110,10 +110,10 @@ ul li ul li a {
   
     <li  style="background-color: rgb(196, 228, 255);padding: 1rem; ;"><a  href="#">Add User &dtrif;</a>
       <ul class="dropdown">
-        <li>  <a class="dropdown-item" href="{{route('User.create')}}"> 😎User</a></li>
-        <li>   <a class="dropdown-item"  (click)="addDriver()">🚐User AS Driver</a></li>
-        <li>   <a class="dropdown-item"  (click)="addTourguide()">💁‍♂️User AS Tourguide</a></li>
-        <li>  <a class="dropdown-item" (click)="addHotelOwner()">💖User AS HotelOwner</a></li>
+        <li>  <a class="dropdown-item" href="{{route('UserDash.create')}}"> 😎User</a></li>
+        <li>   <a class="dropdown-item" href="{{route('driverDash.create')}}">🚐User AS Driver</a></li>
+        <li>   <a class="dropdown-item"  href="{{route('tourgideDash.create')}}">💁‍♂️User AS Tourguide</a></li>
+        <li>  <a class="dropdown-item" href="{{route('hotelOwnerDash.create')}}">💖User AS HotelOwner</a></li>
       </ul>
       </li>
     </ul>
@@ -143,7 +143,7 @@ ul li ul li a {
                 <tr>
               
 
-                 @if($admin['user_type']== 0 )  
+                 @if($admin['user_type']== 1 )  
                                       <td>{{ $admin['id'] }}</td> 
                                       <td><img src="{{ $user['image'] }}" ></td>
                                       <td>{{ $admin['name'] }}</td>
@@ -151,15 +151,19 @@ ul li ul li a {
                                       <td>{{ $admin['gender'] }}</td>
                                       <td>Admin</td>
 
-                      @endif                       
+                                       
                          
-                </tr>
-                  <form method="POST" action="{{ route('destroy',$user['id']}}" accept-charset="UTF-8" style="display:inline">
+                <td>
+                <form method="POST" action="{{route('UserrDash.destroy'),$admin['id']}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$user['id'])
-                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                  </form>
+                    method('delete',$admin['id']);
+                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                       Delete
+                      </button>
+                </form>
                   </td>
+                  @endif    
                 </tr>
              
               </tbody>
@@ -194,16 +198,19 @@ ul li ul li a {
                                       <td>{{ $user['name'] }}</td>
                                       <td>{{ $user['email'] }}</td>
                                       <td>{{ $user['gender'] }}</td>
-                                      <td>Admin</td>
+                                      <td>user</td>
 
                       @endif                       
                          
-                </tr>
-                  <form method="POST" action="{{ route('destroy',$user['id']}}" accept-charset="UTF-8" style="display:inline">
+                      <td>
+                      <form method="POST" action="{{route('UserrDash.destroy'),$user['id']}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$user['id'])
-                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                  </form>
+                    method('delete',$user['id']);
+                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                       Delete
+                      </button>
+                </form>
                   </td>
                 </tr>
              
@@ -226,6 +233,9 @@ ul li ul li a {
                   <td>Email</td>
                   <td>Gender</td>
                   <td>Type</td>
+                  <td>price_per_day</td>
+                  <td>syndicate_No</td>
+                  <td>desc</td>
                   <td>Action</td>
                 </tr>
               </thead>
@@ -234,22 +244,27 @@ ul li ul li a {
               @foreach ($users as $Tourgide)
                 <tr>
      
-                          @if($Tourgide['user_type']== 0 )  
-                                      <td>{{ $Tourgide['id'] }}</td> 
-                                      <td><img src="{{ $Tourgide['image'] }}" ></td>
-                                      <td>{{ $Tourgide['name'] }}</td>
-                                      <td>{{ $Tourgide['email'] }}</td>
-                                      <td>{{ $Tourgide['gender'] }}</td>
-                                      <td>Admin</td>
+                          @if($Tourgide->users->user_type == 3 )  
+                                      <td>$Tourgide->users->id</td> 
+                                      <td><img src="$Tourgide->users->image'] }}" ></td>
+                                      <td>$Tourgide->users->name</td>
+                                      <td>$Tourgide->users->email</td>
+                                      <td>$Tourgide->users->gender</td>
+                                      <td>Tourgide</td>
+                                      <td>$Tourgide->price_per_day</td>
+                                     <td>$Tourgide->syndicate_No</td>
+                                     <td>$Tourgide->desc</td>
 
                           @endif                       
-                         
-                </tr>
-                  <form method="POST" action="{{ route('destroy',$Tourgide['id']}}" accept-charset="UTF-8" style="display:inline">
+                          <td>     
+                          <form method="POST" action="{{route('tourgideDash.destroy'),$Tourgide['id']}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$Tourgide['id'])
-                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                  </form>
+                    method('delete',$Tourgide['id']);
+                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                       Delete
+                      </button>
+                </form>
                   </td>
                 </tr>
              
@@ -272,6 +287,7 @@ ul li ul li a {
                   <td>Email</td>
                   <td>Gender</td>
                   <td>Type</td>
+                  <td>commercial_reg_No</td>
                   <td>Action</td>
                 </tr>
               </thead>
@@ -280,22 +296,26 @@ ul li ul li a {
               @foreach ($users as $HotelOwner)
                 <tr>
      
-                          @if($HotelOwner['user_type']== 0 )  
-                                      <td>{{ $HotelOwner['id'] }}</td> 
-                                      <td><img src="{{ $HotelOwner['image'] }}" ></td>
-                                      <td>{{ $HotelOwner['name'] }}</td>
-                                      <td>{{ $HotelOwner['email'] }}</td>
-                                      <td>{{ $HotelOwner['gender'] }}</td>
-                                      <td>Admin</td>
+                          @if($HotelOwner->users->user_type == 0 )  
+                                      <td>$HotelOwner->users->name</td> 
+                                      <td><img src="$HotelOwner->users->image" ></td>
+                                      <td>$HotelOwner->users->name</td>
+                                      <td>$HotelOwner->users->email</td>
+                                      <td>$HotelOwner->users->gender</td>
+                                      <td>HotelOwner</td>
+                                      <td>$HotelOwner->commercial_reg_No</td>
 
                           @endif                       
                          
-                </tr>
-                  <form method="POST" action="{{ route('destroy',$HotelOwner['id']}}" accept-charset="UTF-8" style="display:inline">
+                <td>
+                <form method="POST" action="{{route('hotelOwnerDash.destroy'),$HotelOwner['id']}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$HotelOwner['id'])
-                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                  </form>
+                    method('delete',$HotelOwner['id']);
+                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                       Delete
+                      </button>
+                </form>
                   </td>
                 </tr>
              
@@ -314,10 +334,11 @@ ul li ul li a {
                 <tr>
                   <td>#</td>
                   <td>image</td>
+                  <td>Type</td>
                   <td>Name</td>
                   <td>Email</td>
                   <td>Gender</td>
-                  <td>Type</td>
+                  <td>license</td>
                   <td>Action</td>
                 </tr>
               </thead>
@@ -326,21 +347,25 @@ ul li ul li a {
               @foreach ($users as $Driver)
                 <tr>
      
-                          @if($Driver['user_type']== 0 )  
-                                      <td>{{ $Driver['id'] }}</td> 
-                                      <td><img src="{{ $Driver['image'] }}" ></td>
-                                      <td>{{ $Driver['name'] }}</td>
-                                      <td>{{ $Driver['email'] }}</td>
-                                      <td>{{ $Driver['gender'] }}</td>
-                                      <td>Admin</td>
-
+                          @if($Driver->users->user_type == 0 )  
+                                      <td>$Driver->users->id</td> 
+                                      <td><img src="$Driver->users->image" ></td>
+                                      <td>Driver</td>
+                                      <td>$Driver->users->name</td>
+                                      <td>$Driver->users->email</td>
+                                      <td>$Driver->users->gender</td>
+                                      <td>$Driver['license']</td>
+                                      
                           @endif                       
                          
-                </tr>
-                  <form method="POST" action="{{ route('destroy',$user['id']}}" accept-charset="UTF-8" style="display:inline">
+                          <td>
+                  <form method="POST" action="{{route('driverDash.destroy'),$Driver['id']}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
-                    method('delete',$Driver['id'])
-                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                    method('delete',$Driver['id']);
+                      <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                       Delete
+                      </button>
                   </form>
                   </td>
                 </tr>

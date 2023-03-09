@@ -5,7 +5,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<title>Welcome</title>
+	<link rel="stylesheet" href="./assets/css/tourGuideSignning.css">
+	<script src="./assets/js/jquery-3.6.1.min.js"></script>
 
 </head>
 
@@ -73,36 +75,7 @@
 
 		</div>
 
-		<!-- Sign In -->
-		<div class="container__form container--signin" id="login">
-			<form action="{{route('login.store')}}" class="form" id="form2" method="POST">
-                @csrf
-				<h2 class="form__title">Sign In</h2>
-				<input type="email" placeholder="Email" name="email" class="input" required />
-				<input type="password" placeholder="Password" name="password" class="input" required />
-				<a href="#" class="link">Forgot your password?</a>
-				<button type="submit" class="btn">Sign In</button>
-				<a href="#" class="link" id="signUp">Don't have an account Yet?</a>
-			</form>
-		</div>
 
-		<!-- Overlay -->
-		<div class="container__overlay">
-
-			<div class="overlay">
-				<div class="overlay__panel overlay--left">
-					<img src="./assets/imgs/tourG.jpg" alt="">
-
-
-				</div>
-
-				<div class="overlay__panel overlay--right">
-
-					<img src="./assets/imgs/MrstourG.jpg" alt="">
-
-				</div>
-			</div>
-		</div>
 	</div>
 </body>
 <script src="./assets/js/signning.js"></script>

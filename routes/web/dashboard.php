@@ -11,17 +11,27 @@ use App\Http\Controllers\orderController\OrderedPlaceController;
 
 
 
-Route::get('/driverRegistrations',[DriverController :: class ,"index"])->middleware('auth:sanctum','role:user');
-Route::post('/driverRegistrations',[DriverController :: class ,"store"]);
+// //Driverregistrations---
+Route::get('/driverDashForm',[DriverController :: class ,"createDriver"])->name("driverDash.create");
+Route::get('/driverRegistrations',[DriverController :: class ,"index"])->name("driverDash.index");
+Route::post('/driverRegistrations',[DriverController :: class ,"store"])->name("driverDash.store");
+Route::delete('/deleteRoomImgs/{id}',[DriverController::class,'destroy'])->name("driverDash.destroy");
+
 // //Userregistrations---
-Route::get('/userRegistrations',[userController :: class ,"index"]);
-Route::post('/userRegistrations',[userController :: class ,"store"]);
+Route::get('/userDashForm',[userController :: class ,"createUser"])->name("UserDash.create");
+Route::get('/userRegistrations',[userController :: class ,"index"])->name("UserDash.index");
+Route::post('/userRegistrations',[userController :: class ,"store"])->name("UserrDash.store");
+Route::delete('/deleteuserReg/{id}',[userController::class,'destroy'])->name("UserrDash.destroy");
 // //hotelOwnerRegistrations---
-Route::get('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"index"]);
-Route::post('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"store"]);
+Route::get('/HotelDashForm',[HotelOwnerController :: class ,"createHotelOwnwer"])->name("hotelOwnerDash.create");
+Route::get('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"index"])->name("hotelOwnerDash.index");
+Route::post('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"store"])->name("hotelOwnerDash.store");
+Route::delete('/deletehotelOwner/{id}',[HotelOwnerController::class,'destroy'])->name("hotelOwnerDash.destroy");
 // //TourgideRegistrations---
-Route::get('/tourguideRegistrations',[TourguideController :: class ,"index"]);
-Route::post('/tourguideRegistrations',[TourguideController :: class ,"store"]);
+Route::get('/tourguideDashForm',[TourguideController :: class ,"createTourguide"])->name("tourgideDash.create");
+Route::get('/tourguideRegistrations',[TourguideController :: class ,"index"])->name("tourgideDash.index");
+Route::post('/tourguideRegistrations',[TourguideController :: class ,"store"])->name("tourgideDash.store");
+Route::delete('/deletetourguideReg/{id}',[TourguideController::class,'destroy'])->name("tourgideDash.destroy");
 
 ///   login
 Route::post('/login',[userController :: class ,"login"]);

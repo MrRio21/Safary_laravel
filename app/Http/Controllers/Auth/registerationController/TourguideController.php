@@ -22,7 +22,7 @@ class TourguideController extends Controller
         $users=User::all(); //fk
         $tourGides=tourguide::all();
 
-        return view("tourgideRegistrations.index",[ "tourGides" => $tourGides],["users"=> $users]);
+        return view("dashboardAdmin.user.users",[ "tourGides" => $tourGides],["users"=> $users]);
         //show table from DB
 
     }
@@ -35,6 +35,11 @@ class TourguideController extends Controller
     public function create()
     {
         return view("MUT.tourguideSignUp");
+    }
+
+    public function createTourguide()
+    {
+        return view("dashboardAdmin.Tourguide.Tourguideform");
     }
 
     /**
@@ -129,8 +134,10 @@ class TourguideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TourGuide $tourgide)
+    public function destroy($tourgideId)
     {
-        //
+        User::find($tourgideId)->delete();
+
+        return back();
     }
 }
