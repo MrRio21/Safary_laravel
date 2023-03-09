@@ -6,7 +6,7 @@ use App\Http\Controllers\MUTController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\placesController\PlaceController;
 
-Route::get('/MUT',[MUTController::class,'create'])->name("MUT.create");
+Route::get('/MUT',[MUTController::class,'create'])->name("MUT.create")->middleware('auth');
 Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");
 Route::get('/availableHotels/{order}',[MUTController::class,'getAvailableHotels'])->name("getAvailableHotels");
 
