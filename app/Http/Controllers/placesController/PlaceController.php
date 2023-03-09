@@ -84,7 +84,7 @@ class PlaceController extends Controller
     {
         // $place = Place::find($placeID);
         // dd($placeID);
-        return  view('placeDetails',[
+        return  view('MUT.placeDetails',[
             'place'=> $place,
         ]);  
     }

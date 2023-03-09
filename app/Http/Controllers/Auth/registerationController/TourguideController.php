@@ -64,7 +64,7 @@ class TourguideController extends Controller
        $tourguide= TourGuide::create([
         'price_per_day' =>(int)$request['price_per_day'] ,
         'syndicate_No' => $request['syndicate_No'] ,
-        'desc' => $request['desc']  ,
+        'bio' => $request['bio']  ,
           // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
         'user_id' => $user['id']
        ]);
