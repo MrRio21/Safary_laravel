@@ -20,7 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('gender',['male','female']);
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('phone');
             $table->string('user_type')->default(0);
             $table->unsignedBigInteger('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');

@@ -39,7 +39,7 @@ class HotelController extends Controller
         // $userID= Auth->user()
         // $hotelOwnID=HotelOwner::where('user_id',$userID)->id;
         $request->validate([
-            'name'=>['required'],
+            'name'=>['required','unique'],
             // 'address '=>['required','min:10'],
             'type'=>'required',
         ]);

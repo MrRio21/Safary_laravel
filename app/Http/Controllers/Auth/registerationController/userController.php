@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth\registerationController;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\HotelOwner;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
+use Illuminate\Support\Facades\Hash;
 class userController extends Controller
 {
     /**
@@ -17,7 +20,7 @@ class userController extends Controller
     {
         $users=User::all();
 
-        return view("userRegistrations.index",["users"=> $users]);
+
         //show table from DB
     }
 
@@ -28,7 +31,7 @@ class userController extends Controller
      */
     public function create()
     {
-        return view("userRegistrations.create");
+        return view("MUT.userSignUp");
     }
 
     /**
@@ -39,26 +42,63 @@ class userController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
- 
-       User::create([
+// dd($request);
+      $user= User::create([
         'name' => $request['name'] ,
         'email' => $request['email'],
-        'password' => $request['password'], 
+        'password' =>  Hash::make($request['password']),
         'gender' => $request['gender'],
-        'user_type' =>$request['name'],
-        
-       ]);
-       return redirect(route('userRegistrations.index'));
-       
+        'phone' => $request['phone'],
+        'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+        // 'role_id' => $request['role_id']
+    ]);
+            print_r($user);
+$createToken = $user->createToken($request->email)->plainTextToken;
+
+    //    return redirect(route('userRegistrations.index'));
+       return redirect(route('hotelOwner.create'));
+
     }
- 
+public function login(){
+    // echo "hey ";/
+    // dd($request);
+    return view("MUT.userSignUp");
+
+}
+public function validateLogin(Request $request) {
+    // dd($request);
+    validator($request->all(),[
+        'email' => 'required|email',
+        'password' => 'required',
+
+    ])->validate();
+    if(auth()->attempt(request()->only(['email','password']))){
+
+        return redirect('/MUT');
+    }
+    return redirect()->back()->withErrors(['email'=>'credentials invalid!']);
+    // $request->validate([
+    //     'email' => 'required|email',
+    //     'password' => 'required',
+
+    // ]);
+
+    // $user = User::where('email', $request->email)->first();
+
+    // if (! $user || ! Hash::check($request->password, $user->password)) {
+    //     throw ValidationException::withMessages([
+    //         'email' => ['The provided credentials are incorrect.'],
+    //         // 'password' => ['The provided credentials are incorrect.'],
+    //     ]);
+    // }
+}
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function show(hotelOwner $hotelOwner)
+    public function show(HotelOwner $hotelOwner)
     {
         //
     }

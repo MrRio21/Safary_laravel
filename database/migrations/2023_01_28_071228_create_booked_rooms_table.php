@@ -19,9 +19,11 @@ return new class extends Migration
             // number of rooms that is picked from room id
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('room_id');
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary([ 'order_id','room_id']);
+            $table->unsignedBigInteger('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary([ 'order_id','hotel_id']);
+            $table->enum('room_status',['Accept','pending','Reject'])->default('pending');
+
 /////////////////
 //there is another booking table for regular bookig
 

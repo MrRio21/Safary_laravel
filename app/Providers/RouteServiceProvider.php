@@ -33,18 +33,26 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'))
-                ->group(base_path('routes/vehicle.php'))
-                ->group(base_path('routes/order.php'))
-                ->group(base_path('routes/room.php'))
-                ->group(base_path('routes/hotel.php'))
-                ->group(base_path('routes/singing.php'))
-                ->group(base_path('routes/trip.php'))
-                ->group(base_path('routes/place.php'))
-                ->group(base_path('routes/dashboard.php'));
+                ->group(base_path('routes/Api/vehicle.php'))
+                ->group(base_path('routes/Api/order.php'))
+                ->group(base_path('routes/Api/room.php'))
+                ->group(base_path('routes/Api/hotel.php'))
+                ->group(base_path('routes/Api/singing.php'))
+                ->group(base_path('routes/Api/trip.php'))
+                ->group(base_path('routes/Api/place.php'))
+                ->group(base_path('routes/Api/dashboard.php'));
 
 
             Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+                ->group(base_path('routes/web.php'))
+                ->group(base_path('routes/web/vehicle.php'))
+                ->group(base_path('routes/web/order.php'))
+                ->group(base_path('routes/web/room.php'))
+                ->group(base_path('routes/web/hotel.php'))
+                ->group(base_path('routes/web/signning.php'))
+                ->group(base_path('routes/web/trip.php'))
+                ->group(base_path('routes/web/place.php'))
+                ->group(base_path('routes/web/dashboard.php'));
         });
     }
 

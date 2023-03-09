@@ -31,6 +31,7 @@ class TourguideController extends Controller
             'name' => $request['name'] ,
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'phone' => $request['phone'],
             'gender' => $request['gender'] ,
             // 'role_id' => $request['role_id'] ,
             'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
@@ -43,15 +44,26 @@ class TourguideController extends Controller
     ]);
 
          $tourguide= Tourguide::create([
-            'price_per_day' => $request['price_per_day'] ,
+            'price_per_day' => (int)$request['price_per_day'] ,
             'syndicate_No' => $request['syndicate_No'] ,
             'desc' => $request['desc']  ,
+            // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
             'user_id' => $user['id']
            ]);
-         $tourgideLanguage= TourguideLanguage::create([
-            'language' => $request['language'] ,
-            'tourguide_id' => $tourguide['id']
-           ]);
+           if(is_array($request['language'])){
+            foreach($request['language'] as $lang){
+
+              TourguideLanguage::create([
+                   'language' => $lang ,
+                   'tourguide_id' => $tourguide['id']
+                  ]);
+            }
+           }else{
+           TourguideLanguage::create([
+                'language' => $request['language'] ,
+                'tourguide_id' => $tourguide['id']
+               ]);
+           }
 
             $newUser = User::find($user->id);
 
@@ -60,9 +72,9 @@ class TourguideController extends Controller
                 $newUser->update(['role_id'=>$role_id[0]->id]);
             }
                $createToken = $user->createToken($request->email)->plainTextToken;
-
+               $tourgideLanguage =TourguideLanguage::where('tourguide_id',$tourguide['id'])->get();
             return response()->json([
-                'hotelOwner'=>$tourgideLanguage, 'token'=>$createToken
+                'tourguide'=>$tourgideLanguage, 'token'=>$createToken
             ]);
     }
 }

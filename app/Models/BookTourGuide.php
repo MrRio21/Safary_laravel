@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookTourGuide extends Model
 {
+    protected $table = 'book_tour_guide';
     use HasFactory;
     protected $fillable =[
         'tourguide_id',
         'order_id',
+        'tourguide_status'
 
     ];
-
+    // public $timestamps = false; 
     public function Order(){
         return $this->hasMany(Order::class);
     }

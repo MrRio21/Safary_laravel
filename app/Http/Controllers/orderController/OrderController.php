@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BookedRoom;
 use App\Models\Room;
 use App\Models\BookTourGuide;
+use App\Models\Hotel;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use DateTime;
@@ -16,10 +17,16 @@ use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
-
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function create()
+    {
+        // dd(Auth::user());
+
+return view('MUT.MUT');
+    }
     public function index()
     {
         $orders=Order::all();
@@ -63,7 +70,8 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-
+// dd(Auth::user());
+// dd(Auth::user()->id);
 
 $check_in_datetime = new DateTime($request['check_in']);
 // dd($first_datetime);
@@ -75,7 +83,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             'budget'=>['required','digits_between:3,6'],
         ]);
         $order = Order::create([
-            'user_id'=>$request['user_id'],
+            'user_id'=>Auth::user()->id,
             'budget' =>  $request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
@@ -94,12 +102,11 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
              ]);
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
-        return response()->json([
-           'order info'=>$order,
-           'ordered room '=>$orderedRoom,
-           'message'=>'the order is saved'
 
-        ]);
+       return redirect()->route('availableRooms.index',['orderID'=>$order->id]);
+    //    return view('MUT.hotel',['data'=>['order'=>$order,
+    //    'orderedRoom'=>$orderedRoom,] ,'message'=>'the order is saved']);
+
 
     }
 
@@ -110,34 +117,56 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
             $rooms=OrderedRoom::where('order_id',$orderID->id)->get();
             if(!is_null($rooms)){
 
-                foreach($rooms as $room){
-                    $room->delete();
-                }
+                $query='delete from ordered_room where order_id ='.$orderID->id;
+                DB::delete($query);
             }
            $roomsBooked= BookedRoom::where ('order_id',$orderID->id)->get();
            if(!is_null($roomsBooked)){
-
-               foreach($roomsBooked as $room){
-                        $room->delete();
-                      }
+            $query='delete from booked_rooms where order_id ='.$orderID->id;
+            DB::delete($query);
            }
            $tourguideBooked= BookTourGuide::where('order_id',$orderID->id)->first();
-                    $tourguideBooked->delete();
+           if(!is_null($roomsBooked)){
 
+               $query='delete from book_tour_guide where order_id ='.$orderID->id;
+               DB::delete($query);
+           }
                     $placesBooked= OrderedPlaces::where ('order_id',$orderID->id)->get();
                   if(!is_null($placesBooked)){
-
-                      foreach($placesBooked as $place){
-                        $place->delete();
-                      }
+                    $query='delete from ordered_places where order_id ='.$orderID->id;
+                    DB::delete($query);
                   }
 
         }
 
-        return response()->json([
-            'order deleted'
+        return view('MUT.index',[
+           'message'=> 'order deleted'
         ]);
 
+    }
+
+    public function show(Order $orderID){
+        // dd($orderID->User);
+        // dd($orderID->Room);
+        // foreach($orderID->Room as $room_id){
+        //     dd($room_id->id);
+        // }
+        // dd($orderID->Tourguide->Tourguide->User);
+        // dd($orderID->Places);
+        $allrooms= Room::all();
+        $allHotels=Hotel::all();
+        $allPlaces=Place::all();
+
+        return view('myOrder',[
+            'message'=> 'order deleted',
+            'userInfo'=>$orderID->User,
+            'orderedRooms'=>count($orderID->Room),
+            'allrooms'=>$allrooms,
+            'allHotels'=>$allHotels,
+            'allPlaces'=>$allPlaces,
+            'tourguide'=> $orderID->Tourguide->Tourguide->User,
+
+         ]);
     }
 
 

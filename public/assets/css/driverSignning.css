@@ -1,0 +1,331 @@
+:root {
+	/* COLORS */
+	--white: #e9e9e9;
+	--gray: #333;
+	--blue: #0367a6;
+	--lightblue: #008997;
+
+	/* RADII */
+	--button-radius: 0.7rem;
+
+	/* SIZES */
+	--max-width: 1150px;
+	--max-height: 520px;
+
+	font-size: 16px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+	align-items: center;
+	background-color: white;
+	/* background: url("https://www.traveltoegypt.net/front/images/blog/aswan.jpg"); */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	height: 100vh;
+	place-items: center;
+}
+
+.form__title {
+	font-weight: 300;
+	margin: 0;
+	margin-bottom: 0.3rem;
+}
+
+.link {
+	color: var(--gray);
+	font-size: 0.9rem;
+	margin: 1rem 0;
+	text-decoration: none;
+}
+
+.container {
+	background-color: white;
+	border-radius: var(--button-radius);
+	box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+		0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+	height: var(--max-height);
+	width: var(--max-width);
+	/* overflow: hidden; */
+	position: relative;
+	
+}
+
+.container__form {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	transition: all 0.6s ease-in-out;
+}
+
+.container--signin {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.container.right-panel-active .container--signin {
+	transform: translateX(100%);
+}
+
+.container--signup {
+	left: 0;
+	opacity: 0;
+	width: 50%;
+	z-index: 1;
+}
+
+.container.right-panel-active .container--signup {
+	animation: show 0.6s;
+	opacity: 1;
+	transform: translateX(100%);
+	z-index: 5;
+}
+
+.container__overlay {
+	height: 100%;
+	left: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	transition: transform 0.6s ease-in-out;
+	width: 50%;
+	z-index: 100;
+}
+
+.container.right-panel-active .container__overlay {
+	transform: translateX(-100%);
+}
+
+.overlay {
+	/* background-color: var(--lightblue); */
+	
+	/* background-attachment: fixed; */
+	/* background-position: center; */
+	/* background-repeat: repeat; */
+	background-size: cover;
+	height: 100%;
+	left: -100%;
+	position: relative;
+	transform: translateX(0);
+	/* transition: transform 0.6s ease-in-out; */
+	width: 200%;
+}
+
+.container.right-panel-active .overlay {
+	transform: translateX(50%);
+}
+
+.overlay__panel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+	width: 50%;
+}
+
+.overlay--left {
+	transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay--left {
+	transform: translateX(0);
+}
+
+.overlay--right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.container.right-panel-active .overlay--right {
+	transform: translateX(20%);
+}
+
+.btn {
+	background-color: var(--blue);
+	background-image: linear-gradient(90deg, var(--blue) 0%, var(--lightblue) 74%);
+	border-radius: 20px;
+	/* border: 1px solid var(--blue); */
+	color: var(--white);
+	cursor: pointer;
+	font-size: 0.8rem;
+	
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	padding: 0.9rem 4rem;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+/* overlay btn */
+.overlay .btn{
+	margin-bottom:30rem ;
+	position: absolute;
+}
+/* overlays Imgs */
+.overlay img{
+	position: relative;
+	 width:100%;
+	 height: 100%;
+	
+	}
+   
+
+
+.form > .btn {
+	margin-top: 0.3rem;
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.form {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 3rem;
+	height: 100%;
+	text-align: center;
+	transition: top 0.3s;
+}
+
+.input {
+	background-color: #fff;
+	border: none;
+	padding: 0.9rem 0.9rem;
+	margin: 0.2rem 0;
+	width: 100%;
+	border: solid rgb(175, 169, 169) 0.1px;
+}
+/* on focus  */
+input:focus-within {
+	border: 3px solid var(--blue)!important ;
+  }
+
+/* to change the color of the radio btns */
+.specifyColor{
+
+	accent-color: var(--blue)!important;
+}
+
+@keyframes show {
+	0%,
+	49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+
+	50%,
+	100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+/* Responsitivity */
+
+@media only screen and (min-width: 320px)  {
+
+ .carImg{
+
+   border: solid 1px black;
+   width:100%;
+
+}
+
+.btn{
+		font-size: 0.5rem;
+		padding: 0.4rem 0.2rem;
+	}
+	body{
+		font-size: 10px;
+	}
+	.input{
+		padding: 0.5rem 1rem;
+		
+	}
+	.input:placeholder-shown {
+		font-size: 0.5rem;
+	  }
+	img{
+		width: 30%;
+	}
+}
+@media only screen and (min-width: 368px) and (max-width: 437px)  {
+	body{
+		font-size: 10px;
+	}
+	.input:placeholder-shown {
+		font-size: 0.7rem;
+	  }
+	  .input{
+		padding: 0.5rem 0.8rem;
+		
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+}
+/* @media only screen and (min-width: 424px)  {
+	body{
+		font-size: 13px;
+	}
+	.input:placeholder-shown {
+		font-size: 0.7rem;
+	  }
+	  .input{
+		padding: 0.7rem 1rem;
+		
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+} */
+@media only screen and (min-width: 437px) {
+	body{
+		font-size: 16px;
+	}
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	  }
+	  .input{
+		padding: 0.6rem 0.7rem;
+		
+	}
+	span{
+		font-size: 0.7rem;
+	}
+	.btn{
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+}
+@media only screen and (min-width: 463px) {
+	span{
+		font-size: 0.9rem;
+	}
+}
+
+@media only screen and (min-width: 700px){
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	  }
+	
+}
