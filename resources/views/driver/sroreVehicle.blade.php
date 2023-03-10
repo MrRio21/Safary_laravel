@@ -64,11 +64,11 @@
 
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add vehicle </h2>
-            <form method="post" action="{{route('storeVehicle')}}">
+            <form  action="{{route('storeVehicle')}}" method="post">
                 @csrf
-            <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="license" type="numper" placeholder="license" />
+            <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="license" type="numper" placeholder="license" required/>
             {{-- <input class="form-select bg-eee mb-20" type="datetime-local" name="date"> --}}
-            <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
+            <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="image" name="image" required />
             <select class="form-select bg-eee mb-20 " name="type" aria-label="Default select example">
                 <option selected>Type </option>
                 <option value="cars">Cars</option>

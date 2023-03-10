@@ -27,8 +27,13 @@ $allHotels=[];
             @csrf
             <input type="text" name="availableRooms" value="{{ $availableRooms }}" hidden>
           <button type="submit" >view Rooms &Book here</button>
-
         </form>
+          <form action="{{route('getAvailablePlaces',['order'=>$order->id,'hotel'=>$room->hotel_id])}}" method="POST">
+            @csrf
+            <input type="text" name="availableRooms" value="{{ $availableRooms }}" hidden>
+          <button type="submit" >Skip this step </button>
+        </form>
+
         </div>
       </div>
       @endif

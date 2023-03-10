@@ -9,7 +9,30 @@
 </head>
 <body>
 <section>
-    {{dd(Auth::user())}}
+      @auth
+        <form action="{{ route("logout") }}" method="POST" style="    margin-top: 0px;
+        margin-left: 0px;
+        display:inline;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+        width: 30px;">
+            @csrf
+     <button type="submit" style="box-shadow: none;
+     border: none;
+     color: white;
+     background: border-box;
+     /* font-size: xx-large; */
+     padding-left: 0px;
+     padding-top: 0px;
+     padding-bottom: 0px;
+     padding-right: 0px;
+     width: 124px;">Log out</button>
+    </form>
+    {{-- {{dd(Auth::user())}} --}}
     <div class="container m-5">
 
       <div class="booking-form">
@@ -18,6 +41,7 @@
             <div class="form-group">
             <span class="form-label">Your Budget</span>
             <input class="form-control" type="text" placeholder="Enter Your Budget" name="budget">
+            <input class="form-control" type="text" placeholder="the Percentage of your budget you want to give to Book a room " name="budget">
           </div>
           <!-- Check In/Out  -->
           <div class="row">

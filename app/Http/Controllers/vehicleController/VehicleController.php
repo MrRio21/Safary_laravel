@@ -31,12 +31,14 @@ class VehicleController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         // $request->validate([
         //     'type'=>'required',
         //     'license '=>'required',
-        //     'image'=>'requi[red','mimes:jpeg,png,jpg,gif',
+        //     'image'=>'required','mimes:jpeg,png,jpg,gif',
 
         // ]);
+        dd(auth()->user());
         $request = vehicle::create([
             'driver_id'=>auth()->user()->Driver['id'],
             'type'=>$request['type'],
@@ -44,11 +46,12 @@ class VehicleController extends Controller
             'image'=>$request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName())
             // 'status'=>'Pendding'
         ]);
-        // dd($request);
-        return response()->json([
-            'vehicle'=>$request,
-            'message'=>'store success'
-        ]);
+        dd($request);
+        // return response()->json([
+        //     'vehicle'=>$request,
+        //     'message'=>'store success'
+        // ]);
+
     }
 
     public function show(vehicle $requestRideId)

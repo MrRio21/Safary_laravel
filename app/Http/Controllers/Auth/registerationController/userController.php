@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 class userController extends Controller
 {
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return redirect('/register');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -62,13 +70,26 @@ class userController extends Controller
 $createToken = $user->createToken($request->email)->plainTextToken;
 
     //    return redirect(route('userRegistrations.index'));
-       return redirect(route('login.create'));
+       return redirect('/login',['role'=>$request->role]);
 
     }
-public function login($uri){
-    // echo "hey ";/
+public function login(Request $request){
+    // dd($request->path()); 
+    if($request->path() == 'login/driver'){
+        return view("MUT.driverSignUp");
+        }
+    if($request->path() == 'login/hotelOwner'){
+        return view("MUT.hotelOwnerSignUp");
+            }
+    if($request->path() == 'login/tourguide'){
+        return view("MUT.tourguideSignUp");
+            }else{
+
+                return view("MUT.userSignUp");
+            }
+      // echo "hey ";/
     // dd($request);
-    return view("MUT.$uri.SignUp");
+    // dd(Auth::user());
 
 }
 public function validateLogin(Request $request) {
@@ -79,6 +100,8 @@ public function validateLogin(Request $request) {
 
     ])->validate();
     if(auth()->attempt(request()->only(['email','password']))){
+        dd(Auth::user());
+        if(Auth::user())
 
         return redirect('/MUT');
     }

@@ -30,8 +30,12 @@
           <form action="{{route('BookInHotel',['order'=>$order->id,'hotel'=>$hotel->id])}}" method="POST">
             @csrf
             <input type="text" name="room_id" value="{{ $room->id }}" hidden>
-          <button type="submit" >Book Now</button>
-
+          <button type="submit" >Book Now & next step </button>
+        </form>
+          <form action="{{route('getAvailableHotels',['order'=>$order->id])}}" >
+            @csrf
+            <input type="text" name="room_id" value="{{ $room->id }}" hidden>
+          <button type="submit" >Back </button>
         </form>
 
         </div>

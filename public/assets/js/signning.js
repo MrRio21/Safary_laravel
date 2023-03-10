@@ -7,24 +7,18 @@ const container = document.querySelector(".container");
 signInBtn.addEventListener("click", () => {
 	container.classList.remove("right-panel-active");
 });
-console.log(window.location.pathname);
 
-
-    if(window.location.pathname =='/login') {
-        container.classList.remove("right-panel-active");
-    } 
-
-
-
-// signUpBtn.addEventListener("click", () => {
-// 	container.classList.add("right-panel-active");
-// });
+signUpBtn.addEventListener("click", () => {
+	container.classList.add("right-panel-active");
+});
 
 // firstForm.addEventListener("submit", (e) => e.preventDefault());
 // secondForm.addEventListener("submit", (e) => e.preventDefault());
-
-
-
+var login = window.location.pathname.search('/login');
+console.log(login);
+if(login >= 0){
+    container.classList.remove("right-panel-active");
+}
 //  to change the photo dynamically
 
  var overlay = document.getElementsByClassName("overlay");

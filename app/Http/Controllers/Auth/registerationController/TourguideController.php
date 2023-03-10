@@ -90,7 +90,7 @@ class TourguideController extends Controller
            $newUser->update(['role_id'=>$role_id[0]->id]);
        }
 
-       return redirect(route('tourguide.create'));
+       return redirect(route('login.create'));
 
     }
 

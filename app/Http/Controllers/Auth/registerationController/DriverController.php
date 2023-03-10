@@ -71,8 +71,7 @@ class DriverController extends Controller
            $newUser->update(['role_id'=>$role_id[0]->id]);
        }
 
-       return view("MUT.driverSignUp");
-
+  return redirect(route('login.create',['role'=>$request->role]));
     }
 
     /**

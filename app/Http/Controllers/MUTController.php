@@ -101,6 +101,26 @@ return view('MUT.MUT');
 
         }
     }
+    public function getAvailablePlaces(Order $order){
+
+        $availablePlaces= Place::where('price','<',$order->buget)->get();
+        if(empty($availablePlaces)){
+            return view('MUT.availableRooms',[
+                'message'=>'there is not enough budget raise it '
+
+            ]);
+        }
+        else{
+            return view('MUT.availablePlaces',[
+                'availablePlaces' => $availablePlaces,
+                'order' => $order,
+                'budget'=>$order->buget
+
+
+            ]);
+
+        }
+    }
         public function bookPlaces(Order $order , Request $request ){
             // dd($request);
             if(!empty($request->place_id)){

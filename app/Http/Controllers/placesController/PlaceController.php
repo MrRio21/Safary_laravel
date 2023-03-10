@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\placesController;
 use App\Http\Controllers\Controller;
+use App\Models\HotelImg;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Models\PlaceImg;

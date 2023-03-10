@@ -15,8 +15,10 @@ Route::post('/availableRooms/{order}/{hotel}',[MUTController::class,'getAvailabl
 Route::post('/BookInHotel/{order}/{hotel}',[MUTController::class,'BookInHotel'])->name("BookInHotel");
 
 Route::post('/availablePlaces/{order}',[MUTController::class,'getAvailableRooms'])->name("getAvailablePlaces");
+Route::get('/availablePlaces/{order}',[MUTController::class,'getAvailablePlaces'])->name("getAvailablePlaces");
 
 Route::get('/showPlace/{place}',[PlaceController::class,'show'])->name('showPlace');
 
 Route::post('/bookPlaces/{order}',[MUTController::class,'bookPlaces'])->name("bookPlaces");
 Route::post('/bookWithTourguide/{order}/{tourguide}',[MUTController::class,'bookWithTourguide'])->name("bookWithTourguide");
+

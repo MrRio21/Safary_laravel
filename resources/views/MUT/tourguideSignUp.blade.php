@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset("./assets/css/userSignning.css")}}">
+
 
 
 </head>
@@ -63,6 +65,7 @@
     <option value="korean">korean</option>
 </select>
 <input type="txt" placeholder="the price you want for a day " name="price_per_day"  required />
+<input type="text" class="input" name="role" value="tourguide" hidden>
 
 				<button type="submit" class="btn">Sign Up</button>
 
@@ -91,20 +94,20 @@
 
 			<div class="overlay">
 				<div class="overlay__panel overlay--left">
-					<img src="./assets/imgs/tourG.jpg" alt="">
+					<img src="{{asset("./assets/imgs/tourG.jpg")}}" alt="">
 
 
 				</div>
 
 				<div class="overlay__panel overlay--right">
 
-					<img src="./assets/imgs/MrstourG.jpg" alt="">
+					<img src="{{asset("./assets/imgs/MrstourG.jpg")}}" alt="">
 
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script src="./assets/js/signning.js"></script>
+<script src="{{asset("./assets/js/signning.js")}}"></script>
 
 </html>
