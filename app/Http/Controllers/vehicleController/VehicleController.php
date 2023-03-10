@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\vehicle;
 use App\Models\RequestRide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
@@ -26,7 +27,7 @@ class VehicleController extends Controller
 
     public function create( )
     {
-        return view("driver.sroreVehicle");
+        return view("driver.storeVehicle");
     }
 
     public function store(Request $request)
@@ -38,15 +39,15 @@ class VehicleController extends Controller
         //     'image'=>'required','mimes:jpeg,png,jpg,gif',
 
         // ]);
-        dd(auth()->user());
+        // dd(Auth::user()->Driver->id);
         $request = vehicle::create([
-            'driver_id'=>auth()->user()->Driver['id'],
+            'driver_id'=>Auth::user()->Driver->id ,
             'type'=>$request['type'],
             'license'=>$request['license'],
             'image'=>$request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName())
             // 'status'=>'Pendding'
         ]);
-        dd($request);
+        // dd($request);
         // return response()->json([
         //     'vehicle'=>$request,
         //     'message'=>'store success'

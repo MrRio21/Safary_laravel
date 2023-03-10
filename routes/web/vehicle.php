@@ -27,7 +27,7 @@ Route::delete('/deleteRide/{id}',[RequestRideController::class,'destroy']);
 
 Route::get('/vehicle',[VehicleController::class,'index']);
 Route::post('/storeVehicle',[VehicleController::class,'store'])->name('storeVehicle');
-Route::get('/storeVehicle',[VehicleController::class,'create']);
+Route::get('/storeVehicle',[VehicleController::class,'create'])->name('addVehicle');
 
 Route::PUT('/updateVehicle/{id}',[VehicleController::class,'update']);
 

@@ -42,16 +42,16 @@ class User extends Authenticatable
         return $this->hasMany(order::class);
     }
     public function Trip(){
-        return $this->hasMany(Trip::class , 'ChosenTrip', 'order_id', 'room_id');
+        return $this->hasMany(Trip::class );
     }
     public function Tourguide(){
-        return $this->hasOne(Tourguide::class , 'ChosenTrip', 'order_id', 'room_id');
+        return $this->hasOne(Tourguide::class );
     }
     public function Driver(){
-        return $this->hasOne(Driver::class , 'ChosenTrip', 'order_id', 'room_id');
+        return $this->hasOne(Driver::class );
     }
     public function HotelOwner(){
-        return $this->hasOne(HotelOwner::class , 'ChosenTrip', 'order_id', 'room_id');
+        return $this->hasOne(HotelOwner::class );
     }
 
 

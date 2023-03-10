@@ -100,8 +100,8 @@ public function validateLogin(Request $request) {
 
     ])->validate();
     if(auth()->attempt(request()->only(['email','password']))){
-        dd(Auth::user());
-        if(Auth::user())
+        // dd(Auth::user());
+        // if(Auth::user())
 
         return redirect('/MUT');
     }
