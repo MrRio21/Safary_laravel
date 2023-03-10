@@ -34,6 +34,8 @@ return view('MUT.MUT');
         //     'd'->
 
         // }];
+        
+        $order->budget;
         $budgetperday = $order->budget / $order->n_of_days;
 
         $availableRooms = Room::where('price','<',$budgetperday)

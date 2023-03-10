@@ -60,10 +60,14 @@
         </div>
         <!-- End Head -->
         <h1 class="p-relative">Dashboard</h1>
+     
         <div class="wrapper d-grid gap-20">
 
           <div class="quick-draft p-20 bg-white rad-10">
+           <span>
             <h2 class="mt-0 mb-10">Add vehicle </h2>
+            </span>  
+
             <form  action="{{route('storeVehicle')}}" method="post">
                 @csrf
             <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="license" type="numper" placeholder="license" required/>
@@ -78,6 +82,14 @@
 
               <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
             </form>
+          </div>
+          <div>
+            <h2 class="mt-0 mb-10">Add new one </h2>
+            <form action="{{route('addVehicle')}}" method="GET">
+
+                <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="+" />
+            </form>
+
           </div>
         </div>
       </div>
