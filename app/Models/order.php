@@ -19,7 +19,7 @@ class Order extends Model
         'check_out',
         'n_of_adults',
         'n_of_childeren',
-        'n_of_days'
+        'check_out'
     ];
 
 

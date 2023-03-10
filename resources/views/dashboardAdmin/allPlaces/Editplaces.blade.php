@@ -16,9 +16,9 @@
   </head>
   <body>
     <div class="page d-flex">
-    
-        <form action="{{route('TrippDash.store')}}"  enctype="multipart/form-data">
+        <form method="POST" action="{{route('PlaceeDash.store',['places'=>$places->id])}}"   enctype="multipart/form-data">
             @csrf
+            @method("PUT")
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head bg-white p-15 between-flex">
@@ -33,24 +33,32 @@
           </div>
         </div>
         <!-- End Head -->
-        <h1 class="p-relative">Create Your Trip</h1>
+        <h1 class="p-relative"> Your Place</h1>
         <div class="wrapper d-grid gap-20">
           <!-- Start Welcome Widget -->
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
-            <h2 class="mt-0 mb-10">Add Trip </h2>
+            <h2 class="mt-0 mb-10">Add PLace </h2>
             <form>
-                <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description'></textarea>
-                <input class="d-block mb-8 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of people In Your Trip" name='n_of_people'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of Days In Your Trip" name='n_of_days'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of places In Your Trip" name='n_of_places'/>
-             <label for="cover_img">Enter Your Cover Image </label>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" id='cover_img' placeholder="Address" name='cover_img'/>
+                <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="Place Name" name='name' value="{{$places->name}}"/>
+                <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price' value="{{$places->price}}"/>
+              
+             <select class="form-select bg-eee mb-20 " name='type' Type aria-label="Default select example">
+              <option   value="{{$places->type == 'indoor'}}? <?php echo 'selected' ?> : '' " >indoor</option>
+              <option   value="{{$places->type == 'Outdoor'}}? <?php echo 'selected' ?>  : '' ">Outdoor</option>
+              <option   value="{{$places->type == '3'}}? <?php echo 'selected' ?> : '' ">Triple</option>
+            </select>
+           
+              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description' value="{{$places->description}}"></textarea>
 
-              <label for="image">Enter Your Trip Images </label>
+           
+           
+              <label for="cover_img">Enter Your Cover img </label>
+              <input class=" mb-20 p-10  bg-eee rad-6" type="file" id='cover_img' placeholder="Address" name='cover_img' value="Storage/img/{{$places->cover_img}}">
+
+              <label for="image">Enter Your Places Images </label>
               <input class=" mb-20 p-10  bg-eee rad-6" type="file"  id='image' placeholder="Address" multiple 
-              accept="image/png, image/jpeg"  name="image" />
+              accept="image/png, image/jpeg"  name="image" value="Storage/img/{{$places->PlaceImg->image}}">
            
 
            

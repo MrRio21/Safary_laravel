@@ -16,9 +16,10 @@
   </head>
   <body>
     <div class="page d-flex">
-    
-        <form action="{{route('TrippDash.store')}}"  enctype="multipart/form-data">
+       
+        <form method="POST" action="{{route( 'TripDash.update',['allTrips'=>$allTrips->id])}}"  enctype="multipart/form-data">
             @csrf
+            @method("PUT")
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head bg-white p-15 between-flex">
@@ -40,17 +41,17 @@
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Trip </h2>
             <form>
-                <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description'></textarea>
-                <input class="d-block mb-8 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of people In Your Trip" name='n_of_people'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of Days In Your Trip" name='n_of_days'/>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of places In Your Trip" name='n_of_places'/>
+                <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description' value="{{$allTrips->description}}"></textarea>
+                <input class="d-block mb-8 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price' value="{{$allTrips->price}}"/>
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of people In Your Trip" name='n_of_people' value="{{$allTrips->n_of_people}}"/>
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of Days In Your Trip" name='n_of_days' value="{{$allTrips->n_of_days}}"/>
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="number" placeholder="No Of places In Your Trip" name='n_of_places' value="{{$allTrips->n_of_places}}"/>
              <label for="cover_img">Enter Your Cover Image </label>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" id='cover_img' placeholder="Address" name='cover_img'/>
+              <input class=" mb-20 p-10  bg-eee rad-6" type="file" id='cover_img' placeholder="Address" name='cover_img' value="Storage/img/{{$allTrips->cover_img}}"/>
 
               <label for="image">Enter Your Trip Images </label>
               <input class=" mb-20 p-10  bg-eee rad-6" type="file"  id='image' placeholder="Address" multiple 
-              accept="image/png, image/jpeg"  name="image" />
+              accept="image/png, image/jpeg"  name="image" value="Storage/img/{{$allTrips->TripImg->image}}"/>
            
 
            

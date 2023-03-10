@@ -9,9 +9,11 @@ use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\BookedRoomController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
 use App\Http\Controllers\placesController\PlaceController;
+use App\Http\Controllers\placesController\PlaceImgController;
 use App\Http\Controllers\vehicleController\vehicleController;
 use App\Http\Controllers\hotelsController\hotelsController;
 use App\Http\Controllers\tripController\tripController;
+
 
 
 
@@ -52,6 +54,8 @@ Route::get('/PlaceDashForm',[PlaceController :: class ,"createTourguide"])->name
 Route::get('/PlaceDash',[PlaceController :: class ,"index"])->name("PlaceeDash.index");
 Route::post('/PlaceDash',[PlaceController :: class ,"store"])->name("PlaceeDash.store");
 Route::delete('/deletePlaceDash/{id}',[PlaceController::class,'destroy'])->name("PlaceeDash.destroy");
+Route::PUT('/PlaceDash/{id}', [PlaceController::class, 'update'])->name('PlaceDash.update');
+Route::get('/PlaceDash/{id}/edit', [PlaceController::class, 'edit'])->name('PlaceDash.edit');
 
 
 // //=============================================================================================================================================
@@ -80,6 +84,10 @@ Route::get('/TripDashForm',[TripController :: class ,"create"])->name("TrippDash
 Route::get('/TripDash',[TripController :: class ,"index"])->name("TrippDash.index");
 Route::post('/TripDash',[TripController :: class ,"store"])->name("TrippDash.store");
 Route::delete('/deleteTripDash/{id}',[TripController::class,'destroy'])->name("TrippDash.destroy");
+Route::PUT('/TripDash/{id}', [TripController::class, 'update'])->name('TripDash.update');
+Route::get('/TripDash/{id}/edit', [TripController::class, 'edit'])->name('TripDash.edit');
+
+
 
 // //=============================================================================================================================================
 
@@ -91,3 +99,21 @@ Route::post('/OrderDetails',[OrderDetailsController :: class ,"store"])->name("O
 Route::delete('/deleteOrderDetails/{id}',[OrderDetailsController::class,'destroy'])->name("OrderrDetails.destroy");
 
 // //=============================================================================================================================================
+// //=============================================================================================================================================
+// //=============================================================================================================================================
+// //=============================================================================================================================================
+
+
+Route::get('/TourguideProfile',[TourguideController :: class ,"indexprofile"])->name("TourguideProfile.index");
+Route::delete('/deleterequest/{id}',[TourguideController::class,'destroy'])->name("deleterequest.destroy");
+Route::post('/TourguideProfile',[TourguideController :: class ,"store"])->name("TourguideProfile.store");
+Route::PUT('/TourguideProfile/{id}', [TourguideController::class, 'update'])->name('TourguideProfile.update');
+Route::get('/TourguideProfile/{id}/edit', [TourguideController::class, 'edit'])->name('TourguideProfile.edit');
+
+
+
+
+// Route::get('/TourguideProfilee',function(){
+//     return view ('dashboardTourguide\tourguidprofile') ;
+// });
+

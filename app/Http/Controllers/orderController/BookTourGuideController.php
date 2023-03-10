@@ -27,18 +27,19 @@ class BookTourGuideController extends Controller
            $availableTourguides =DB::table('tourguides')->where("price_per_day", "<=", $budget)->get();
         //    dd($availableTourguides);
         $tourguideLang=TourguideLanguage::all();
-        if(count($availableTourguides) == 0 ){
+        // if(count($availableTourguides) == 0 ){
            
-            return response()->json([
-                'message'=>'there is no tourguides available or you should raise your budget'
-            ]);
-        }else{
-            return response()->json([
-                'availableTourguides'=>$availableTourguides,
-                'tourguideLang' =>$tourguideLang,
-                'restOfBudget'=>(int)$request['restOfBudget']
-            ]);
-        }
+        //     return response()->json([
+        //         'message'=>'there is no tourguides available or you should raise your budget'
+        //     ]);
+        // }else{
+        //     return response()->json([
+        //         'availableTourguides'=>$availableTourguides,
+        //         'tourguideLang' =>$tourguideLang,
+        //         'restOfBudget'=>(int)$request['restOfBudget']
+        //     ]);
+        // }
+        return view("dashboardTourguide.tourguideProfile",[ "places" => $places]);
               
     }
 
@@ -51,19 +52,21 @@ class BookTourGuideController extends Controller
        $tourguideBooked=  BookTourGuide ::create([
                     'order_id' =>  $orderID->id,
                     'tourguide_id' =>$request['tourguide_id'],
+                    'tourguide_status' => $request['book_tourguide']
         ]);
         $tourguideInfo=Tourguide::where('id',$request['tourguide_id'])->first();
         // dd($tourguideInfo->price_per_day);
         $tourguideBudget= $tourguideInfo->price_per_day * $orderID->n_of_days;
             //  dd($tourguideBudget);
            
-        return response()->json([
-            // 'tourguideBooked'=>$tourguideBooked,
-            'tourguideInfo'=>$tourguideInfo,
-            'tourguideBudget'=>$tourguideBudget
+        // return response()->json([
+        //     // 'tourguideBooked'=>$tourguideBooked,
+        //     'tourguideInfo'=>$tourguideInfo,
+        //     'tourguideBudget'=>$tourguideBudget
 
             
-         ]);
+        //  ]);
+        redirect(route("dashboardTourguide.tourguideProfile"));
     
         
     }

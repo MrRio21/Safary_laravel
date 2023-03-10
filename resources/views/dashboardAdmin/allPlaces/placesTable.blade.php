@@ -34,8 +34,12 @@
                   <td>{{$place->price}}</td>
                   <td>{{$place->type}}</td>
                   <td>
+
+                    <button type="submit" class="label btn-shape bg-green c-white">
+                      <a href="{{route('PlaceDash.edit',['id'=>$place->id])}}" class="btn btn-outline-success">Edit</a>
+                      </button>
                    
-                  <form method="POST" action="{{route('PlaceeDash.destroy'),['ID'=>$place->id]}}" accept-charset="UTF-8" style="display:inline">
+                  <form method="POST" action="{{route('PlaceeDash.destroy'),['placeID'=>$place->id]}}" accept-charset="UTF-8" style="display:inline">
                   @crsf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">

@@ -20,19 +20,29 @@ class PlaceController extends Controller
     public function index()
     {
         $places= Place::all();
+        $placeImg=PlaceImg::all();
         // return response()->json([
         //     'allPlaces '=> $places,
            
         // ]);  
 
         
-        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places]);
+        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places],['placeImg'=>$placeImg]);
     }
 
     public function create()
     {
         return view("dashboardAdmin.allPlacses.placesForm");
 
+    }
+
+
+    public function edit(place $Place)
+    {
+        $places =Place::find($Place);
+        $PlaceImg=PlaceImg::all($PlaceImg['place_id']);
+
+        return view('dashboardAdmin.allPlaces.Editplaces',['places'=>$places],['PlaceImg'=>$PlaceImg]);
     }
 
     /**
@@ -68,11 +78,13 @@ class PlaceController extends Controller
         
         }
         $placeImgs= PlaceImg::where('place_id',$place->id)->get();
-        return response()->json([
-            'place info '=> $place,
-            'place img'=>$placeImgs,
-            'message'=>'place info is saved successfully ' 
-        ]);  
+        // return response()->json([
+        //     'place info '=> $place,
+        //     'place img'=>$placeImgs,
+        //     'message'=>'place info is saved successfully ' 
+        // ]);  
+
+     return   redirect(route('dashboardAdmin.allPlaces.placesTable'));
     }
 
     /**
@@ -103,9 +115,10 @@ class PlaceController extends Controller
         // $place=Place::find($place);
         $placeID->update($request->all());
         // dd($placeID->id);
-        return response()->json([
-              'place updated successfully'=>$placeID
-          ]);
+
+        // return response()->json([
+        //       'place updated successfully'=>$placeID
+        //   ]);
         
          
           }
