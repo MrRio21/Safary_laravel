@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->float('price');
             // as the check in and out for a specific room
-            $table->string('n_of_available_rooms');
+            $table->unsignedBigInteger('n_of_available_rooms');
             $table->string('cover_img');
             // $table->date('check_in')->nullable()->default(null);
             // $table->date('check_out')->nullable()->default(null);
