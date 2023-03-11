@@ -36,11 +36,11 @@ class DriverController extends Controller
      public function indexprofile()
      {
          $users=User::all(); //fk
-         $tourGides=driver::all();
- 
+         $driver=driver::all();
+
          return view("dashboardDriver.driverindex",[ "driver" => $driver],["users"=> $users]);
          //show table from DB
- 
+
      }
 
     /**
@@ -76,7 +76,7 @@ class DriverController extends Controller
              'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
             ]);
 
-       driver::create([
+      $driver= driver::create([
         'license' => $request['license'],
         'user_id' => $user['id']
        ]);
@@ -126,17 +126,17 @@ class DriverController extends Controller
     public function update(Request $request, driver $driver)
     {
 
-        User::where('id',$driver)->update([
+       $user= User::where('id',$driver)->update([
             'name' => $request['name'] ,
             'email' => $request['email'],
             'password' => $request['password'],
             'gender' => $request['gender'] ,
             'phone' => $request['phone'],
             'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-            ]);   
-    
+            ]);
+
         Driver::where('user_id',$driver)->update([
-    
+
         'license' => $request['license'],
         'user_id' => $user['id']
        ]);

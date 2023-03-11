@@ -54,10 +54,10 @@
 				<input type="textarea" placeholder="bio about you" name="desc" class="input"  />
 				{{-- <input type="textarea" placeholder="bio about you" name="bio" class="input" required /> --}}
 <select name="language[]"  multiple>Language
-    <option value="arabic">arabic</option>
-    <option value="english">english</option>
+    <option value="arabic" selected>arabic</option>
+    <option value="english" selected>english</option>
     <option value="spanish">spanish</option>
-    <option value="italien">italien</option>
+    <option value="italien" selected>italien</option>
     <option value="french">french</option>
     <option value="german">german</option>
     <option value="chinese">chinese</option>

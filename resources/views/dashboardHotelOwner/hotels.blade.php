@@ -60,6 +60,7 @@
         <!-- End Head -->
         <?php $hotelOwner_id = isset(Auth::user()->HotelOwner->id)?Auth::user()->HotelOwner->id:1?>
         <h1 class="p-relative">Hotels</h1>
+        <a  href="{{route('addHotelView')}}" class="title bg-blue c-white btn-shape">+ </a>
         @foreach($allHotels as $hotel)
         @if($hotel->hotel_owner_id == $hotelOwner_id )
         <div class="courses-page d-grid m-20 gap-20">

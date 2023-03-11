@@ -5,6 +5,7 @@ use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -66,15 +67,18 @@ class userController extends Controller
         'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
         // 'role_id' => $request['role_id']
     ]);
-            print_r($user);
-$createToken = $user->createToken($request->email)->plainTextToken;
-
-    //    return redirect(route('userRegistrations.index'));
-       return redirect('/login',['role'=>$request->role]);
+            // print_r($user);
+            $newUser = User::find($user->id);
+            // dd($newUser);
+// $createToken = $user->createToken($request->email)->plainTextToken;
+$role= Role::where('id',$newUser->role_id)->first();
+// dd($role);
+//    return redirect(route('userRegistrations.index'));
+       return redirect(route('login.create',['role'=>$role->name]));
 
     }
 public function login(Request $request){
-    // dd($request->path()); 
+    // dd($request->path());
     if($request->path() == 'login/driver'){
         return view("MUT.driverSignUp");
         }
