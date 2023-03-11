@@ -126,10 +126,11 @@ dd($hotelID);
         return view('dashboardHotelOwner.rooms',['rooms'=>$rooms]);
     }
     public function previewRoom(Room $roomID){
-        
+
+            return view('dashboardHotelOwner.previewRoom',[
+            'room'=>$roomID
+        ]);
     }
-
-
 
 
 
