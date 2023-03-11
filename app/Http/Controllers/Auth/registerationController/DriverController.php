@@ -10,6 +10,11 @@ use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+ 
+
+
 
 class DriverController extends Controller
 {
@@ -22,6 +27,7 @@ class DriverController extends Controller
     {
         $users=User::all(); //fk
         $driver=driver::all();
+        return view("driverRegistrations.index",[ "driver" => $driver->paginate(15)],["users"=> $users->paginate(15)]);
 
         return view("dashboardAdmin.user.users",[ "driver" => $driver],["users"=> $users]);
         //show table from DB
