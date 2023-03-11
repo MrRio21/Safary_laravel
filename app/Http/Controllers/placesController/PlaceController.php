@@ -112,14 +112,36 @@ class PlaceController extends Controller
      */
     public function update(Request $request,Place $placeID)
     {
+  
+          Place::where ('id',$placeID)->update([
+            'name' => $request['name'],
+            'description' =>$request['description'],
+            'price' =>$request['price'],
+            'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName()),
+            'type'=>$request['type']
+    
+          ]);
+          
+          foreach( $request['image'] as $img){
+
+            // dd($img);
+            PlaceImg::where('place_id',$place->id)->update([ 
+                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+                    'place_id'=>$place->id
+                    // 
+                  ]);
+        
+        }
+        
         // $place=Place::find($place);
-        $placeID->update($request->all());
+        // $placeID->update($request->all());
         // dd($placeID->id);
 
         // return response()->json([
         //       'place updated successfully'=>$placeID
         //   ]);
         
+
          
           }
   

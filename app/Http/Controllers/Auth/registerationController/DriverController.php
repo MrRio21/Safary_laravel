@@ -119,16 +119,18 @@ class DriverController extends Controller
      */
     public function update(Request $request, driver $driver)
     {
-        $user=  User::create([
+
+        User::where('id',$driver)->update([
             'name' => $request['name'] ,
             'email' => $request['email'],
-            'password' =>  Hash::make($request['password']),
-            'gender' => $request['gender'],
+            'password' => $request['password'],
+            'gender' => $request['gender'] ,
             'phone' => $request['phone'],
-             'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
-            ]);
-
-       driver::create([
+            'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
+            ]);   
+    
+        Driver::where('user_id',$driver)->update([
+    
         'license' => $request['license'],
         'user_id' => $user['id']
        ]);

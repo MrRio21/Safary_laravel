@@ -27,7 +27,7 @@
           <div class="avatar-box txt-c p-20">
             <img class="rad-half mb-10" src="imgs/avatar.png" alt="" />
             <h3 class="m-0">{{auth()->user()->name }}</h3>
-            <p class="c-grey mt-10">Level 20</p>
+
 
             <div class="rating mt-10 mb-10">
               <i class="fa-solid fa-star c-orange fs-13"></i>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="buttons"> 
-              <button >  <a href="{{ route('driverprofileDash.edit', [auth()->user()->Driver->id]) }}" class="ms-auto fs-4 me-4 text-dark"> Edit</a>
+              <button >  <a href="{{ route('driverprofileDash.edit', [auth()->user()->Driver->id]) }}" class="ms-auto fs-4 me-4 text-dark"> Edit </a>
              </button>
            
           </div>
