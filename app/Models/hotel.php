@@ -21,7 +21,7 @@ class Hotel extends Model
     ];
 
 
-    public function Room()
+    public function Rooms()
     {
         return $this->hasMany(Room::class);
     }
@@ -35,13 +35,13 @@ class Hotel extends Model
     }
     public function HotelImg()
     {
-        return $this->belongsTo(Hotel::class);
+        return $this->hasMany(HotelImg::class);
 
     }
         public function Order()
     {
         return $this->hasMany(Order::class);
-        
+
     }
 
 

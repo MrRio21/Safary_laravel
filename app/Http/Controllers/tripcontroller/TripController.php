@@ -108,7 +108,7 @@ foreach( $request['image'] as $img){
     public function edit(trip $trip)
     {
         $allTrips =Trip::find($trip);
-        $tripImg=TripImg::all($tripImg['trip_id']);
+        $tripImg=TripImg::all($trip['trip_id']);
 
         return view('dashboardAdmin.allTrips.Edittrip',['allTrips'=>$allTrips],['tripImg'=>$tripImg]);
     }

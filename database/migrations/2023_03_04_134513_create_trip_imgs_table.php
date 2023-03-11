@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('trip_imgs', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->timestamps();
             $table->string('image');
             $table->unsignedBigInteger('trip_id');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary([ 'image','trip_id']);
         });
     }
 

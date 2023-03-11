@@ -2,10 +2,10 @@
 
 :root {
 	/* COLORS */
-	--white: #e9e9e9;
+	/* --white: #e9e9e9;
 	--gray: #333;
 	--blue: #0367a6;
-	--lightblue: #008997;
+	--lightblue: #008997; */
 
 	/* RADII */
 	--button-radius: 0.7rem;
@@ -14,24 +14,21 @@
 	--max-width: 1150px;
 	--max-height: 520px;
 	font-size: 16px;
-	font-family: "Segoe UI","Open Sans", "Helvetica Neue", sans-serif;
+	font-family: "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
 	box-sizing: border-box;
 }
 
 body {
 	align-items: center;
-	/* background-color: white; */
-	/* background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(0,146,255,0.25) 100%); */
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-image:linear-gradient(to right bottom,#539165,#3f497f);
 	display: grid;
 	height: 100vh;
 	place-items: center;
 }
-
 
 .btn {
 	background-color: var(--blue);
@@ -49,7 +46,6 @@ body {
 	transition: transform 80ms ease-in;
 }
 
-
 .btn:active {
 	transform: scale(0.95);
 }
@@ -59,6 +55,8 @@ body {
 }
 
 .container.right-panel-active .overlay--left {
+	background-color: #F8F5E4;
+
 	transform: translateX(0);
 }
 
@@ -66,23 +64,22 @@ body {
 	transform: translateX(20%);
 }
 
-.profImg{
+.profImg {
 	position: relative;
-	
+
 }
 
 /* to change the color of the radio btns */
-.specifyColor{
-
+.specifyColor {
 	accent-color: var(--blue);
 }
+
 @keyframes show {
 	0%,
 	49.99% {
 		opacity: 0;
 		z-index: 1;
 	}
-
 	50%,
 	100% {
 		opacity: 1;
@@ -92,9 +89,8 @@ body {
 
 /* form */
 
-
 .form {
-	background-color: white;
+	background-color: #F8F5E4;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -102,12 +98,15 @@ body {
 	padding: 0 3rem;
 	height: 100%;
 	text-align: center;
+	font-family: serif;
+	border-radius: 15px;
+
 }
 
 .form__title {
-	font-weight: 300;
-
-	margin-bottom: 1.25rem;
+	font-weight: bolder;
+	color:  #24416B;
+	/* margin-bottom: 1.25rem; */
 }
 
 .link {
@@ -120,7 +119,9 @@ body {
 /* container */
 
 .container {
-	background-color: white;
+	/* background-color: white; */
+	background-color: #F8F5E4;
+
 	border-radius: var(--button-radius);
 	box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
 		0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
@@ -164,6 +165,7 @@ body {
 }
 
 .container__overlay {
+	background-color: #F8F5E4;
 	height: 100%;
 	left: 50%;
 	overflow: hidden;
@@ -186,10 +188,12 @@ body {
 
 .overlay {
 	/* background-color: var(--lightblue); */
-	
+
 	/* background-attachment: fixed; */
 	/* background-position: center; */
 	/* background-repeat: repeat; */
+	background-color: #F8F5E4;
+
 	background-size: cover;
 	height: 100%;
 	left: -100%;
@@ -219,7 +223,7 @@ body {
 	transform: translateX(-20%);
 	/* background: url('../imgs/sign-up-page-1886582-1598253.png'); */
 	/* height: 100%; */
-	
+
 }
 
 
@@ -227,25 +231,28 @@ body {
 .overlay--right {
 	right: 0;
 	transform: translateX(0);
+	background-color: #F8F5E4;
+
 }
 
 
 
 /* overlay btn */
-.overlay .btn{
-	margin-bottom:29rem ;
+.overlay .btn {
+	margin-bottom: 29rem;
 	position: absolute;
 }
+
 /* overlays Imgs */
-.overlay img{
+.overlay img {
 	position: relative;
-	 width:100%;
-	 height: 100%;
-	
-	}
-	
+	width: 100%;
+	height: 100%;
+
+}
+
 /* form btns */
-.form > .btn {
+.form>.btn {
 	margin-top: 0.3rem;
 }
 
@@ -257,103 +264,126 @@ body {
 	padding: 0.9rem 0.9rem;
 	margin: 0.5rem 0;
 	width: 100%;
-	border: solid rgb(175, 169, 169) 0.1px;
+	background-color: #F8F5E4;
+
+	border: solid #539165 0.1px;
 	border-radius: 0.5rem;
 }
+
 /* on focus  */
 input:focus-within {
 	border: 3px solid var(--blue);
-	
-  }
+
+}
 
 /* --------------------------------------------------------------------- */
 
 
 /* Responsitivity */
-@media only screen and (min-width: 320px)  {
-	.btn{
+@media only screen and (min-width: 320px) {
+	.btn {
 		font-size: 0.5rem;
 		padding: 0.2rem 2rem;
+		color: #539165;
 	}
-	body{
+
+	body {
 		font-size: 10px;
 	}
-	.input{
+
+	.input {
 		padding: 0.5rem 1rem;
-		
+
 	}
+
 	.input:placeholder-shown {
 		font-size: 0.5rem;
-	  }
-	img{
+	}
+
+	img {
 		width: 25%;
 	}
-	.profImg{
+
+	.profImg {
 		position: relative;
 		left: 0.1rem;
 	}
-	.form__title{
+
+	.form__title {
 		font-weight: 100;
 	}
 }
-@media only screen and (min-width: 368px)  {
-	body{
+
+@media only screen and (min-width: 368px) {
+	body {
 		font-size: 15px;
 	}
+
 	.input:placeholder-shown {
 		font-size: 0.7rem;
-	  }
-	  .input{
-		padding: 0.7rem 1rem;
-		
 	}
-	.btn{
+
+	.input {
+		padding: 0.7rem 1rem;
+
+	}
+
+	.btn {
 		font-size: 0.8rem;
 		padding: 0.6rem 0.4rem;
 	}
 
 }
-@media only screen and (min-width: 424px)  {
-	body{
+
+@media only screen and (min-width: 424px) {
+	body {
 		font-size: 16px;
 	}
+
 	.input:placeholder-shown {
 		font-size: 0.7rem;
-	  }
-	  .input{
+	}
+
+	.input {
 		padding: 0.7rem 1rem;
-		
+
 	}
-	.btn{
+
+	.btn {
 		font-size: 0.8rem;
 		padding: 0.6rem 0.4rem;
 	}
-}
-@media only screen and (min-width: 437px) and (max-width: 480px){
-	
-	.input:placeholder-shown {
-		font-size: 0.9rem;
-	  }
-	  .input{
-		padding: 0.6rem 0.7rem;
-		
-	}
-	span{
-		font-size: 0.7rem;
-	}
-	.btn{
-		font-size: 0.8rem;
-		padding: 0.6rem 0.4rem;
-	}
-}
-@media only screen and (min-width: 700px){
-	.input:placeholder-shown {
-		font-size: 0.9rem;
-	  }
 }
 
-@media only screen and (min-width: 850px){
-	.profImg{
+@media only screen and (min-width: 437px) and (max-width: 480px) {
+
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	}
+
+	.input {
+		padding: 0.6rem 0.7rem;
+
+	}
+
+	span {
+		font-size: 0.7rem;
+	}
+
+	.btn {
+		font-size: 0.8rem;
+		padding: 0.6rem 0.4rem;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.input:placeholder-shown {
+		font-size: 0.9rem;
+	}
+}
+
+@media only screen and (min-width: 850px) {
+	.profImg {
 		left: 8rem;
 	}
 }

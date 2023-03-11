@@ -13,6 +13,7 @@ use App\Http\Controllers\placesController\PlaceImgController;
 use App\Http\Controllers\vehicleController\vehicleController;
 use App\Http\Controllers\hotelsController\hotelsController;
 use App\Http\Controllers\tripController\tripController;
+use App\Http\Controllers\dashboard\DashboardController;
 
 
 
@@ -118,6 +119,35 @@ Route::get('/TourguideProfile/{id}/edit', [TourguideController::class, 'edit'])-
 // Route::get('/TourguideProfilee',function(){
 //     return view ('dashboardTourguide\tourguidprofile') ;
 // });
+
+
+
+// //==================Hotel Owner Dashboard=======================================================================================================
+// //=============================================================================================================================================
+// //=============================================================================================================================================
+// //=============================================================================================================================================
+
+
+Route::get('/HotelOwnerDashboard',[DashboardController :: class ,"addHotelView"])->name("addHotelView");
+Route::post('/addHotel/HotelOwnerDashboard',[DashboardController :: class ,"addHotel"])->name("addHotel");
+Route::get('/MyDashboard',[DashboardController :: class ,"dashboard"])->name("hotelOwnerDashboard");
+Route::get('/MyOwnedHotels',[DashboardController :: class ,"allOwnedHotels"])->name("MyOwnedHotels");
+Route::get('/previewHotel/{hotelID}',[DashboardController :: class ,"previewHotel"])->name("previewHotel");
+Route::get('/deleteHotel/{hotelID}',[DashboardController :: class ,"deleteHotel"])->name("deleteHotel");
+Route::get('/editHotel/{hotelID}',[DashboardController :: class ,"editHotel"])->name("editHotel");
+Route::post('/updateHotel/{hotelID}',[DashboardController :: class ,"updateHotel"])->name("updateHotel");
+
+// --------------------------rooms
+
+Route::get('/AllRooms/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("AllRooms");
+Route::get('/addRoom/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("addRoom");
+Route::get('/previewRoom/{roomID}',[DashboardController :: class ,"previewRoom"])->name("previewRoom");
+Route::get('/deleteRoom/{roomID}',[DashboardController :: class ,"deleteRoom"])->name("deleteRoom");
+Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
+Route::post('/updateRoom/{roomID}',[DashboardController :: class ,"updateRoom"])->name("updateRoom");
+
+
+
 
 // /=====================================================================================================================
 Route::PUT('/driverRegistrations/{id}', [DriverController::class, 'update'])->name('driverprofileDash.update');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\HotelController;
+namespace App\Http\Controllers;
 use App\Http\Controllers\HotelController;
 // use App\Models\Room ;
 use App\Models\Room;
@@ -10,6 +10,9 @@ use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
 use App\Http\Controllers\orderController\OrderController;
+use App\Http\Controllers\tripController\ChosenTripController;
+use App\Http\Controllers\dashboard\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +45,8 @@ Route::get('/', function () {
 // Route::get('/tourgideRegistrations/create',[TourgideController :: class ,"create"])->name("tourgideRegistrations.create");
 // Route::post('/tourgideRegistrations',[TourgideController :: class ,"store"])->name("tourgideRegistrations.store");
 
+Route::get('testtrip',[ChosenTripController :: class, 'test']);
+Route::get('chosentrip',[DashboardController :: class, 'chosenTrip']);
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
@@ -62,6 +67,10 @@ Route::get('/test',function(){
 });
 
 Route::get('/hotels',[HotelController::class,'index']);
+Route::get('/test',function(){
+    return view ('dashboard/driver');
+});
+
 Route::get('/order',[OrderController::class,'index']);
 // Route::post('/order',[OrderController::class,'store']);
 
