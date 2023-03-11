@@ -16,9 +16,35 @@
   </head>
   <body>
     <div class="page d-flex">
-    
-        <form action="{{route('PlaceeDash.store')}}"  enctype="multipart/form-data">
-            @csrf
+      <div class="sidebar bg-white p-20 p-relative">
+        <h3 class="p-relative txt-c mt-0">Safary</h3>
+        <ul>
+          <li>
+            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="index.html">
+              <i class="fa-regular fa-chart-bar fa-fw"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
+              <i class="fa-solid fa-gear fa-fw"></i>
+              <span>Add Room</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
+              <i class="fa-solid fa-graduation-cap fa-fw"></i>
+              <span>Hotels</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="rooms.html">
+              <i class="fa-regular fa-circle-user fa-fw"></i>
+              <span>Rooms</span>
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head bg-white p-15 between-flex">
@@ -33,43 +59,29 @@
           </div>
         </div>
         <!-- End Head -->
-        <h1 class="p-relative"> Your Place</h1>
+        <h1 class="p-relative">Dashboard</h1>
         <div class="wrapper d-grid gap-20">
           <!-- Start Welcome Widget -->
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
-            <h2 class="mt-0 mb-10">Add PLace </h2>
+            <h2 class="mt-0 mb-10">Add Room </h2>
             <form>
-                <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="Place Name" name='name'/>
-                <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price'/>
-
-                Type: <select name='type'>
-              <option value="indoor" >indoor</option>
-              <option value="Outdoor" >Outdoor</option>
-              <option value="3" >Triple</option>
-            </select>
-           
-              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description'></textarea>
-
-           
-           
-              <label for="cover_img">Enter Your Cover img </label>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" id='cover_img' placeholder="Address" name='cover_img'/>
-
-              <label for="image">Enter Your Places Images </label>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file"  id='image' placeholder="Address" multiple 
-              accept="image/png, image/jpeg"  name="image" />
-           
-
-           
-             
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Hotel Name" />
+              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Address" />
+              <select class="form-select bg-eee mb-20 " aria-label="Default select example">
+                <option selected>Type </option>
+                <option value="1">Single</option>
+                <option value="2">Double</option>
+                <option value="3">Triple</option>
+              </select>
+              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
+              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
+              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea>
               <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
             </form>
           </div>
         </div>
       </div>
-
-      <form>
     </div>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

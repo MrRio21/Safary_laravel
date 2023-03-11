@@ -27,6 +27,11 @@ class OrderController extends Controller
 
 return view('MUT.MUT');
     }
+
+    public function createprofile()
+    {
+      return view('dashboardTourguide.tourgideform');
+    }
     public function index()
     {
         $orders=Order::all();
@@ -53,17 +58,18 @@ return view('MUT.MUT');
         ->where("price", "<=", 2000)
         ->get();
 
-        return response()->json([
-            // 'all orders'=>$orders,
-            'order id'=>$order->id,
-            'totalPrice'=>$totalPrice[0]->sum,
-            'totalPriceOfBookedRooms'=>$totalPriceOfBookedRooms,
-            'restOfMaxBudget'=>$restOfMaxBudget,
-            'book'=>$booked[0]->id,
-            'availablePlaces'=>$availablePlaces
+        // return response()->json([
+        //     // 'all orders'=>$orders,
+        //     'order id'=>$order->id,
+        //     'totalPrice'=>$totalPrice[0]->sum,
+        //     'totalPriceOfBookedRooms'=>$totalPriceOfBookedRooms,
+        //     'restOfMaxBudget'=>$restOfMaxBudget,
+        //     'book'=>$booked[0]->id,
+        //     'availablePlaces'=>$availablePlaces
 
 
-         ]);
+        //  ]);
+        return view("dashboardTourguide.tourguideProfile",['orders',$orders],[ "check_out_datetime" => $check_out_datetime],["check_in_datetime"=> $check_in_datetime]);
 
 
     }

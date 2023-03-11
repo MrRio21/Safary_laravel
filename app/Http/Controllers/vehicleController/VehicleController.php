@@ -22,7 +22,7 @@ class VehicleController extends Controller
         // return response()->json([
         //     'vehicle'=>$allVehicle
         // ]);
-        return view("dashboardAdmin.allVehcile.Vechile",["allVehicle"=> $allVehicle]);
+        return view("dashboardAdmin.allVehcile.Vechile", ["allVehicle"=> $allVehicle]);
     }
 
     public function create( )

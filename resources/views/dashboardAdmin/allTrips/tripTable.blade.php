@@ -37,13 +37,15 @@
              <td>{{$Trips->price}}</td>
              <td>{{$Trips->n_of_people}}</td>
              <td>{{$Trips->n_of_places}}</td>
-             <td>{{
-             }}</td>
+             <td>{{ $Trips->n_of_days}}</td>
          
           
           
              <td>
-              
+
+              <button type="submit" class="label btn-shape bg-green c-white">
+              <a href="{{route('TripDash.edit',['trip'=>$Trips->id])}}" class="btn btn-outline-success">Edit</a>
+              </button>
               <form action="{{route('TrippDash.destroy'),['id'=>$Trips->id]}}"  accept-charset="UTF-8" style="display:inline">
               @crsf
               @method('delete')
@@ -53,6 +55,9 @@
                   Delete
                  </button>
               </form> 
+
+
+
        
              </td>
            </tr>

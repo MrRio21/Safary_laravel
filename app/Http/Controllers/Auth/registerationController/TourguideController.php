@@ -27,6 +27,16 @@ class TourguideController extends Controller
 
     }
 
+    public function indexprofile()
+    {
+        $users=User::all(); //fk
+        $tourGides=tourguide::all();
+
+        return view("dashboardTourguide.tourguideProfile",[ "tourGides" => $tourGides],["users"=> $users]);
+        //show table from DB
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -111,9 +121,14 @@ class TourguideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function edit(TourGuide $tourgide)
+    public function edit(TourGuide $ID)
     {
-        //
+
+        $users=User::find($ID); 
+        $tourGides=tourguide::find($tourGides['user_id']); 
+
+        return view('dashboardTourguide.updateform',['users'=>$users],['tourGides'=>$tourGides]);
+
     }
 
     /**
@@ -123,9 +138,45 @@ class TourguideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TourGuide $tourgide)
+    public function update(Request $request, $ID)
     {
-        //
+ 
+
+       User::where('id',$ID)->update([
+            'name' => $request['name'] ,
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'gender' => $request['gender'] ,
+            'phone' => $request['phone'],
+            'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
+            ]);   
+    
+        TourGuide::where('user_id',$ID)->update([
+            'price_per_day' =>(int)$request['price_per_day'] ,
+            'syndicate_No' => $request['syndicate_No'] ,
+            'bio' => $request['bio']  ,
+              // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
+            'user_id' => $user['id']
+           ]);
+    // print_r($request['language']);
+           if(is_array($request['language'])){
+            foreach($request['language'] as $lang){
+    
+                TourGuide::where('tourguide_id',$ID)->update([
+                   'language' => $lang ,
+                   'tourguide_id' => $tourguide['id']
+                  ]);
+            }
+           }else{
+            TourGuide::where('tourguide_id',$ID)->update([
+                'language' => $request['language'] ,
+                'tourguide_id' => $tourguide['id']
+               ]);
+           }
+
+
+          return redirect('dashboardTourguide.tourguideProfile');
+       
     }
 
     /**

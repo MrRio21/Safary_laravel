@@ -20,19 +20,29 @@ class PlaceController extends Controller
     public function index()
     {
         $places= Place::all();
+        $placeImg=PlaceImg::all();
         // return response()->json([
         //     'allPlaces '=> $places,
            
         // ]);  
 
         
-        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places]);
+        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places],['placeImg'=>$placeImg]);
     }
 
     public function create()
     {
-        return view("dashboardAdmin.allPlacses.placesForm");
+        return view("dashboardAdmin\allPlaces\placesForm");
 
+    }
+
+
+    public function edit(place $Place)
+    {
+        $places =Place::find($Place);
+        // $PlaceImg=PlaceImg::find($PlaceImg['place_id']);
+
+        return view('dashboardAdmin.allPlaces.Editplaces',['places'=>$places],['PlaceImg'=>$PlaceImg]);
     }
 
     /**
@@ -68,11 +78,13 @@ class PlaceController extends Controller
         
         }
         $placeImgs= PlaceImg::where('place_id',$place->id)->get();
-        return response()->json([
-            'place info '=> $place,
-            'place img'=>$placeImgs,
-            'message'=>'place info is saved successfully ' 
-        ]);  
+        // return response()->json([
+        //     'place info '=> $place,
+        //     'place img'=>$placeImgs,
+        //     'message'=>'place info is saved successfully ' 
+        // ]);  
+
+     return   redirect(route('dashboardAdmin.allPlaces.placesTable'));
     }
 
     /**
@@ -100,13 +112,36 @@ class PlaceController extends Controller
      */
     public function update(Request $request,Place $placeID)
     {
-        // $place=Place::find($place);
-        $placeID->update($request->all());
-        // dd($placeID->id);
-        return response()->json([
-              'place updated successfully'=>$placeID
+  
+          Place::where ('id',$placeID)->update([
+            'name' => $request['name'],
+            'description' =>$request['description'],
+            'price' =>$request['price'],
+            'cover_img' =>$request['cover_img']->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName()),
+            'type'=>$request['type']
+    
           ]);
+          
+          foreach( $request['image'] as $img){
+
+            // dd($img);
+            PlaceImg::where('place_id',$place->id)->update([ 
+                    'image'=> $img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+                    'place_id'=>$place->id
+                    // 
+                  ]);
         
+        }
+        
+        // $place=Place::find($place);
+        // $placeID->update($request->all());
+        // dd($placeID->id);
+
+        // return response()->json([
+        //       'place updated successfully'=>$placeID
+        //   ]);
+        
+
          
           }
   

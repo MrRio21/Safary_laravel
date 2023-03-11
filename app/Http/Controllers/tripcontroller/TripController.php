@@ -107,8 +107,15 @@ foreach( $request['image'] as $img){
      */
     public function edit(trip $trip)
     {
-        //
+        $allTrips =Trip::find($trip);
+        $tripImg=TripImg::all($tripImg['trip_id']);
+
+        return view('dashboardAdmin.allTrips.Edittrip',['allTrips'=>$allTrips],['tripImg'=>$tripImg]);
     }
+
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -120,9 +127,12 @@ foreach( $request['image'] as $img){
     public function update(Request $request, Trip $trip)
     {
         $trip->update($request->all());
-        return response()->json([
-              'trip updated successfully'=>$trip
-          ]);
+
+        // return response()->json([
+        //       'trip updated successfully'=>$trip
+        //   ]);
+        return   redirect(route('dashboardAdmin.allTrips.tripTable'));
+
     }
 
     /**
