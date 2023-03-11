@@ -32,7 +32,7 @@ class PlaceController extends Controller
 
     public function create()
     {
-        return view("dashboardAdmin.allPlacses.placesForm");
+        return view("dashboardAdmin\allPlaces\placesForm");
 
     }
 
@@ -40,7 +40,7 @@ class PlaceController extends Controller
     public function edit(place $Place)
     {
         $places =Place::find($Place);
-        $PlaceImg=PlaceImg::all($PlaceImg['place_id']);
+        // $PlaceImg=PlaceImg::find($PlaceImg['place_id']);
 
         return view('dashboardAdmin.allPlaces.Editplaces',['places'=>$places],['PlaceImg'=>$PlaceImg]);
     }

@@ -24,47 +24,48 @@
     
                     <input type="phone" placeholder="Phone" name="phone" class="input" required value="{{ auth()->user()->phone }}"  />
     
-                    <input type="email" placeholder="Email" name="email" class="input" required />
-                    <input type="password" placeholder="Password" name="password" class="input" required />
-                    <input type="text" placeholder="syndicate_No" name="syndicate_No" class="input" required />
-                    <input type="textarea" placeholder="bio about you" name="desc" class="input"  />
-                    <textarea name="bio" class="form-control"  cols="30" rows="10">{{ auth()->user()->TourGuide->bio }}</textarea>
+                    <input type="email" placeholder="Email" name="email" class="input" value="{{ auth()->user()->email }}"   required />
+                    <input type="password" placeholder="Password" name="password" class="input" value="{{ auth()->user()->password }}"  required />
+                    <input type="text" placeholder="syndicate_No" name="syndicate_No" class="input" value="{{ auth()->user()->TourGuide->syndicate_No }}"  required  />
+                    <input type="textarea" placeholder="bio about you" name="desc" class="input" value="{{ auth()->user()->TourGuide->bio }}" />
+                    <textarea name="bio" class="form-control"  cols="30" rows="10" value="{{ auth()->user()->TourGuide->bio }}"></textarea>
 
 
     <select name="language[]"  multiple>Language
         {{--  --}}
         <option
-         value="{{  == 'arabic' ? 'checked' : ''}}">arabic</option>
+         value="{{ in_array("arabic", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?>  : '' }}">
+         arabic</option>
         <option
-         value="{{ in_array("english", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?>  : ''}}">
+         value="{{ in_array("english", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?>  : ''}}">
          english</option>
         <option 
-        value="{{ in_array("spanish", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?>  : ''}}">
+        value="{{ in_array("spanish", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?>  : ''}}">
         spanish</option>
         <option 
-        value="{{ in_array("italien", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?>  : ''}}">
+        value="{{ in_array("italien", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?>  : ''}}">
         italien</option>
         <option
-         value="{{ in_array("french", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?>  : ''}}">
+         value="{{ in_array("french", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?>  : ''}}">
          french</option>
         <option
-         value="{{ in_array("german", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?> : ''}}">
+         value="{{ in_array("german", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?> : ''}}">
          german</option>
         <option
-         value="{{ in_array("chinese", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?> : ''}}">
+         value="{{ in_array("chinese", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?> : ''}}">
          chinese</option>
         <option
-        value="{{ in_array("japanese", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?> : ''}}">
+        value="{{ in_array("japanese", {{auth()->user()->TourGuide()->TourguideLanguage->language[]}}) ? <?php echo 'selected' ?> : ''}}">
         japanese</option>
         <option
-         value="{{ in_array("korean", auth()->user()->TourGuide()->TourguideLanguage->language[]) ? <?php echo 'selected' ?> : ''}}">
+         value="{{ in_array("korean", {{auth()->user()->TourGuide()->TourguideLanguage->language[] }}) ? <?php echo 'selected' ?> : ''}}">
          korean</option>
     </select>
 
+    <input type="text" class="input" name="role" value="driver" hidden>
 
 
-
-    <input type="txt" placeholder="the price you want for a day " name="price_per_day"  required />
+    <input type="number" placeholder="the price you want for a day " name="price_per_day"  required value="{{ auth()->user()->TourGuide->price_per_day }}"  />
     
                     <button type="submit" class="btn">Sign Up</button>
     

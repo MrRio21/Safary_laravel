@@ -13,7 +13,7 @@
                 </div>
                 
                 <div class="text-center mt-3">
-
+              
                     <span class="bg-secondary p-1 px-4 rounded text-white">{{ auth()->user()->name }}</span>
                     <h5 class="mt-2 mb-0">{{ auth()->user()->email }}</h5>
                     <span>{{ auth()->user()->gender }}</span>
@@ -42,7 +42,7 @@
                           
                 </div>
                 
-               <!-- Tourguide?.touguide?.id' -->
+    
                 <div class="buttons"> 
                     <button >  <a href="{{ route('TourguideProfile.edit', [auth()->user()->TourGuide->id]) }}" class="ms-auto fs-4 me-4 text-dark"> Update</a>
                    </button>

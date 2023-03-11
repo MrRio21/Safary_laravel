@@ -27,6 +27,16 @@ class DriverController extends Controller
         //show table from DB
      }
 
+     public function indexprofile()
+     {
+         $users=User::all(); //fk
+         $tourGides=driver::all();
+ 
+         return view("dashboardDriver.driverindex",[ "driver" => $driver],["users"=> $users]);
+         //show table from DB
+ 
+     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -93,7 +103,11 @@ class DriverController extends Controller
      */
     public function edit(driver $driver)
     {
-        //
+        $users=User::all($driver); //fk
+        $driver=driver::find($driver['user_id']);
+
+        return view('dashboardDriver.editDriver',['users'=>$users],['driver'=>$driver]);
+
     }
 
     /**
@@ -105,7 +119,21 @@ class DriverController extends Controller
      */
     public function update(Request $request, driver $driver)
     {
-        //
+        $user=  User::create([
+            'name' => $request['name'] ,
+            'email' => $request['email'],
+            'password' =>  Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'phone' => $request['phone'],
+             'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
+            ]);
+
+       driver::create([
+        'license' => $request['license'],
+        'user_id' => $user['id']
+       ]);
+       return redirect(route('driverprofileDash.index'));
+
     }
 
     /**
