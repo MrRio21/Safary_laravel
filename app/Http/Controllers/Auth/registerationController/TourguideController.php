@@ -100,8 +100,7 @@ class TourguideController extends Controller
            $newUser->update(['role_id'=>$role_id[0]->id]);
        }
 
-       return redirect(route('login.create'));
-
+       return redirect(route('login.create',['role'=>$request->role]));
     }
 
     /**
@@ -124,8 +123,8 @@ class TourguideController extends Controller
     public function edit(TourGuide $ID)
     {
 
-        $users=User::find($ID); 
-        $tourGides=tourguide::find($tourGides['user_id']); 
+        $users=User::find($ID);
+        $tourGides=tourguide::find($tourGides['user_id']);
 
         return view('dashboardTourguide.updateform',['users'=>$users],['tourGides'=>$tourGides]);
 
@@ -140,7 +139,7 @@ class TourguideController extends Controller
      */
     public function update(Request $request, $ID)
     {
- 
+
 
        User::where('id',$ID)->update([
             'name' => $request['name'] ,
@@ -149,8 +148,8 @@ class TourguideController extends Controller
             'gender' => $request['gender'] ,
             'phone' => $request['phone'],
             'image'=>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-            ]);   
-    
+            ]);
+
         TourGuide::where('user_id',$ID)->update([
             'price_per_day' =>(int)$request['price_per_day'] ,
             'syndicate_No' => $request['syndicate_No'] ,
@@ -161,7 +160,7 @@ class TourguideController extends Controller
     // print_r($request['language']);
            if(is_array($request['language'])){
             foreach($request['language'] as $lang){
-    
+
                 TourGuide::where('tourguide_id',$ID)->update([
                    'language' => $lang ,
                    'tourguide_id' => $tourguide['id']
@@ -176,7 +175,7 @@ class TourguideController extends Controller
 
 
           return redirect('dashboardTourguide.tourguideProfile');
-       
+
     }
 
     /**

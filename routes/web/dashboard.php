@@ -140,6 +140,7 @@ Route::post('/updateHotel/{hotelID}',[DashboardController :: class ,"updateHotel
 // --------------------------rooms
 
 Route::get('/AllRooms/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("AllRooms");
+Route::get('/addRoom/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("addRoom");
 Route::get('/previewRoom/{roomID}',[DashboardController :: class ,"previewRoom"])->name("previewRoom");
 Route::get('/deleteRoom/{roomID}',[DashboardController :: class ,"deleteRoom"])->name("deleteRoom");
 Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");

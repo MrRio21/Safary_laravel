@@ -77,9 +77,9 @@
               </p> --}}
 
             </div>
-            <a href="{{route('previewHotel',['roomID'=>$room->id])}}" class="title bg-green c-white btn-shape">Preview </a>
-            <a href="{{route('deleteHotel',['roomID'=>$room->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
-            <a href="{{route('editHotel',['roomID'=>$room->id])}}" class="title bg-blue c-white btn-shape">Edit </a>
+            <a href="{{route('previewRoom',['roomID'=>$room->id])}}" class="title bg-green c-white btn-shape">Preview </a>
+            <a href="{{route('deleteRoom',['roomID'=>$room->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+            <a href="{{route('editRoom',['roomID'=>$room->id])}}" class="title bg-blue c-white btn-shape">Edit </a>
 
           </div>
 

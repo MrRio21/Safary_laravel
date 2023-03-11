@@ -76,8 +76,7 @@ class HotelOwnerController extends Controller
        }
 
 // print_r($hotelOwner->User);
-return view("MUT.hotelOwnerSignUp",['userData'=>$hotelOwner->User]);
-
+return redirect(route('login.create',['role'=>$request->role]));
     }
 
     /**
