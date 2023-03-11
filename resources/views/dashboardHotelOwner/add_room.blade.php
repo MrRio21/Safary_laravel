@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/framework.css" />
-    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="{{asset("./assets/css/all.min.css")}}" />
+    <link rel="stylesheet" href="{{asset("./assets/css/framework.css")}}" />
+    <link rel="stylesheet" href="{{asset("./assets/css/master.css")}}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -65,18 +65,29 @@
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Room </h2>
-            <form>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Hotel Name" />
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Address" />
-              <select class="form-select bg-eee mb-20 " aria-label="Default select example">
+            <form action="" method="POST" enctype="multipart/form-data">
+             Number of available rooms  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="n_of_available_rooms" type="number"  />
+             Price  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="price" type="number"  />
+              <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="type">
                 <option selected>Type </option>
-                <option value="1">Single</option>
-                <option value="2">Double</option>
-                <option value="3">Triple</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="triple">Triple</option>
               </select>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea>
+              <?php $hotelOwnerID= isset(Auth::user()->hotelOwner)?Auth::user()->hotelOwner:1?>
+              {{-- {{dd($hotelOwnerID->Hotel)}} --}}
+              <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="hotel_id">
+                <option selected>The hotel that the room belongs </option>
+                @foreach($hotelOwnerID->Hotel as $hotel)
+                <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+
+                @endforeach
+              </select>
+
+              Your room Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
+            <br>
+              Your room Images: <input class=" mb-20 p-10  bg-eee rad-6" type="file"  placeholder="Your Cover Image" name="image[]" multiple />
+              {{-- <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea> --}}
               <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
             </form>
           </div>
