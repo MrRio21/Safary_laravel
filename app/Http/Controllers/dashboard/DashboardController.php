@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\tripController\ChosenTripController;
 use App\Models\Hotel;
 use App\Models\HotelImg;
 use App\Models\HotelOwner;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ChosenTrip;
 
 class DashboardController extends Controller
 {
@@ -133,6 +135,12 @@ dd($hotelID);
     }
 
 
+    public function chosenTrip()
+    {
+        $chosenTrips=  ChosenTrip::all();
+        dd($chosenTrips);
+    }
+
 
 
 
@@ -189,4 +197,9 @@ dd($hotelID);
             ]);
 
     }
+
+
+
+
+
 }
