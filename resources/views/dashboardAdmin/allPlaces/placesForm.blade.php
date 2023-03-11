@@ -43,10 +43,10 @@
                 <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="Place Name" name='name'/>
                 <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"  type="text" placeholder="price" name='price'/>
 
-              <option selected name='type'>Type </option>
-              <option value="indoor">indoor</option>
-              <option value="Outdoor">Outdoor</option>
-              <option value="3">Triple</option>
+                Type: <select name='type'>
+              <option value="indoor" >indoor</option>
+              <option value="Outdoor" >Outdoor</option>
+              <option value="3" >Triple</option>
             </select>
            
               <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" id="desc" placeholder="Description"  name='description'></textarea>

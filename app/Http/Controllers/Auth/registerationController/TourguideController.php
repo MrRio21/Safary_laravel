@@ -140,7 +140,8 @@ class TourguideController extends Controller
      */
     public function update(Request $request, $ID)
     {
-       
+ 
+
        User::where('id',$ID)->update([
             'name' => $request['name'] ,
             'email' => $request['email'],
