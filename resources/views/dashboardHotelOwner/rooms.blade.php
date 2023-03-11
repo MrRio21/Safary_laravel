@@ -25,12 +25,12 @@
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
               <i class="fa-solid fa-gear fa-fw"></i>
               <span>Add Room</span>
             </a>
-          </li>
+          </li> --}}
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
               <i class="fa-solid fa-graduation-cap fa-fw"></i>
@@ -60,6 +60,8 @@
         </div>
         <!-- End Head -->
         <h1 class="p-relative">Rooms</h1>
+        <a href="{{route('editRoom',['roomID'=>$room->id])}}" class="title bg-blue c-white btn-shape">Edit </a>
+
         @foreach($rooms as $room)
 
 

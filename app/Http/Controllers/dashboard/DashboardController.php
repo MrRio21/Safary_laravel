@@ -46,10 +46,7 @@ class DashboardController extends Controller
         ]);
     }
     }
-      HotelImg::create([
-        'image'=>$request->image,
 
-      ]);
       return back();
     }
     public function dashboard(){
@@ -66,7 +63,7 @@ class DashboardController extends Controller
 
     }
     public function deleteHotel(Hotel $hotelID){
-dd($hotelID);
+// dd($hotelID);
         $deleteHotel= $hotelID->delete();
 
         if($deleteHotel){
@@ -127,12 +124,25 @@ dd($hotelID);
 // dd($rooms);
         return view('dashboardHotelOwner.rooms',['rooms'=>$rooms]);
     }
+
     public function previewRoom(Room $roomID){
 
             return view('dashboardHotelOwner.previewRoom',[
             'room'=>$roomID
         ]);
     }
+
+    public function addRoomForm(){
+
+        return view('dashboardHotelOwner.add_room');
+
+    }
+    public function storeRoom(Request $request){
+
+  dd($request);
+
+    }
+
 
 
     public function chosenTrip()
@@ -181,25 +191,26 @@ dd($hotelID);
         }
 
 
-    public function hotelOwnerInfo(Request $request){
-        $hotelOwner =HotelOwner::find($request['hotel_owner_id']);
-            return response()->json([
-                'hotelOwner Info'=>$hotelOwner,
+    // public function hotelOwnerInfo(Request $request){
+    //     $hotelOwner =HotelOwner::find($request['hotel_owner_id']);
+    //         return response()->json([
+    //             'hotelOwner Info'=>$hotelOwner,
 
-            ]);
+    //         ]);
 
+    // }
+    // public function allUsers(Request $request){
+    //     $hotelOwner =HotelOwner::find($request['hotel_owner_id']);
+    //         return response()->json([
+    //             'hotelOwner Info'=>$hotelOwner,
+
+    //         ]);
+
+    // }
     }
-    public function allUsers(Request $request){
-        $hotelOwner =HotelOwner::find($request['hotel_owner_id']);
-            return response()->json([
-                'hotelOwner Info'=>$hotelOwner,
-
-            ]);
-
-    }
 
 
 
 
 
-}
+

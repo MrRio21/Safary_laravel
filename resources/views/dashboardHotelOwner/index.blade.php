@@ -64,7 +64,7 @@
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Hotel </h2>
-            <form action="{{route('addHotel')}}" method="POST">
+            <form action="{{route('addHotel')}}" method="POST" enctype="multipart/form-data">
                 @csrf
               <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="name" type="text" placeholder="Hotel Name" />
               <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="address" type="text" placeholder="Address" />
@@ -82,7 +82,7 @@
                 <option value="2">breakfast</option>
               </select> --}}
 
-              Your Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
+              Your hotel Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
             <br>
               Your hotel Images: <input class=" mb-20 p-10  bg-eee rad-6" type="file"  placeholder="Your Cover Image" name="image[]" multiple />
               {{-- <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea> --}}

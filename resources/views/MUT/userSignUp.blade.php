@@ -8,7 +8,6 @@
 	<title>Welcome</title>
 	<link rel="stylesheet" href="{{asset("assets/css/userSignning.css")}}">
 	<script src="{{asset("./assets/js/jquery-3.6.1.min.js")}}"></script>
-
 </head>
 
 <body>
@@ -25,28 +24,41 @@
 	<div class="container right-panel-active">
 		<!-- Sign Up -->
 		<div class="container__form container--signup">
-
 			<form action="{{route('user.store')}}" class="form" id="form1" method="post" enctype="multipart/form-data">
                 @csrf
 				<h2 class="form__title">Sign Up</h2>
-				<div class="profImg"> <label for="files">
+				<div class="profImg">
+					<!-- IMG -->
+					<label for="files">
 						<img src="{{asset("./assets/imgs/profImg.png")}}" alt="">
-
-
 						<input type="file" id="files" style="visibility:hidden;" name="image"
 							accept="image/png, image/gif, image/jpeg" />
 					</label>
 				</div>
-				<input type="text" placeholder="Your Name" name="name" class="input" required />
+				<!-- NAME -->
 				<div>
-					<span>Male<input class="specifyColor" type="radio" name="gender" id="male" value="male"
-							checked></span>
-					<span>Female<input class="specifyColor" type="radio" name="gender" id="female"
-							value="female"></span>
+					<input type="text" placeholder="Your Name" name="name" class="input" required />
 				</div>
-				<input type="email" placeholder="Email" name="email" class="input" required />
-				<input type="phone" placeholder="Phone" name="phone" class="input" required />
-				<input type="password" placeholder="Password" name="password" class="input" required />
+				<!-- GENDER -->
+				<div>
+					<span>Male<input class="specifyColor" type="radio" name="gender" id="male" value="male" checked>
+					</span>
+					<span>Female<input class="specifyColor" type="radio" name="gender" id="female" value="female">
+					</span>
+				</div>
+				<!-- EMAIL -->
+				<div>
+					<input type="email" placeholder="Email" name="email" class="input" required />
+				</div>
+				<!-- PHONE -->
+				<div>
+					<input type="phone" placeholder="Phone" name="phone" class="input" required />
+				</div>
+				<!-- PASSWORD -->
+				<div>
+					<input type="password" placeholder="Password" name="password" class="input" required />
+				</div>
+				<!-- SUBMIT -->
 				<button type="submit" class="btn" onclick="signUp()">Sign Up</button>
 				<a href="#" class="link" id="signIn">Already a user </a>
 			</form>
