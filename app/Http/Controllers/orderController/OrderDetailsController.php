@@ -19,9 +19,12 @@ class OrderDetailsController extends Controller
     {
       $OrdersDetail= OrderDetail::all();
       $orders = $OrdersDetail->order;
-      return response()->json([
-        'OrdersDetail'=>$OrdersDetail,
-    ]);
+    //   return response()->json([
+    //     'OrdersDetail'=>$OrdersDetail,
+    // ]);
+
+    return view("dashboardAdmin.order.OrderTable",["OrdersDetail"=> $OrdersDetail],["orders"=>$orders]);
+
        
     }
     public function store(Order $orderID)
@@ -33,7 +36,7 @@ class OrderDetailsController extends Controller
         foreach($roomsBooked as $room){
             echo $room;
                 }
-
+                                        
 
 
 
@@ -59,9 +62,10 @@ class OrderDetailsController extends Controller
             OrderedPlaces::where ('order_id',$orderID)->delete();
         }
 
-        return response()->json([
-            'order deleted'
-        ]);
+        // return response()->json([
+        //     'order deleted'
+        // ]);
+        return back();
 
     }
     public function show(Request $request){
@@ -88,5 +92,13 @@ class OrderDetailsController extends Controller
                      'orderedPlaces'=>isset($orderedPlaces)?$orderedPlaces:'not found '
                  ]);
     }
+
+
+
+
+
+
+
+
 
 }

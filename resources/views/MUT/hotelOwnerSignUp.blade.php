@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome</title>
-	<link rel="stylesheet" href="./assets/css/userSignning.css">
+	<link rel="stylesheet" href="{{asset("./assets/css/userSignning.css")}}">
 	<script src="./assets/js/jquery-3.6.1.min.js"></script>
 
 </head>
@@ -50,7 +50,9 @@
 				<input type="phone" placeholder="Phone" name="phone" class="input" required />
                 <input type="password" placeholder="Password" name="password" class="input" required />
 				<input type="text" placeholder="Commercial Registration Number" name="commercial_reg_No" class="input" required />
-				<button type="submit" class="btn">Explore Aswan with US</button>
+                <input type="text" class="input" name="role" value="hotelOwner" hidden>
+
+                <button type="submit" class="btn">Explore Aswan with US</button>
 				<a href="#" class="link" id="signIn">Already a user </a>
 			</form>
 		</div>
@@ -73,20 +75,20 @@
 
 			<div class="overlay">
 				<div class="overlay__panel overlay--left">
-					<img src="./assets/imgs/sign-up-page-1886582-1598253.png" alt="">
+					<img src="{{asset("./assets/imgs/sign-up-page-1886582-1598253.png")}}" alt="">
 
 
 				</div>
 
 				<div class="overlay__panel overlay--right">
 
-					<img src="./assets/imgs/6a7458116bc7b6b81a23a258b7488246.jpg" alt="">
+					<img src="{{asset("./assets/imgs/6a7458116bc7b6b81a23a258b7488246.jpg")}}" alt="">
 
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script src="./assets/js/signning.js"></script>
+<script src="{{asset("./assets/js/signning.js")}}"></script>
 
 </html>

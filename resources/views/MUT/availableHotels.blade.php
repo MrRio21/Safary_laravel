@@ -17,7 +17,7 @@
 {{-- {{dd(Auth::User())}} --}}
     {{-- {{dd($order->OrderedRoomType()->room_type)}} --}}
     {{-- <div class="cards"> --}}
-        <?php $prev_hotel =null; 
+        <?php $prev_hotel =null;
        $prev_price = null
         ?>
         @foreach ($availableRooms as $room )
@@ -40,7 +40,7 @@
 @endforeach
  @endforeach --}}
         @foreach($order->OrderedRoomType as $orRoom)
-        {{-- @if($prev_hotel != $room->Hotel ) --}}
+        @if($prev_hotel != $room->Hotel )
 
 @if($orRoom->room_type == $room->type && $room->price * $order->n_of_days < $order->budget*0.6 && $prev_price !=$room->price)
 <h1>matches hotelName: {{$room->Hotel->name}}</h1>

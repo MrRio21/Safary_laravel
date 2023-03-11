@@ -9,5 +9,5 @@ use App\Http\Controllers\orderController\BookTourGuideController;
 use App\Http\Controllers\orderController\OrderDetailsController;
 
 
-Route::post('/deleteOrder/{orderID}',[OrderController::class,'destroy']);
+Route::get('/deleteOrder/{orderID}',[OrderController::class,'destroy']);
 

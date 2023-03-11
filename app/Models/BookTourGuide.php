@@ -12,10 +12,11 @@ class BookTourGuide extends Model
     protected $fillable =[
         'tourguide_id',
         'order_id',
-        'tourguide_status'
+        'tourguide_status',
+        'n_of_days',
 
     ];
-    // public $timestamps = false; 
+    // public $timestamps = false;
     public function Order(){
         return $this->hasMany(Order::class);
     }

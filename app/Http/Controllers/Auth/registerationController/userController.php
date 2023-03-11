@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 class userController extends Controller
 {
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return redirect('/register');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +28,10 @@ class userController extends Controller
     {
         $users=User::all();
 
-
+        return view("dashboardAdmin.user.users",["users"=> $users]);
         //show table from DB
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,6 +41,11 @@ class userController extends Controller
     public function create()
     {
         return view("MUT.userSignUp");
+    }
+
+    public function createUser()
+    {
+        return view("dashboardAdmin.user.userform");
     }
 
     /**
@@ -49,20 +63,33 @@ class userController extends Controller
         'password' =>  Hash::make($request['password']),
         'gender' => $request['gender'],
         'phone' => $request['phone'],
-        'image' =>$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()),
+        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
         // 'role_id' => $request['role_id']
     ]);
             print_r($user);
 $createToken = $user->createToken($request->email)->plainTextToken;
 
     //    return redirect(route('userRegistrations.index'));
-       return redirect(route('hotelOwner.create'));
+       return redirect('/login',['role'=>$request->role]);
 
     }
-public function login(){
-    // echo "hey ";/
+public function login(Request $request){
+    // dd($request->path()); 
+    if($request->path() == 'login/driver'){
+        return view("MUT.driverSignUp");
+        }
+    if($request->path() == 'login/hotelOwner'){
+        return view("MUT.hotelOwnerSignUp");
+            }
+    if($request->path() == 'login/tourguide'){
+        return view("MUT.tourguideSignUp");
+            }else{
+
+                return view("MUT.userSignUp");
+            }
+      // echo "hey ";/
     // dd($request);
-    return view("MUT.userSignUp");
+    // dd(Auth::user());
 
 }
 public function validateLogin(Request $request) {
@@ -73,6 +100,8 @@ public function validateLogin(Request $request) {
 
     ])->validate();
     if(auth()->attempt(request()->only(['email','password']))){
+        // dd(Auth::user());
+        // if(Auth::user())
 
         return redirect('/MUT');
     }
@@ -132,9 +161,10 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hotelOwner $hotelOwner)
+    public function destroy( $userId)
     {
-        //
+        User::find($userId)->delete();
+        return back();
     }
 }
 

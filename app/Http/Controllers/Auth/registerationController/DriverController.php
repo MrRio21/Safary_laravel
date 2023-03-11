@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 namespace App\Http\Controllers\Auth\registerationController;
 use App\Http\Controllers\Auth\registerationControlle\userController;
 use App\Http\Controllers\Controller;
@@ -31,6 +28,8 @@ class DriverController extends Controller
         $users=User::all(); //fk
         $driver=driver::all();
         return view("driverRegistrations.index",[ "driver" => $driver->paginate(15)],["users"=> $users->paginate(15)]);
+
+        return view("dashboardAdmin.user.users",[ "driver" => $driver],["users"=> $users]);
         //show table from DB
      }
 
@@ -42,6 +41,11 @@ class DriverController extends Controller
     public function create()
     {
         return view("MUT.driverSignUp");
+    }
+
+    public function createDriver()
+    {
+        return view("dashboardAdmin.Driver.driverform");
     }
 
     /**
@@ -73,8 +77,7 @@ class DriverController extends Controller
            $newUser->update(['role_id'=>$role_id[0]->id]);
        }
 
-       return view("MUT.driverSignUp");
-
+  return redirect(route('login.create',['role'=>$request->role]));
     }
 
     /**
@@ -117,8 +120,14 @@ class DriverController extends Controller
      * @param  \App\Models\driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function destroy(driver $driver)
+    public function destroy($ID)
     {
-        //
+        $DelID= driver::find($ID)->delete();
+        if($DelID){
+            User::where ('user_id',$ID)->delete();
+        }
+
+        return back();
     }
 }
+

@@ -25,9 +25,10 @@ Route::post('/driverRegister',[DriverController :: class ,"store"])->name("drive
 Route::get('/tourguideRegister',[TourguideController :: class ,"create"])->name("tourguide.create");
 Route::post('/tourguideRegister',[TourguideController :: class ,"store"])->name("tourguide.store");
 
-Route::get('/login',[userController :: class ,"login"])->name("login.create");
+Route::get('/login/{role}',[userController :: class ,"login"])->name("login.create");
 Route::post('/userlogin',[userController :: class ,"validateLogin"])->name("login.store");
 
+Route::post('/logout',[userController :: class ,"logout"])->name("logout");
 
 
 // Route::post('/MUTStoringOrder',[OrderController::class,'store'])->name("MUT.store");

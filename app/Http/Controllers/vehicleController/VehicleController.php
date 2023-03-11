@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\vehicle;
 use App\Models\RequestRide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
@@ -17,36 +18,41 @@ class VehicleController extends Controller
     {
         $allVehicle =vehicle::all();
         // dd($allVehicle);
-        return response()->json([
-            'vehicle'=>$allVehicle
-        ]);
+
+        // return response()->json([
+        //     'vehicle'=>$allVehicle
+        // ]);
+        return view("dashboardAdmin.allVehcile.Vechile",["allVehicle"=> $allVehicle]);
     }
 
     public function create( )
     {
-        return view("driver.sroreVehicle");
+        return view("driver.storeVehicle");
     }
 
     public function store(Request $request)
     {
+        // dd($request);
         // $request->validate([
         //     'type'=>'required',
         //     'license '=>'required',
-        //     'image'=>'requi[red','mimes:jpeg,png,jpg,gif',
+        //     'image'=>'required','mimes:jpeg,png,jpg,gif',
 
         // ]);
+        // dd(Auth::user()->Driver->id);
         $request = vehicle::create([
-            'driver_id'=>auth()->user()->Driver['id'],
+            'driver_id'=>Auth::user()->Driver->id ,
             'type'=>$request['type'],
             'license'=>$request['license'],
             'image'=>$request['image']->storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName())
             // 'status'=>'Pendding'
         ]);
         // dd($request);
-        return response()->json([
-            'vehicle'=>$request,
-            'message'=>'store success'
-        ]);
+        // return response()->json([
+        //     'vehicle'=>$request,
+        //     'message'=>'store success'
+        // ]);
+
     }
 
     public function show(vehicle $requestRideId)
@@ -65,8 +71,8 @@ class VehicleController extends Controller
     ]);
 }
 
-    public function destroy(vehicle $requestRideId)
+    public function destroy($Id)
     {
-        vehicle::find($requestRideId)->delete();
+        vehicle::find($Id)->delete();
     }
 }

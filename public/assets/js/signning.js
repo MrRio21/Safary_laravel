@@ -14,9 +14,11 @@ signUpBtn.addEventListener("click", () => {
 
 // firstForm.addEventListener("submit", (e) => e.preventDefault());
 // secondForm.addEventListener("submit", (e) => e.preventDefault());
-
-
-
+var login = window.location.pathname.search('/login');
+console.log(login);
+if(login >= 0){
+    container.classList.remove("right-panel-active");
+}
 //  to change the photo dynamically
 
  var overlay = document.getElementsByClassName("overlay");

@@ -23,7 +23,7 @@ class OrderController extends Controller
 {
     public function create()
     {
-        // dd(Auth::user());
+        // dd(auth()->User);
 
 return view('MUT.MUT');
     }
