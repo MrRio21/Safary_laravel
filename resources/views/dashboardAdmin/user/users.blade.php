@@ -95,6 +95,7 @@ ul li ul li a {
 /* ========================================================================================== */
   </style>
   <body>
+    @include('sweetalert::alert');
     <div class="page d-flex">
     
       <div class="content w-full">
@@ -151,7 +152,7 @@ ul li ul li a {
                 <tr>
               
 {{-- {{dd($admin->user_type)}} --}}
-                 @if($admin['user_type']= 1 )  
+                 @if($admin['user_type']= 1  )  
                                       <td>{{ $admin['id'] }}</td> 
                                       <td><img src="{{ $admin['image'] }}" ></td>
                                       <td>{{ $admin['name'] }}</td>
@@ -159,18 +160,19 @@ ul li ul li a {
                                       <td>{{ $admin['gender'] }}</td>
                                       <td>Admin</td>
 
-                         {{-- {{dd($admin->id)}}               --}}
+                         {{-- {{dd($admin->id)}}    --}}
+                         {{-- {{'UserID'=>}}            --}}
                          
                 <td>
-                  {{-- <a href="{{route('UserrDash.destroy',['id'=>$admin['id']])}}">delete</a> --}}
-                <form action="{{route('UserrDash.destroy' , ['id'=>$admin->id ])}}"  method="POST" accept-charset="UTF-8" style="display:inline">
+                  <a href="{{route('deleteUser',['UserID'=>$admin->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+                {{-- <form action="{{route('UserrDash.destroy' , ['id'=>$admin->id ])}}"  method="POST" accept-charset="UTF-8" style="display:inline">
                   @csrf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete
                       </button>
-                </form>
+                </form> --}}
                   </td>
                   @endif    
                 </tr>
@@ -201,7 +203,7 @@ ul li ul li a {
               @foreach ($users as $user)
                 <tr>
               
-                 @if($user['user_type']== 1 )  
+                 @if($user->role_id = 1 )  
                                       <td>{{ $user['id'] }}</td> 
                                       <td><img src="{{ $user['image'] }}" ></td>
                                       <td>{{ $user['name'] }}</td>
@@ -209,17 +211,18 @@ ul li ul li a {
                                       <td>{{ $user['gender'] }}</td>
                                       <td>user</td>
 
-                      @endif                       
-                         
-                      <td>
-                      <form method="POST" action="{{route('UserrDash.destroy'),['id'=>$user->id]}}" accept-charset="UTF-8" style="display:inline">
+                                      
+                                      <td>
+                                        <a href="{{route('deleteUser',['UserID'=>$user->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+                                        @endif                       
+                      {{-- <form method="POST" action="{{route('UserrDash.destroy'),['id'=>$user->id]}}" accept-charset="UTF-8" style="display:inline">
                   @csrf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete
                       </button>
-                </form>
+                </form> --}}
                   </td>
                 </tr>
              
@@ -253,27 +256,28 @@ ul li ul li a {
               @foreach ($users as $Tourgide)
                 <tr>
      
-                          @if($Tourgide->user->role_id == 3 )  
+                          @if($Tourgide->role_id == 3 )  
                                       <td>$Tourgide->users->id</td> 
                                       <td><img src="$Tourgide->users->image'] }}" ></td>
-                                      <td>{{$Tourgide->User->name}}</td>
-                                      <td>{{$Tourgide->User->email}}</td>
-                                      <td>{{$Tourgide->User->gender}}</td>
+                                      <td>{{$Tourgide->name}}</td>
+                                      <td>{{$Tourgide->email}}</td>
+                                      <td>{{$Tourgide->gender}}</td>
                                       <td>Tourgide</td>
-                                      <td>{{$Tourgide->price_per_day}}</td>
-                                     <td>{{$Tourgide->syndicate_No}}</td>
-                                     <td>{{$Tourgide->desc}}</td>
+                                      <td>{{$Tourgide->Tourguide->price_per_day}}</td>
+                                     <td>{{$Tourgide->Tourguide->syndicate_No}}</td>
+                                     <td>{{$Tourgide->Tourguide->desc}}</td>
 
-                          @endif                       
-                          <td>     
-                          <form method="POST" action="{{route('tourgideDash.destroy'),['idd'=>$Tourgide->id]}}" accept-charset="UTF-8" style="display:inline">
+                                     <td>     
+                                       <a href="{{route('deleteUser',['UserID'=>$Tourgide->User->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+                                       @endif                       
+                          {{-- <form method="POST" action="{{route('tourgideDash.destroy'),['id'=>$Tourgide->id]}}" accept-charset="UTF-8" style="display:inline">
                             @csrf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete
                       </button>
-                </form>
+                </form> --}}
                   </td>
                 </tr>
              
@@ -302,10 +306,11 @@ ul li ul li a {
               </thead>
               <tbody>
 
-              @foreach ($users as $HotelOwner)
+              @foreach ($hotelOwners as $HotelOwner)
                 <tr>
+                  {{-- {{dd($HotelOwner->role_id)}} --}}
      
-                          @if($HotelOwner->User->role_id == 0 )  
+                          @if($HotelOwner->role_id = 4 )  
                                       <td>{{$HotelOwner->User->name}}</td> 
                                       <td><img src="$HotelOwner->users->image" ></td>
                                       <td>{{$HotelOwner->User->name}}</td>
@@ -314,18 +319,20 @@ ul li ul li a {
                                       <td>HotelOwner</td>
                                       <td>{{$HotelOwner->commercial_reg_No}}</td>
 
-                          @endif                       
-                         
-                <td>
-                <form method="POST" action="{{route('hotelOwnerDash.destroy'),['id'=>$HotelOwner->id]}}" accept-charset="UTF-8" style="display:inline">
+                                      
+                                      <td>
+                                        <a href="{{route('deleteUser',['UserID'=>$HotelOwner->User->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+                                                          
+                {{-- <form method="POST" action="{{route('hotelOwnerDash.destroy'),['id'=>$HotelOwner->id]}}" accept-charset="UTF-8" style="display:inline">
                   @csrf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete
                       </button>
-                </form>
+                </form> --}}
                   </td>
+                  @endif 
                 </tr>
              
               </tbody>
@@ -353,29 +360,30 @@ ul li ul li a {
               </thead>
               <tbody>
 
-              @foreach ($users as $Driver)
+              @foreach ($drivers as $Driver)
                 <tr>
      
-                          @if($Driver->users->role_id == 2 )  
+                          @if($Driver->role_id == 2 )  
                                       <td>{{$Driver->User->id}}</td> 
                                       <td><img src="$Driver->users->image" ></td>
                                       <td>Driver</td>
                                       <td>{{$Driver->User->name}}</td>
                                       <td>{{$Driver->User->email}}</td>
                                       <td>{{$Driver->User->gender}}</td>
-                                      <td>{{$Driver['license']}}</td>
+                                      <td>{{$Driver->license}}</td>
                                       
-                          @endif                       
-                         
-                          <td>
-                  <form method="POST" action="{{route('driverDash.destroy'),['id'=>$Driver->id]}}" accept-charset="UTF-8" style="display:inline">
+                                      
+                                      <td>
+                                        <a href="{{route('deleteUser',['UserID'=>$Driver->User->id])}}" class="title bg-red c-white btn-shape"  onclick="return confirm('Are you sure you want to delete?')" >delete </a>
+                                        @endif                       
+                  {{-- <form method="POST" action="{{route('driverDash.destroy'),['id'=>$Driver->id]}}" accept-charset="UTF-8" style="display:inline">
                   @csrf
                     @method('delete');
                       <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                       <i class="fa fa-trash-o" aria-hidden="true"></i>
                        Delete
                       </button>
-                  </form>
+                  </form> --}}
                   </td>
                 </tr>
              

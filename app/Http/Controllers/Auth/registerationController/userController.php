@@ -7,8 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Driver;
+use App\Models\TourGuide;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -28,8 +32,10 @@ class userController extends Controller
     public function index()
     {
         $users=User::all();
+        $hotelOwners=HotelOwner::all();
+        $Drivers=Driver::all();
 
-        return view("dashboardAdmin.user.users",["users"=> $users]);
+        return view("dashboardAdmin.user.users",["users"=> $users ,'drivers'=>$Drivers,'hotelOwners'=>$hotelOwners]);
         //show table from DB
     }
 public function editUser(){
@@ -201,10 +207,14 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $UserID)
+    public function deleteUser(User $UserID)
     {
-        User::find($userId)->delete();
+        // dd($UserID);
+        Alert::warning('deleted', 'You\'ve deleted the user ^^');
+
+        $UserID->delete();
         return back();
     }
+ 
 }
 

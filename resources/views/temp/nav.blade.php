@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert');
 <style>
         /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
