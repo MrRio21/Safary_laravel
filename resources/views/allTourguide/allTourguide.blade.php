@@ -105,7 +105,7 @@
 
 <div class="container">
     <div class="row g-5" style="margin-top: 1rem;" >
-      <div class="col-lg-4  col-sm-6 col-12 rounded"  *ngFor="let Tourguide of TourguideList;" >
+      <div class="col-lg-4  col-sm-6 col-12 rounded"  >
      
  
     </div>
