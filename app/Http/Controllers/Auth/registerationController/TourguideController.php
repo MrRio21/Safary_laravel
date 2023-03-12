@@ -103,6 +103,55 @@ class TourguideController extends Controller
        return redirect(route('login.create',['role'=>$request->role]));
     }
 
+
+    public function storeTourguide(StoreTourgideRequest $request,StoreUserRequest $requestUser)
+    {
+// dd($request);
+
+       $user=  User::create([
+        'name' => $requestUser['name'] ,
+        'email' => $requestUser['email'],
+        'password' => $requestUser['password'],
+        'gender' => $requestUser['gender'] ,
+        'phone' => $requestUser['phone'],
+        'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
+        ]);
+
+       $tourguide= TourGuide::create([
+        'price_per_day' =>(int)$request['price_per_day'] ,
+        'syndicate_No' => $request['syndicate_No'] ,
+        'bio' => $request['bio']  ,
+          // 'bio' =>isset($request['bio'])?$request['bio']:null  ,
+        'user_id' => $user['id']
+       ]);
+// print_r($request['language']);
+       if(is_array($request['language'])){
+        foreach($request['language'] as $lang){
+
+          TourguideLanguage::create([
+               'language' => $lang ,
+               'tourguide_id' => $tourguide['id']
+              ]);
+        }
+       }else{
+       TourguideLanguage::create([
+            'language' => $request['language'] ,
+            'tourguide_id' => $tourguide['id']
+           ]);
+       }
+       $newUser = User::find($user->id);
+
+       if(!empty ($tourguide)){
+           $role_id =Role::where('name','tourguide')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+       return redirect('dashboardAdmin.user.users',['role'=>$request->role]);
+    }
+
+
+
+
     /**
      * Display the specified resource.
      *
@@ -184,11 +233,11 @@ class TourguideController extends Controller
      * @param  \App\Models\tourgide  $tourgide
      * @return \Illuminate\Http\Response
      */
-    public function destroy($ID)
+    public function destroy(TourGuide $id)
     {
-        $DelID= TourGuide::find($ID)->delete();
+        $DelID= $id->delete();
         if($DelID){
-            User::where ('user_id',$ID)->delete();
+            User::where ('user_id',$id)->delete();
         }
 
         return back();

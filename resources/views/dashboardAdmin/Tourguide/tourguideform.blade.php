@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome</title>
 	<link rel="stylesheet" href="./assets/css/tourGuideSignning.css">
-	<script src="./assets/js/jquery-3.6.1.min.js"></script>
+	{{-- <script src="./assets/js/jquery-3.6.1.min.js"></script> --}}
 
 </head>
 
@@ -83,7 +83,7 @@
 
 	</div>
 </body>
-<script src="./assets/js/signning.js"></script>
+{{-- <script src="./assets/js/signning.js"></script> --}}
 
 </html>
 

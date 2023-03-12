@@ -22,13 +22,12 @@ class StoreTourgideRequest extends FormRequest
      }
  
 
-
     public function rules()
     {
         return [
             'price_per_day' =>'required',
             'syndicate_No' => 'required' ,
-            'desc' => 'required' ,
+            // 'desc' => 'required' ,
       
         ];
     }
@@ -41,7 +40,7 @@ class StoreTourgideRequest extends FormRequest
     return [
         'price_per_day.required' => 'A price is required',
         'syndicate_No.required' => 'A syndicate_No is required',
-        'desc.required' => 'A desc is required',
+        // 'desc.required' => 'A desc is required',
     ];
 }
 }
