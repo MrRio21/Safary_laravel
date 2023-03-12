@@ -30,7 +30,7 @@ Route::delete('/deldriverReg/{id}',[DriverController::class,'destroy'])->name("d
 Route::get('/userDashForm',[userController :: class ,"createUser"])->name("UserDash.create");
 Route::get('/userRegistrations',[userController :: class ,"index"])->name("UserDash.index");
 Route::post('/userRegistrations',[userController :: class ,"storeuser"])->name("UserrDash.store");
-Route::delete('/deleteuser/{id}',[userController::class,'destroy'])->name("UserrDash.destroy");
+Route::get('/deleteUser/{UserID}',[userController::class,'deleteUser'])->name("deleteUser");
 // //hotelOwnerRegistrations---
 Route::get('/HotelDashForm',[HotelOwnerController :: class ,"createHotelOwnwer"])->name("hotelOwnerDash.create");
 Route::get('/hotelOwnerRegistrations',[HotelOwnerController :: class ,"index"])->name("hotelOwnerDash.index");
@@ -120,7 +120,6 @@ Route::get('/TourguideProfile/{id}/edit', [TourguideController::class, 'edit'])-
 //     return view ('dashboardTourguide\tourguidprofile') ;
 // });
 
-Route::get('/deleteUser/{UserID}',[userController :: class ,"deleteHotel"])->name("deleteUser");
 
 
 // //==================Hotel Owner Dashboard=======================================================================================================

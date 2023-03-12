@@ -28,6 +28,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('allTourguide',[ViewTourGidesController::class,'index']);
+
 
 
 //Driverregistrations---
