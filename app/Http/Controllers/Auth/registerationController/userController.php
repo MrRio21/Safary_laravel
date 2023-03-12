@@ -201,11 +201,9 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $id)
+    public function destroy(User $UserID)
     {
-        dd($id);
-        $id->delete();
-        
+        User::find($userId)->delete();
         return back();
     }
 }
