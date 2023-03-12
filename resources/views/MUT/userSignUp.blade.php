@@ -12,7 +12,7 @@
 
 <body>
 
-    @if ($errors->any())
+    <!-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -20,7 +20,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif -->
 	<div class="container right-panel-active">
 		<!-- Sign Up -->
 		<div class="container__form container--signup">
@@ -37,7 +37,12 @@
 				</div>
 				<!-- NAME -->
 				<div>
-					<input type="text" placeholder="Your Name" name="name" class="input" required />
+					<input type="text" placeholder="Your Name" name="name" class="input"/>
+					@error('name')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                    @enderror
 				</div>
 				<!-- GENDER -->
 				<div>
@@ -45,18 +50,38 @@
 					</span>
 					<span>Female<input class="specifyColor" type="radio" name="gender" id="female" value="female">
 					</span>
+					@error('gender')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                    @enderror
 				</div>
 				<!-- EMAIL -->
 				<div>
-					<input type="email" placeholder="Email" name="email" class="input" required />
+					<input type="email" placeholder="Email" name="email" class="input"/>
+					@error('email')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                    @enderror
 				</div>
 				<!-- PHONE -->
 				<div>
-					<input type="phone" placeholder="Phone" name="phone" class="input" required />
+					<input type="phone" placeholder="Phone" name="phone" class="input"/>
+					@error('phone')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                    @enderror
 				</div>
 				<!-- PASSWORD -->
 				<div>
-					<input type="password" placeholder="Password" name="password" class="input" required />
+					<input type="password" placeholder="Password" name="password" class="input"/>
+					@error('Password')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                    @enderror
 				</div>
 				<!-- SUBMIT -->
 				<button type="submit" class="btn" onclick="signUp()">Sign Up</button>
