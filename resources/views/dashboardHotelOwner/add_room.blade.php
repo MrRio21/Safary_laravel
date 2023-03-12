@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/framework.css" />
-    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="{{asset("./assets/css/all.min.css")}}" />
+    <link rel="stylesheet" href="{{asset("./assets/css/framework.css")}}" />
+    <link rel="stylesheet" href="{{asset("./assets/css/master.css")}}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -15,32 +15,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    @include('sweetalert::alert');
     <div class="page d-flex">
       <div class="sidebar bg-white p-20 p-relative">
         <h3 class="p-relative txt-c mt-0">Safary</h3>
         <ul>
           <li>
-            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="index.html">
+            <a class=" d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('hotelOwnerDashboard')}}">
               <i class="fa-regular fa-chart-bar fa-fw"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
               <i class="fa-solid fa-gear fa-fw"></i>
               <span>Add Room</span>
             </a>
-          </li>
+          </li> --}}
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
+            <a class=" d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('MyOwnedHotels')}}">
               <i class="fa-solid fa-graduation-cap fa-fw"></i>
               <span>Hotels</span>
             </a>
           </li>
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="rooms.html">
+            <a class="active d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('addRoomForm')}}">
               <i class="fa-regular fa-circle-user fa-fw"></i>
-              <span>Rooms</span>
+              <span>Add Rooms</span>
             </a>
           </li>
         </ul>
@@ -65,18 +66,30 @@
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Room </h2>
-            <form>
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Hotel Name" />
-              <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Address" />
-              <select class="form-select bg-eee mb-20 " aria-label="Default select example">
+            <form action="{{route('storeRoom')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+             Number of available rooms  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="n_of_available_rooms" type="number"  />
+             Price  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="price" type="number"  />
+              <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="type">
                 <option selected>Type </option>
-                <option value="1">Single</option>
-                <option value="2">Double</option>
-                <option value="3">Triple</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="triple">Triple</option>
               </select>
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <input class=" mb-20 p-10  bg-eee rad-6" type="file" placeholder="Address" />
-              <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea>
+              <?php $hotelOwnerID= isset(Auth::user()->hotelOwner)?Auth::user()->hotelOwner:1?>
+              {{-- {{dd($hotelOwnerID->Hotel)}} --}}
+              <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="hotel_id">
+                <option >The hotel that the room belongs </option>
+                @foreach($hotelOwnerID->Hotel as $hotel)
+                <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+
+                @endforeach
+              </select>
+
+              Your room Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
+            <br>
+              Your room Images: <input class=" mb-20 p-10  bg-eee rad-6" type="file"  placeholder="Your Cover Image" name="image[]" multiple />
+              {{-- <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea> --}}
               <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
             </form>
           </div>

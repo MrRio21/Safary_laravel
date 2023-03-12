@@ -13,14 +13,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    {{-- {{dd(Auth::user())}} --}}
     <div class="page d-flex">
       <div class="sidebar bg-white p-20 p-relative">
-        <h3 class="p-relative txt-c mt-0">Elzero</h3>
+        <h3 class="p-relative txt-c mt-0">{{Auth::user()->name}}</h3>
         <ul>
-          <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10" href="{{route('')}}">
+            <li>
+                <a class="active d-flex align-center fs-14 c-black rad-6 p-10" href="profile.html">
+                  <i class="fa-regular fa-user fa-fw"></i>
+                  <span>My profile</span>
+                </a>
+              </li>
+          {{-- <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10" href="{{route('hotelOwnerDashboard')}}">
               <i class="fa-regular fa-chart-bar fa-fw"></i>
               <span>Dashboard</span>
+            </a>
+          </li> --}}
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10" href="{{route('MyOwnedHotels')}}">
+              <i class="fa-regular fa-chart-bar fa-fw"></i>
+              <span>My Owned Hotels</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10" href="{{route('MyOwnedHotels')}}">
+              <i class="fa-regular fa-chart-bar fa-fw"></i>
+              <span>Booking Requests</span>
             </a>
           </li>
           <li class="mb-1">
@@ -42,12 +61,7 @@
               </div>
 
           </li>
-          <li>
-            <a class="active d-flex align-center fs-14 c-black rad-6 p-10" href="profile.html">
-              <i class="fa-regular fa-user fa-fw"></i>
-              <span>My profile</span>
-            </a>
-          </li>
+
           {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10" href="projects.html">
               <i class="fa-solid fa-diagram-project fa-fw"></i>
@@ -99,10 +113,10 @@
           <!-- Start Overview -->
           <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">
-              <img class="rad-half mb-10" src="./{{Auth::user()->image}}" alt="" />
+              <img class="rad-half mb-10" src="./{{isset(Auth::user()->image)?Auth::user()->image:'no photo'}}" alt="" />
               <h3 class="m-0">{{Auth::user()->name}}</h3>
               {{-- <p class="c-grey mt-10">Level 20</p> --}}
-              <div class="level rad-6 bg-eee p-relative">
+              {{-- <div class="level rad-6 bg-eee p-relative">
                 <span style="width: 70%"></span>
               </div>
               <div class="rating mt-10 mb-10">
@@ -112,13 +126,14 @@
                 <i class="fa-solid fa-star c-orange fs-13"></i>
                 <i class="fa-solid fa-star c-orange fs-13"></i>
               </div>
-              <p class="c-grey m-0 fs-13">550 Rating</p>
+              <p class="c-grey m-0 fs-13">550 Rating</p> --}}
             </div>
             <div class="info-box w-full txt-c-mobile">
               <!-- Start Information Row -->
               <div class="box p-20 d-flex align-center">
                 <h4 class="c-grey fs-15 m-0 w-full">General Information</h4>
                 <div class="fs-14">
+
                   <span class="c-grey">Full Name</span>
                   <span>{{Auth::user()->name}}</span>
                 </div>
@@ -126,44 +141,47 @@
                   <span class="c-grey">Gender:</span>
                   <span>{{Auth::user()->gender}}</span>
                 </div>
+                <div class="fs-14">
+                    <span class="c-grey">Email:</span>
+                    <span>{{Auth::user()->email}}</span>
+                </div>
+                <a href="{{route('userEdit')}}"><h4 class="c-blue fs-15 m-0 w-full">Edit</h4></a>
+                <div class="fs-14">
+                    <span class="c-grey">Phone:</span>
+                    <span>{{Auth::user()->phone}}</span>
+                </div>
+                <div class="fs-14">
+                    <span class="c-grey">Password:</span>
+                    <span>********</span>
+                </div>
                 {{-- <div class="fs-14">
                   <span class="c-grey">Country:</span>
                   <span>Egypt</span>
                 </div> --}}
-                <div class="fs-14">
+                {{-- <div class="fs-14">
                   <label>
                     <input class="toggle-checkbox" type="checkbox" checked />
                     <div class="toggle-switch"></div>
                   </label>
-                </div>
+                </div> --}}
               </div>
               <!-- End Information Row -->
               <!-- Start Information Row -->
-              <div class="box p-20 d-flex align-center">
-                <h4 class="c-grey w-full fs-15 m-0">Personal Information</h4>
-                <div class="fs-14">
-                  <span class="c-grey">Email:</span>
-                  <span>{{Auth::user()->email}}</span>
-                </div>
-                <div class="fs-14">
-                  <span class="c-grey">Phone:</span>
-                  <span>{{Auth::user()->phone}}</span>
-                </div>
                 {{-- <div class="fs-14">
                   <span class="c-grey">Date Of Birth:</span>
                   <span>25/10/1982</span>
                 </div> --}}
-                <div class="fs-14">
+                {{-- <div class="fs-14">
                   <label>
                     <input class="toggle-checkbox" type="checkbox" />
                     <div class="toggle-switch"></div>
                   </label>
-                </div>
-              </div>
+                </div> --}}
+
               <!-- End Information Row -->
               <!-- Start Information Row -->
-              <div class="box p-20 d-flex align-center">
-                <h4 class="c-grey w-full fs-15 m-0">Job Information</h4>
+              {{-- <div class="box p-20 d-flex align-center"> --}}
+                {{-- <h4 class="c-grey w-full fs-15 m-0">Job Information</h4> --}}
                 {{-- <div class="fs-14">
                   <span class="c-grey">Title:</span>
                   <span>Full Stack Developer</span>
@@ -177,12 +195,12 @@
                   <span>15+</span>
                 </div>
                 <div class="fs-14"> --}}
-                  <label>
+                  {{-- <label>
                     <input class="toggle-checkbox" type="checkbox" checked />
                     <div class="toggle-switch"></div>
                   </label>
                 </div>
-              </div>
+              </div> --}}
               <!-- End Information Row -->
               <!-- Start Information Row -->
               {{-- <div class="box p-20 d-flex align-center">

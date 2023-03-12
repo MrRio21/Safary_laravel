@@ -15,6 +15,7 @@
 
   <body>
 
+    @include('sweetalert::alert')
 
     <a href="{{route('MyOwnedHotels')}}">    <h1 class="p-relative">My Hotels</h1></a>
     <div class="courses-page d-grid m-20 gap-20">
@@ -32,7 +33,9 @@
           <a href="{{route('previewHotel',['hotelID'=>$hotel->id])}}" class="title bg-green c-white btn-shape">Preview </a>
           <a href="{{route('deleteHotel',['hotelID'=>$hotel->id])}}" class="title bg-red c-white btn-shape">delete </a>
           <a href="{{route('editHotel',['hotelID'=>$hotel->id])}}" class="title bg-blue c-white btn-shape">Edit </a>
-                  
+          <a href="{{route('AllRooms',['hotelID'=>$hotel->id])}}" class="title bg-blue c-white btn-shape">Rooms </a>
+          <a href="{{route('addRoomFormForHotel',['hotelID'=>$hotel->id])}}" class="title bg-blue c-white btn-shape">Add Rooms </a>
+
         </div>
         {{-- <div class="info p-15 p-relative between-flex">
           <span class="title bg-blue c-white btn-shape">Hotel Info</span>

@@ -45,13 +45,13 @@ class User extends Authenticatable
         return $this->hasMany(Trip::class );
     }
     public function Tourguide(){
-        return $this->hasOne(Tourguide::class );
+        return $this->hasMany(Tourguide::class );
     }
     public function Driver(){
-        return $this->hasOne(Driver::class );
+        return $this->hasMany(Driver::class );
     }
     public function HotelOwner(){
-        return $this->hasOne(HotelOwner::class );
+        return $this->hasMany(HotelOwner::class );
     }
 
 

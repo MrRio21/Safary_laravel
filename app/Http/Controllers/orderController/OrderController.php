@@ -78,7 +78,7 @@ return view('MUT.MUT');
     {
 // dd(Auth::user());
 // dd(Auth::user()->id);
-
+// dd((int)$request['budget']);
 $check_in_datetime = new DateTime($request['check_in']);
 // dd($first_datetime);
 $check_out_datetime = new DateTime($request['check_out']);
@@ -86,18 +86,18 @@ $interval = $check_in_datetime->diff($check_out_datetime);
 $n_of_days = $interval->format('%a');//and then print do whatever you like with $final_days
 // dd($n_of_days);
         $request->validate([
-            'budget'=>['required','digits_between:3,6'],
+            // 'budget'=>['required','digits_between:3,6'],
         ]);
         $order = Order::create([
             'user_id'=>Auth::user()->id,
-            'budget' =>  $request['budget'],
+            'budget' => (int)$request['budget'],
             'check_in' =>$request['check_in'],
             'check_out' =>$request['check_out'],
             'n_of_adults'=>(int)$request['n_of_adults'],
             'n_of_childeren'=>isset($request['n_of_childeren'])?(int)$request['n_of_childeren']:0,
             'n_of_days'=>(int)$n_of_days
         ]);
-
+// dd($order);
         for($i=0; $i < count($request['n_of_room']) ; $i++) {
             // dd($nOfroomArray);
            // echo "here";
@@ -109,7 +109,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
 
-       return redirect()->route('getAvailableHotels',['order'=>$order->id]);
+       return redirect(route('getAvailableHotels',['order'=>$order->id]));
     //    return view('MUT.hotel',['data'=>['order'=>$order,
     //    'orderedRoom'=>$orderedRoom,] ,'message'=>'the order is saved']);
 

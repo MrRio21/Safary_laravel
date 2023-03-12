@@ -32,7 +32,9 @@ class userController extends Controller
         return view("dashboardAdmin.user.users",["users"=> $users]);
         //show table from DB
     }
-
+public function editUser(){
+    //
+}
 
     /**
      * Show the form for creating a new resource.
@@ -173,7 +175,7 @@ public function validateLogin(Request $request) {
      */
     public function edit(hotelOwner $hotelOwner)
     {
-        //
+        return view('dashboardHotelOwner.userEdit');
     }
 
     /**

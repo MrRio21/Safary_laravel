@@ -27,7 +27,7 @@ class Hotel extends Model
     }
     public function BookedRoom()
     {
-        return $this->hasMany(bookedRoom::class);
+        return $this->belongsToMany(bookedRoom::class);
     }
     public function HotelOwner()
     {

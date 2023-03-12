@@ -48,6 +48,10 @@ Route::get('/', function () {
 Route::get('testtrip',[ChosenTripController :: class, 'test']);
 Route::get('chosentrip',[DashboardController :: class, 'chosenTrip']);
 
+Route::get('watch', function(){
+    return view('driver.storeVehicle');
+});
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 

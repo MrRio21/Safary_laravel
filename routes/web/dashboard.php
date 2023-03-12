@@ -140,11 +140,18 @@ Route::post('/updateHotel/{hotelID}',[DashboardController :: class ,"updateHotel
 // --------------------------rooms
 
 Route::get('/AllRooms/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("AllRooms");
-Route::get('/addRoom/{hotelID}',[DashboardController :: class ,"AllRooms"])->name("addRoom");
+Route::get('/addRoom',[DashboardController :: class ,"addRoomForm"])->name("addRoomForm");
+Route::get('/addRoomforHotel/{hotelID}',[DashboardController :: class ,"addRoomFormForHotel"])->name("addRoomFormForHotel");
+Route::post('/storeRoom',[DashboardController :: class ,"storeRoom"])->name("storeRoom");
 Route::get('/previewRoom/{roomID}',[DashboardController :: class ,"previewRoom"])->name("previewRoom");
 Route::get('/deleteRoom/{roomID}',[DashboardController :: class ,"deleteRoom"])->name("deleteRoom");
 Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
 Route::post('/updateRoom/{roomID}',[DashboardController :: class ,"updateRoom"])->name("updateRoom");
+Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
+Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
+
+Route::get('/allRequests',[DashboardController :: class ,"allRequests"])->name("allRequests");
+Route::get('/changeRequest/{bookedRoom}',[DashboardController :: class ,"allRequests"])->name("changeStatus");
 
 
 

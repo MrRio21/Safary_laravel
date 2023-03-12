@@ -23,7 +23,7 @@ class Driver extends Model
 
     public function User()
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(User::class);
     }
 
     public function Vehicle()

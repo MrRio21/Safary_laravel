@@ -26,18 +26,11 @@ return view('MUT.MUT');
 
     public function getAvailableHotels(Order $order){
         //
-        // $singleRoomsArray=[];
-        // $doubleRoomsArray=[];
-        // $TripleRoomArray=[];
-        // $RoomsOrdered=[{
-        //     's'->$n,
-        //     'd'->
-
-        // }];
-        
         $order->budget;
+        dd($order->budget);
+        // dd($order->n_of_days);
         $budgetperday = $order->budget / $order->n_of_days;
-
+// dd($budgetperday);
         $availableRooms = Room::where('price','<',$budgetperday)
         ->get();
         // dd($availableRooms);
