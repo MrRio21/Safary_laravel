@@ -1,4 +1,6 @@
  
+@extends('layouts/nav')
+@section('bodyContent')
 
  
   <section class="section about" style="position:relative; background-image: url(../../assets/img/yellow-swoosh-background.jpg); background-size: cover; ">
@@ -75,7 +77,7 @@
         </div>
 
         <figure class="about-banner">
-            <img src="../../assets/img/about-banner.png" width="556" height="700" loading="lazy" alt="" class="w-100">
+            <img src="/assets/asset/img/about-banner.png" width="556" height="700" loading="lazy" alt="" class="w-100">
         </figure>
      
     </div>
@@ -105,7 +107,7 @@
     <div class="row g-5" style="margin-top: 1rem;" >
       <div class="col-lg-4  col-sm-6 col-12 rounded"  *ngFor="let Tourguide of TourguideList;" >
      
-    <app-tourguidecard [Tourguide]="Tourguide"></app-tourguidecard>
+ 
     </div>
 
     </div>

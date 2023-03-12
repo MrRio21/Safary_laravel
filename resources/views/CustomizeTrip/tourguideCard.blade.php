@@ -1,3 +1,7 @@
+@extends('layouts/nav')
+@section('bodyContent')
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

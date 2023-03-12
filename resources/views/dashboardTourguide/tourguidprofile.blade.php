@@ -1,3 +1,8 @@
+@extends('dashboardTourguide.tourguideprofile')
+
+@section("dashboardTourguide")
+
+
 <div class="container mt-5">
     
     <div class="row d-flex justify-content-center">
@@ -14,15 +19,15 @@
                 
                 <div class="text-center mt-3">
               
-                    <span class="bg-secondary p-1 px-4 rounded text-white">{{ auth()->user()->name }}</span>
-                    <h5 class="mt-2 mb-0">{{ auth()->user()->email }}</h5>
-                    <span>{{ auth()->user()->gender }}</span>
-                    <span>{{ auth()->user()->phone }}</span>
+                    <span class="bg-secondary p-1 px-4 rounded text-white">{{ Auth::user()->name }}</span>
+                    <h5 class="mt-2 mb-0">{{ Auth::user()->email }}</h5>
+                    <span>{{ Auth::user()->gender }}</span>
+                    <span>{{ Auth::user()->phone }}</span>
                     <div class="px-4 mt-1">
-                        <p class="fonts">{{auth()->user()->TourGuide->price_per_day}}</p>
+                        <p class="fonts">{{Auth::user()->TourGuide->price_per_day}}</p>
                     </div>
                     <div class="px-4 mt-1">
-                        <p class="fonts">{{auth()->user()->TourGuide->syndicate_No}}</p>
+                        <p class="fonts">{{Auth::user()->TourGuide->syndicate_No}}</p>
                     </div>
                     
                      <ul class="social-list">
@@ -33,18 +38,18 @@
                         <li><i class="fa fa-google"></i></li>
                     </ul>
                     <div class="px-4 mt-1">
-                        <p class="fonts">{{auth()->user()->TourGuide->bio}}</p>
+                        <p class="fonts">{{Auth::user()->TourGuide->bio}}</p>
                     </div>
 
                 <div   *ngFor="let lang of TourguideDashboard ;">
-                    <button class="btn btn-primary px-4 ms-3">{{auth()->user()->TourGuide()->TourguideLanguage->language}}</button>
+                    <button class="btn btn-primary px-4 ms-3">{{Auth::user()->TourGuide()->TourguideLanguage->language}}</button>
                 </div>
                           
                 </div>
                 
     
                 <div class="buttons"> 
-                    <button >  <a href="{{ route('TourguideProfile.edit', [auth()->user()->TourGuide->id]) }}" class="ms-auto fs-4 me-4 text-dark"> Update</a>
+                    <button >  <a href="{{ route('TourguideProfile.edit', [Auth::user()->TourGuide->id]) }}" class="ms-auto fs-4 me-4 text-dark"> Update</a>
                    </button>
                  
                 </div>
@@ -113,3 +118,4 @@
     </div>
 </div>
 
+@endsection

@@ -74,9 +74,35 @@ class userController extends Controller
 $role= Role::where('id',$newUser->role_id)->first();
 // dd($role);
 //    return redirect(route('userRegistrations.index'));
-       return redirect(route('login.create',['role'=>$role->name]));
+    //    return redirect(route('login.create',['role'=>$role->name]));
 
     }
+
+    public function storeuser(StoreUserRequest $request)
+    {
+// dd($request);
+      $user= User::create([
+        'name' => $request['name'] ,
+        'email' => $request['email'],
+        'password' =>  Hash::make($request['password']),
+        'gender' => $request['gender'],
+        'phone' => $request['phone'],
+        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
+        // 'role_id' => $request['role_id']
+    ]);
+            // print_r($user);
+            $newUser = User::find($user->id);
+            // dd($newUser);
+// $createToken = $user->createToken($request->email)->plainTextToken;
+$role= Role::where('id',$newUser->role_id)->first();
+
+       return redirect(route('dashboardAdmin/user/users'));
+
+    }
+
+
+
+
 public function login(Request $request){
     // dd($request->path());
     if($request->path() == 'login/driver'){
@@ -125,6 +151,9 @@ public function validateLogin(Request $request) {
     //     ]);
     // }
 }
+
+
+
     /**
      * Display the specified resource.
      *

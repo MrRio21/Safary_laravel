@@ -1,4 +1,6 @@
-{{-- @yield('navbar')
+
+@extends('layouts/nav')
+@section('bodyContent')
 
 
 <!DOCTYPE html>
@@ -66,62 +68,6 @@
    </head>
 
 <body class="u-body">
-
-
-    <div class="cover">
-        <video autoplay loop muted plays-inline id="vid">
-            <source src="./vid/video.mp4" type="video/mp4" id="backvideo">
-        </video>
-        <div class="logo">
-            <img src="./assets/asset/img/logo.png" alt="">
-        </div>
-        <div class="box">
-            <div class="text-box " style="font-size: larger; font-weight: bolder;">
-                <h1>Golden</h1>
-                <h4>Luxury Living</h4>
-                <div class="line"></div>
-            </div>
-        </div> 
-        <div class="contant">
-            <h1>
-               Decover aswan
-            </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <div class="btn" id="play-btn">
-                <img src="./assets/asset/img/play.png" id="img">Watch Video
-            </div>
-        </div>
-    </div>
-
-
- 
-    <script >
-        var vid = document.getElementById("vid");
-        var playBtn = document.getElementById("play-btn");
-        var img = document.getElementById("img");
-
-        playBtn.onclick= function(){
-            vid.style.display = "block";
-            if(vid.paused){
-                vid.play();
-                img.src = "/img/pause.png"
-            }else{
-                vid.pause();
-                img.src = "/img/play.png"
-            }
-        }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -210,40 +156,6 @@
     </section>
 
 
-    <!-- ======= On Focus Section ======= -->
-    <section id="onfocus" class="onfocus">
-        <div class="container-fluid p-0" data-aos="fade-up">
-
-
-            <div class="row g-0">
-                <div class="col-lg-6 video-play position-relative">
-                    <a href="./vid/video1.mp4" class="glightbox play-btn"></a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="content d-flex flex-column justify-content-center h-100">
-                        <h3>Voluptatem dignissimos provident quasi corporis</h3>
-                        <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</li>
-                            <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</li>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                                mastiro dolore eu fugiat nulla pariatur.</li>
-                        </ul>
-                        <a href="#" class="read-more align-self-start"><span>Read More</span><i
-                                class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End On Focus Section -->
 
 
 
@@ -1186,119 +1098,6 @@
 
 
 
-
-
-
-
-
-      <!-- 
-        - #DESTINATION
-      -->
-<!-- 
-      <section class="section destination">
-        <div class="container">
-
-          <p class="section-subtitle">Destinations</p>
-
-          <h2 class="h2 section-title">Choose Your Place</h2>
-
-          <ul class="destination-list">
-
-            <li class="w-50">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-1.jpg" width="1140" height="1100" loading="lazy"
-                    alt="Malé, Maldives" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Malé</p>
-
-                  <h3 class="h3 card-title">Maldives</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-50">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-2.jpg" width="1140" height="1100" loading="lazy"
-                    alt="Bangkok, Thailand" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Bangkok</p>
-
-                  <h3 class="h3 card-title">Thailand</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-3.jpg" width="1110" height="480" loading="lazy"
-                    alt="Kuala Lumpur, Malaysia" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Kuala Lumpur</p>
-
-                  <h3 class="h3 card-title">Malaysia</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-4.jpg" width="1110" height="480" loading="lazy"
-                    alt="Kathmandu, Nepal" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Kathmandu</p>
-
-                  <h3 class="h3 card-title">Nepal</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li  class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-5.jpg" width="1110" height="480" loading="lazy"
-                    alt="Jakarta, Indonesia" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Jakarta</p>
-
-                  <h3 class="h3 card-title">Indonesia</h3>
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
- -->
-
- -->
-
-
     <!-- 
         - #ABOUT
       -->
@@ -1387,7 +1186,7 @@
 
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="testimonials"  style="height: 30rem">
         <div class="container" data-aos="zoom-in">
   
           <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -1477,7 +1276,7 @@
       </button> -->
  
 
-    <div class="svgg position-relative" style="padding-bottom: 3rem;  background-image: radial-gradient(circle, rgba(203, 203, 203, 0.673), rgb(255, 255, 255), rgb(255, 255, 255));
+    {{-- <div class="svgg position-relative" style="padding-bottom: 3rem;  background-image: radial-gradient(circle, rgba(203, 203, 203, 0.673), rgb(255, 255, 255), rgb(255, 255, 255));
     ;">
         <!-- <div class="position-absolute top-50 start-0 translate-middle">
             <img src="./assets/img/tables-right-dec (1).png">
@@ -1553,191 +1352,9 @@
             </g>
         </svg>
     </div>
+ --}}
 
-
-
-
-
-
-    <footer>
-        <div class="waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-            <div class="wave" id="wave3"></div>
-            <div class="wave" id="wave4"></div>
-        </div>
-        <div class="container">
-           
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer" style="background-color:rgba(20, 118, 255, 0.102); margin-top: 200px;">
-    <div class="container">
-
-      <div class="footer-top">
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Top destination</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Indonesia, Jakarta</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Maldives, Malé</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Australia, Canberra</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Thailand, Bangkok</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Morocco, Rabat</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Categories</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Travel</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Lifestyle</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Fashion</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Education</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Food & Drink</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Quick links</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">About</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Contact</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Tours</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Booking</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Terms & Conditions</a>
-          </li>
-
-        </ul>
-
-        <div class="footer-list">
-
-          <p class="footer-list-title">Get a newsletter</p>
-
-          <p class="newsletter-text">
-            For the latest deals and tips, travel no further than your inbox
-          </p>
-
-          <form action="" class="newsletter-form">
-            <input type="email" name="email" required placeholder="Email address" class="newsletter-input" >
-
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-
-        <a href="#" class="logo">Tourest</a>
-
-        <p class="copyright">
-          &copy; 2022 <a href="#" class="copyright-link">codewithsadee</a>. All Rights Reserved
-        </p>
-
-        <ul class="social-list">
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-google"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-  </footer>
-
-
-
-
-
-
-        </div>
-    </footer>
-
+@endsection
 
     <!-- <script src="./assets/js/index.js"></script> -->
 
@@ -1768,4 +1385,4 @@
 
 </body>
 
-</html> --}}
+</html>

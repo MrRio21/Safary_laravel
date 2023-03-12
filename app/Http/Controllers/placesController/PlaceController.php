@@ -27,7 +27,7 @@ class PlaceController extends Controller
         // ]);  
 
         
-        return view("dashboardAdmin.allPlaces.placesTable",["places"=> $places],['placeImg'=>$placeImg]);
+        return view("dashboardAdmin\allPlaces\placesTable",["places"=> $places],['placeImg'=>$placeImg]);
     }
 
     public function create()

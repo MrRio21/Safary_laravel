@@ -29,7 +29,7 @@ Route::delete('/deldriverReg/{id}',[DriverController::class,'destroy'])->name("d
 // //Userregistrations---
 Route::get('/userDashForm',[userController :: class ,"createUser"])->name("UserDash.create");
 Route::get('/userRegistrations',[userController :: class ,"index"])->name("UserDash.index");
-Route::post('/userRegistrations',[userController :: class ,"store"])->name("UserrDash.store");
+Route::post('/userRegistrations',[userController :: class ,"storeuser"])->name("UserrDash.store");
 Route::delete('/deleteuserReg/{id}',[userController::class,'destroy'])->name("UserrDash.destroy");
 // //hotelOwnerRegistrations---
 Route::get('/HotelDashForm',[HotelOwnerController :: class ,"createHotelOwnwer"])->name("hotelOwnerDash.create");
@@ -153,3 +153,41 @@ Route::post('/updateRoom/{roomID}',[DashboardController :: class ,"updateRoom"])
 Route::PUT('/driverRegistrations/{id}', [DriverController::class, 'update'])->name('driverprofileDash.update');
 Route::get('/driverRegistrations/{id}/edit', [DriverController::class, 'edit'])->name('driverprofileDash.edit');
 Route::get('/driverRegistrations',[DriverController :: class ,"indexprofile"])->name("driverprofileDash.index");
+
+
+
+
+
+
+
+
+
+
+// ======================================================================================================
+Route::get('/HotelTable',function(){return view('/dashboardAdmin/allHotels/HotelTable');})->name('HotellTable');
+Route::get('/placesTable',function(){return view('/dashboardAdmin/allPlaces/placesTable');})->name('placessTable');
+Route::get('/tripTable',function(){return view('/dashboardAdmin/allTrips/tripTable');})->name('trippTable');
+Route::get('/vechileTable',function(){return view('/dashboardAdmin/allVehcile/vechileTable');})->name('vechileeTable');
+Route::get('/OrderTable',function(){return view('/dashboardAdmin/order/OrdetTable');})->name('OrderrTable');
+
+Route::get('/AdminDash',function(){return view('/dashboardAdmin/admin');})->name('AdminDash');
+Route::get('/TougguideDash',function(){return view('/dashboardTourguide/dashboardview');})->name('TougguideDash');
+Route::get('/dashboardDriver',function(){return view('/dashboardDriver/dashboardview');})->name('dashboardDriver');
+Route::get('/dashboardHotelOwner',function(){return view('/dashboardHotelOwner/index');})->name('dashboardHotelOwner');
+
+
+Route::get('/tourguideform',function(){return view('/dashboardAdmin/Tourguide/tourguideform');})->name('tourguideeeform');
+Route::get('/userform',function(){return view('/dashboardAdmin/user/userform');})->name('userrform');
+Route::get('/users',function(){return view('/dashboardAdmin/user/users');})->name('userss');
+
+Route::get('/admin',function(){return view('/dashboardAdmin/admin');})->name('adminn');
+
+
+Route::get('/index',function(){return view('/layouts/nav');})->name('index');
+Route::get('/landingPage',function(){return view('/landingPage/index');})->name('landingPage');
+
+
+
+// @extends('layouts/nav')
+// @section('bodyContent')
+

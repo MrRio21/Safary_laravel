@@ -1,3 +1,8 @@
+@extends('dashboardAdmin.dashboardViewAdmin')
+
+@section('dashbourdAdmon')
+    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,3 +65,5 @@
 <script src="./assets/js/signning.js"></script>
 
 </html>
+
+@endsection
