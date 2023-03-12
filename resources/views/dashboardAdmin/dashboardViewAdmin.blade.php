@@ -29,51 +29,51 @@
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="allTrip.html">
               <i class="fa-solid fa-gear fa-fw"></i>
-              <span> <a href="{{route('HotellTable')}}" > All Hotels </a> </span>
+              <span> <a href="{{route('hotelOwnerDash.index')}}" > All Hotels </a> </span>
             </a>
           </li>
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="customers.html">
               <i class="fa-regular fa-user fa-fw"></i>
-              <span><a href="{{route('placessTable')}}" > placessTable </a></span>
+              <span><a href="{{route('PlaceeDash.index')}}" > placessTable </a></span>
             </a>
           </li>
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
               <i class="fa-solid fa-diagram-project fa-fw"></i>
-              <span><a href="{{route('trippTable')}}" > trippTable </a></span>
+              <span><a href="{{route('TrippDash.index')}}" > trippTable </a></span>
             </a>
           </li>
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="vehicle.html">
               <i class="fa-solid fa-graduation-cap fa-fw"></i>
-              <span><a href="{{route('vechileeTable')}}" > vechileeTable </a></span>
+              <span><a href="{{route('VehiclleDash.index')}}" > vechileeTable </a></span>
             </a>
           </li>
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="tourguide.html">
               <i class="fa-regular fa-circle-user fa-fw"></i>
-              <span><a href="{{route('OrderrTable')}}" > OrderrTable </a></span>
+              <span><a href="{{route('OrderrDetails.index')}}" > OrderrTable </a></span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="plans.html">
               <i class="fa-regular fa-credit-card fa-fw"></i>
               <span><a href="{{route('tourguideeeform')}}" > tourguideeeform </a></span>
             </a>
-          </li>
+          </li> --}}
 
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="plans.html">
               <i class="fa-regular fa-credit-card fa-fw"></i>
               <span><a href="{{route('userrform')}}" > userrform </a></span>
             </a>
-          </li>
+          </li> --}}
 
           <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="plans.html">
               <i class="fa-regular fa-credit-card fa-fw"></i>
-              <span><a href="{{route('userss')}}" > userss </a></span>
+              <span><a href="{{route('UserDash.index')}}" > userss </a></span>
             </a>
           </li>
 

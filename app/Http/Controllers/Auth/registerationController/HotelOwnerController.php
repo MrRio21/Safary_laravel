@@ -79,6 +79,35 @@ class HotelOwnerController extends Controller
 return redirect(route('login.create',['role'=>$request->role]));
     }
 
+
+    public function storeHotelOwner(StoreHotelOwnerRequest $request,StoreUserRequest $requestUser)
+    {
+
+       $user=  User::create([
+        'name' => $requestUser['name'] ,
+        'email' => $requestUser['email'],
+        'password' =>  Hash::make($requestUser['password']),
+        'gender' => $requestUser['gender'],
+        'phone' => $requestUser['phone'],
+         'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
+        ]);
+
+       $hotelOwner= hotelOwner::create([
+        'commercial_reg_No' => $request['commercial_reg_No'],
+        'user_id' => $user['id']
+
+       ]);
+       $newUser = User::find($user->id);
+
+       if(!empty ($hotelOwner)){
+           $role_id =Role::where('name','hotelOwner')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+// print_r($hotelOwner->User);
+return redirect('dashboardAdmin.user.users',['role'=>$request->role]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -119,11 +148,11 @@ return redirect(route('login.create',['role'=>$request->role]));
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy($ID)
+    public function destroy(hotelOwner $id)
     {
-        $DelID= hotelOwner::find($ID)->delete();
+        $DelID=$id->delete();
         if($DelID){
-            User::where ('user_id',$ID)->delete();
+            User::where ('user_id',$id)->delete();
         }
 
         return back();

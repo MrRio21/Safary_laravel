@@ -76,6 +76,7 @@ return view('MUT.MUT');
 
     public function store(Request $request)
     {
+        // dd($request);
 // dd(Auth::user());
 // dd(Auth::user()->id);
 // dd((int)$request['budget']);
@@ -109,7 +110,9 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
         }
        $orderedRoom =OrderedRoom::where('order_id',$order->id)->get();
 
-       return redirect(route('getAvailableHotels',['order'=>$order->id]));
+       return redirect(route('getAvailableHotels',['order'=>$order->id,
+       'budgetForHotels'=>(int)$request->percent
+    ]));
     //    return view('MUT.hotel',['data'=>['order'=>$order,
     //    'orderedRoom'=>$orderedRoom,] ,'message'=>'the order is saved']);
 

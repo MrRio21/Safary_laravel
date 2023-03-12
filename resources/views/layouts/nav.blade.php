@@ -129,9 +129,9 @@
                       <ul class="dropdown arrow-top">
 
                         <li><a href="{{route('AdminDash')}}" class="nav-link">dashboardAdmin</a></li>
-                        <li><a href="{{route('TougguideDash')}}" class="nav-link">dashboardTourguide</a></li>
-                        <li><a href="{{route('dashboardDriver')}}" class="nav-link">dashboardDriver</a></li>
-                        <li><a href="{{route('dashboardHotelOwner')}}" class="nav-link">dashboardHotelOwner</a></li>
+                        <li><a href="{{route('TourguideProfile.index')}}" class="nav-link">dashboardTourguide</a></li>
+                        <li><a href="{{route('driverprofileDash.index')}}" class="nav-link">dashboardDriver</a></li>
+                        <li><a href="{{route('hotelOwnerDashboard')}}" class="nav-link">dashboardHotelOwner</a></li>
                         {{-- <li class="has-children">
                           <a href="#">dashbourd</a>
                           <ul class="dropdown">

@@ -7,8 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\HotelOwner;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Driver;
+use App\Models\TourGuide;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Console\View\Components\Alert as ComponentsAlert;
+
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -28,8 +33,10 @@ class userController extends Controller
     public function index()
     {
         $users=User::all();
+        $hotelOwners=HotelOwner::all();
+        $Drivers=Driver::all();
 
-        return view("dashboardAdmin.user.users",["users"=> $users]);
+        return view("dashboardAdmin.user.users",["users"=> $users ,'drivers'=>$Drivers,'hotelOwners'=>$hotelOwners]);
         //show table from DB
     }
 public function editUser(){
@@ -49,6 +56,31 @@ public function editUser(){
     public function createUser()
     {
         return view("dashboardAdmin.user.userform");
+    }
+
+
+
+
+    public function storeuser(StoreUserRequest $request)
+    {
+// dd($request);
+      $user= User::create([
+        'name' => $request['name'] ,
+        'email' => $request['email'],
+        'password' =>  Hash::make($request['password']),
+        'gender' => $request['gender'],
+        'phone' => $request['phone'],
+        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
+        // 'role_id' => $request['role_id']
+    ]);
+            // print_r($user);
+            $newUser = User::find($user->id);
+            // dd($newUser);
+// $createToken = $user->createToken($request->email)->plainTextToken;
+$role= Role::where('id',$newUser->role_id)->first();
+
+       return redirect('dashboardAdmin/user/users');
+
     }
 
     /**
@@ -80,27 +112,7 @@ $role= Role::where('id',$newUser->role_id)->first();
 
     }
 
-    public function storeuser(StoreUserRequest $request)
-    {
-// dd($request);
-      $user= User::create([
-        'name' => $request['name'] ,
-        'email' => $request['email'],
-        'password' =>  Hash::make($request['password']),
-        'gender' => $request['gender'],
-        'phone' => $request['phone'],
-        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-        // 'role_id' => $request['role_id']
-    ]);
-            // print_r($user);
-            $newUser = User::find($user->id);
-            // dd($newUser);
-// $createToken = $user->createToken($request->email)->plainTextToken;
-$role= Role::where('id',$newUser->role_id)->first();
 
-       return redirect(route('dashboardAdmin/user/users'));
-
-    }
 
 
 
@@ -134,10 +146,23 @@ public function validateLogin(Request $request) {
     if(auth()->attempt(request()->only(['email','password']))){
         // dd(Auth::user());
         // if(Auth::user())
+if(Auth::user()->HotelOwner){
+    return route('hotelOwnerDashboard');
+}if(Auth::user()->tourguide){
+    return route('TourguideProfile.index');
+}if(Auth::user()->Driver){
 
-        return redirect('/MUT');
+    return route('driverprofileDash.index');
+}if(Auth::user()->user_type =1){
+    return route('AdminDash.index');
+
+}
+        // return redirect('/MUT');
     }
-    return redirect()->back()->withErrors(['email'=>'credentials invalid!']);
+    Alert::error('sorry', 'credentials invalid! :(');
+
+    return redirect()->back();
+    // ->withErrors(['email'=>'credentials invalid!'])
     // $request->validate([
     //     'email' => 'required|email',
     //     'password' => 'required',
@@ -196,10 +221,14 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $userId)
+    public function deleteUser(User $UserID)
     {
-        User::find($userId)->delete();
+        // dd($UserID);
+        Alert::warning('deleted', 'You\'ve deleted the user ^^');
+
+        $UserID->delete();
         return back();
     }
+ 
 }
 

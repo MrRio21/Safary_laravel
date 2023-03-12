@@ -49,7 +49,7 @@
             </div>
             <img src="imgs/avatar.png" alt="" class="avatar" />
             <div class="body txt-c d-flex p-20 mt-20 mb-20 block-mobile">
-              <div> RIO <span class="d-block c-grey fs-14 mt-10">Manager</span></div>
+              <div> {{Auth::user()->name}} <span class="d-block c-grey fs-14 mt-10">Manager</span></div>
               <div>80 <span class="d-block c-grey fs-14 mt-10">Travel</span></div>
               <div>$8500 <span class="d-block c-grey fs-14 mt-10">Earned</span></div>
             </div>
@@ -134,16 +134,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($chosentrips as $chosentrip)
+                {{-- @foreach ($chosentrips as $chosentrip) --}}
                 <tr>
-                  <td>{{$chosentrip->User}}</td>
+                  {{-- <td>{{$chosentrip->User}}</td> --}}
                   <td>10 May 2022</td>
 
                   <td>
                     <span class="label btn-shape bg-orange c-white">Pending</span>
                   </td>
                 </tr> 
-                @endforeach
+                {{-- @endforeach --}}
                 
               </tbody>
             </table>

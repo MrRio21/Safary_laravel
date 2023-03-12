@@ -90,6 +90,36 @@ class DriverController extends Controller
   return redirect(route('login.create',['role'=>$request->role]));
     }
 
+
+
+
+
+    public function storeDriver(StoreDriverRequest $request, StoreUserRequest $requestUser)
+    {
+
+        $user=  User::create([
+            'name' => $requestUser['name'] ,
+            'email' => $requestUser['email'],
+            'password' =>  Hash::make($requestUser['password']),
+            'gender' => $requestUser['gender'],
+            'phone' => $requestUser['phone'],
+             'image'=>isset($requestUser['image'])?$requestUser['image']-> storeAs("public/imgs",md5(microtime()).$requestUser['image']->getClientOriginalName()):null,
+            ]);
+
+      $driver= driver::create([
+        'license' => $request['license'],
+        'user_id' => $user['id']
+       ]);
+
+       $newUser = User::find($user->id);
+       if(!empty ($driver)){
+           $role_id =Role::where('name','driver')->limit(1)->get();
+           $newUser->update(['role_id'=>$role_id[0]->id]);
+       }
+
+  return redirect('dashboardDriver.driverindex',['role'=>$request->role]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -150,11 +180,11 @@ class DriverController extends Controller
      * @param  \App\Models\driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function destroy($ID)
+    public function destroy(driver $id)
     {
-        $DelID= driver::find($ID)->delete();
+        $DelID= $id->delete();
         if($DelID){
-            User::where ('user_id',$ID)->delete();
+            User::where ('user_id',$id)->delete();
         }
 
         return back();
