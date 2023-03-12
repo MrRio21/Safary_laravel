@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\HotelController;
+use App\Http\Controllers\hotelsController\HotelController;
 // use App\Models\Room ;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +24,12 @@ use App\Http\Controllers\dashboard\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 //Driverregistrations---
 // Route::get('/driverRegistrations',[DriverController :: class ,"index"])->name("driverRegistrations.index");
 // Route::get('/driverRegistrations/create',[Drivercontroller :: class ,"create"])->name("driverRegistrations.create");

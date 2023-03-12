@@ -25,6 +25,7 @@ class HotelController extends Controller
         // return response()->json([
         //     'allHotels'=>$allHotels ,'hotelImgs'=>$hotelImgs
         // ]);
+        
         return view("dashboardAdmin.allHotels.HotelTable",["allHotels"=> $allHotels],["hotelImgs"=>$hotelImgs]);
     }
 
