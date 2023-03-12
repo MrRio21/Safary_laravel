@@ -196,6 +196,7 @@ Route::get('/index',function(){return view('/layouts/nav');})->name('index');
 Route::get('/landingPage',function(){return view('/landingPage/index');})->name('landingPage');
 
 
+Route::get('/places',function(){return view('/allPlaces/allPlaces');})->name('places');
 
 // @extends('layouts/nav')
 // @section('bodyContent')

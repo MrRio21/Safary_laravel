@@ -12,3 +12,4 @@ Route::post('/hotelOwnerInfo',[DashboardController::class,'hotelOwnerInfo']);
 
 Route::post('/hotelOwnerInfo',[DashboardController::class,'hotelOwnerInfo']);
 
+

@@ -156,8 +156,10 @@ if(Auth::user()->HotelOwner){
 }if(Auth::user()->user_type =1){
     return route('AdminDash.index');
 
+}else{
+
+    return redirect('/MUT');
 }
-        // return redirect('/MUT');
     }
     Alert::error('sorry', 'credentials invalid! :(');
 
