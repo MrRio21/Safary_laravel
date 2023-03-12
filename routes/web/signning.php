@@ -9,7 +9,7 @@ use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\BookedRoomController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
 
-
+// 
 
 Route::get('/register',[userController :: class ,"create"])->name("user.store");
 // Route::get('/userRegistrations/create',[userController :: class ,"create"])->name("userRegistrations");
