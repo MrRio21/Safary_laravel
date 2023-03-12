@@ -28,8 +28,6 @@ class HotelController extends Controller
         
         return view("dashboardAdmin.allHotels.HotelTable",["allHotels"=> $allHotels],["hotelImgs"=>$hotelImgs]);
     }
-
-    
      
     /**
      * Store a newly created resource in storage.
@@ -121,7 +119,7 @@ foreach( $request['image'] as $img){
     // }
 
     // ----------------------the original way -----------------------
-    public function show( $hotelID)
+    public function show($hotelID)
     {
         // dd($id);
         $hotelInfo = Hotel::find($hotelID);

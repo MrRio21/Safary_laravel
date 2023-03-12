@@ -107,7 +107,8 @@
   }
 
 </style>
-
+@extends("temp.nav")
+@section("body")
 <section class="section-team">
 	<div class="container">
 		<!-- Start Header Section -->
@@ -208,5 +209,6 @@
 		</div>
 	</div>
 </section>
+@endsection
 </body>
 </html>
