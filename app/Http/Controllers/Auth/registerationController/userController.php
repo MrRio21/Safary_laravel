@@ -53,6 +53,31 @@ public function editUser(){
         return view("dashboardAdmin.user.userform");
     }
 
+
+
+
+    public function storeuser(StoreUserRequest $request)
+    {
+// dd($request);
+      $user= User::create([
+        'name' => $request['name'] ,
+        'email' => $request['email'],
+        'password' =>  Hash::make($request['password']),
+        'gender' => $request['gender'],
+        'phone' => $request['phone'],
+        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
+        // 'role_id' => $request['role_id']
+    ]);
+            // print_r($user);
+            $newUser = User::find($user->id);
+            // dd($newUser);
+// $createToken = $user->createToken($request->email)->plainTextToken;
+$role= Role::where('id',$newUser->role_id)->first();
+
+       return redirect('dashboardAdmin/user/users');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -82,27 +107,7 @@ $role= Role::where('id',$newUser->role_id)->first();
 
     }
 
-    public function storeuser(StoreUserRequest $request)
-    {
-// dd($request);
-      $user= User::create([
-        'name' => $request['name'] ,
-        'email' => $request['email'],
-        'password' =>  Hash::make($request['password']),
-        'gender' => $request['gender'],
-        'phone' => $request['phone'],
-        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-        // 'role_id' => $request['role_id']
-    ]);
-            // print_r($user);
-            $newUser = User::find($user->id);
-            // dd($newUser);
-// $createToken = $user->createToken($request->email)->plainTextToken;
-$role= Role::where('id',$newUser->role_id)->first();
 
-       return redirect(route('dashboardAdmin/user/users'));
-
-    }
 
 
 
@@ -213,7 +218,7 @@ if(Auth::user()->HotelOwner){
      */
     public function destroy(User $UserID)
     {
-        $UserID->delete();
+        User::find($userId)->delete();
         return back();
     }
 }
