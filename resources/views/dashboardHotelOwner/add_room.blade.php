@@ -15,32 +15,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    @include('sweetalert::alert');
     <div class="page d-flex">
       <div class="sidebar bg-white p-20 p-relative">
         <h3 class="p-relative txt-c mt-0">Safary</h3>
         <ul>
           <li>
-            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="index.html">
+            <a class=" d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('hotelOwnerDashboard')}}">
               <i class="fa-regular fa-chart-bar fa-fw"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
               <i class="fa-solid fa-gear fa-fw"></i>
               <span>Add Room</span>
             </a>
-          </li>
+          </li> --}}
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
+            <a class=" d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('MyOwnedHotels')}}">
               <i class="fa-solid fa-graduation-cap fa-fw"></i>
               <span>Hotels</span>
             </a>
           </li>
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="rooms.html">
+            <a class="active d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('addRoomForm')}}">
               <i class="fa-regular fa-circle-user fa-fw"></i>
-              <span>Rooms</span>
+              <span>Add Rooms</span>
             </a>
           </li>
         </ul>
@@ -65,7 +66,8 @@
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Room </h2>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('storeRoom')}}" method="POST" enctype="multipart/form-data">
+                @csrf
              Number of available rooms  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="n_of_available_rooms" type="number"  />
              Price  <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="price" type="number"  />
               <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="type">
@@ -77,7 +79,7 @@
               <?php $hotelOwnerID= isset(Auth::user()->hotelOwner)?Auth::user()->hotelOwner:1?>
               {{-- {{dd($hotelOwnerID->Hotel)}} --}}
               <select class="form-select bg-eee mb-20 " aria-label="Default select example" name="hotel_id">
-                <option selected>The hotel that the room belongs </option>
+                <option >The hotel that the room belongs </option>
                 @foreach($hotelOwnerID->Hotel as $hotel)
                 <option value="{{$hotel->id}}">{{$hotel->name}}</option>
 

@@ -12,8 +12,9 @@
 </head>
 <body>
 
-  
- 
+  {{dd($availableRooms)}}
+  {{-- {{dd($message)}} --}}
+
 <section class="container blog top mt-3" id="blog">
   <div class="container">
     <div class="heading">
@@ -25,17 +26,17 @@
     <div class="container">
       <div class="row g-5" style="margin-top: 1rem;">
 
-        
+
     <?php $prev_hotel =null;
     $allHotels=[];
          ?>
            @foreach ($availableRooms as $room )
-    
+
            @if($prev_hotel != $room->Hotel  )
            <?php $prev_hotel = $room->Hotel; ?>
         @if(!in_array($prev_hotel,$allHotels))
          <?php  array_push($allHotels,$prev_hotel) ;?>
-   
+
         <div class="col-lg-4  col-sm-6 col-12 rounded ">
 
 

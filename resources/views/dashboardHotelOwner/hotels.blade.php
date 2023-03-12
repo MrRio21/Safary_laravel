@@ -14,32 +14,45 @@
   </head>
   <body>
     {{-- {{dd($allHotels)}} --}}
+    @include('sweetalert::alert');
     <div class="page d-flex">
 <div class="sidebar bg-white p-20 p-relative">
         <h3 class="p-relative txt-c mt-0">Safary</h3>
         <ul>
           <li>
-            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="index.html">
+            <a class=" d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('hotelOwnerDashboard')}}">
               <i class="fa-regular fa-chart-bar fa-fw"></i>
-              <span>Dashboard</span>
+              <span>My Dashboard</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
               <i class="fa-solid fa-gear fa-fw"></i>
               <span>Add Room</span>
             </a>
-          </li>
+          </li> --}}
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
+            <a class=" d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('MyOwnedHotels')}}">
               <i class="fa-solid fa-graduation-cap fa-fw"></i>
               <span>Hotels</span>
             </a>
           </li>
           <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="rooms.html">
+            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('addHotelView')}}">
+              <i class="fa-regular fa-chart-bar fa-fw"></i>
+              <span>Add Hotel</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('addRoomForm')}}">
               <i class="fa-regular fa-circle-user fa-fw"></i>
-              <span>Rooms</span>
+              <span>Add Rooms</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('addRoomForm')}}">
+              <i class="fa-regular fa-circle-user fa-fw"></i>
+              <span>Requests</span>
             </a>
           </li>
         </ul>

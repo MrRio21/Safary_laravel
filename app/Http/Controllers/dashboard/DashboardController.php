@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\dashboard;
-
+use RealRashid\SweetAlert\Facades\Alert;
+// use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\tripController\ChosenTripController;
 use App\Models\Hotel;
@@ -11,6 +12,8 @@ use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ChosenTrip;
+use App\Models\RoomImg;
+use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 
 class DashboardController extends Controller
 {
@@ -46,8 +49,9 @@ class DashboardController extends Controller
         ]);
     }
     }
+    Alert::success('Congrats', 'You\'ve Successfully added the hotel ^^');
 
-      return back();
+      return redirect(route('MyOwnedHotels'));
     }
     public function dashboard(){
         return view('dashboardHotelOwner.profile');
@@ -69,6 +73,7 @@ class DashboardController extends Controller
         if($deleteHotel){
             HotelImg::where ('hotel_id',$hotelID)->delete();
         }
+        Alert::alert('deleted', 'You\'ve deleted the hotel successfully ^^');
 
         return back();
 
@@ -113,7 +118,9 @@ class DashboardController extends Controller
                     ]);
                }
         }
-        return back();
+        Alert::success('Congrats', 'You\'ve Successfully updated the hotel ^^');
+
+        return redirect(route('MyOwnedHotels'));
     }
 
     public function AllRooms(Hotel $hotelID){
@@ -122,7 +129,13 @@ class DashboardController extends Controller
         // dd($hotelID->id);
         // $rooms= Room::where('hotel_id',$hotelID)->get();
 // dd($rooms);
-        return view('dashboardHotelOwner.rooms',['rooms'=>$rooms]);
+if(count($rooms)==0){
+    Alert::warning('empty', 'there is no rooms added yet');
+    return back();
+}else{
+    return view('dashboardHotelOwner.rooms',['rooms'=>$rooms]);
+
+}
     }
 
     public function previewRoom(Room $roomID){
@@ -132,6 +145,11 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function addRoomFormForHotel(Hotel $hotelID){
+
+        return view('dashboardHotelOwner.add_room_for_hotel',['hotel'=>$hotelID]);
+
+    }
     public function addRoomForm(){
 
         return view('dashboardHotelOwner.add_room');
@@ -139,10 +157,31 @@ class DashboardController extends Controller
     }
     public function storeRoom(Request $request){
 
-  dd($request);
+//   dd($request);
+  $room= Room::create([
+   'n_of_available_rooms'=>$request->n_of_available_rooms,
+   'price'=>$request->price,
+   'type'=>$request->type,
+   'cover_img'=>$request->file("cover_img")->storeAs("public/imgs",md5(microtime()).$request['cover_img']->getClientOriginalName()),
+   'hotel_id'=>$request->hotel_id
+  ]);
+  if(!is_null($request->image[0])){
+    foreach($request->image as $img){
+
+      RoomImg::create([
+          'image'=>$img->storeAs("public/imgs",md5(microtime()).$img->getClientOriginalName()),
+          'room_id'=>$room->id
+      ]);
+  }
+  }
+  Alert::success('Congrats', 'You\'ve Successfully added the Room ^^');
+  return back();
 
     }
 
+public function allRequests(){
+    return view('dashboardHotelOwner.allRequests');
+}
 
 
     public function chosenTrip()
