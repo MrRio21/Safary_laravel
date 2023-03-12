@@ -1,112 +1,42 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotels</title>
-</head>
-<body>
-    <h2>Hotels is working</h2>
-    
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" /> 
-  
-    
-    
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="./css/sidebar.css">
-    <!--  -->
 <link rel="stylesheet" href="{{asset("assets/css/hotel.css")}}">
     <title>Hotels</title>
 </head>
 <body>
+@extends("temp.nav")
+@section("body")
     <!-- HERO SECTION -->
-    <section class="home" id="home">
+    <section class="home" id="home"
+    style="background-image:{{$Hotel->cover_img}}">
         <div class="container">
-          <h1>HOTEL_Name</h1>
-          <!-- <p>Discover your best stay</p> -->
-    
-          <!-- check -->
-          <!-- <div class="content grid ">
-            <div class="box">
-              <span>ARRIVAL DATE </span> <br>
-              <input type="date" placeholder="29/20/2021">
-            </div>
-            <div class="box">
-              <span>DEPARTURE DATE</span><br>
-              <input type="date" placeholder="29/20/2021">
-            </div>
-            <div class="box">
-              <span>ADULTS</span> <br>
-              <input type="number" placeholder="01">
-            </div>
-            <div class="box">
-              <span>CHILDREN </span> <br>
-              <input type="number" placeholder="01">
-            </div>
-            <div class="box">
-                <span>Number of rooms</span> <br>
-                <input type="number" placeholder="01">
-              </div>
-               <div class="box">
-                <span>Type of rooms</span> <br>
-                <input type="number" placeholder="01">
-              </div>
-            <div class="box-btn">
-              <button class="flex1">
-                <span routerLink="/hotels/room">Check Availability</span>
-                <i class="fas fa-arrow-circle-right"></i>
-              </button>
-            </div>
-          </div> -->
+          <h1>{{$hotelInfo->name}}</h1>
+          <p>Discover your best stay</p>
         </div>
     </section>
 
-      <!-- ABIUT HOTEL -->
+      <!-- ABOUT HOTEL -->
       <section class="area top">
         <div class="container">
           <div class="heading">
-            <h5>our info</h5>
-            <h3>Discover your best stay with us</h3>
+            <h5>hotel info</h5>
+            <h3>{{$hotelInfo ["name"]}}</h3>
           </div>
-    
           <div class="content flex mtop">
             <div class="left">
-              <img src="image/aera.jpg" alt="">
+              <img src="{{$hotelInfo->cover_img}}" alt="">
             </div>
             <div class="right">
               <ul>
-                <li>Restaurant </li>
-                <li>Swimming pool </li>
-                <li>Conference room</li>
+                <li>{{$hotelInfo ["type"]}}</li>
               </ul>
               <!-- DESCRIPTION IF EXIST -->
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque laborum totam placeat natus, illum consectetur ut eveniet! Consequuntur mollitia magnam veniam, quod eius, voluptates ipsam omnis inventore labore quae temporibus?
-                <p>
-               <!-- <button class="flex1">
-                <span>Check Availability</span>
-                <i class="fas fa-arrow-circle-right"></i>
-              </button> -->
+                <p>{{$hotelInfo ["address"]}}<p>
             </div>
           </div>
         </div>
@@ -237,15 +167,9 @@
             </div>
         </div>
       </section> 
+  @endsection
 </body>
 </html>
-
-@extends('layouts/nav')
-@section('bodyContent')
-
-
-
-@endsection
 
 
 

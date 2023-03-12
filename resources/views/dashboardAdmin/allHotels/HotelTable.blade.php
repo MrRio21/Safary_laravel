@@ -46,7 +46,7 @@
                   <td>Action</td>
                 </tr>
               </thead>
-              <tbody>
+      <tbody>
               @foreach ($allHotels as $Hotel)
            <tr>
            <td>{{$Hotel->id}}</td>
@@ -56,38 +56,23 @@
            <td>{{$Hotel->name}}</td>
              <td>{{$Hotel->address}}</td>
              <td>{{$Hotel->type}}</td>
-          
-          
              <td>
-              
-             <form method="POST" action="{{route('HotellDash.destroy'),['ID'=>$Hotel->id]}}" accept-charset="UTF-8" style="display:inline">
+            <form method="POST" action="{{route('HotellDash.destroy'),['ID'=>$Hotel->id]}}" accept-charset="UTF-8" style="display:inline">
              @crsf
                @method('delete');
                  <button type="submit" class="btn btn-outline-danger" title="Delete Student" onclick="return confirm('Confirm delete?')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i>
                   Delete
                  </button>
-             </form>
-       
+            </form>
              </td>
            </tr>
-
            @endforeach
-              </tbody>
-             
+      </tbody>
             </table>
           </div>
         </div>
-
-
-
-
-
-
-
-
   </div>
 </body>
 </html>
-
 @endsection
