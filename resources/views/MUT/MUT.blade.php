@@ -22,35 +22,22 @@
     <div class="container m-5">
 
       <div class="booking-form">
-        <form action="{{route('MUT.store')}}" method="POST">
+        <form action="{{route('MUT.store')}}"  method="POST">
          @csrf
             <div class="form-group">
             <span class="form-label">Your Budget</span>
             <input class="form-control" type="text" placeholder="Enter Your Budget" name="budget">
-            <?php
-             $percent=0?>
-                        <div class="progress">
-                            <div id="progress" class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percent}}%</div>
-                          </div>
-                                    </div>
-            <input class="form-control" id="budgetPercent" type="text" placeholder="the Percentage of your budget you want to give to Book a room " onkeyup="
+            <progress id="myProgress" value="0" max="100">
+            </progress>
+            <input type="number" id="percent" placeholder="Enter Your percentage" name="percent" onkeyup="
+             var percent=   document.getElementById('percent');
+            console.log(percent.value);
+            var progress = document.getElementById('myProgress');
+            console.log(progress.value);
+progress.value = parseInt(percent.value);
 
-        // var budget = document.getElementById('budget');
-        var budgetPercent = document.getElementById('budgetPercent');
-        var pogress = document.getElementById('progress');
 
-// console.log(budget.value);
-console.log(budgetPercent.value);
-// console.log(e);
-console.log( progress.style.width);
-progress.style.width=''.budgetPercent.value.'%';
-console.log( progress.style.width);
-
-// console.log(progress.value);
-                // console.log(budget.value);
-                // console.log( progress.style.width);
-                // progress.style.width=50"
-           >
+            ">
 
           <!-- Check In/Out  -->
           <div class="row">
@@ -160,32 +147,13 @@ console.log( progress.style.width);
 
     </div>
   </section>
-  <script>
+{{-- <script>
+    function percent(){
 
-
-        var budget = document.getElementById('budget');
-        var budgetPercent = document.getElementById('budgetPercent');
-        var pogress = document.getElementById('progress');
-        budget.onkeyup = function(){
-            {
-
-console.log(budget.value);
-console.log(budgetPercent.value);
-// console.log(e);
-console.log( progress.style.width);
-budgetPercent=budgetPercent.value% ;
-console.log(budgetPercent.value);
-
-// console.log( progress.style.width);
-
-}
-        }
-        // console.log(budget.value);
-        // console.log(e);
-        // console.log( progress.style.width);
-        // progress.style.width=budget.value /100;
-
-  </script>
+        var percent=   document.getElementById('percent');
+           console.log(percent.value)
+    }
+</script> --}}
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
