@@ -26,6 +26,10 @@
     <title>Hotels</title>
 </head>
 <body>
+
+@extends("temp.nav")
+@section("body")
+
     <!-- HERO SECTION -->
     <section class="home" id="home" style="background-image: url('https://bestoffers.travel/UploadFiles/OfferPhoto/2(141).jpg')">
         <div class="container">
@@ -92,6 +96,7 @@
         </div>
       </section> 
 
+@endsection
     
 </body>
 </html>

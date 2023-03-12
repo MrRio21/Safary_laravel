@@ -19,7 +19,8 @@ class Order extends Model
         'check_out',
         'n_of_adults',
         'n_of_childeren',
-        'check_out'
+        'check_out',
+        'n_of_days'
     ];
 
 
@@ -34,7 +35,7 @@ class Order extends Model
     // }
     public function BookedRoom()
     {
-        return $this->hasMany(BookedRoom::class );
+        return $this->belongsToMany(BookedRoom::class );
     }
     public function Hotel()
     {

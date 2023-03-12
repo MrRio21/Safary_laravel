@@ -1,3 +1,8 @@
+
+@extends('layouts/nav')
+@section('bodyContent')
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,75 +55,19 @@
             rel="stylesheet">
 
         <!-- Vendor CSS Files -->
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link href="assets/asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/asset/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/asset/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/asset/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/asset/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
         <!-- Variables CSS Files. Uncomment your preferred color scheme -->
-        <link href="./assets/css/css1/variables.css " rel="stylesheet">
+        <link href="./assets/asset/css/css1/variables.css " rel="stylesheet">
         <!-- Template Main CSS File -->
-        <link href="./assets/css/css1/main.css" rel="stylesheet">
+        <link href="./assets/asset/css/css1/main.css" rel="stylesheet">
    </head>
 
 <body class="u-body">
-
-
-    <div class="cover">
-        <video autoplay loop muted plays-inline id="vid">
-            <source src="./vid/video.mp4" type="video/mp4" id="backvideo">
-        </video>
-        <div class="logo">
-            <img src="./assets/img/logo.png" alt="">
-        </div>
-        <div class="box">
-            <div class="text-box " style="font-size: larger; font-weight: bolder;">
-                <h1>Golden</h1>
-                <h4>Luxury Living</h4>
-                <div class="line"></div>
-            </div>
-        </div> 
-        <div class="contant">
-            <h1>
-               Decover aswan
-            </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-            <div class="btn" id="play-btn">
-                <img src="./assets/img/play.png" id="img">Watch Video
-            </div>
-        </div>
-    </div>
-
-
- 
-    <script >
-        var vid = document.getElementById("vid");
-        var playBtn = document.getElementById("play-btn");
-        var img = document.getElementById("img");
-
-        playBtn.onclick= function(){
-            vid.style.display = "block";
-            if(vid.paused){
-                vid.play();
-                img.src = "/img/pause.png"
-            }else{
-                vid.pause();
-                img.src = "/img/play.png"
-            }
-        }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -129,7 +78,7 @@
         <div class="u-clearfix u-gutter-26 u-layout-wrap u-layout-wrap-1">
             <div class="u-layout">
                 <div class="position-absolute top-100 start-100 translate-middle">
-                    <img src="./assets/img/about-bg.png">
+                    <img src="./assets/asset/img/about-bg.png">
                 </div>
                 <div class="u-layout-row">
                     <div class="u-size-15 u-size-30-md">
@@ -207,40 +156,6 @@
     </section>
 
 
-    <!-- ======= On Focus Section ======= -->
-    <section id="onfocus" class="onfocus">
-        <div class="container-fluid p-0" data-aos="fade-up">
-
-
-            <div class="row g-0">
-                <div class="col-lg-6 video-play position-relative">
-                    <a href="./vid/video1.mp4" class="glightbox play-btn"></a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="content d-flex flex-column justify-content-center h-100">
-                        <h3>Voluptatem dignissimos provident quasi corporis</h3>
-                        <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</li>
-                            <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</li>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                                mastiro dolore eu fugiat nulla pariatur.</li>
-                        </ul>
-                        <a href="#" class="read-more align-self-start"><span>Read More</span><i
-                                class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End On Focus Section -->
 
 
 
@@ -251,18 +166,18 @@
       <section class="section hero"
       style="background-image: url('./assets/img/hero-bg-bottom.png') url('./assets/img/hero-bg-top.png')">
       <div class="container  position-relative">
-        <div class="position-absolute top-0 start-100 translate-middle"><img src="./assets/img/wave.c36b4051801ca3d56b23.png"></div>
+        <div class="position-absolute top-0 start-100 translate-middle"><img src="./assets/asset/img/wave.c36b4051801ca3d56b23.png"></div>
         <div class="position-absolute top-50 start-0 translate-middle">
-            <img src="./assets/img/tables-right-dec (1).png">
+            <img src="./assets/asset/img/tables-right-dec (1).png">
         </div>
 
       
 
-          <img src="./assets/img/shape-1.png" width="61" height="61" alt="Vector Shape" class="shape shape-1">
+          <img src="./assets/asset/img/shape-1.png" width="61" height="61" alt="Vector Shape" class="shape shape-1">
 
-          <img src="./assets/img/shape-2.png" width="56" height="74" alt="Vector Shape" class="shape shape-2">
+          <img src="./assets/asset/img/shape-2.png" width="56" height="74" alt="Vector Shape" class="shape shape-2">
 
-          <img src="./assets/img/shape-3.png" width="57" height="72" alt="Vector Shape" class="shape shape-3">
+          <img src="./assets/asset/img/shape-3.png" width="57" height="72" alt="Vector Shape" class="shape shape-3">
 
           <div class="hero-content">
 
@@ -283,7 +198,7 @@
           </div>
 
           <figure class="hero-banner">
-              <img src="./assets/img/hero-banner.png" width="686" height="812" loading="lazy" alt="hero banner"
+              <img src="./assets/asset/img/hero-banner.png" width="686" height="812" loading="lazy" alt="hero banner"
                   class="w-100">
           </figure>
 
@@ -307,13 +222,13 @@
 
 
         <div class="position-absolute bottom-0 end-0">
-            <img src="./assets/img/Frame.png">
+            <img src="./assets/asset/img/Frame.png">
         </div>
 
         <div class="container" data-aos="fade-up">
 
             <div class="position-absolute top-100 start-100 translate-middle">
-                <img src="./assets/img/about-bg.png">
+                <img src="./assets/asset/img/about-bg.png">
             </div>
           
          
@@ -381,7 +296,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-4.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-4.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -399,7 +314,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -417,7 +332,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-4.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-4.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -435,7 +350,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-5.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-5.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -454,7 +369,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-4.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-4.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -473,7 +388,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-3.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-3.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -512,7 +427,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-6.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-6.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -530,7 +445,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-5.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-5.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -548,7 +463,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-4.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-4.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -566,7 +481,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-3.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-3.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -585,7 +500,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -604,7 +519,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/portfolio-1.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/portfolio-1.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -647,7 +562,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/g1.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/g1.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -665,7 +580,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/g2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/g2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -683,7 +598,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/g3.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/g3.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -701,7 +616,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/b1.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/b1.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -720,7 +635,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/b2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/b2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -739,7 +654,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/b3.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/b3.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -784,7 +699,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-1.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-1.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -802,7 +717,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -820,7 +735,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-3.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-3.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -838,7 +753,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-4.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-4.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -857,7 +772,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -876,7 +791,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/team-1.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/team-1.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -916,7 +831,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/313166499_5270331519743427_4443675230616219846_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/313166499_5270331519743427_4443675230616219846_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -934,7 +849,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/313435305_5270331853076727_6941305933810485371_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/313435305_5270331853076727_6941305933810485371_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -952,7 +867,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/314360077_5270331813076731_8413247105427946869_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/314360077_5270331813076731_8413247105427946869_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -970,7 +885,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/140480356_2780378032217365_4438094177276068640_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/140480356_2780378032217365_4438094177276068640_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -989,7 +904,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/314562878_5270331306410115_7793681385847405347_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/314562878_5270331306410115_7793681385847405347_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1008,7 +923,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/313416231_5270331699743409_5832713419704215391_n.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/313416231_5270331699743409_5832713419704215391_n.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1048,7 +963,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1066,7 +981,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1084,7 +999,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1102,7 +1017,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1121,7 +1036,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1140,7 +1055,7 @@
                                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
                                             <div class="service-item">
                                                 <div class="img">
-                                                    <img src="./assets/img/post-2.jpg" class="img-fluid" alt="">
+                                                    <img src="./assets/asset/img/post-2.jpg" class="img-fluid" alt="">
                                                 </div>
                                                 <div class="details position-relative">
                                                     <div class="icon">
@@ -1170,7 +1085,7 @@
 
 
             <div class="position-absolute top-0 start-0 translate-middle">
-                <img src="./assets/img/element-1.png">
+                <img src="./assets/asset/img/element-1.png">
             </div>
             
         </div>
@@ -1183,125 +1098,12 @@
 
 
 
-
-
-
-
-
-      <!-- 
-        - #DESTINATION
-      -->
-<!-- 
-      <section class="section destination">
-        <div class="container">
-
-          <p class="section-subtitle">Destinations</p>
-
-          <h2 class="h2 section-title">Choose Your Place</h2>
-
-          <ul class="destination-list">
-
-            <li class="w-50">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-1.jpg" width="1140" height="1100" loading="lazy"
-                    alt="Malé, Maldives" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Malé</p>
-
-                  <h3 class="h3 card-title">Maldives</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-50">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-2.jpg" width="1140" height="1100" loading="lazy"
-                    alt="Bangkok, Thailand" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Bangkok</p>
-
-                  <h3 class="h3 card-title">Thailand</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-3.jpg" width="1110" height="480" loading="lazy"
-                    alt="Kuala Lumpur, Malaysia" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Kuala Lumpur</p>
-
-                  <h3 class="h3 card-title">Malaysia</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-4.jpg" width="1110" height="480" loading="lazy"
-                    alt="Kathmandu, Nepal" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Kathmandu</p>
-
-                  <h3 class="h3 card-title">Nepal</h3>
-                </div>
-
-              </a>
-            </li>
-
-            <li  class="w-20">
-              <a href="#" class="destination-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/destination-5.jpg" width="1110" height="480" loading="lazy"
-                    alt="Jakarta, Indonesia" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-                  <p class="card-subtitle">Jakarta</p>
-
-                  <h3 class="h3 card-title">Indonesia</h3>
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
- -->
-
- -->
-
-
     <!-- 
         - #ABOUT
       -->
 
     <section class="section about" style="position:relative">
-        <img src="./assets/img/footer-dec.png" style="width: max-content; position:absolute ; z-index: -1">
+        <img src="./assets/asset/img/footer-dec.png" style="width: max-content; position:absolute ; z-index: -1">
         <div class="container">
 
             <div class="about-content">
@@ -1374,7 +1176,7 @@
             </div>
 
             <figure class="about-banner">
-                <img src="./assets/img/about-banner.png" width="756" height="842" loading="lazy" alt="" class="w-100">
+                <img src="./assets/asset/img/about-banner.png" width="756" height="842" loading="lazy" alt="" class="w-100">
             </figure>
 
         </div>
@@ -1384,7 +1186,7 @@
 
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="testimonials"  style="height: 30rem">
         <div class="container" data-aos="zoom-in">
   
           <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -1392,7 +1194,7 @@
   
               <div class="swiper-slide">
                 <div class="testimonial-item my-5 py-5">
-                  <img src="assets/img/team-3.jpg" class="testimonial-img" alt="">
+                  <img src="assets/asset/img/team-3.jpg" class="testimonial-img" alt="">
                   <h3>Saul Goodman</h3>
                   <h4>Ceo &amp; Founder</h4>
                   <p>
@@ -1405,7 +1207,7 @@
   
               <div class="swiper-slide">
                 <div class="testimonial-item my-5 py-5">
-                  <img src="assets/img/team-2.jpg" class="testimonial-img" alt="">
+                  <img src="assets/asset/img/team-2.jpg" class="testimonial-img" alt="">
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                   <p>
@@ -1418,7 +1220,7 @@
   
               <div class="swiper-slide">
                 <div class="testimonial-item my-5 py-5">
-                  <img src="assets/img/team-1.jpg" class="testimonial-img" alt="">
+                  <img src="assets/asset/img/team-1.jpg" class="testimonial-img" alt="">
                   <h3>Jena Karlis</h3>
                   <h4>Store Owner</h4>
                   <p>
@@ -1431,7 +1233,7 @@
   
               <div class="swiper-slide">
                 <div class="testimonial-item my-5 py-5">
-                  <img src="assets/img/team-2.jpg" class="testimonial-img" alt="">
+                  <img src="assets/asset/img/team-2.jpg" class="testimonial-img" alt="">
                   <h3>Matt Brandon</h3>
                   <h4>Freelancer</h4>
                   <p>
@@ -1444,7 +1246,7 @@
   
               <div class="swiper-slide">
                 <div class="testimonial-item my-5 py-5">
-                  <img src="assets/img/team-3.jpg" class="testimonial-img" alt="">
+                  <img src="assets/asset/img/team-3.jpg" class="testimonial-img" alt="">
                   <h3>John Larson</h3>
                   <h4>Entrepreneur</h4>
                   <p>
@@ -1474,7 +1276,7 @@
       </button> -->
  
 
-    <div class="svgg position-relative" style="padding-bottom: 3rem;  background-image: radial-gradient(circle, rgba(203, 203, 203, 0.673), rgb(255, 255, 255), rgb(255, 255, 255));
+    {{-- <div class="svgg position-relative" style="padding-bottom: 3rem;  background-image: radial-gradient(circle, rgba(203, 203, 203, 0.673), rgb(255, 255, 255), rgb(255, 255, 255));
     ;">
         <!-- <div class="position-absolute top-50 start-0 translate-middle">
             <img src="./assets/img/tables-right-dec (1).png">
@@ -1482,7 +1284,7 @@
         <div class="position-absolute top-100 start-50 translate-middle"></div>
      
         <div class="position-absolute top-100 start-50 translate-middle">
-            <img src="./assets/img/footer-bg.png">
+            <img src="./assets/asset/img/footer-bg.png">
         </div>
 
       
@@ -1550,211 +1352,29 @@
             </g>
         </svg>
     </div>
+ --}}
 
-
-
-
-
-
-    <footer>
-        <div class="waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-            <div class="wave" id="wave3"></div>
-            <div class="wave" id="wave4"></div>
-        </div>
-        <div class="container">
-           
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer" style="background-color:rgba(20, 118, 255, 0.102); margin-top: 200px;">
-    <div class="container">
-
-      <div class="footer-top">
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Top destination</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Indonesia, Jakarta</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Maldives, Malé</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Australia, Canberra</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Thailand, Bangkok</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Morocco, Rabat</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Categories</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Travel</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Lifestyle</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Fashion</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Education</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Food & Drink</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Quick links</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">About</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Contact</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Tours</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Booking</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Terms & Conditions</a>
-          </li>
-
-        </ul>
-
-        <div class="footer-list">
-
-          <p class="footer-list-title">Get a newsletter</p>
-
-          <p class="newsletter-text">
-            For the latest deals and tips, travel no further than your inbox
-          </p>
-
-          <form action="" class="newsletter-form">
-            <input type="email" name="email" required placeholder="Email address" class="newsletter-input" >
-
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-
-        <a href="#" class="logo">Tourest</a>
-
-        <p class="copyright">
-          &copy; 2022 <a href="#" class="copyright-link">codewithsadee</a>. All Rights Reserved
-        </p>
-
-        <ul class="social-list">
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-google"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-  </footer>
-
-
-
-
-
-
-        </div>
-    </footer>
-
+@endsection
 
     <!-- <script src="./assets/js/index.js"></script> -->
 
 
 
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/asset/vendor/aos/aos.js"></script>
+    <script src="assets/asset/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/asset/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/asset/vendor/swiper/swiper-bundle.min.js"></script>
     <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
 
     <!-- Main JS File -->
-    <script src="./assets/js/main.js"></script>
+    <script src="./assets/asset/js/main.js"></script>
 
 
     <!-- 
     - custom js link
   -->
-    <script src="./assets/js/landing.js"></script>
+    <script src="./assets/asset/js/landing.js"></script>
 
     <!-- 
     - ionicon link

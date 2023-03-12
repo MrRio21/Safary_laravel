@@ -1,15 +1,36 @@
+@extends('dashboardAdmin.dashboardViewAdmin')
+
+@section('dashbourdAdmon')
+    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="assets/Admindash/css/all.min.css" />
+    <link rel="stylesheet" href="assets/Admindash/css/framework.css" />
+    <link rel="stylesheet" href="assets/Admindash/css/master.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
 </head>
 <body>
     
 
-<h1 class="p-relative">Customer</h1>
+
+  <div class="page d-flex">
+
+
+
+{{-- ================================================================ --}}
+
+  
+        <h1 class="p-relative">Customer</h1>
         <div class="projects p-20 bg-white rad-10 m-20">
           <h2 class="mt-0 mb-20">Customers</h2>
           <div class="responsive-table">
@@ -58,5 +79,15 @@
           </div>
         </div>
 
+
+
+
+
+
+
+
+  </div>
 </body>
 </html>
+
+@endsection

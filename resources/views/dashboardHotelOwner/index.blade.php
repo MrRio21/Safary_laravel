@@ -14,34 +14,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
   </head>
   <body>
+    @include('sweetalert::alert');
     <div class="page d-flex">
       <div class="sidebar bg-white p-20 p-relative">
         <h3 class="p-relative txt-c mt-0">Safary</h3>
         <ul>
+            <li>
+                <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('hotelOwnerDashboard')}}">
+                  <i class="fa-regular fa-circle-user fa-fw"></i>
+                  <span>My Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="{{route('MyOwnedHotels')}}">
+                  <i class="fa-solid fa-graduation-cap fa-fw"></i>
+                  <span>My Hotels</span>
+                </a>
+              </li>
           <li>
-            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="index.html">
+            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('addHotelView')}}">
               <i class="fa-regular fa-chart-bar fa-fw"></i>
               <span>Add Hotel</span>
             </a>
           </li>
           <li>
+            <a class="active d-flex align-center fs-14 c-black  rad-6 p-10 text-decoration-none" href="{{route('addRoomForm')}}">
+              <i class="fa-regular fa-chart-bar fa-fw"></i>
+              <span>Add Room</span>
+            </a>
+          </li>
+          {{-- <li>
             <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="add_room.html">
               <i class="fa-solid fa-gear fa-fw"></i>
               <span>Add Room</span>
             </a>
-          </li>
-          <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="hotels.html">
-              <i class="fa-solid fa-graduation-cap fa-fw"></i>
-              <span>My Hotels</span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-center fs-14 c-black rad-6 p-10 text-decoration-none" href="rooms.html">
-              <i class="fa-regular fa-circle-user fa-fw"></i>
-              <span>Rooms</span>
-            </a>
-          </li>
+          </li> --}}
+
+
         </ul>
       </div>
       <div class="content w-full">
@@ -64,7 +73,7 @@
           <!-- Start Quick Draft Widget -->
           <div class="quick-draft p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Add Hotel </h2>
-            <form action="{{route('addHotel')}}" method="POST">
+            <form action="{{route('addHotel')}}" method="POST" enctype="multipart/form-data">
                 @csrf
               <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="name" type="text" placeholder="Hotel Name" />
               <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" name="address" type="text" placeholder="Address" />
@@ -82,7 +91,7 @@
                 <option value="2">breakfast</option>
               </select> --}}
 
-              Your Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
+              Your hotel Cover Image: <input class=" mb-20 p-10  bg-eee rad-6" type="file" name="cover_img"  placeholder="Your Cover Image" />
             <br>
               Your hotel Images: <input class=" mb-20 p-10  bg-eee rad-6" type="file"  placeholder="Your Cover Image" name="image[]" multiple />
               {{-- <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Description"></textarea> --}}

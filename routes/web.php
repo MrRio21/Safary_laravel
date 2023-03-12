@@ -50,6 +50,10 @@ Route::get('/', function () {
 Route::get('testtrip',[ChosenTripController :: class, 'test']);
 Route::get('chosentrip',[DashboardController :: class, 'chosenTrip']);
 
+Route::get('watch', function(){
+    return view('driver.storeVehicle');
+});
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
@@ -108,3 +112,35 @@ function resetBudget($budget ,$checkIn){
 // function showPlaces($nOFDays){
 
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ======================================================================================================
+// Route::get('/nav', function () {
+//     return view('/landingPage/index');
+// });
+
+
+
+Route::get('/Customize_Budget', function () { return view('/CustomizeTrip/badget');});
+Route::get('/Customize_hotelCustom', function () { return view('/CustomizeTrip/hotelCustom');});
+Route::get('/Customize_placesCustom', function () { return view('/CustomizeTrip/placesCustom');});
+Route::get('/Customize_tourguideCard', function () { return view('/CustomizeTrip/tourguideCard');});
+Route::get('/Customize_viewCustomize', function () { return view('/CustomizeTrip/viewCustomize');});
+
+
+
+

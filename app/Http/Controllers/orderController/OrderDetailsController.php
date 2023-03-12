@@ -23,7 +23,7 @@ class OrderDetailsController extends Controller
     //     'OrdersDetail'=>$OrdersDetail,
     // ]);
 
-    return view("dashboardAdmin.order.OrderTable",["OrdersDetail"=> $OrdersDetail],["orders"=>$orders]);
+    return view("dashboardAdmin\order\OrdetTable",["OrdersDetail"=> $OrdersDetail],["orders"=>$orders]);
 
        
     }

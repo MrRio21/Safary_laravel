@@ -1,12 +1,26 @@
+@extends('dashboardAdmin.dashboardViewAdmin')
+
+@section('dashbourdAdmon')
+    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="assets/Admindash/css/all.min.css" />
+    <link rel="stylesheet" href="assets/Admindash/css/framework.css" />
+    <link rel="stylesheet" href="assets/Admindash/css/master.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
 </head>
 <body>
+  {{-- {{dd($chosentrips)}} --}}
     
 <div class="content w-full">
         <!-- Start Head -->
@@ -115,58 +129,22 @@
             <table class="fs-15 w-full">
               <thead>
                 <tr>
-                  <td>Name</td>
-                  <td>Start Date</td>
-                  <td>Finish Date</td>
-                  <td>Budget</td>
-                  <td>Status</td>
+                  <td>Tourist Name</td>
+                  <td>Trip</td>
                 </tr>
               </thead>
               <tbody>
+                @foreach ($chosentrips as $chosentrip)
                 <tr>
-                  <td>Ministry Wikipedia</td>
+                  <td>{{$chosentrip->User}}</td>
                   <td>10 May 2022</td>
-                  <td>10 May 2022</td>
-                  <td>$5300</td>
+
                   <td>
                     <span class="label btn-shape bg-orange c-white">Pending</span>
                   </td>
-                </tr>
-                <tr>
-                  <td> Shop</td>
-                  <td>12 Oct 2021</td>
-                  <td>10 May 2022</td>
-                  <td>$1500</td>
-                  <td><span class="label btn-shape bg-blue c-white">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Bouba App</td>
-                  <td>05 Sep 2021</td>
-                  <td>10 May 2022</td>
-                  <td>$800</td>
-                  <td><span class="label btn-shape bg-green c-white">Completed</span></td>
-                </tr>
-                <tr>
-                  <td>Mahmoud Website</td>
-                  <td>22 May 2021</td>
-                  <td>10 May 2022</td>
-                  <td>$600</td>
-                  <td><span class="label btn-shape bg-green c-white">Completed</span></td>
-                </tr>
-                <tr>
-                  <td>Sayed Website</td>
-                  <td>24 May 2021</td>
-                  <td>10 May 2022</td>
-                  <td>$300</td>
-                  <td><span class="label btn-shape bg-red c-white">Rejected</span></td>
-                </tr>
-                <tr>
-                  <td>Arena Application</td>
-                  <td>01 Mar 2021</td>
-                  <td>10 May 2022</td>
-                  <td>$2600</td>
-                  <td><span class="label btn-shape bg-green c-white">Completed</span></td>
-                </tr>
+                </tr> 
+                @endforeach
+                
               </tbody>
             </table>
           </div>
@@ -176,3 +154,5 @@
 </div>
 </body>
 </html>
+
+@endsection

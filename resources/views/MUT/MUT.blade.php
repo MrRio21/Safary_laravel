@@ -26,19 +26,32 @@
          @csrf
             <div class="form-group">
             <span class="form-label">Your Budget</span>
-            <input class="form-control" type="text" placeholder="Enter Your Budget" name="budget"><?php
+            <input class="form-control" type="text" placeholder="Enter Your Budget" name="budget">
+            <?php
              $percent=0?>
-            <input class="form-control" id="budget" type="text" placeholder="the Percentage of your budget you want to give to Book a room " onkeyup="
+                        <div class="progress">
+                            <div id="progress" class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percent}}%</div>
+                          </div>
+                                    </div>
+            <input class="form-control" id="budgetPercent" type="text" placeholder="the Percentage of your budget you want to give to Book a room " onkeyup="
 
-                console.log(budget.value);
+        // var budget = document.getElementById('budget');
+        var budgetPercent = document.getElementById('budgetPercent');
+        var pogress = document.getElementById('progress');
 
-                console.log( progress.style.width);
-                progress.style.width=budget.value /100;
-            " name="budget" value={{$percent}}>
-            <div class="progress">
-  <div id="progress" class="progress-bar" role="progressbar" style="width: {{$percent}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$percent}}%</div>
-</div>
-          </div>
+// console.log(budget.value);
+console.log(budgetPercent.value);
+// console.log(e);
+console.log( progress.style.width);
+progress.style.width=''.budgetPercent.value.'%';
+console.log( progress.style.width);
+
+// console.log(progress.value);
+                // console.log(budget.value);
+                // console.log( progress.style.width);
+                // progress.style.width=50"
+           >
+
           <!-- Check In/Out  -->
           <div class="row">
             <div class="col-6">
@@ -46,6 +59,7 @@
                 <span class="form-label">Check In</span>
                 <input class="form-control" type="date" name="check_in" required>
               </div>
+            </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
@@ -150,20 +164,26 @@
 
 
         var budget = document.getElementById('budget');
+        var budgetPercent = document.getElementById('budgetPercent');
         var pogress = document.getElementById('progress');
         budget.onkeyup = function(){
             {
 
 console.log(budget.value);
-console.log(e);
+console.log(budgetPercent.value);
+// console.log(e);
 console.log( progress.style.width);
-progress.style.width=budget.value /100;
+budgetPercent=budgetPercent.value% ;
+console.log(budgetPercent.value);
+
+// console.log( progress.style.width);
+
 }
         }
-        console.log(budget.value);
-        console.log(e);
-        console.log( progress.style.width);
-        progress.style.width=budget.value /100;
+        // console.log(budget.value);
+        // console.log(e);
+        // console.log( progress.style.width);
+        // progress.style.width=budget.value /100;
 
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

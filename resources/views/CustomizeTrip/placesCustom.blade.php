@@ -1,9 +1,16 @@
+@extends('layouts/nav')
+@section('bodyContent')
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('./assets/CSS/Cards/placesCards.css')}}" >
+    <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js')}}" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -19,7 +26,10 @@
 <!-- CARD ==================================================================-->
 <div class="container">
   <div class="row g-5" style="margin-top: 1rem;" >
-    <div class="col-lg-3  col-sm-6 col-12 rounded"  *ngFor="let places of placesList ;" >
+    <form action="{{route('bookPlaces',['order'=>$order])}}" method="POST">
+      @csrf
+          @foreach ($availablePlaces as $place )
+     <div class="col-lg-3  col-sm-6 col-12 rounded">
 
       <div class="card" style="box-shadow:8px 5px 40px inset rgba(137, 97, 29, 0.546) ;width:85%;background-color: aliceblue; ">
         <div class="box">
@@ -28,8 +38,8 @@
             </svg>
             <img src="../../assets/img/Aswan-Nilme (1).png" alt="" style="height: 10rem;">
             <div class="box-content">
-                <h3 class="title">{{places?.id}}</h3>
-                <span class="post">Web Designer</span>
+                <h3 class="title">{{$place->id}}</h3>
+                <span class="post">{{$place->name}}</span>
                 <ul class="icon">
                     <li><a href="#"><i class="fa fa-search"></i></a></li>
                     <li><a href="#"><i class="fa fa-link"></i></a></li>
@@ -42,20 +52,26 @@
       
       
         <div class="card-body" >
-          <h3 class="card-title fs-4" style="color: rgb(190, 143, 23);">Card title</h3>
+          <h3 class="card-title fs-4" style="color: rgb(190, 143, 23);">
+{{$place->name}}
+          </h3>
           <!-- <p class="card-text">This is a wider card with</p> -->
         </div>
         <div class="card-footer" >
           <small class="text-muted">
            
-                <a href="#" class="mx-1"><i class="fa fa-search m-1 border border-2 rounded-5" style="color: rgb(249, 182, 12);"></i></a><span>place Name</span>
-             <a routerLink='placesDesc' routerLinkActive="active" class="mx-1"><i class="fa fa-link m-1  border border-2 rounded-5" style="color: rgb(249, 182, 12);">view</i></a><span ></span>
+                <a href="#" class="mx-1"><i class="fa fa-search m-1 border border-2 rounded-5" style="color: rgb(249, 182, 12);"></i></a><span>
+                  <a href="{{route('showPlace',['place'=>$place->id])}}">{{$place->name}}</a>
+                </span>
+             <a routerLink='placesDesc' routerLinkActive="active" class="mx-1"><i class="fa fa-link m-1  border border-2 rounded-5" style="color: rgb(249, 182, 12);"></i> Book  <input type="checkbox" name="place_id[]"  value="{{$place->id}}" class="btn btn-warning"></a><span ></span>
         </small>
         </div>
       </div>
 
       
   </div>
+  @endforeach
+  <input type="text" name="restOfBudget" value="{{ $restOfBudget }}" hidden>
 
   </div>
 </div>
