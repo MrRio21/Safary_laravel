@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -145,10 +146,23 @@ public function validateLogin(Request $request) {
     if(auth()->attempt(request()->only(['email','password']))){
         // dd(Auth::user());
         // if(Auth::user())
+if(Auth::user()->HotelOwner){
+    return route('hotelOwnerDashboard');
+}if(Auth::user()->tourguide){
+    return route('TourguideProfile.index');
+}if(Auth::user()->Driver){
 
-        return redirect('/MUT');
+    return route('driverprofileDash.index');
+}if(Auth::user()->user_type =1){
+    return route('AdminDash.index');
+
+}
+        // return redirect('/MUT');
     }
-    return redirect()->back()->withErrors(['email'=>'credentials invalid!']);
+    Alert::error('sorry', 'credentials invalid! :(');
+
+    return redirect()->back();
+    // ->withErrors(['email'=>'credentials invalid!'])
     // $request->validate([
     //     'email' => 'required|email',
     //     'password' => 'required',

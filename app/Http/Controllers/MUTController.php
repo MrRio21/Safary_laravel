@@ -13,6 +13,7 @@ use App\Models\Tourguide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MUTController extends Controller
 {
@@ -24,12 +25,51 @@ return view('MUT.MUT');
     }
     // stored the order
 
-    public function getAvailableHotels(Order $order){
+    public function getAvailableHotels( $budgetForHotels,Order $order){
         //
+        $percent=(int)$budgetForHotels/100;
+dd($order->OrderedRoomType);
+            $budget=  $order->budget * $percent  / $order->n_of_days;
+            $ns = DB::table('ordered_room')->  ->select(DB::raw('count(room_id)as count'))->where('order_id',$order->id)->where('type','single')->get() ;
+            $nd = 0;
+            $nt = 1;
+            $i = 0;
+            $packeg = [];
+
+            $hotels= Hotel::all();
+            foreach ($hotels as $hotel)
+            {
+                $ts = Room::where('type', 'single')->where('hotel_id', $hotel->id)->first();
+                $td = Room::where('type', 'double')->where('hotel_id', $hotel->id)->first();
+                $tt = Room::where('type', 'triple')->where('hotel_id', $hotel->id)->first();
+
+                if (($ns*$ts['price'] + $nd*$td['price']) + $nt*$tt['price'] <= $budget)
+                {
+                    $packeg[$i] = [
+                        'single' => ['room' => $ts, 'number' => $ns],
+                        'double' => ['room' => $td, 'number' => $nd],
+                        'triple' => ['room' => $tt, 'number' => $nt]
+                    ];
+                    $i++;
+                }
+            }
+            dd($packeg);
+
+
+
+
+
+
+
+
+        // dd($budgetForHotels);
+        $percent=(int)$budgetForHotels/100;
         $order->budget;
-        dd($order->budget);
-        // dd($order->n_of_days);
-        $budgetperday = $order->budget / $order->n_of_days;
+        // dd($order->budget);
+        // dd($percent);
+        $restOfBudget =$order->budget*$percent;
+        dd($restOfBudget);
+        $budgetperday = $order->budget * $percent  / $order->n_of_days;
 // dd($budgetperday);
         $availableRooms = Room::where('price','<',$budgetperday)
         ->get();
@@ -38,15 +78,19 @@ return view('MUT.MUT');
 
             return view('MUT.availableHotelsTest',[
                 'availableRooms' => $availableRooms,
-                'order' => $order
+                'order' => $order,
+                'percent'=>$percent
 
             ]);
         }else{
-            return ([
-                'message' => "increase your budget or derease or change number of days you want to stay",
+            Alert::alert('sorry :(', 'there is no available hotels
+            increase your budget or derease or change number of days you want to stay ^^');
+            return back();
 
 
-            ]);
+
+
+
         }
 
     }
