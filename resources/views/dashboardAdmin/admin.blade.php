@@ -134,16 +134,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($chosentrips as $chosentrip)
+                {{-- @foreach ($chosentrips as $chosentrip) --}}
                 <tr>
-                  <td>{{$chosentrip->User}}</td>
+                  {{-- <td>{{$chosentrip->User}}</td> --}}
                   <td>10 May 2022</td>
 
                   <td>
                     <span class="label btn-shape bg-orange c-white">Pending</span>
                   </td>
                 </tr> 
-                @endforeach
+                {{-- @endforeach --}}
                 
               </tbody>
             </table>
