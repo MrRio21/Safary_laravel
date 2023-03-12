@@ -62,7 +62,7 @@
           <div class="tickets p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Trips</h2>
             {{-- <p class="mt-0 mb-20 c-grey fs-15">Everything About Support Tickets</p> --}}
-            <div class="d-flex txt-c gap-20 f-wrap">
+            {{-- <div class="d-flex txt-c gap-20 f-wrap">
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>
                 <span class="d-block c-black fw-bold fs-25 mb-5">{{ $chosenTrips->count()}}</span>
@@ -83,7 +83,7 @@
                 <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
                 Rejected
               </div>
-            </div>
+            </div> --}}
           </div>
           <!-- End Ticket Widget -->
           <!-- Start Top Search Word Widget -->
@@ -93,7 +93,7 @@
               <div>Keyword</div>
               <div>Search Count</div>
             </div>
-            <div class="items d-flex space-between pt-15 pb-15">
+            {{-- <div class="items d-flex space-between pt-15 pb-15">
               <span>customer</span>
               <span class="bg-eee fs-13 btn-shape">{{$users->count()}}</span>
             </div>
@@ -108,7 +108,7 @@
             <div class="items d-flex space-between pt-15 pb-15">
               <span>Trips</span>
               <span class="bg-eee btn-shape fs-13">{{ $tourGuides->count()}}</span>
-            </div>
+            </div> --}}
             <div class="items d-flex space-between pt-15 pb-15">
               <span>Vehicles</span>
               <span class="bg-eee btn-shape fs-13">{{ $vehicles->count()}}</span>

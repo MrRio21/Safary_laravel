@@ -40,15 +40,15 @@ class DashboardController extends Controller
     public function index()
     {
         $chosenTrips=  ChosenTrip::all();
-        $pendingTrips = ChosenTrip::where('status','pending')->get();
-        $approvedTrips = ChosenTrip::where('status','accept')->get();
-        $rejectedTrips = ChosenTrip::where('status','reject')->get();
+        // $pendingTrips = ChosenTrip::where('status','pending')->get();
+        // $approvedTrips = ChosenTrip::where('status','accept')->get();
+        // $rejectedTrips = ChosenTrip::where('status','reject')->get();
 
         $users = User::all();
-        $customers=Role::where('name','customer')->first()->users;
-        $hotelOwners=Role::where('name','Hotel Owner')->first()->users;
-        $tourGuides=Role::where('name','TourGuide')->first()->users;
-        $drivers=Role::where('name','Driver')->first()->users;
+        // $customers=Role::where('name','customer')->first()->users;
+        // $hotelOwners=Role::where('name','Hotel Owner')->first()->users;
+        // $tourGuides=Role::where('name','TourGuide')->first()->users;
+        // $drivers=Role::where('name','Driver')->first()->users;
 
         $drivers= Driver::all();
         $vehicles= Vehicle::all();
@@ -57,14 +57,14 @@ class DashboardController extends Controller
         [
 
             'chosenTrips' => $chosenTrips,
-            'pendingTrips' => $pendingTrips,
-            'approvedTrips' => $approvedTrips,
-            'rejectedTrips' => $rejectedTrips,
+            // 'pendingTrips' => $pendingTrips,
+            // 'approvedTrips' => $approvedTrips,
+            // 'rejectedTrips' => $rejectedTrips,
 
             'users'=> $users,
-            'customers'=>$customers,
-            'hotelOwners'=>$hotelOwners,  
-            'tourGuides'=> $tourGuides,
+            // 'customers'=>$customers,
+            // 'hotelOwners'=>$hotelOwners,  
+            // 'tourGuides'=> $tourGuides,
             'drivers' => $drivers,
 
             'vehicles' => $vehicles,
