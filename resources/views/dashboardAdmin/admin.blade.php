@@ -56,32 +56,32 @@
             <a href="profile.html" class="visit d-block fs-14 bg-blue c-white w-fit btn-shape">Profile</a>
           </div>
           <!-- End Welcome Widget -->
-          
+          /* View */
 
           <!-- Start Ticket Widget -->
           <div class="tickets p-20 bg-white rad-10">
-            <h2 class="mt-0 mb-10">Tickets Statistics</h2>
-            <p class="mt-0 mb-20 c-grey fs-15">Everything About Support Tickets</p>
+            <h2 class="mt-0 mb-10">Trips</h2>
+            {{-- <p class="mt-0 mb-20 c-grey fs-15">Everything About Support Tickets</p> --}}
             <div class="d-flex txt-c gap-20 f-wrap">
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">2500</span>
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{ $chosenTrips->count()}}</span>
                 Total
               </div>
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-solid fa-spinner fa-2x mb-10 c-blue"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">500</span>
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
                 Pending
               </div>
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-circle-check fa-2x mb-10 c-green"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">1900</span>
-                Closed
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
+                Approved
               </div>
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-rectangle-xmark fa-2x mb-10 c-red"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">100</span>
-                Deleted
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
+                Rejected
               </div>
             </div>
           </div>
@@ -95,52 +95,50 @@
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
               <span>customer</span>
-              <span class="bg-eee fs-13 btn-shape">220</span>
+              <span class="bg-eee fs-13 btn-shape">{{$users->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
               <span>Hotel Owner</span>
-              <span class="bg-eee btn-shape fs-13">180</span>
+              <span class="bg-eee btn-shape fs-13">{{$customers->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>Tourgide</span>
-              <span class="bg-eee btn-shape fs-13">160</span>
+              <span>Tourguide</span>
+              <span class="bg-eee btn-shape fs-13">{{ $hotelOwners->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
               <span>Trips</span>
-              <span class="bg-eee btn-shape fs-13">145</span>
+              <span class="bg-eee btn-shape fs-13">{{ $tourGuides->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>vehicle</span>
-              <span class="bg-eee btn-shape fs-13">110</span>
+              <span>Vehicles</span>
+              <span class="bg-eee btn-shape fs-13">{{ $vehicles->count()}}</span>
             </div>
-            <div class="items d-flex space-between pt-15 pb-15">
-              <span>Restaurants</span>
-              <span class="bg-eee btn-shape fs-13">95</span>
-            </div>
+
           </div>
           <!-- End Top Search Word Widget -->
  
           <!-- Start End Media Stats Widget -->
         </div>
-        <!-- Start Projects Table -->
+        <!-- Start Trips Table -->
         <div class="projects p-20 bg-white rad-10 m-20">
-          <h2 class="mt-0 mb-20">Customers</h2>
+          <h2 class="mt-0 mb-20">Trips</h2>
           <div class="responsive-table">
             <table class="fs-15 w-full">
               <thead>
                 <tr>
                   <td>Tourist Name</td>
                   <td>Trip</td>
+                  <td>Status</td>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($chosentrips as $chosentrip)
+                @foreach ($chosenTrips as $chosenTrip)
                 <tr>
-                  <td>{{$chosentrip->user_id}}</td>
-                  <td>{{$chosentrip->trip_id}}</td>
+                  <td>{{$chosenTrip->user_id}}</td>
+                  <td>{{$chosenTrip->trip_id}}</td>
 
                   <td>
-                    <span class="label btn-shape bg-orange c-white">Pending</span>
+                    <span class="label btn-shape bg-orange c-white">{{$chosenTrip->status}}</span>
                   </td>
                 </tr> 
                 @endforeach
@@ -149,7 +147,40 @@
             </table>
           </div>
         </div>
-        <!-- End Projects Table -->
+        <!-- End Trips Table -->
+
+
+
+
+          <!-- Start Places Table -->
+          <div class="projects p-20 bg-white rad-10 m-20">
+            <h2 class="mt-0 mb-20">Places</h2>
+            <div class="responsive-table">
+              <table class="fs-15 w-full">
+                <thead>
+                  <tr>
+                    <td>Tourist Name</td>
+                    <td>Place</td>
+                    <td>Status</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($orderedPlaces as $orderedPlace)
+                  <tr>
+                    <td>{{$orderedPlace->user_id}}</td>
+                    <td>{{$orderedPlace->trip_id}}</td>
+  
+                    <td>
+                      <span class="label btn-shape bg-orange c-white">{{$orderedPlace->status}}</span>
+                    </td>
+                  </tr> 
+                  @endforeach
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- End Places Table -->
 
 </div>
 </body>
