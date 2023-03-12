@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Session;
 class userController extends Controller
 {
     public function logout(){
+
+//         </form>
+//         @auth
+//    <form action="{{ route("logout") }}" method="POST" >
+//        @csrf
+// <button type="submit" >Log out</button>
+// </form>
+// @endauth
         Session::flush();
         Auth::logout();
         return redirect('/register');
