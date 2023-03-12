@@ -22,7 +22,6 @@ class StoreTourgideRequest extends FormRequest
      }
  
 
-
     public function rules()
     {
         return [
