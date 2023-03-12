@@ -120,6 +120,7 @@ Route::get('/TourguideProfile/{id}/edit', [TourguideController::class, 'edit'])-
 //     return view ('dashboardTourguide\tourguidprofile') ;
 // });
 
+Route::get('/deleteUser/{UserID}',[userController :: class ,"deleteHotel"])->name("deleteUser");
 
 
 // //==================Hotel Owner Dashboard=======================================================================================================

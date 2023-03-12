@@ -196,9 +196,9 @@ public function validateLogin(Request $request) {
      * @param  \App\Models\hotelOwner  $hotelOwner
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $userId)
+    public function destroy(User $UserID)
     {
-        User::find($userId)->delete();
+        $UserID->delete();
         return back();
     }
 }
