@@ -147,6 +147,11 @@ Route::get('/previewRoom/{roomID}',[DashboardController :: class ,"previewRoom"]
 Route::get('/deleteRoom/{roomID}',[DashboardController :: class ,"deleteRoom"])->name("deleteRoom");
 Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
 Route::post('/updateRoom/{roomID}',[DashboardController :: class ,"updateRoom"])->name("updateRoom");
+Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
+Route::get('/editRoom/{roomID}',[DashboardController :: class ,"editRoom"])->name("editRoom");
+
+Route::get('/allRequests',[DashboardController :: class ,"allRequests"])->name("allRequests");
+Route::get('/changeRequest/{bookedRoom}',[DashboardController :: class ,"allRequests"])->name("changeStatus");
 
 
 

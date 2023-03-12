@@ -35,7 +35,7 @@ class Order extends Model
     // }
     public function BookedRoom()
     {
-        return $this->hasMany(BookedRoom::class );
+        return $this->belongsToMany(BookedRoom::class );
     }
     public function Hotel()
     {

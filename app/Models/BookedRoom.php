@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookedRoom extends Model
 {
+    protected $table= 'booked_rooms';
     use HasFactory;
 
     protected $fillable = [
@@ -19,7 +20,7 @@ class BookedRoom extends Model
 
     public function Order()
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsToMany(Order::class);
     }
 
     // public function Room()
@@ -28,7 +29,7 @@ class BookedRoom extends Model
     // }
     public function Hotel()
     {
-        return $this->hasMany(Hotel::class );
+        return $this->belongsToMany(Hotel::class );
     }
 
 

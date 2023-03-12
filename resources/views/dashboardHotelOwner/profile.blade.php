@@ -145,7 +145,7 @@
                     <span class="c-grey">Email:</span>
                     <span>{{Auth::user()->email}}</span>
                 </div>
-                <a href=""><h4 class="c-blue fs-15 m-0 w-full">Edit</h4></a>
+                <a href="{{route('userEdit')}}"><h4 class="c-blue fs-15 m-0 w-full">Edit</h4></a>
                 <div class="fs-14">
                     <span class="c-grey">Phone:</span>
                     <span>{{Auth::user()->phone}}</span>

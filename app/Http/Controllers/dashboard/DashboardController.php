@@ -5,6 +5,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 // use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\tripController\ChosenTripController;
+use App\Models\BookedRoom;
 use App\Models\Hotel;
 use App\Models\HotelImg;
 use App\Models\HotelOwner;
@@ -12,6 +13,7 @@ use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ChosenTrip;
+use App\Models\OrderedRoom;
 use App\Models\RoomImg;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 
@@ -180,9 +182,29 @@ if(count($rooms)==0){
     }
 
 public function allRequests(){
-    return view('dashboardHotelOwner.allRequests');
+    // dd(Auth::user()->HotelOwner[0]->Hotel->BookedRoom);
+    // foreach(Auth::user()->HotelOwner[0]->Hotel as $hotel){
+
+    //    dd($hotel->BookedRoom);
+    //     $orderedRooms = BookedRoom::where('hotel_id',$hotel->id)->get();
+    //     dd($orderedRooms);
+    // }
+    // $query='select * from booked_rooms where hotel_id =(select id from hotels'
+    $hotels= Auth::user()->HotelOwner[0]->Hotel;
+    // $orderedRooms = BookedRoom::where('hotel_id',Auth::user()->HotelOwner[0]->id);
+    $orderedRooms = BookedRoom::all();
+    // dd($orderedRooms);
+    return view('dashboardHotelOwner.allRequests',['hotels'=>$hotels,
+'orderedRooms'=>$orderedRooms]);
 }
 
+public function changeStatus(BookedRoom $bookedRoom,Request $request){
+$bookedRoom->update([
+    'status'=>$request->status,
+]);
+Alert::success('Done', 'status udated Successfully ^^');
+return back();
+}
 
     public function chosenTrip()
     {
