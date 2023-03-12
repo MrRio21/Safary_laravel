@@ -187,7 +187,7 @@ public function allRequests(){
     public function chosenTrip()
     {
         $chosenTrips=  ChosenTrip::all();
-        dd($chosenTrips);
+        return view('dashboardAdmin.admin', ['chosentrips' => $chosenTrips]);
     }
 
 

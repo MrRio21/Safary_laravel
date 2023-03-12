@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('trip_id');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->primary([ 'user_id','trip_id']);
+
 
            
         });
