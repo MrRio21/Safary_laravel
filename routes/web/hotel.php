@@ -6,7 +6,7 @@ use App\Http\Controllers\viewHotelsController;
 
 Route::get('allHotel',[viewHotelsController::class,'index']);
 
-Route::get('Hotel',[viewHotelsController::class,'hotel'])->name('hotel');
+Route::get('Hotel/{id}',[viewHotelsController::class,'hotel'])->name('hotel');
 
-Route::get('Room',[viewHotelsController::class,'room']);
+Route::get('Room/{id}',[viewHotelsController::class,'room'])->name('room');
 

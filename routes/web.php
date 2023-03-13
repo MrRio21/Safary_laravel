@@ -12,6 +12,8 @@ use App\Http\Controllers\Auth\registerationControlle\userController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\tripController\ChosenTripController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\ViewPlacesController;
+
 
 
 /*
@@ -30,6 +32,7 @@ Route::get('/', function () {
 
 Route::get('allTourguide',[ViewTourGidesController::class,'index']);
 
+Route::get('allPlaces',[ViewPlacesController::class,'index']);
 
 
 //Driverregistrations---

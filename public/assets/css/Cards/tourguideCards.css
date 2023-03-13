@@ -25,8 +25,8 @@ p {
 }
 
 .card {
-    width: 280px;
-    height: 520px;
+    /* width: 280px; */
+    /* height: 520px; */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background: #fff;
     transition: all 0.5s ease;
@@ -85,7 +85,8 @@ p {
 }
 
 .card .pic {
-    position: relative
+    position: relative;
+
 }
 
 .card .pic img {
@@ -96,11 +97,12 @@ p {
 
 .card .date {
     display: flex;
+    padding: 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 70px;
+    /* width: 50px;
+    height: 70px; */
     background-color: #e5b563;;
     color: white;
     position: absolute;
@@ -132,12 +134,16 @@ p {
 
 .card .content .btn {
     display: flex;
+    margin: 15px;
+    /* padding: 5px; */
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
+    color:  #24416B;
     background-color: #e5b563;
     border-radius: 25px;
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-weight: bold;
     border: none
 }
 
@@ -148,13 +154,16 @@ p {
 }
 
 .card .content .btn .fas {
-    font-size: 10px;
+    font-size: 18px;
+    font-weight: bold;
     padding-left: 5px
 }
 
 .card .content .foot .admin {
-    color: #e5b563;
-    font-size: 12px
+    /* color: #e5b563; */
+    color:  #24416B;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .card:hover .content .foot .admin {
@@ -216,7 +225,7 @@ a{
   
     
     
-      .about .container { grid-template-columns: 0.7fr 1fr; }
+      /* .about .container { grid-template-columns: 0.7fr 1fr; } */
     
     }
   
@@ -353,6 +362,8 @@ a{
   
   section {
       padding: 60px 0;
+    /* display: inline-block; */
+
   }
   
   section .section-title {
@@ -362,6 +373,9 @@ a{
       text-transform: uppercase;
   }
   
+  .tourguideCard{
+    display: block;
+  }
   #team .card {
       border: none;
       background:#eee;

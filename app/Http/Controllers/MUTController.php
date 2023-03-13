@@ -134,8 +134,6 @@ dd($order->OrderedRoomType);
                 'availablePlaces' => $availablePlaces,
                 'order' => $order,
                 'restOfBudget'=>$restOfBudget
-
-
             ]);
 
         }

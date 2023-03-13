@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
     <link rel="stylesheet" href="./css/sidebar.css">
     <!--  -->
-<link rel="stylesheet" href="{{asset("assets/css/hotel.css")}}>
+    <link rel="stylesheet" href="{{asset('assets/css/hotel.css')}}">
+  
     <title>Hotels</title>
 </head>
 <body>
@@ -45,7 +46,7 @@
             <div class="box">
               <!-- hotel img -->
               <div class="img">
-                <img src="{{ asset('img/'.$Hotel->cover_img) }}" alt="">
+                <img src="{{$Hotel->cover_img}}" alt="">
                 <span>HOTEL</span>
               </div>
               <!-- hotel details -->
@@ -53,9 +54,7 @@
                 <h3>{{$Hotel->name}}</h3>
                 <p>{{$Hotel->type}}</p>
                 <p>{{$Hotel->address}}</p>
-                <a href="{{route('hotel',[''$Hotel->id])}}">Show More<i class='far fa-long-arrow-alt-right'></i></a>
-                <!-- <a href="{{route('hotels.hotel',$Hotel['id'])}}">Show More<i class='far fa-long-arrow-alt-right'></i> </a> -->
-              </div>  
+                <a href="{{route('hotel',['id'=>$Hotel->id])}}">Show More<i class='far fa-long-arrow-alt-right'></i></a>              </div>  
                 <!-- "hotels.hotel",["Hotel"=> $hotelInfo],["hotelImg"=>$hotelImgs] -->
             </div>
             @endforeach

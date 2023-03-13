@@ -57,6 +57,10 @@
     padding: 5px;
   }
   
+  .box a{
+    color: #24416B;
+    font-weight: bold;
+  }
   .home input {
     margin-top: 10px;
   }
@@ -112,6 +116,7 @@ li {
 
 a {
   text-decoration: none;
+  color: #24416B;
   transition: 0.5s;
 }
 
@@ -241,9 +246,9 @@ button span {
   margin: 10px 0 20px 0;
 }
 
-.left, .right {
+/* .left, .right {
   width: 50%;
-}
+} */
 
 h3 {
   font-size: 35px;
@@ -501,12 +506,12 @@ p {
   bottom: 0%;
   /* background-image: url("../image/line1.png"); */
 }
-
+/* 
 .timer h2,
 .timer h5 {
   color: white;
   text-align: center;
-}
+} */
 
 .timer .container {
   position: relative;
@@ -591,9 +596,13 @@ p {
   content: '';
   width: 85%;
   height: 92%;
-  margin: 30px;
-  background: #CC8C18;
+  /* margin: 30px; */
+  /* background: #CC8C18; */
   z-index: -1;
+}
+
+.area .left img{
+  width: 500px;
 }
 
 /*------------area------------*/
@@ -604,7 +613,9 @@ p {
 }
 
 .offer2 .heading h3 {
-  color: white;
+  /* color: white; */
+  color: #24416B;
+
 }
 
 .offer2.wrapper {

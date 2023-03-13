@@ -13,7 +13,6 @@ class RoomImg extends Model
     protected $fillable = [
         'image',
         'room_id',
-       
     ];
 
     public function Room(){

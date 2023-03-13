@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --blue-color: #0075ff;
     --blue-alt-color: #0d69d5;
     --orange-color: #f59e0b;
@@ -38,7 +38,7 @@
   .page {
     background-color: #f1f5f9;
     min-height: 100vh;
-  }
+  } */
   /* Start Sidebar */
   .sidebar {
     width: 250px;
