@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ChosenTrip;
 use App\Models\OrderedRoom;
 use App\Models\RoomImg;
+use App\Models\User;
+use App\Models\Driver;
+use App\Models\Vehicle;
+use App\Models\OrderedPlace;
+use App\Models\Role;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 
 class DashboardController extends Controller
@@ -30,6 +35,46 @@ class DashboardController extends Controller
     //         ]);
     //     }
     // }
+
+
+    public function index()
+    {
+        $chosenTrips=  ChosenTrip::all();
+        // $pendingTrips = ChosenTrip::where('status','pending')->get();
+        // $approvedTrips = ChosenTrip::where('status','accept')->get();
+        // $rejectedTrips = ChosenTrip::where('status','reject')->get();
+
+        $users = User::all();
+        // $customers=Role::where('name','customer')->first()->users;
+        // $hotelOwners=Role::where('name','Hotel Owner')->first()->users;
+        // $tourGuides=Role::where('name','TourGuide')->first()->users;
+        // $drivers=Role::where('name','Driver')->first()->users;
+
+        $drivers= Driver::all();
+        $vehicles= Vehicle::all();
+        $orderedPlaces= OrderedPlace::all();
+        return view('dashboardAdmin.admin',
+        [
+
+            'chosenTrips' => $chosenTrips,
+            // 'pendingTrips' => $pendingTrips,
+            // 'approvedTrips' => $approvedTrips,
+            // 'rejectedTrips' => $rejectedTrips,
+
+            'users'=> $users,
+            // 'customers'=>$customers,
+            // 'hotelOwners'=>$hotelOwners,  
+            // 'tourGuides'=> $tourGuides,
+            'drivers' => $drivers,
+
+            'vehicles' => $vehicles,
+            
+
+            'orderedPlaces' => $orderedPlaces,
+        ]);
+    }
+
+
     public function addHotelView(){
         return view('dashboardHotelOwner.index');
     }
@@ -206,11 +251,9 @@ Alert::success('Done', 'status udated Successfully ^^');
 return back();
 }
 
-    public function chosenTrip()
-    {
-        $chosenTrips=  ChosenTrip::all();
-        return view('dashboardAdmin.admin', ['chosentrips' => $chosenTrips]);
-    }
+
+
+
 
 
 

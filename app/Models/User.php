@@ -56,10 +56,18 @@ class User extends Authenticatable
 
 
 
-    public function hasRole(){
+    // public function hasRole(){
+    //     // dd('hi');
+    //     return $this->belongsTo(Role::class);
+    // }
+
+    public function role(){
         // dd('hi');
         return $this->belongsTo(Role::class);
     }
+
+
+    
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

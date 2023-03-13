@@ -50,7 +50,7 @@ Route::get('allTourguide',[ViewTourGidesController::class,'index']);
 // Route::post('/tourgideRegistrations',[TourgideController :: class ,"store"])->name("tourgideRegistrations.store");
 
 Route::get('testtrip',[ChosenTripController :: class, 'test']);
-Route::get('chosentrip',[DashboardController :: class, 'chosenTrip']);
+Route::get('/admindashboards',[DashboardController :: class, 'index']);
 
 Route::get('watch', function(){
     return view('driver.storeVehicle');

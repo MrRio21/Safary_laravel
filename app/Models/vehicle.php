@@ -20,6 +20,6 @@ class Vehicle extends Model
 
     public function Driver()
     {
-        return $this->belongsTo(driver::class);
+        return $this->belongsTo(Driver::class);
     }
 }

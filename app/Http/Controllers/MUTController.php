@@ -6,7 +6,7 @@ use App\Models\BookedRoom;
 use App\Models\BookTourGuide;
 use App\Models\Hotel;
 use App\Models\Order;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use App\Models\Place;
 use App\Models\Room;
 use App\Models\Tourguide;
@@ -167,7 +167,7 @@ dd($order->OrderedRoomType);
 
                 foreach($request->place_id as $placeID){
                     // dd($placeID);
-                    OrderedPlaces::create([
+                    OrderedPlace::create([
                         'order_id'=>$order->id,
                         'place_id'=>$placeID
                     ]);
@@ -215,8 +215,6 @@ $restOfBudgetAfterAllBooking=$order->budget-($request->restBudgetBeforeTourguide
 dd($restOfBudgetAfterAllBooking);
             return view('MUT.MUTDetails',[
                 'order' => $order,
-
-
             ]);
         }
 
