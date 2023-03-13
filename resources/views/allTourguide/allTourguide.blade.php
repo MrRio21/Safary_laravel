@@ -1,3 +1,5 @@
+
+ 
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -8,8 +10,9 @@
     <title>Tourguide</title>
  </head>
  <body>
- @extends('temp.nav')
-@section('body')
+    @extends('layouts/nav')
+    @section('bodyContent')
+    
   <section class="section about" style="position:relative; background-image: url(../../assets/img/yellow-swoosh-background.jpg); background-size: cover; ">
     <!-- <img src="../../assets/img/footer-dec.png" style="width: max-content; position:absolute ; z-index: -1"> -->
     <div class="container">
@@ -59,7 +62,7 @@
             <a href="#" style="background:#f6ac45 ;" class="btn">Booking Now</a>
         </div>
         <figure class="about-banner">
-            <img src="/assets/asset/img/about-banner.png" width="556" height="700" loading="lazy" alt="" class="w-100">
+            <img src="{{asset("./assets/asset/img/about-banner.png")}}" width="556" height="700" loading="lazy" alt="" class="w-100">
         </figure>
     
     </div>
@@ -113,6 +116,8 @@
 </div>
 @endforeach
 </section>
-@endsection
+
  </body>
  </html>
+
+ @endsection

@@ -6,7 +6,7 @@ use App\Models\BookedRoom;
 use App\Models\BookTourGuide;
 use App\Models\Hotel;
 use App\Models\Order;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use App\Models\Place;
 use App\Models\Room;
 use App\Models\Tourguide;
@@ -30,7 +30,8 @@ return view('MUT.MUT');
         $percent=(int)$budgetForHotels/100;
 dd($order->OrderedRoomType);
             $budget=  $order->budget * $percent  / $order->n_of_days;
-            $ns = DB::table('ordered_room')->  ->select(DB::raw('count(room_id)as count'))->where('order_id',$order->id)->where('type','single')->get() ;
+            $ns = 5;
+            // DB::table('ordered_room')->  ->select(DB::raw('count(room_id)as count'))->where('order_id',$order->id)->where('type','single')->get() ;
             $nd = 0;
             $nt = 1;
             $i = 0;
@@ -164,7 +165,7 @@ dd($order->OrderedRoomType);
 
                 foreach($request->place_id as $placeID){
                     // dd($placeID);
-                    OrderedPlaces::create([
+                    OrderedPlace::create([
                         'order_id'=>$order->id,
                         'place_id'=>$placeID
                     ]);
@@ -212,8 +213,6 @@ $restOfBudgetAfterAllBooking=$order->budget-($request->restBudgetBeforeTourguide
 dd($restOfBudgetAfterAllBooking);
             return view('MUT.MUTDetails',[
                 'order' => $order,
-
-
             ]);
         }
 

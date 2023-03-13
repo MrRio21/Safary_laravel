@@ -192,11 +192,16 @@ Route::get('/AdminDash',function(){return view('/dashboardAdmin/admin');})->name
 Route::get('/admin',function(){return view('/dashboardAdmin/admin');})->name('adminn');
 
 
-Route::get('/index',function(){return view('/layouts/nav');})->name('index');
-Route::get('/landingPage',function(){return view('/landingPage/index');})->name('landingPage');
-
-
+// Route::get('/index',function(){return view('/layouts/nav');})->name('index');
+Route::get('/Vehciles',function(){return view('/Allvehcile/vehcile');})->name('allVehciles');
+Route::get('/touruides',function(){return view('/allTourguide/allTourguide');})->name('allTourguide');
+Route::get('/places',function(){return view('/allPlaces/allPlaces');})->name('places');
 
 // @extends('layouts/nav')
 // @section('bodyContent')
 
+
+
+
+Route::get('/landingPage',function(){return view('/landingPage/index');})->name('landingPage');
+Route::get('/CustomizeTrip',function(){return view('/MUt.multiStepsCustom');})->name('CustomizeTrip');

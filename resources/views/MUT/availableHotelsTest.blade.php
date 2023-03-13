@@ -1,3 +1,8 @@
+@extends('MUT.multiStepsCustom')
+
+@section('custom')
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,3 +90,4 @@
 </body>
 </html>
 
+@endsection

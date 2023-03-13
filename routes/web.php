@@ -5,10 +5,10 @@ use App\Http\Controllers\hotelsController\HotelController;
 // use App\Models\Room ;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\registerationControlle\DriverController;
-use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
-use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
-use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\Auth\registerationController\DriverController;
+use AApp\Http\Controllers\Auth\registerationController\HotelOwnerController;
+use AApp\Http\Controllers\Auth\registerationController\TourgideController;
+use App\Http\Controllers\Auth\registerationController\userController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\tripController\ChosenTripController;
 use App\Http\Controllers\dashboard\DashboardController;
@@ -53,7 +53,7 @@ Route::get('allPlaces',[ViewPlacesController::class,'index']);
 // Route::post('/tourgideRegistrations',[TourgideController :: class ,"store"])->name("tourgideRegistrations.store");
 
 Route::get('testtrip',[ChosenTripController :: class, 'test']);
-Route::get('chosentrip',[DashboardController :: class, 'chosenTrip']);
+Route::get('/admindashboards',[DashboardController :: class, 'index']);
 
 Route::get('watch', function(){
     return view('driver.storeVehicle');

@@ -16,7 +16,7 @@ return new class extends Migration
         // the customiz trips by us that the user pick 
         // out of customization 
         Schema::create('chosen_trips', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->enum('status',['accept','reject','pending'])->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
