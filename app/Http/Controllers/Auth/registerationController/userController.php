@@ -85,7 +85,7 @@ public function editUser(){
             $newUser = User::find($user->id);
             // dd($newUser);
 // $createToken = $user->createToken($request->email)->plainTextToken;
-$role= Role::where('id',$newUser->role_id)->first();
+    $role= Role::where('id',$newUser->role_id)->first();
 
        return redirect('dashboardAdmin/user/users');
 
@@ -113,7 +113,7 @@ $role= Role::where('id',$newUser->role_id)->first();
             $newUser = User::find($user->id);
             // dd($newUser);
 // $createToken = $user->createToken($request->email)->plainTextToken;
-$role= Role::where('id',$newUser->role_id)->first();
+            $role= Role::where('id',$newUser->role_id)->first();
 // dd($role);
 //    return redirect(route('userRegistrations.index'));
     //    return redirect(route('login.create',['role'=>$role->name]));
@@ -126,7 +126,7 @@ $role= Role::where('id',$newUser->role_id)->first();
 
 
 public function login(Request $request){
-    // dd($request->path());
+    //  dd($request->path());
     if($request->path() == 'login/driver'){
         return view("MUT.driverSignUp");
         }
@@ -160,7 +160,7 @@ if(Auth::user()->HotelOwner){
     return route('TourguideProfile.index');
 }if(Auth::user()->Driver){
 
-    return route('driverprofileDash.index');
+    return route('driverprofileDash.index'); 
 }if(Auth::user()->user_type =1){
     return route('AdminDash.index');
 
