@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class userController extends Controller
+class UserController extends Controller
 {
     public function index(){
         return User::all();
