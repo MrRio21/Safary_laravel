@@ -27,7 +27,7 @@
     <title> Savary </title>
 
     <link rel="stylesheet" href="assets//asset/css/index.css">
-    <link id="u-page-google-font" rel="stylesheet"+
+    <link id="u-page-google-font" rel="stylesheet" 
         href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
 
  
@@ -122,31 +122,97 @@
                   <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                   <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-                    <li class="active"><a href="#home-section" class="nav-link">Home</a></li>
-                    <li><a href="#classes-section" class="nav-link">Classes</a></li>
+                    <li class="active"><a href="{{route('landingPage')}}" class="nav-link">Home</a></li>
+                    <li><a href="{{route('places')}}" class="nav-link">places</a></li>
+                    <li><a href="{{route('allTourguide')}}" class="nav-link">Tourguides</a></li>
+                    <li><a href="{{route('allVehciles')}}" class="nav-link">Vehciles</a></li>
                     <li class="has-children">
-                      <a href="#" class="nav-link">Pages</a>
+                      <a href="#" class="nav-link">Dashboard</a>
                       <ul class="dropdown arrow-top">
-
                         <li><a href="{{route('AdminDash')}}" class="nav-link">dashboardAdmin</a></li>
                         <li><a href="{{route('TourguideProfile.index')}}" class="nav-link">dashboardTourguide</a></li>
                         <li><a href="{{route('driverprofileDash.index')}}" class="nav-link">dashboardDriver</a></li>
                         <li><a href="{{route('hotelOwnerDashboard')}}" class="nav-link">dashboardHotelOwner</a></li>
-                        {{-- <li class="has-children">
-                          <a href="#">dashbourd</a>
-                          <ul class="dropdown">
-                            <li><a href="dashboardAdmin.admin.html" class="nav-link">dashboardAdmin</a></li>
-                            <li><a href="dashboardTourguide.dashboardview.html" class="nav-link">dashboardTourguide</a></li>
-                            <li><a href="dashboardDriver.dashboardView.html" class="nav-link">dashboardDriver</a></li>
-                            <li><a href="dashboardHotelOwner.index.html" class="nav-link">dashboardHotelOwner</a></li>
-                          </ul>
-                        </li> --}}
                       </ul>
                     </li>
-                    <li><a href="url('allPlaces/allPlaces.html')" class="nav-link">places</a></li>
+                    {{-- <li><a href="url('allPlaces/allPlaces.html')" class="nav-link">places</a></li> --}}
                     <li><a href="allTourguide/allTourguide.html" class="nav-link">allTourguide</a></li>
-                    <li><a href="dashboardAdmin/admin.html" class="nav-link">dashboardAdmin</a></li>
+                    <li><a href="" class="nav-link">dashboardAdmin</a></li>
+                   
+                    
+
+                    <li class="has-children">
+                      <a href="#" class="nav-link">LogIn</a>
+                      <ul class="dropdown arrow-top">
+                        <li><a href="{{route('UserDash.create')}}" class="nav-link"> 😎User</a></li>
+                        <li><a href="{{route('driverDash.create')}}" class="nav-link">🚐User AS Driver</a></li>
+                        <li><a href="{{route('tourgideDash.create')}}" class="nav-link">💁‍♂️User AS Tourguide</a></li>
+                        {{-- <li><a href="{{route('hotelOwnerDash.create')}}" class="nav-link">💖User AS HotelOwner</a></li> --}}
+                      </ul>
+                    </li>
+                      
+                
+                    <li class="has-children">
+                      <a href="{{route('CustomizeTrip')}}" class="nav-link">Cutomize Trip</a>
+                      {{-- <ul class="dropdown arrow-top">
+                        <li><a href="{{route('MUT.create')}}" class="nav-link">MUT.create</a></li>
+
+                        <li><a href="{{route('MUT.store')}}" class="nav-link"> MUT.store</a></li>
+                        <li><a href="{{route('getAvailableHotels')}}" class="nav-link">getAvailableHotels</a></li>
+                        <li><a href="{{route('getAvailablePlaces')}}" class="nav-link">getAvailablePlaces</a></li>
+                        <li><a href="{{route('bookWithTourguide')}}" class="nav-link">bookWithTourguide</a></li>
+                     
+                      </ul> --}}
+                    </li>
+                    
+
                     <li><a href="#contact-section" class="nav-link">Contact</a></li>
+
+
+
+                    {{-- ======================================================AUTH===================================== --}}
+   <!-- AUTH -->
+   <li class="nav-item">
+
+    <!-- <ul class="navbar-nav ms-auto">
+      @guest
+          @if (Route::has('login'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+          @endif
+
+          @if (Route::has('register'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </li>
+          @endif
+      @else
+          <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
+          </li>
+      @endguest
+  </ul> -->
+</li>
+{{-- =============================================================================================== --}}
+
+
+
+
                   </ul>
                 </div>
               </nav>
