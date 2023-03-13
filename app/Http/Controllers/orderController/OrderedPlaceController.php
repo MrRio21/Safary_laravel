@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\user as ResourcesUser;
 use App\Models\BookedRoom;
 use App\Models\Order;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use Illuminate\Http\Request;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -79,14 +79,14 @@ return response()->json([
         {
         // dd($placeID);
         // echo"here";
-         OrderedPlaces ::create([
+         OrderedPlace ::create([
                     'order_id' =>  $orderID->id,
                     'place_id' =>$placeID,
         ]);
         }
           }
 // the rest after booking the places 
-        $orderedPlaces = OrderedPlaces ::where('order_id',$orderID->id)->get();
+        $orderedPlaces = OrderedPlace::where('order_id',$orderID->id)->get();
        
          
 
@@ -135,7 +135,7 @@ return response()->json([
     { 
         // dd($orderId->id);
         // to show the places that the user choose
-        $orderedplaces = OrderedPlaces::where('order_id',$orderID->id)->get();
+        $orderedplaces = OrderedPlace::where('order_id',$orderID->id)->get();
         $places = Place::all();
         if(!is_null($orderedplaces)){
 

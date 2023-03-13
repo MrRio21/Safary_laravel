@@ -10,7 +10,7 @@ use App\Models\OrderDetail;
 use Carbon\Carbon;
 use DateTime;
 use App\Models\Order;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use App\Models\OrderedRoom;
 use App\Models\Place;
 use App\Models\Tourguide;
@@ -140,7 +140,7 @@ $n_of_days = $interval->format('%a');//and then print do whatever you like with 
                $query='delete from book_tour_guide where order_id ='.$orderID->id;
                DB::delete($query);
            }
-                    $placesBooked= OrderedPlaces::where ('order_id',$orderID->id)->get();
+                    $placesBooked= OrderedPlace::where ('order_id',$orderID->id)->get();
                   if(!is_null($placesBooked)){
                     $query='delete from ordered_places where order_id ='.$orderID->id;
                     DB::delete($query);
