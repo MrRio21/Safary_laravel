@@ -146,7 +146,7 @@ class TourguideController extends Controller
            $newUser->update(['role_id'=>$role_id[0]->id]);
        }
 
-       return redirect('dashboardAdmin.user.users',['role'=>$request->role]);
+       return redirect('dashboardAdmin.user.users');
     }
 
 

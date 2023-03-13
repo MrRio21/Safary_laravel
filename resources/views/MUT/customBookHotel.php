@@ -1,3 +1,8 @@
+
+@extends('MUT.multiStepsCustom')
+
+@section('custom')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,3 +60,4 @@
 
 
 
+@endsection

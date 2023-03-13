@@ -1,3 +1,8 @@
+@extends('MUT.multiStepsCustom')
+
+@section('custom')
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,3 +17,4 @@
 <h2 align="center">Hotel i will stayed at :{{$order->}}</h2>
 </body>
 </html>
+@endsection
