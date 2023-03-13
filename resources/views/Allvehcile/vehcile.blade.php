@@ -60,12 +60,12 @@
   }
 
 </style>
-<link href="{{asset('assets/CSS/Card/vehcile')}}" rel='stylesheet' >
+<link rel='stylesheet'  href="{{asset('./assets/CSS/Cards/vehcile.css')}}" >
 <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js')}}" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <!-- fontawsome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> 
 </head>
 
 <body>
@@ -144,11 +144,11 @@
 
 
 
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+               
 
 
                 <div class="box">
-                    <img src="../../assets/img/image2.png">
+                    <img src="./assets/asset/img/image2.png">
                     <div class="box-content">
                         <h3 class="title"> vehcile. ... </h3>
                         <span class="post">Web designer</span>

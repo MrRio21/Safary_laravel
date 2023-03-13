@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\registerationController\DriverController;
 use App\Http\Controllers\Auth\registerationController\HotelOwnerController;
 use App\Http\Controllers\Auth\registerationController\TourguideController;

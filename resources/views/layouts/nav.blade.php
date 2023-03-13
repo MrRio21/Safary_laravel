@@ -1,7 +1,7 @@
-{{-- @extends('') --}}
 
-@section('navbar')
-    
+
+{{-- @section('navbar')
+     --}}
 
 <!doctype html>
 <html lang="en">
@@ -135,9 +135,7 @@
                         <li><a href="{{route('hotelOwnerDashboard')}}" class="nav-link">dashboardHotelOwner</a></li>
                       </ul>
                     </li>
-                    {{-- <li><a href="url('allPlaces/allPlaces.html')" class="nav-link">places</a></li> --}}
-                    <li><a href="allTourguide/allTourguide.html" class="nav-link">allTourguide</a></li>
-                    <li><a href="" class="nav-link">dashboardAdmin</a></li>
+             
                    
                     
 
