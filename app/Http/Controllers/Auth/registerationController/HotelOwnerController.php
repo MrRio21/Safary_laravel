@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth\registerationController;
-use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\Auth\registerationController\userController;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Controllers\Controller;
 use App\Models\hotelOwner;

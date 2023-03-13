@@ -4,20 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationController\DriverController;
 use App\Http\Controllers\Auth\registerationController\HotelOwnerController;
 use App\Http\Controllers\Auth\registerationController\TourguideController;
-use App\Http\Controllers\Auth\registerationController\userController;
+use App\Http\Controllers\Auth\registerationController\UserController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\orderController\BookedRoomController;
 use App\Http\Controllers\orderController\OrderedPlaceController;
 
 
 
-Route::get('/register',[userController :: class ,"create"])->name("user.store");
+Route::get('/register',[UserController :: class ,"create"])->name("user.create");
 // Route::get('/userRegistrations/create',[userController :: class ,"create"])->name("userRegistrations");
 
 // Route::post('/userRegistrations',[userController :: class ,"store"])->name("user.store");
 
 
-Route::post('/userRegister',[userController :: class ,"store"])->name("user.store");
+Route::post('/userRegister',[UserController :: class ,"store"])->name("user.store");
 Route::get('/hotelOwnerRegister',[HotelOwnerController :: class ,"create"])->name("hotelOwner.create");
 Route::post('/hotelOwnerRegister',[HotelOwnerController :: class ,"store"])->name("hotelOwner.store");
 

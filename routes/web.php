@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\registerationControlle\DriverController;
 use AApp\Http\Controllers\Auth\registerationControlle\HotelOwnerController;
 use AApp\Http\Controllers\Auth\registerationControlle\TourgideController;
-use App\Http\Controllers\Auth\registerationControlle\userController;
+use App\Http\Controllers\Auth\registerationController\userController;
 use App\Http\Controllers\orderController\OrderController;
 use App\Http\Controllers\tripController\ChosenTripController;
 use App\Http\Controllers\dashboard\DashboardController;
