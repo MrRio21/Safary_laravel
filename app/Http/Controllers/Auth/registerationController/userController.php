@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth\registerationController;
+
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,15 +21,16 @@ use Illuminate\Support\Facades\Session;
 
 class userController extends Controller
 {
-    public function logout(){
+    public function logout()
+    {
 
-//         </form>
-//         @auth
-//    <form action="{{ route("logout") }}" method="POST" >
-//        @csrf
-// <button type="submit" >Log out</button>
-// </form>
-// @endauth
+        //         </form>
+        //         @auth
+        //    <form action="{{ route("logout") }}" method="POST" >
+        //        @csrf
+        // <button type="submit" >Log out</button>
+        // </form>
+        // @endauth
         Session::flush();
         Auth::logout();
         return redirect('/register');
@@ -40,16 +42,17 @@ class userController extends Controller
      */
     public function index()
     {
-        $users=User::all();
-        $hotelOwners=HotelOwner::all();
-        $Drivers=Driver::all();
+        $users = User::all();
+        $hotelOwners = HotelOwner::all();
+        $Drivers = Driver::all();
 
-        return view("dashboardAdmin.user.users",["users"=> $users ,'drivers'=>$Drivers,'hotelOwners'=>$hotelOwners]);
+        return view("dashboardAdmin.user.users", ["users" => $users, 'drivers' => $Drivers, 'hotelOwners' => $hotelOwners]);
         //show table from DB
     }
-public function editUser(){
-    //
-}
+    public function editUser()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -71,24 +74,23 @@ public function editUser(){
 
     public function storeuser(StoreUserRequest $request)
     {
-// dd($request);
-      $user= User::create([
-        'name' => $request['name'] ,
-        'email' => $request['email'],
-        'password' =>  Hash::make($request['password']),
-        'gender' => $request['gender'],
-        'phone' => $request['phone'],
-        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-        // 'role_id' => $request['role_id']
-    ]);
-            // print_r($user);
-            $newUser = User::find($user->id);
-            // dd($newUser);
-// $createToken = $user->createToken($request->email)->plainTextToken;
-    $role= Role::where('id',$newUser->role_id)->first();
+        // dd($request);
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' =>  Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'phone' => $request['phone'],
+            'image' => isset($request['image']) ? $request['image']->storeAs("public/imgs", md5(microtime()) . $request['image']->getClientOriginalName()) : null,
+            // 'role_id' => $request['role_id']
+        ]);
+        // print_r($user);
+        $newUser = User::find($user->id);
+        // dd($newUser);
+        // $createToken = $user->createToken($request->email)->plainTextToken;
+        $role = Role::where('id', $newUser->role_id)->first();
 
-       return redirect('dashboardAdmin/user/users');
-
+        return redirect('dashboardAdmin/user/users');
     }
 
     /**
@@ -99,25 +101,24 @@ public function editUser(){
      */
     public function store(StoreUserRequest $request)
     {
-// dd($request);
-      $user= User::create([
-        'name' => $request['name'] ,
-        'email' => $request['email'],
-        'password' =>  Hash::make($request['password']),
-        'gender' => $request['gender'],
-        'phone' => $request['phone'],
-        'image' =>isset($request['image'])?$request['image']-> storeAs("public/imgs",md5(microtime()).$request['image']->getClientOriginalName()):null,
-        // 'role_id' => $request['role_id']
-    ]);
-            // print_r($user);
-            $newUser = User::find($user->id);
-            // dd($newUser);
-// $createToken = $user->createToken($request->email)->plainTextToken;
-            $role= Role::where('id',$newUser->role_id)->first();
-// dd($role);
-//    return redirect(route('userRegistrations.index'));
-    //    return redirect(route('login.create',['role'=>$role->name]));
-
+        // dd($request);
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' =>  Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'phone' => $request['phone'],
+            'image' => isset($request['image']) ? $request['image']->storeAs("public/imgs", md5(microtime()) . $request['image']->getClientOriginalName()) : null,
+            // 'role_id' => $request['role_id']
+        ]);
+        // print_r($user);
+        $newUser = User::find($user->id);
+        // dd($newUser);
+        // $createToken = $user->createToken($request->email)->plainTextToken;
+        $role = Role::where('id', $newUser->role_id)->first();
+        // dd($role);
+        //    return redirect(route('userRegistrations.index'));
+        return redirect(route('login.create', ['role' => $role->name]));
     }
 
 
@@ -125,69 +126,78 @@ public function editUser(){
 
 
 
-public function login(Request $request){
-    //  dd($request->path());
-    if($request->path() == 'login/driver'){
-        return view("MUT.driverSignUp");
+    public function login(Request $request)
+    {
+        //  dd($request->path());
+        if ($request->path() == 'login/driver') {
+            return view("MUT.driverSignUp");
         }
-    if($request->path() == 'login/hotelOwner'){
-        return view("MUT.hotelOwnerSignUp");
-            }
-    if($request->path() == 'login/tourguide'){
-        return view("MUT.tourguideSignUp");
-            }else{
+        if ($request->path() == 'login/hotelOwner') {
+            return view("MUT.hotelOwnerSignUp");
+        }
+        if ($request->path() == 'login/tourguide') {
+            return view("MUT.tourguideSignUp");
+        } else {
 
-                return view("MUT.userSignUp");
-            }
-      // echo "hey ";/
-    // dd($request);
-    // dd(Auth::user());
-
-}
-public function validateLogin(Request $request) {
-    // dd($request);
-    validator($request->all(),[
-        'email' => 'required|email',
-        'password' => 'required',
-
-    ])->validate();
-    if(auth()->attempt(request()->only(['email','password']))){
+            return view("MUT.userSignUp");
+        }
+        // echo "hey ";/
+        // dd($request);
         // dd(Auth::user());
-        // if(Auth::user())
-if(Auth::user()->HotelOwner){
-    return route('hotelOwnerDashboard');
-}if(Auth::user()->tourguide){
-    return route('TourguideProfile.index');
-}if(Auth::user()->Driver){
 
-    return route('driverprofileDash.index'); 
-}if(Auth::user()->user_type =1){
-    return route('AdminDash.index');
-
-}else{
-
-    return redirect('/MUT');
-}
     }
-    Alert::error('sorry', 'credentials invalid! :(');
+    public function validateLogin(Request $request)
+    {
+        // dd($request);
+        validator($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
 
-    return redirect()->back();
-    // ->withErrors(['email'=>'credentials invalid!'])
-    // $request->validate([
-    //     'email' => 'required|email',
-    //     'password' => 'required',
+        ])->validate();
+        if (auth()->attempt(request()->only(['email', 'password']))) {
+            // dd(Auth::user());
+            // if(Auth::user())
+            if (Auth::user()->HotelOwner) {
+                // dd('1');
+                return route('hotelOwnerDashboard');
+            }
+            if (Auth::user()->tourguide) {
+                dd('2');
+                return route('TourguideProfile.index');
+            }
+            if (Auth::user()->Driver) {
+                dd('3');
 
-    // ]);
+                return route('driverprofileDash.index');
+            }
+            if (Auth::user()->user_type == 1) {
+                dd('4');
+                return route('AdminDash.index');
+            } else {
+                dd('5');
 
-    // $user = User::where('email', $request->email)->first();
+                return redirect('/MUT');
+            }
+        }
+        Alert::error('sorry', 'credentials invalid! :(');
 
-    // if (! $user || ! Hash::check($request->password, $user->password)) {
-    //     throw ValidationException::withMessages([
-    //         'email' => ['The provided credentials are incorrect.'],
-    //         // 'password' => ['The provided credentials are incorrect.'],
-    //     ]);
-    // }
-}
+        return redirect()->back();
+        // ->withErrors(['email'=>'credentials invalid!'])
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+
+        // ]);
+
+        // $user = User::where('email', $request->email)->first();
+
+        // if (! $user || ! Hash::check($request->password, $user->password)) {
+        //     throw ValidationException::withMessages([
+        //         'email' => ['The provided credentials are incorrect.'],
+        //         // 'password' => ['The provided credentials are incorrect.'],
+        //     ]);
+        // }
+    }
 
 
 
@@ -239,6 +249,4 @@ if(Auth::user()->HotelOwner){
         $UserID->delete();
         return back();
     }
- 
 }
-
