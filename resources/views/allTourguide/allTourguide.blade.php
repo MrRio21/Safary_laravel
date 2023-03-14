@@ -1,6 +1,4 @@
-
- 
- <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="en">
  <head>
     <meta charset="UTF-8">
@@ -10,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Tourguide</title>
  </head>
- <body>
- @extends("temp.nav")
-@section("body")
+<body>
+    @extends("temp.nav")
+    @section("body")
     
   <section class="section about" style="position:relative; background-image: url(../../assets/img/yellow-swoosh-background.jpg); background-size: cover; ">
     <!-- <img src="../../assets/img/footer-dec.png" style="width: max-content; position:absolute ; z-index: -1"> -->
@@ -67,13 +65,13 @@
         </figure>
     
     </div>
-</section>
-<!-- -------------------------------------------------------------------------------------------------------------- -->
-<div style="text-align: center;" class="mb-4">
-<button class="button">TOURGUIDE</button>
-</div>
-<!-- bagination ------------------------------------------------------------------------------------------>
-<div class="demo">
+  </section>
+    <!-- ===================== -->
+ <div style="text-align: center;" class="mb-4">
+    <button class="button">TOURGUIDE</button>
+ </div>
+    <!-- ===================== bagination ===================== -->
+ <div class="demo">
     <nav class="pagination-outer" aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="#">Spanish</a></li>
@@ -85,50 +83,44 @@
             </li>
         </ul>
     </nav>
-</div>
-<!-- ------------------------------------------------------cards---------------------------------------------------------------- -->
-<section>
-    @foreach ($allTourGides as $Tourguide)
-<div class="container tourguideCard">
-<div class="row g-5" style="margin-top: 1rem;" >
-        <div class="col-lg-4  col-sm-6 col-12 rounded">
-            <div class="card border-0 me-lg-4 mb-lg-0 mb-4 ">
-                <div class="backgroundEffect"></div>
-         <div class="pic">
-                 <img class="" src="{{ asset('img/'.$Tourguide->img) }}" alt="">
-            <div class="date">
-            <span class="day">Book now!</span>
-            </div>
+ </div>
+    <!-- ===================== cards ===================== -->
+ <section>
+    <div class="container tourguideCard">
+        <div class="row g-5" style="margin-top: 1rem;" >
+            @foreach ($allTourGides as $Tourguide)
+                    <div class="col-lg-4  col-sm-6 col-12 rounded">
+                        <div class="card border-0 me-lg-4 mb-lg-0 mb-4 ">
+                            <div class="backgroundEffect"></div>
+                            <div class="pic">
+                                <img class="" src="{{ asset('img/$Tourguide -> User -> image') }}" alt="">
+                                <div class="date">
+                                    <span class="day">Book now!</span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h2>{{$Tourguide -> User -> name}}</h2>
+                                <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p> 
+                                    {{-- @foreach($Tourguide->languages as $item)
+                                        <h6 class="h-2 mt-4"><br>{{$item['language']}} </h6>
+                                    @endforeach  --}}
+                                <p class="description">Language : </p>
+                                    @foreach($Tourguide->languages as $item)
+                                        <span class="description">{{$item['language']}},</span>
+                                    @endforeach
+                                <h6 class="h-2 mt-4"><br> Bio :  {{$Tourguide->bio}}</h6>
+                                <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
+                                    <div class="d-flex align-items-center justify-content-center foot">
+                                        <p class="admin">syndicate_No : {{$Tourguide->syndicate_No}} </p>
+                                    </div>
+                                </div>
+                                <div class="btn" data-bs-toggle="modal" data-bs-target="#myModal">Book now!</div>
+                            </div>
+                        </div> 
+                    </div>
+                    @endforeach
         </div>
-      
-    <div class="content">
-        <h2>{{$Tourguide -> User -> name}}</h2>
-        <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p>
-         <!-- Languages : 
-                 @foreach($Tourguide->languages as $item)
-                 <h6 class="h-2 mt-4"><br>{{$item['language']}} </h6>
-                 @endforeach -->
-                 <p class="description">Language : </p>
-                            @foreach($Tourguide->languages as $item)
-                                <span class="description">{{$item['language']}},</span>
-                            @endforeach
-
-        <h6 class="h-2 mt-4"><br> Bio :  {{$Tourguide->bio}}</h6>
-        <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
-            <div class="d-flex align-items-center justify-content-center foot">
-                <p class="admin">syndicate_No : {{$Tourguide->syndicate_No}} </p>
-            </div>
-        </div>
-        <div class="btn" data-bs-toggle="modal" data-bs-target="#myModal">Book now!</div>
-        
     </div>
-    </div> 
-</div>
-</div>
-
-@endforeach
-
-
       <!-- The Modal -->
       <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -186,12 +178,11 @@
           </div>
         </div>
       </div>
-      </section>
-      @endsection
+ </section>
+    @endsection
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
- </body>
- </html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
