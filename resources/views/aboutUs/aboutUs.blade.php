@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>About Us</title>
 </head>
 <body>
@@ -126,7 +128,7 @@
 			<div class="col-sm-6 col-lg-3 col-xl-3">
 				<div class="single-person">
 					<div class="person-image">
-						<img src="../../../assets/img/about/frio.png" alt="">
+						<img src="{{ asset('./assets/imgs/frio.png') }}" alt="">
 						<span class="icon">
 							<i class="fa-brands fa-laravel"></i>
 						</span>
@@ -143,7 +145,7 @@
 			<div class="col-sm-6 col-lg-3 col-xl-3">
 				<div class="single-person">
 					<div class="person-image">
-						<img src="../../../assets/img/about/shima.png" alt="">
+						<img src="{{asset("./assets/imgs/shimaa.png")}}" alt="">
 						<span class="icon">
 							<i class="fab fa-angular"></i>
 						</span>
@@ -160,7 +162,8 @@
 			<div class="col-sm-6 col-lg-3 col-xl-3">
 				<div class="single-person">
 					<div class="person-image">
-						<img src="../../../assets/img/about/anfal.png" alt="">
+						{{-- <img src="../../../assets/img/about/anfal.png" alt=""> --}}
+						<img src="{{asset("./assets/imgs/anfal.png")}}" alt="">
 						<span class="icon">
 							<i class="fa-brands fa-laravel"></i>
 						</span>
@@ -177,7 +180,7 @@
 			<div class="col-sm-6 col-lg-3 col-xl-3">
 				<div class="single-person">
 					<div class="person-image">
-						<img src="../../../assets/img/about/marina.png" alt="">
+						<img src="{{asset("./assets/imgs/marina.png")}}" alt="">
 						<span class="icon">
 							<i class="fab fa-angular"></i>
 						</span>
@@ -194,7 +197,7 @@
 			<div class="col-sm-6 col-lg-3 col-xl-3">
 				<div class="single-person">
 					<div class="person-image">
-						<img src="../../../assets/img/about/obiada.png" alt="">
+						<img src="{{asset("./assets/imgs/obiada.png")}}" alt="">
 						<span class="icon">
 							<i class="fa-brands fa-laravel"></i>
 						</span>

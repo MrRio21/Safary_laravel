@@ -6,14 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome</title>
-	<link rel="stylesheet" href="{{asset("./assets/css/userSignning.css")}}">
+	<link rel="stylesheet" href="{{asset('./assets/css/userSignning.css')}}">
 	<script src="./assets/js/jquery-3.6.1.min.js"></script>
 
 </head>
 
 <body>
     @auth
-    <form action="{{ route("logout") }}" method="POST" >
+    <form action="{{ route('logout') }}" method="POST" >
         @csrf
  <button type="submit" >Log out</button>
 </form>

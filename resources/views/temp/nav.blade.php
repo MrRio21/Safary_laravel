@@ -92,10 +92,9 @@
                     <li class="nav-item"><a href="{{url('allPlaces')}}"  class="nav-link">Places</a></li>
                     <li class="nav-item"><a href="{{url('allTourguide')}}" class="nav-link">Tour gides</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Transportation</a></li>
-                    <li class="nav-item"><a href="aboutUs" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="{{url('aboutUs')}}" class="nav-link">About Us</a></li>
                     <!-- AUTH -->
                     <li class="nav-item">
-
                         <!-- <ul class="navbar-nav ms-auto">
                           @guest
                               @if (Route::has('login'))

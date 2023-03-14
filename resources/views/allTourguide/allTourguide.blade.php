@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('assets/css/Cards/tourguideCards.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Tourguide</title>
  </head>
  <body>
@@ -62,14 +63,14 @@
             <a href="#" style="background:#f6ac45 ;" class="btn">Booking Now</a>
         </div>
         <figure class="about-banner">
-            <img src="{{asset("./assets/asset/img/about-banner.png")}}" width="556" height="700" loading="lazy" alt="" class="w-100">
+            <img src="{{asset('./assets/asset/img/about-banner.png')}}" width="556" height="700" loading="lazy" alt="" class="w-100">
         </figure>
     
     </div>
 </section>
 <!-- -------------------------------------------------------------------------------------------------------------- -->
 <div style="text-align: center;" class="mb-4">
-<button >TOURGUIDE</button>
+<button class="button">TOURGUIDE</button>
 </div>
 <!-- bagination ------------------------------------------------------------------------------------------>
 <div class="demo">
@@ -96,16 +97,21 @@
          <div class="pic">
                  <img class="" src="{{ asset('img/'.$Tourguide->img) }}" alt="">
             <div class="date">
-            <!-- <span class="day">Book now!</span> -->
+            <span class="day">Book now!</span>
             </div>
         </div>
       
     <div class="content">
         <h2>{{$Tourguide -> User -> name}}</h2>
-        <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p> Languages : 
+        <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p>
+         <!-- Languages : 
                  @foreach($Tourguide->languages as $item)
                  <h6 class="h-2 mt-4"><br>{{$item['language']}} </h6>
-                 @endforeach
+                 @endforeach -->
+                 <p class="description">Language : </p>
+                            @foreach($Tourguide->languages as $item)
+                                <span class="description">{{$item['language']}},</span>
+                            @endforeach
 
         <h6 class="h-2 mt-4"><br> Bio :  {{$Tourguide->bio}}</h6>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
@@ -113,15 +119,79 @@
                 <p class="admin">syndicate_No : {{$Tourguide->syndicate_No}} </p>
             </div>
         </div>
-        <div class="btn">Book now!</div>
+        <div class="btn" data-bs-toggle="modal" data-bs-target="#myModal">Book now!</div>
+        
     </div>
     </div> 
 </div>
 </div>
-@endforeach
-</section>
 
+@endforeach
+
+
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Book NOW!</h4>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" id="modal">
+                <div id="booking" class="section">
+                    <div class="section-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <!-- col-md-push-5 -->
+                                    <div class="booking-cta mt-0">
+                                        <h3>Make your reservation</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 ">
+                                    <!-- col-md-pull-7 -->
+                                    <div class="booking-form">
+                                        <form> 
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <span class="form-label">Check In</span>
+                                                        <input class="form-control" type="date" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <span class="form-label">Check out</span>
+                                                        <input class="form-control" type="date" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-btn">
+                                                <button class="submit-btn bookbtnn"onclick()><a href="">Send a request</a></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+      @endsection
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
  </body>
  </html>
-
- @endsection

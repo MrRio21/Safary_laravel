@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Hotels</title>
-    <link href="{{ asset("css/style.css") }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="assets/Ecommerce.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 
         {{-- @foreach($order->OrderedRoomType as $orRoom)
         @if($prev_hotel != $room->Hotel )
-        <?php $prev_hotel = $room->Hotel
+        <?php $prev_hotel = $room->Hotel ;
         $prev_price =$room->price ?>
 @if($orRoom->room_type == $room->type)
 <h1>matches hotelName: {{$room->Hotel->name}}</h1>

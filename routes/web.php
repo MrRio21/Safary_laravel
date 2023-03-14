@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/aboutUs', function () {
+    return view('aboutUs.aboutUs');
+});
+
 
 Route::get('allTourguide',[ViewTourGidesController::class,'index']);
 
