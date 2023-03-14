@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\BookedRoom;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use App\Models\BookTourGuide;
 use App\Models\Order;
 use App\Models\OrderedRoom;
@@ -59,7 +59,7 @@ class OrderDetailsController extends Controller
         if($deleteOrder){
             BookedRoom::where ('order_id',$orderID)->delete();
             BookTourGuide::where ('order_id',$orderID)->delete();
-            OrderedPlaces::where ('order_id',$orderID)->delete();
+            OrderedPlace::where ('order_id',$orderID)->delete();
         }
 
         // return response()->json([
@@ -83,7 +83,7 @@ class OrderDetailsController extends Controller
                  // $order->Tourguide
                  $BookedTourguide = BookTourGuide::where('order_id',$order->id)->get();
                  // $order->place
-                 $orderedPlaces = OrderedPlaces::where('order_id',$order->id)->get();
+                 $orderedPlaces = OrderedPlace::where('order_id',$order->id)->get();
                 
                  return response()->json([
                      'order'=>$order,

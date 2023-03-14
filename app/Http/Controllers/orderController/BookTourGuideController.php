@@ -8,7 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use DateTime;
 use App\Models\BookedRoom;
-use App\Models\OrderedPlaces;
+use App\Models\OrderedPlace;
 use App\Models\Tourguide;
 use App\Models\TourguideLanguage;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +19,7 @@ class BookTourGuideController extends Controller
     public function index(Order $orderID,Request $request)
     {
         $booked = BookedRoom::where('order_id',$orderID->id)->first();
-        $places = OrderedPlaces::where('order_id',$orderID->id)->get();
+        $places = OrderedPlace::where('order_id',$orderID->id)->get();
 
     $budget = (int)$request['restOfBudget'] / $orderID->n_of_days;
 

@@ -40,31 +40,40 @@ class DashboardController extends Controller
     public function index()
     {
         $chosenTrips=  ChosenTrip::all();
-        // $pendingTrips = ChosenTrip::where('status','pending')->get();
-        // $approvedTrips = ChosenTrip::where('status','accept')->get();
-        // $rejectedTrips = ChosenTrip::where('status','reject')->get();
+        // dd ($chosenTrips);
+        $pendingTrips = ChosenTrip::where('status','pending')->get();
+        // dd ($pendingTrips);
+        $approvedTrips = ChosenTrip::where('status','accept')->get();
+        // dd ($approvedTrips);
+        $rejectedTrips = ChosenTrip::where('status','reject')->get();
 
         $users = User::all();
-        // $customers=Role::where('name','customer')->first()->users;
-        // $hotelOwners=Role::where('name','Hotel Owner')->first()->users;
-        // $tourGuides=Role::where('name','TourGuide')->first()->users;
-        // $drivers=Role::where('name','Driver')->first()->users;
-
+        // dd ($users);
+        
+        $customers=Role::where('name','customer')->first()->users;
+        // dd ($customers);
+        $hotelOwners=Role::where('name','HotelOwner')->first()->users;
+        //  dd ($hotelOwners);
+        $tourGuides=Role::where('name','TourGuide')->first()->users;
+        dd($tourGuides);
+        $drivers=Role::where('name','Driver')->first()->users;
+        // dd($drivers);
         $drivers= Driver::all();
+        // dd($drivers);
         $vehicles= Vehicle::all();
         $orderedPlaces= OrderedPlace::all();
         return view('dashboardAdmin.admin',
         [
 
             'chosenTrips' => $chosenTrips,
-            // 'pendingTrips' => $pendingTrips,
-            // 'approvedTrips' => $approvedTrips,
-            // 'rejectedTrips' => $rejectedTrips,
+            'pendingTrips' => $pendingTrips,
+            'approvedTrips' => $approvedTrips,
+            'rejectedTrips' => $rejectedTrips,
 
             'users'=> $users,
-            // 'customers'=>$customers,
-            // 'hotelOwners'=>$hotelOwners,  
-            // 'tourGuides'=> $tourGuides,
+            'customers'=>$customers,
+            'hotelOwners'=>$hotelOwners,  
+            'tourGuides'=> $tourGuides,
             'drivers' => $drivers,
 
             'vehicles' => $vehicles,
