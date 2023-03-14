@@ -30,6 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('allTourguide',[ViewTourGidesController::class,'index']);
 
 Route::get('allPlaces',[ViewPlacesController::class,'index']);
@@ -86,33 +87,33 @@ Route::get('/order',[OrderController::class,'index']);
 // Route::post('/order',[OrderController::class,'store']);
 
 
-function takeTheBudget($budget){
-    $returnedRooms=[];
-    $newBudget= $budget* 60%
-    $rooms = Room::all();
-    foreach ($rooms as $room) {
-        if ($room->price <= $newBudget) {
-            array_push($returnedRooms,$room);
-            return $returnedRooms;
-        }
-    }
-    $newBudget= $budget* 60%
-    $rooms = Room::all();
-    foreach($rooms as $room){
-        if ($room->price < $newBudget){
+// function takeTheBudget($budget){
+//     $returnedRooms=[];
+//     $newBudget= $budget* 60%
+//     $rooms = Room::all();
+//     foreach ($rooms as $room) {
+//         if ($room->price <= $newBudget) {
+//             array_push($returnedRooms,$room);
+//             return $returnedRooms;
+//         }
+//     }
+//     $newBudget= $budget* 60%
+//     $rooms = Room::all();
+//     foreach($rooms as $room){
+//         if ($room->price < $newBudget){
 
-        }
-    }
+//         }
+//     }
 
-}
+// }
 
-function resetBudget($budget ,$checkIn){
-    $userCustomization =[];
-    // $newBudget= $budget* 60%
+// function resetBudget($budget ,$checkIn){
+//     $userCustomization =[];
+//     // $newBudget= $budget* 60%
 
 
 
-}
+// }
 
 // function showPlaces($nOFDays){
 

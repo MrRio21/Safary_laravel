@@ -10,8 +10,8 @@
     <title>Tourguide</title>
  </head>
  <body>
-    @extends('layouts/nav')
-    @section('bodyContent')
+ @extends("temp.nav")
+@section("body")
     
   <section class="section about" style="position:relative; background-image: url(../../assets/img/yellow-swoosh-background.jpg); background-size: cover; ">
     <!-- <img src="../../assets/img/footer-dec.png" style="width: max-content; position:absolute ; z-index: -1"> -->
@@ -99,10 +99,14 @@
             <!-- <span class="day">Book now!</span> -->
             </div>
         </div>
+      
     <div class="content">
         <h2>{{$Tourguide -> User -> name}}</h2>
-        <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p>
-        <h6 class="h-2 mt-4"><br> Languages : {{$Tourguide -> language ?->language}} </h6>
+        <p class="text-muted mt-3">price {{$Tourguide->price_per_day}} /day</p> Languages : 
+                 @foreach($Tourguide->languages as $item)
+                 <h6 class="h-2 mt-4"><br>{{$item['language']}} </h6>
+                 @endforeach
+
         <h6 class="h-2 mt-4"><br> Bio :  {{$Tourguide->bio}}</h6>
         <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
             <div class="d-flex align-items-center justify-content-center foot">

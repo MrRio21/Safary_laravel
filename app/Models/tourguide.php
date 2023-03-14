@@ -28,6 +28,6 @@ class Tourguide extends Model
     }
     public function languages()
     {
-        return $this->hasMany(TourguideLanguage::class , 'book_tour_guide', 'order_id', 'tourGuide_id');
+        return $this->hasMany(TourguideLanguage::class );
     }
 }

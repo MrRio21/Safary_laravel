@@ -86,6 +86,7 @@
                       </div>
                   </div>
               </div>
+              @endforeach
               <div class="col-md-4 mb-4">
                   <div class="card border-0 mb-2">
                       <img class="card-img-top" src="./assets//assetimg/Nub Inn Nubian Dream_files/vvvv/Aswan-Nilme.jpg" alt="">
@@ -197,8 +198,7 @@
     </div>
     <!-- Blog End -->
 
-  @endsection
-
+    @endsection
         <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -211,8 +211,6 @@
     <script src="./assets/asset/mail/contact.js"></script>
         <!-- Template Javascript -->
     <script src="./assets/asset/js/placedesc.js "></script>
-</body>
-</html>
 
 
 

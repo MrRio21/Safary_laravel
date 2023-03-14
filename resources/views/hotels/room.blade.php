@@ -47,7 +47,7 @@
             <!-- <i class="fal fa-alarm-clock"></i> -->
             <i class="fa-regular fa-credit-card"></i>
             <p>Free Cost</p>
-            <h3><a href="#" style="">Book Now</a></h3>
+            <h3><a href="{{route('bookingRoom')}}" style="">Book Now</a></h3>
           </div>
         </div>
         <!-- room img -->

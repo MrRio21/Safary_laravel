@@ -15,10 +15,17 @@ class ViewTourGidesController extends Controller
     public function index()
     {
         $allTourGides = Tourguide::all();
-        $tourguideLanguage= TourguideLanguage::all();
+         $tourguideLanguage= TourguideLanguage::all();
+         $tourlanguage='';
+        //  $items='';
+        foreach($allTourGides as $tour){
+            $tourlanguage= $tour->languages;
+          
+
+        }
+        return view("allTourguide.allTourguide",compact('allTourGides','tourguideLanguage'));
 
         // $tourguideLanguage= TourguideLanguage::where('tourguide_id', $allTourGides -> $allTourGides);
 
-        return view("allTourguide.allTourguide",["allTourGides" => $allTourGides],["tourguideLanguage" => $tourguideLanguage]);
     }
 }

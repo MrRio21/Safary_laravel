@@ -87,10 +87,10 @@
                             <a class="dropdown-item" href="#">Check your Places</a>
                             <a class="dropdown-item" href="#">Check your Tour gide</a>
                         </div>
-                    </li>
-                    <li class="nav-item"><a href="allHotel" class="nav-link">Hotels</a></li>
-                    <li class="nav-item"><a href="allPlaces" class="nav-link">Places</a></li>
-                    <li class="nav-item"><a href="allTourguide" class="nav-link">Tour gides</a></li>
+                    </li> 
+                    <li class="nav-item"><a href="{{url('allHotel')}}" class="nav-link">Hotels</a></li>
+                    <li class="nav-item"><a href="{{url('allPlaces')}}"  class="nav-link">Places</a></li>
+                    <li class="nav-item"><a href="{{url('allTourguide')}}" class="nav-link">Tour gides</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Transportation</a></li>
                     <li class="nav-item"><a href="aboutUs" class="nav-link">About Us</a></li>
                     <!-- AUTH -->

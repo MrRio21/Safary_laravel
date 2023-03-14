@@ -58,6 +58,7 @@
                 <div>
                     <img src="{{$room->cover_img}}" alt="" style="width: 400px;">
                 </div>
+                
                 <h3>Type: {{$room ["type"]}}</h3>
                 <h3>Price {{$room ["price"]}}</h3>
                 <span>4.5<label>(432 Reviews)</label> </span>
@@ -66,6 +67,7 @@
                   <i class="far fa-dot-circle">Price {{$room ["price"]}}</i>
                 </div> -->
                 <button class="flex1">
+
                   <a href="{{route('room',['id'=>$room->id])}}">Check Now!</a>
                   <i class="fas fa-arrow-circle-right"></i>
                 </button>
