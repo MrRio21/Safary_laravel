@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth\registerationController;
-use App\Http\Controllers\Auth\registerationController\userController;
+use App\Http\Controllers\Auth\registerationController\UserController;
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\User;

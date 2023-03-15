@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\vehicleController;
+namespace App\Http\Controllers\VehicleController;
 use App\Http\Controllers\Controller;
-use App\Models\vehicle;
+use App\Models\Vehicle;
 use App\Models\RequestRide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $allVehicle =vehicle::all();
+        $allVehicle =Vehicle::all();
         // dd($allVehicle);
 
         // return response()->json([
@@ -40,7 +40,7 @@ class VehicleController extends Controller
 
         // ]);
         // dd(Auth::user()->Driver->id);
-        $request = vehicle::create([
+        $request = Vehicle::create([
             'driver_id'=>Auth::user()->Driver->id ,
             'type'=>$request['type'],
             'license'=>$request['license'],
@@ -55,9 +55,9 @@ class VehicleController extends Controller
 
     }
 
-    public function show(vehicle $requestRideId)
+    public function show(Vehicle $requestRideId)
     {
-        $target = vehicle::find($requestRideId);
+        $target = Vehicle::find($requestRideId);
         return $target;
     }
 
@@ -73,6 +73,6 @@ class VehicleController extends Controller
 
     public function destroy($Id)
     {
-        vehicle::find($Id)->delete();
+        Vehicle::find($Id)->delete();
     }
 }

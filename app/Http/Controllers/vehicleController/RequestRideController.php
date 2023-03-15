@@ -44,7 +44,8 @@ class RequestRideController extends Controller
             'status'=>'Pendding'
         ]);
         // dd($requestRide);
-        return 201;
+        // return 201;
+        return back();
     }
 
 
@@ -52,10 +53,11 @@ class RequestRideController extends Controller
     {
         // dd($id);
         $target = RequestRide::find($id);
-        return response()->json([
-            'data'=>$target,
-            201
-        ]);
+        // return response()->json([
+        //     'data'=>$target,
+        //     201
+        // ]);
+        return view();
     }
 
 
