@@ -107,7 +107,7 @@
               <tbody>
                 <tr>
                   <td>{{$driver->name}}</td>
-                  <td>{{$driver['license']}}</td>
+                  <td>{{$driver->license}}</td>
 
                   {{-- <td>10 May 2022</td>
                   <td>10 May 2022</td>
