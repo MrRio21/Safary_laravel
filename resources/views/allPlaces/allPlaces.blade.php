@@ -77,10 +77,10 @@
                               <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
                               <h5 class="m-0 ml-3 text-truncate">{{$Place -> name}}</h5>
                           </div>
-                          <p>{{$Place -> description}}</p>
+                          <p>{{$Place ->description}}</p>
                           <div class="d-flex">
-                              <small class="mr-3"><i class="fa fa-user text-primary"></i>Prive {{$Place -> price}}</small>
-                              <small class="mr-3"><i class="fa fa-folder text-primary"></i>Type{{$Place -> type}}</small>
+                              <small class="mr-3"><i class="fa fa-user text-primary"></i>Price {{$Place ->price}}</small>
+                              <small class="mr-3"><i class="fa fa-folder text-primary"></i>Type{{$Place ->type}}</small>
                               <!-- <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small> -->
                           </div>
                       </div>

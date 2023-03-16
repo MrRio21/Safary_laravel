@@ -21,6 +21,7 @@ use App\Models\Vehicle;
 use App\Models\OrderedPlace;
 use App\Models\Role;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -50,12 +51,14 @@ class DashboardController extends Controller
         $users = User::all();
         // dd ($users);
         
+        $admins=Role::where('name','admin')->first()->users;
+
         $customers=Role::where('name','customer')->first()->users;
         // dd ($customers);
         $hotelOwners=Role::where('name','HotelOwner')->first()->users;
         //  dd ($hotelOwners);
         $tourGuides=Role::where('name','TourGuide')->first()->users;
-        dd($tourGuides);
+        // dd($tourGuides);
         $drivers=Role::where('name','Driver')->first()->users;
         // dd($drivers);
         $drivers= Driver::all();
@@ -64,13 +67,14 @@ class DashboardController extends Controller
         $orderedPlaces= OrderedPlace::all();
         return view('dashboardAdmin.admin',
         [
-
+            
             'chosenTrips' => $chosenTrips,
             'pendingTrips' => $pendingTrips,
             'approvedTrips' => $approvedTrips,
             'rejectedTrips' => $rejectedTrips,
 
             'users'=> $users,
+            'admins'=>$admins,
             'customers'=>$customers,
             'hotelOwners'=>$hotelOwners,  
             'tourGuides'=> $tourGuides,
@@ -82,6 +86,48 @@ class DashboardController extends Controller
             'orderedPlaces' => $orderedPlaces,
         ]);
     }
+
+    public function acceptUser( $userid , $tripid)
+    {
+        // $ChosenTrip = ChosenTrip::where('user_id',$userid)->where('trip_id',$tripid)->first(); 
+    //    dd($ChosenTrip);
+        // ChosenTrip::create([
+        //     'status' => 'accept'
+        // ]);
+        // dd($ChosenTrip);
+        // $ChosenTrip->update([
+        //     'status' => 'accept'
+        // ]);
+        DB::statement("UPDATE chosen_trips SET status='accept' WHERE user_id=$userid AND trip_id = $tripid ");
+        
+         return back();
+    }
+
+    public function rejectUser( $userid , $tripid)
+    {
+
+        DB::statement("UPDATE chosen_trips SET status='reject' WHERE user_id=$userid AND trip_id = $tripid ");
+        
+         return back();
+    }
+
+    public function acceptPlace( $userid , $tripid)
+    {
+
+        DB::statement("UPDATE ordered_places SET status='reject' WHERE user_id=$userid AND trip_id = $tripid ");
+        
+         return back();
+    }
+
+
+    public function rejectPlace( $userid , $tripid)
+    {
+
+        DB::statement("UPDATE ordered_places  SET status='reject' WHERE user_id=$userid AND trip_id = $tripid ");
+        
+         return back();
+    }
+
 
 
     public function addHotelView(){

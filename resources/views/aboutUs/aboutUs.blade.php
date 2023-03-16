@@ -203,7 +203,7 @@ integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00
 						</span>
 					</div>
 					<div class="person-info">
-						<h3 class="full-name">Ahmed Abo Obaida</h3>
+						<h3 class="full-name">Ahmed AbuObaida</h3>
 						<span class="speciality">Laravel Developer</span>
 					</div>
 				</div>

@@ -49,9 +49,7 @@
             </div>
             <img src="imgs/avatar.png" alt="" class="avatar" />
             <div class="body txt-c d-flex p-20 mt-20 mb-20 block-mobile">
-              <div> {{Auth::user()->name}} <span class="d-block c-grey fs-14 mt-10">Manager</span></div>
-              <div>80 <span class="d-block c-grey fs-14 mt-10">Travel</span></div>
-              <div>$8500 <span class="d-block c-grey fs-14 mt-10">Earned</span></div>
+              {{-- <div> {{Auth::user()->name}} <span class="d-block c-grey fs-14 mt-10">Manager</span></div> --}}
             </div>
             <a href="profile.html" class="visit d-block fs-14 bg-blue c-white w-fit btn-shape">Profile</a>
           </div>
@@ -62,7 +60,7 @@
           <div class="tickets p-20 bg-white rad-10">
             <h2 class="mt-0 mb-10">Trips</h2>
             {{-- <p class="mt-0 mb-20 c-grey fs-15">Everything About Support Tickets</p> --}}
-            {{-- <div class="d-flex txt-c gap-20 f-wrap">
+            <div class="d-flex txt-c gap-20 f-wrap">
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>
                 <span class="d-block c-black fw-bold fs-25 mb-5">{{ $chosenTrips->count()}}</span>
@@ -75,15 +73,15 @@
               </div>
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-circle-check fa-2x mb-10 c-green"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{$approvedTrips->count()}}</span>
                 Approved
               </div>
               <div class="box p-20 rad-10 fs-13 c-grey">
                 <i class="fa-regular fa-rectangle-xmark fa-2x mb-10 c-red"></i>
-                <span class="d-block c-black fw-bold fs-25 mb-5">{{$pendingTrips->count()}}</span>
+                <span class="d-block c-black fw-bold fs-25 mb-5">{{$rejectedTrips->count()}}</span>
                 Rejected
               </div>
-            </div> --}}
+            </div>
           </div>
           <!-- End Ticket Widget -->
           <!-- Start Top Search Word Widget -->
@@ -93,24 +91,28 @@
               <div>Keyword</div>
               <div>Search Count</div>
             </div>
-            {{-- <div class="items d-flex space-between pt-15 pb-15">
-              <span>customer</span>
+            <div class="items d-flex space-between pt-15 pb-15">
+              <span>users</span>
               <span class="bg-eee fs-13 btn-shape">{{$users->count()}}</span>
             </div>
+            {{-- <div class="items d-flex space-between pt-15 pb-15">
+              <span>admins</span>
+              <span class="bg-eee fs-13 btn-shape">{{$admins->count()}}</span>
+            </div> --}}
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>Hotel Owner</span>
+              <span>customers</span>
               <span class="bg-eee btn-shape fs-13">{{$customers->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>Tourguide</span>
+              <span>hotelOwners</span>
               <span class="bg-eee btn-shape fs-13">{{ $hotelOwners->count()}}</span>
             </div>
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>Trips</span>
+              <span>tourGuides</span>
               <span class="bg-eee btn-shape fs-13">{{ $tourGuides->count()}}</span>
-            </div> --}}
+            </div>
             <div class="items d-flex space-between pt-15 pb-15">
-              <span>Vehicles</span>
+              <span>vehicles</span>
               <span class="bg-eee btn-shape fs-13">{{ $vehicles->count()}}</span>
             </div>
 
@@ -129,10 +131,13 @@
                   <td>Tourist Name</td>
                   <td>Trip</td>
                   <td>Status</td>
+                  <td>Actions</td>
+
                 </tr>
               </thead>
               <tbody>
-                @foreach ($chosenTrips as $chosenTrip)
+                {{-- {{dd($thisuser)}} --}}
+                @foreach($chosenTrips as $chosenTrip)
                 <tr>
                   <td>{{$chosenTrip->user_id}}</td>
                   <td>{{$chosenTrip->trip_id}}</td>
@@ -140,8 +145,24 @@
                   <td>
                     <span class="label btn-shape bg-orange c-white">{{$chosenTrip->status}}</span>
                   </td>
+                  {{-- {{dd($chosenTrip->user_id)}}
+                  {{dd($chosenTrip->trip_id)}} --}}
+                  <td>
+                  {{-- <form action="{{route('acceptUser', ['userid'=>$chosenTrip->user_id , 'tripid'=>$chosenTrip->trip_id])}}" method="GET">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Accept</button>
+                  </form> --}}
+                  {{-- <form action="{{route('rejectUser', ['userid'=>$chosenTrip->user_id , 'tripid'=>$chosenTrip->trip_id])}}" method="GET">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Rejct</button>
+                  </form> --}}
+                  
+                    <a href="{{route('acceptUser', ['userid'=>$chosenTrip->user_id , 'tripid'=>$chosenTrip->trip_id])}}" class="btn btn-success">Accept</a>
+                    <a href="{{route('rejectUser', ['userid'=>$chosenTrip->user_id , 'tripid'=>$chosenTrip->trip_id])}}" class="btn btn-danger">Reject</a>
+                  </td>
                 </tr> 
                 @endforeach
+                
                 
               </tbody>
             </table>
@@ -172,6 +193,11 @@
   
                     <td>
                       <span class="label btn-shape bg-orange c-white">{{$orderedPlace->status}}</span>
+                    </td>
+
+                    <td>
+                        <a href="{{route('acceptPlace', ['userid'=>$orderedPlace->user_id , 'tripid'=>$orderedPlace->trip_id])}}" class="btn btn-success">Accept</a>
+                        <a href="{{route('rejectPlace', ['userid'=>$orderedPlace->user_id , 'tripid'=>$orderedPlace->trip_id])}}" class="btn btn-danger">Reject</a>
                     </td>
                   </tr> 
                   @endforeach

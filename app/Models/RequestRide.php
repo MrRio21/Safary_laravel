@@ -22,4 +22,9 @@ class RequestRide extends Model
     public function DriverRequest(){
         return $this->belongsto(DriverRequest::class);
     }
+
+    public function acceptedRides()
+    {
+        return $this->hasMany(AcceptedRide::class);
+    }
 }

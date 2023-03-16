@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('ordered_places', function (Blueprint $table) {
             // $table->id();
+            $table->enum('status',['accept','reject','pending'])->default('pending');
             $table->timestamps();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');

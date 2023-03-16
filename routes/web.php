@@ -59,6 +59,13 @@ Route::get('allPlaces',[ViewPlacesController::class,'index']);
 
 Route::get('testtrip',[ChosenTripController :: class, 'test']);
 Route::get('/admindashboards',[DashboardController :: class, 'index']);
+Route::get('/acceptUser/{userid}/{tripid}',[DashboardController :: class, 'acceptUser'])->name('acceptUser');
+Route::get('/rejectUser/{userid}/{tripid}',[DashboardController :: class, 'rejectUser'])->name('rejectUser');
+
+Route::get('/acceptPlace/{userid}/{tripid}',[DashboardController :: class, 'acceptPlace'])->name('acceptPlace');
+Route::get('/rejectPlace/{userid}/{tripid}',[DashboardController :: class, 'rejectPlace'])->name('rejectPlace');
+
+
 
 Route::get('watch', function(){
     return view('driver.storeVehicle');
